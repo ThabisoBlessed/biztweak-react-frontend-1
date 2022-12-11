@@ -1,0 +1,17 @@
+h1,
+h2 {
+    font-family: 'Alfa Slab One';
+    font-size: 80px;
+    color: #1d293f;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    display: block;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+h1 span {
+    background: #fd9f00;
+}

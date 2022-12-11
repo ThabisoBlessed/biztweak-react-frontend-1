@@ -23,16 +23,15 @@ export const Navbar = () => {
               data-testid="logoImg"
               alt="logo"
               src={LogoImg}
-              height={150}
-              width={150}
+              height={160}
+              width={160}
             ></img>
           </Link>
         </h1>
         <ul className="hidden md:flex">
-          <li className="p-4 pr-15" data-testid="homeText">
+          <li className="p-4 pr-15 text-[]" data-testid="homeText">
             <Link to="/" className="p-2 flex capitalize hover:text-[#ffd740]">
-              <FaHome size={20} />
-              &nbsp;{constants.home}
+              {constants.home}
             </Link>
           </li>
         </ul>
