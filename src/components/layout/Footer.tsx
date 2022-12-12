@@ -3,7 +3,7 @@ import LogoImg from "../../logo.png";
 
 export const Footer = () => {
   return (
-    <div className="w-full mt-16 md:m-14">
+    <div className="mt-16 md:m-14">
       <div className="md:grid md:grid-cols-4">
         <div id="logo" className="justify-items-center">
           <img
@@ -60,7 +60,19 @@ export const Footer = () => {
             </a>
           </p>
         </div>
+
+        <div id="support">
+          <p className="text-1xl mb-3 font-medium">Support</p>
+          <hr></hr>
+          <p className="mb-3 mt-3 text-gray-500">
+            <a href="mailto:hello@biztweak.org.za">hello@biztweak.org.za</a>
+          </p>
+          <p className="mb-3 mt-3 text-gray-500">
+            <a href="tel:0115689980">011 568 9980</a>
+          </p>
+        </div>
       </div>
+      <hr></hr>
     </div>
   );
 };
