@@ -9,6 +9,7 @@ export const Newsletter = () => {
       <div className="w-[100%]" id="newsletter">
         <div className="row justify-content-center">
           <div className="text-center">
+            <br></br><br></br><br></br><br></br>
             <small className="text-sm text-[#fd9f00]">NEWSLETTER</small>
             <h2 className="my-3">Let's Get in touch!</h2>
             <p>
@@ -21,6 +22,7 @@ export const Newsletter = () => {
                 <PrimaryButton className="hover:bg-[#5bf0b4] hover:border-[#34bc85] border-[#34bc85] bg-[#34bc85] text-white text-center" label="Subscribe"/>
               </div>
             </form>
+            <br></br><br></br><br></br><br></br>
           </div>
         </div>
       </div>
