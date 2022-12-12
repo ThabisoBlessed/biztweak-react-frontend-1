@@ -17,7 +17,7 @@ export const Newsletter = () => {
             </p>
             <form action="#" id="newsletter-form">
               <div className="input-group mt-3">
-                <Input id={"input"} className="border w-40 md:w-80 border-gray-400" placeholder="Enter your email"/>
+                <Input id={"input"} className="border w-44 md:w-80 border-gray-400" placeholder="Enter your email"/>
                 <PrimaryButton className="hover:bg-[#5bf0b4] hover:border-[#34bc85] border-[#34bc85] bg-[#34bc85] text-white text-center" label="Subscribe"/>
               </div>
             </form>

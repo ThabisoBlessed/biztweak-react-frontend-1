@@ -1,24 +1,33 @@
 import React from "react";
-import { FaBook } from "react-icons/fa";
 import * as constants from "../../constants";
 import { PrimaryButton } from "../shared/PrimaryButton";
 import "./Home.css";
 import { Newsletter } from "../Newsletter/Newsletter";
 
 export const Home = () => {
-  const handleClick = (event: any) => {
-
-  }
+  const handleClick = (event: any) => {};
 
   return (
     <div className="w-[100%]">
       <div className="md:grid md:grid-cols-2">
         <div>
-        <img data-testid="bgImg" className="md:hidden sm:flex" src="https://biztweak.org.za/public/new/images/hero-main.png" height={500} width={500} />
-          <h1 data-testid="homeHeaderText" className="md:ml-10 md:text-[80px] text-[40px] tracking-wide m-auto md:pt-36">
+          <img
+            data-testid="bgImg"
+            className="md:hidden sm:flex"
+            src="https://biztweak.org.za/public/new/images/hero-main.png"
+            height={500}
+            width={500}
+          />
+          <h1
+            data-testid="homeHeaderText"
+            className="md:ml-10 ml-2 md:text-[80px] text-[40px] tracking-wide m-auto md:pt-36"
+          >
             Take a <span>FREE</span>. BizTweak Assessment.
           </h1>
-          <p data-testid="homeSubHeaderText" className="text-gray-800 ml-2 md:ml-9 mx-auto text-1xl mt-2">
+          <p
+            data-testid="homeSubHeaderText"
+            className="text-gray-800 ml-2 md:ml-9 mx-auto text-1xl mt-2"
+          >
             {constants.homeSubHeaderText}
           </p>
           <PrimaryButton
@@ -32,7 +41,13 @@ export const Home = () => {
         </div>
 
         <div>
-          <img data-testid="bgImg" className="hidden md:flex" src="https://biztweak.org.za/public/new/images/hero-main.png" height={800} width={900} />
+          <img
+            data-testid="bgImg"
+            className="hidden md:flex"
+            src="https://biztweak.org.za/public/new/images/hero-main.png"
+            height={800}
+            width={900}
+          />
         </div>
       </div>
       <br></br>
