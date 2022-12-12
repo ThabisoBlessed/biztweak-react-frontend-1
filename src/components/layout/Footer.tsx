@@ -6,6 +6,7 @@ import {
   FaFacebook,
   FaTiktok,
   FaYoutube,
+  FaInstagram,
 } from "react-icons/fa";
 
 export const Footer = () => {
@@ -60,7 +61,6 @@ export const Footer = () => {
                 Privacy policy
               </a>
             </p>
-
             <p className="mb-3 mt-3 ml-2 text-gray-500">
               <a
                 target="_blank"
@@ -104,7 +104,7 @@ export const Footer = () => {
               <FaFacebook size={25} />
             </a>
             <a className="m-2" target="_blank" href="https://instagram.com/biztweaksa">
-              <i className="fab fa-instagram"></i>
+              <FaInstagram size={25} />
             </a>
             <a className="m-2" target="_blank" href="https://www.tiktok.com/@biztweakza">
               <FaTiktok size={25} />
@@ -119,7 +119,7 @@ export const Footer = () => {
           </div>
         </div>
         <hr />
-        <div className="text-center">
+        <div className="text-center m-2">
           Copyright © {new Date().getFullYear()} Biztweak. All rights reserved.
         </div>
       </div>

@@ -9,7 +9,7 @@ export const Home = () => {
 
   return (
     <div className="w-full">
-      <div className="md:grid md:grid-cols-2">
+      <div className="md:grid md:grid-cols-2 m-5">
         <div>
           <img
             data-testid="bgImg"

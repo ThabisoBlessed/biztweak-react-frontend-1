@@ -48,7 +48,7 @@ export const Navbar = () => {
           id="mobileMenu"
           className={
             nav
-              ? "fixed left-0 top-0 w-[60%] h-full border bg-[black] text-white rounded-lg ease-in-out duration-500 shadow-lg"
+              ? "fixed left-0 top-0 w-[60%] h-full border bg-[#00c2cb] text-white rounded-lg ease-in-out duration-500 shadow-lg"
               : "fixed left-[-100%]"
           }
         >
@@ -61,8 +61,7 @@ export const Navbar = () => {
 
             <li className="p-2 border-white" onClick={handleNav}>
               <Link to="/" className="flex text-white">
-                <FaHome size={20} />
-                &nbsp;{constants.home}
+                {constants.home}
               </Link>
             </li>
           </ul>
