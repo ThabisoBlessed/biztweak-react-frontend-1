@@ -1,0 +1,33 @@
+#newsletter {
+    background-image: url("../../images/newsletter-bg.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#newsletter-form .input-group input {
+    border-top-left-radius: 32px;
+    border-bottom-left-radius: 32px;
+    font-size: 14px;
+    padding: 18px;
+}
+
+#newsletter-form .input-group button {
+    border-top-right-radius: 32px;
+    border-bottom-right-radius: 32px;
+    font-size: 14px;
+    padding: 3px;
+}
+
+h2 {
+    font-family: 'Alfa Slab One';
+    font-size: 38px;
+    color: #1d293f;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-weight: 900;
+    line-height: 1.2;
+    display: block;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}

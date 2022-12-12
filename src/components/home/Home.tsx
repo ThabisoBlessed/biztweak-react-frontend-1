@@ -3,6 +3,7 @@ import { FaBook } from "react-icons/fa";
 import * as constants from "../../constants";
 import { PrimaryButton } from "../shared/PrimaryButton";
 import "./Home.css";
+import { Newsletter } from "../Newsletter/Newsletter";
 
 export const Home = () => {
   const handleClick = (event: any) => {
@@ -24,7 +25,7 @@ export const Home = () => {
             id={"click"}
             data-testid={"addToCartBtn"}
             label={constants.takeFreeAssessment}
-            className="hover:bg-[#2becf6] hover:border-[#00a9b1] pt-1 ml-8 capitalize shadow-lg border-[#00c2cb] bg-[#00c2cb] text-white mb-4 mt-2 text-center rounded-sm"
+            className="hover:bg-[#2becf6] hover:border-[#00a9b1] pt-1 ml-9 capitalize shadow-lg border-[#00c2cb] bg-[#00c2cb] text-white mb-4 mt-2 text-center rounded-sm"
             onClick={(event: any) => handleClick(event)}
             disabled={false}
           />
@@ -34,7 +35,7 @@ export const Home = () => {
           <img data-testid="bgImg" className="hidden md:flex" src="https://biztweak.org.za/public/new/images/hero-main.png" height={800} width={900} />
         </div>
       </div>
-      <br></br>
+      <Newsletter />
     </div>
   );
 };
