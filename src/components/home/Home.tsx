@@ -8,7 +8,7 @@ export const Home = () => {
   const handleClick = (event: any) => {};
 
   return (
-    <div className="w-[100%]">
+    <div className="w-full">
       <div className="md:grid md:grid-cols-2">
         <div>
           <img
@@ -22,7 +22,7 @@ export const Home = () => {
             data-testid="homeHeaderText"
             className="md:ml-10 ml-2 md:text-[80px] text-[40px] tracking-wide m-auto md:pt-36"
           >
-            Take a <span>FREE</span>. BizTweak Assessment.
+            Take a <span>FREE</span> BizTweak Assessment.
           </h1>
           <p
             data-testid="homeSubHeaderText"
