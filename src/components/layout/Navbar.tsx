@@ -18,7 +18,7 @@ export const Navbar = () => {
     <div className="border-b" data-testid="navbar">
       <div className="p-0 flex justify-between items-center w-[100%] mx-auto">
         <h1 className="w-full text-2xl font-bold">
-          <Link to="/" className="p-4 flex">
+          <Link to="/" className="p-3 flex">
             <img
               data-testid="logoImg"
               alt="logo"
