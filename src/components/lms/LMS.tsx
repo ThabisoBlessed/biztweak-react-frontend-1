@@ -1,12 +1,12 @@
 import React from "react";
 import { LMSMenu } from "./LMSMenu";
 import "./LMS";
-import { CourseDashboard } from "./CourseDashboard";
+import { Dashboard } from "./Dashboard";
 
 export const LMS = () => {
   return (
     <div className="w-full">
-      <CourseDashboard />
+      <Dashboard />
     </div>
   );
 };
