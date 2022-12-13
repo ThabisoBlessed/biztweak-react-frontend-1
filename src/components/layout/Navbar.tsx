@@ -23,8 +23,8 @@ export const Navbar = () => {
               data-testid="logoImg"
               alt="logo"
               src={LogoImg}
-              height={160}
-              width={160}
+              height={150}
+              width={150}
             ></img>
           </Link>
         </h1>
