@@ -1,7 +1,6 @@
 import React from "react";
-import { LMSMenu } from "./LMSMenu";
-import "./LMS";
 import { Dashboard } from "./Dashboard";
+import "./LMS";
 
 export const LMS = () => {
   return (

@@ -6,6 +6,7 @@ import { Home } from "./components/home/Home";
 import { Footer } from "./components/layout/Footer";
 import { LMS } from "./components/lms/LMS";
 import { Courses } from "./components/lms/Courses";
+import { Dashboard } from "./components/lms/Dashboard";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
 
           <Route path="/lms/*" element={<LMS />}></Route>
           <Route path="/lms/courses" element={<Courses />}></Route>
+          <Route path="/lms/dashboard" element={<Dashboard />}></Route>
         </Routes>
       </Router>
       <Footer />
