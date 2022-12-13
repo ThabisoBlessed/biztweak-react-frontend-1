@@ -1,83 +1,72 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export const LMSMenu = () => {
+  const menuList: any[] = [
+    {
+      id: 0,
+      title: "Dashboard",
+      link: "/lms/dashboard",
+      iconClass: "fa-lg fa-solid fa-home",
+    },
+    {
+      id: 1,
+      title: "Course Progress",
+      link: "/lms/course-progress",
+      iconClass: "fa-lg fa-solid fa-clock",
+    },
+    {
+      id: 2,
+      title: "Courses",
+      link: "/lms/courses",
+      iconClass: "fa-lg fas fa-file-text",
+    },
+    {
+      id: 3,
+      title: "Messages",
+      link: "/lms/messages",
+      iconClass: "fa-lg fa-solid fa-envelope",
+    },
+    {
+      id: 4,
+      title: "Digital Tools",
+      link: "/lms/digital-tools",
+      iconClass: "fa-lg fa-solid fa-cog",
+    },
+    {
+      id: 5,
+      title: "Growth Plan",
+      link: "/lms/growth-plan",
+      iconClass: "fa-lg fas fa-bar-chart",
+    },
+    {
+      id: 6,
+      title: "Calendar",
+      link: "/lms/calendar",
+      iconClass: "fa-lg fas fa-calendar-alt",
+    },
+    {
+      id: 7,
+      title: "Attendance",
+      link: "/lms/attendance",
+      iconClass: "fa-lg fas fa-file-waveform",
+    },
+  ];
+  const [menu, setMenu] = useState(menuList);
+
   return (
     <div className="w-full text-dark">
-      {/* <div id="links" data-testid={"links"} className="max-w-[1240px] mx-auto">
-          <p><Link to="/posts" data-testid={"link"} className="hover:underline link">LIST POSTS
-          </p>
-            <p>
-            <Link to="/posts/add" data-testid={"link"} className="hover:underline link">
-            ADD POST
-          
-            </p>
-        </div> */}
       <ul className="ml-5 navbar-nav pt-2 mb-4">
-        <li className="nav-item">
-          <a className="nav-link text-dark" href="javascript:void(0)">
-            <Link to="/lms/dashboard">
-              <i className="fa-lg fa-solid fa-home"></i>
-              <span className="ml-3 text-dark">Dashboard</span>
-            </Link>
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link text-dark" href="javascript:void(0)">
-            <Link to="/lms/course-progress">
-              <i className="fa-lg fa-solid fa-clock"></i>
-              <span className="ml-3 text-dark">Course Progress</span>
-            </Link>
-          </a>
-        </li>
-        <li className="nav-item active">
-          <a className="nav-link text-dark" href="javascript:void(0)">
-            <Link to="/lms/courses">
-              <i className="fa-lg fas fa-file-text"></i>
-              <span className="ml-4 text-dark">Courses</span>
-            </Link>
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link text-dark" href="javascript:void(0)">
-            <Link to="/lms/messages">
-              <i className="fa-lg fa-solid fa-envelope"></i>
-              <span className="ml-3 text-dark line-through">Messages</span>
-            </Link>
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link text-dark" href="javascript:void(0)">
-            <Link to="/lms/digital-tools">
-              <i className="fa-lg fa-solid fa-cog"></i>
-              <span className="ml-3 text-dark line-through">Digital Tools</span>
-            </Link>
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link text-dark" href="javascript:void(0)">
-            <Link to="/lms/growth-plan">
-              <i className="fa-lg fas fa-bar-chart"></i>
-              <span className="ml-3 text-dark line-through">Growth Plan</span>
-            </Link>
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link text-dark" href="javascript:void(0)">
-            <Link to="/lms/calendar">
-              <i className="fa-lg fas fa-calendar-alt"></i>
-              <span className="ml-4 text-dark line-through">Calendar</span>
-            </Link>
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link text-dark" href="javascript:void(0)">
-            <Link to="/lms/attendance">
-              <i className="fa-lg fas fa-file-waveform"></i>
-              <span className="ml-4 text-dark">Attendance</span>
-            </Link>
-          </a>
-        </li>
+        {menu.map((menu: any, index: number) => {
+          return (
+            <div key={index} className="m-2">
+              <Link to={menu.link}>
+                <i className={menu.iconClass}></i>
+                <span className="ml-3 text-dark">{menu.title}</span>
+              </Link>
+            </div>
+          );
+        })}
       </ul>
       <div className="p-2 d-none d-md-block">
         <div className="card bg-light text-dark">

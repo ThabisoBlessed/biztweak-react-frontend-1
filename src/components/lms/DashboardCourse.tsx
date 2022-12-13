@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import CourseImg from "../../images/course.png";
+import AvatarImg from "../../images/avatar.png";
 
 export const DashboardCourse = (props: any) => {
   const [dashboardCourses, setDashboardCourse] = useState(props.dashboardCourses);
@@ -21,24 +23,25 @@ export const DashboardCourse = (props: any) => {
             data-testid={course.id}
             onClick={(event) => handleClick(event)}
             key={i}
+            className="w-full"
           >
-            <div className="row mt-3">
+            <div className="row">
               <div className="col-lg-3 col-md-4 mb-3 mb-lg-0">
                 <div className="card">
                   <div className="card-body text-dark">
                     <img
-                      src="../images/course.png"
+                      src={CourseImg}
                       className="img-fluid card-img-top"
                       alt=""
                     ></img>
                     <h5 className="my-2">{course.title}</h5>
                     <p className="my-2">
                       <img
-                        src="../images/avatar.png"
+                        src={AvatarImg}
                         className="rounded-circle"
                         width="30px"
                         alt=""
-                      ></img>{" "}
+                      ></img>
                       {course.provider}
                     </p>
                     <div className="d-flex justify-content-between align-items-center">

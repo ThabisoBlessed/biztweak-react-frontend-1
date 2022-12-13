@@ -8,12 +8,11 @@ import CoinsImg from "../../images/icons/coins.png";
 import { DashboardCourse } from "./DashboardCourse";
 
 export const Dashboard = () => {
-  const [dashboardCourses, setDashboardCourses] = useState([
-    {id: "test", title: "E-Bussiness Managment course learning", provider: "BizTweak", lessons: "10/40"}
-  ]);
+  const courses: any[] = [{id: "test", title: "E-Bussiness Managment course learning", provider: "BizTweak", lessons: "10/40"}];
+  const [dashboardCourses, setDashboardCourses] = useState([...courses]);
 
   useEffect(() => {
-  }, [dashboardCourses]);
+  }, []);
 
   return (
     <div className="w-full">
