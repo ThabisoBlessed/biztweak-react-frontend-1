@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { LMSMenu } from "./LMSMenu";
 import "./LMS.css";
 import FileImg from "../../images/icons/file.png";
 import ClockImg from "../../images/icons/clock.png";
 import CheckImg from "../../images/icons/check.png";
 import CoinsImg from "../../images/icons/coins.png";
+import { DashboardCourse } from "./DashboardCourse";
 
 export const Dashboard = () => {
+  const [dashboardCourses, setDashboardCourses] = useState([
+    {id: "test", title: "E-Bussiness Managment course learning", provider: "BizTweak", lessons: "10/40"}
+  ]);
+
+  useEffect(() => {
+  }, [dashboardCourses]);
+
   return (
     <div className="w-full">
       <div className="row">
@@ -63,6 +71,11 @@ export const Dashboard = () => {
                 </div>
               </div>
             </div>
+
+            <div className="row m-3">
+              <DashboardCourse dashboardCourses={dashboardCourses} />
+            </div>
+
           </div>
         </div>
       </div>

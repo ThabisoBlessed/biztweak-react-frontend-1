@@ -7,6 +7,7 @@ import { Footer } from "./components/layout/Footer";
 import { LMS } from "./components/lms/LMS";
 import { Courses } from "./components/lms/Courses";
 import { Dashboard } from "./components/lms/Dashboard";
+import { DashboardCourse } from "./components/lms/DashboardCourse";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/lms/*" element={<LMS />}></Route>
           <Route path="/lms/courses" element={<Courses />}></Route>
           <Route path="/lms/dashboard" element={<Dashboard />}></Route>
+          <Route path="/lms/dashboard-course" element={<DashboardCourse />}></Route>
         </Routes>
       </Router>
       <Footer />
