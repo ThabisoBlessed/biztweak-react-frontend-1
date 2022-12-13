@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const LMSMenu = () => {
   return (
-    <div className="w-full text-dark border-r">
+    <div className="w-full text-dark">
       {/* <div id="links" data-testid={"links"} className="max-w-[1240px] mx-auto">
           <p><Link to="/posts" data-testid={"link"} className="hover:underline link">LIST POSTS
           </p>
