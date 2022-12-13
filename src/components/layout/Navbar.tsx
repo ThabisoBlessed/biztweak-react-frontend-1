@@ -29,8 +29,14 @@ export const Navbar = () => {
           </Link>
         </h1>
         <ul className="hidden md:flex">
+        <li className="p-4 pr-15 text-[]" data-testid="homeText">
+            <Link to="/lms" className="p-2 flex capitalize hover:text-[#00c2cb]">
+              {constants.lms.toUpperCase()}
+            </Link>
+          </li>
+
           <li className="p-4 pr-15 text-[]" data-testid="homeText">
-            <Link to="/" className="p-2 flex capitalize hover:text-[#ffd740]">
+            <Link to="/" className="p-2 flex capitalize hover:text-[#00c2cb]">
               {constants.home}
             </Link>
           </li>

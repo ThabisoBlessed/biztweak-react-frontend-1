@@ -4,3 +4,6 @@ by helping you spot gaps in your business or business idea.`;
 export const baseUrl = "";
 export const home = "home";
 export const takeFreeAssessment = "take free assessment";
+
+// LMS
+export const lms = "lms"
