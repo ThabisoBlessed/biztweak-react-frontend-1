@@ -9,6 +9,7 @@ import { Courses } from "./components/lms/Courses";
 import { Dashboard } from "./components/lms/Dashboard";
 import { Register } from "./components/auth/Register";
 import { Login } from "./components/auth/Login";
+import { ResetPassword } from "./components/auth/ResetPassword";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/auth/*" element={<Home />}></Route>
           <Route path="/auth/register" element={<Register />}></Route>
           <Route path="/auth/login" element={<Login />}></Route>
+          <Route path="/auth/reset-password" element={<ResetPassword />}></Route>
 
           <Route path="/lms/*" element={<LMS />}></Route>
           <Route path="/lms/courses" element={<Courses />}></Route>
