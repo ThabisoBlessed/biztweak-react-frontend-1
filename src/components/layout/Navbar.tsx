@@ -45,16 +45,16 @@ export const Navbar = () => {
           <div className="collapse navbar-collapse" id="mynavbar">
             <ul className="navbar-nav align-items-center ms-auto">
               <li className="nav-item me-2">
-                <select className="form-select form-select-sm d-inline" id="">
+                <select className="form-select form-select-sm d-inline" id="english">
                   <option value="">English</option>
                 </select>
               </li>
-              <li className="nav-item me-2">
+              <li className="nav-item me-2" id="home">
                 <Link to="/">
                   <i className="fa-lg fa-solid fa-house"></i>
                 </Link>
               </li>
-              <li className="nav-item me-2">
+              <li className="nav-item me-2" id="notification">
                 <Link to="/notifications">
                   <i className="fa-lg fa-solid fa-bell"></i>
                 </Link>

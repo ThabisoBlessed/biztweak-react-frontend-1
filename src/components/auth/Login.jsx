@@ -18,7 +18,7 @@ export const Login = () => {
   }, [navigate]);
 
   return (
-    <div className="w-full bg-[#e5e5e5]">
+    <div className="w-full bg-[#e5e5e5] text-dark">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-10">
@@ -33,7 +33,7 @@ export const Login = () => {
               <div className="col-md-7">
                 <div className="card p-3 p-md-5 mt-5 mb-5">
                   <div className="card-body">
-                    <h2 className="text-4xl">Login Account</h2>
+                    <h2 className="text-4xl" style={{fontSize: "40px"}}>Login Account</h2>
                     <p className="mb-md-5">
                       Follow the instructions to make it easier to login and you
                       will be able to explore inside.
@@ -87,12 +87,9 @@ export const Login = () => {
                         </button>
                         <div className="float-none float-md-end">
                           Don't have an Account?
-                          <a
-                            className="text-[#0d6efd]"
-                            href="https://biztweak.org.za/public/register"
-                          >
-                            &nbsp;Sign up
-                          </a>
+                          <Link to="/auth/register" className="text-[#0d6efd]">
+                            &nbsp;Register
+                          </Link>
                         </div>
                       </div>
                       <div className="clearfix mb-3"></div>

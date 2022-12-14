@@ -2,30 +2,151 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export const Register = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
+
+  const registerProviderStyles = {
+    color: "white",
+    padding: "10px",
+    fontFamily: "Arial",
+  };
 
   useEffect(() => {
     // if (user) navigate("/dashboard");
   }, [navigate]);
 
-  const registerWithEmailAndPassword = (firstName, lastName,email, password) => {
-
-  }
+  const registerWithEmailAndPassword = (
+    firstName,
+    lastName,
+    email,
+    password
+  ) => {};
 
   return (
-    <div className="w-full h-[600px] flex flex-col justify-center items-center bg-[#e5e5e5]">
-       <h3
+    <div className="w-full bg-[#e5e5e5] text-dark">
+        <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-md-10">
+            <div className="row align-items-center">
+              <div className="col-md-5">
+                <img
+                  src="https://biztweak.org.za/public/new/images/auth.png"
+                  className="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div className="col-md-7">
+                <div className="card p-3 p-md-5 mt-5 mb-5">
+                  <div className="card-body">
+                    <h2 className="text-4xl" style={{fontSize: "40px"}}>Create an Account</h2>
+                    <p className="mb-md-5">
+                      Follow the instructions to make it easier to login and you
+                      will be able to explore inside.
+                    </p>
+                    <form>
+                      <div className="input-group input-group-lg p-2 mb-3">
+                        <i className="fa fa-user input-group-text"></i>
+                        <input
+                          id="fullName"
+                          type="text"
+                          placeholder="Full Name"
+                          className="form-control text-sm"
+                          autoComplete="false"
+                          onChange={(e) => setFullName(e.target.value)}
+                        />
+                      </div>
+                      <div className="input-group input-group-lg p-2 mb-3">
+                        <i className="fa fa-envelope input-group-text"></i>
+                        <input
+                          id="email"
+                          type="email"
+                          placeholder="E-mail address"
+                          className="form-control "
+                          autoComplete="false"
+                          onChange={(e) => setEmail(e.target.value)}
+                        />
+                      </div>
+                      <div className="input-group input-group-lg p-2 mb-3">
+                        <i className="fa fa-star input-group-text"></i>
+                        <input
+                          id="password"
+                          type="password"
+                          placeholder="Password"
+                          className="form-control text-sm"
+                          autoComplete="false"
+                          onChange={(e) => setPassword(e.target.value)}
+                        />
+                      </div>
+                      <div className="input-group input-group-lg p-2 mb-3">
+                        <i className="fa fa-star input-group-text"></i>
+                        <input
+                          id="confirmPassword"
+                          type="password"
+                          placeholder="Confirm Password"
+                          className="form-control text-sm"
+                          autoComplete="false"
+                          onChange={(e) => setConfirmPassword(e.target.value)}
+                        />
+                      </div>
+                      <div className="clearfix mb-3"></div>
+                      <div className="d-md-flex justify-content-between mb-3 align-items-center">
+                        <button className="btn btn-lg ml-2 text-white bg-[#00c2cb]">
+                          Create Account
+                        </button>
+                        <div className="float-none float-md-end">
+                        Already have an Account? 
+                          <Link to="/auth/login" className="text-[#0d6efd]">
+                            &nbsp;Sign in
+                          </Link>
+                        </div>
+                      </div>
+                      <div className="clearfix mb-3"></div>
+                      <h6 className="mt-5 mb-3 fw-bold ml-2">Or connect with</h6>
+                      <div className="d-flex">
+                        <a className="btn btn-outline-light text-dark px-3 px-md-5 border me-3">
+                          <img
+                            style={registerProviderStyles}
+                            src="https://biztweak.org.za/public/new/images/icons/google.png"
+                            alt="google"
+                          />
+                          Google
+                        </a>
+                        <a className="btn btn-outline-light text-dark px-3 px-md-5 me-3 border">
+                          <img
+                            style={registerProviderStyles}
+                            src="https://biztweak.org.za/public/new/images/icons/facebook.png"
+                            alt="facebook"
+                          />
+                          Facebook
+                        </a>
+                        <a className="btn btn-outline-light text-dark px-3 px-md-5 border">
+                          <img
+                            style={registerProviderStyles}
+                            src="https://biztweak.org.za/public/new/images/icons/linkedin.png"
+                            alt="linkedin"
+                          />
+                          Linkedin
+                        </a>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* <h3
         className="text-center m-4 text-3xl text-black font-bold"
         id="pageHeader"
       >
         Register
       </h3>
       <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 md:w-[25%]">
-      <div className="mb-4">
+        <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="firstName"
@@ -96,7 +217,6 @@ export const Register = () => {
             placeholder="******************"
             onChange={(e) => setPassword(e.target.value)}
           />
-          {/* <p className="text-red-500 text-xs italic">Please choose a password.</p> */}
         </div>
 
         <div className="items-center justify-between">
@@ -104,7 +224,9 @@ export const Register = () => {
             className="hover:bg-[#f7e08c] w-[100%] bg-[#ffd740] text-black font-bold 
             py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="button"
-            onClick={() => registerWithEmailAndPassword(firstName, lastName,email, password)}
+            onClick={() =>
+              registerWithEmailAndPassword(firstName, lastName, email, password)
+            }
           >
             Register
           </button>
@@ -114,7 +236,7 @@ export const Register = () => {
             <Link to="/auth/login">Already have an account? Login now.</Link>
           </div>
         </div>
-      </form>
+      </form> */}
     </div>
   );
 };
