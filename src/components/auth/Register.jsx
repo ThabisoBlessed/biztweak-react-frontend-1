@@ -1,24 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, registerWithEmailAndPassword } from "../../firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
 
 export const Register = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (loading) {
-      console.log("loading");
-      // maybe trigger a loading screen
-      return;
-    }
-    if (user) navigate("/dashboard");
-  }, [user, loading, navigate]);
+    // if (user) navigate("/dashboard");
+  }, [navigate]);
+
+  const registerWithEmailAndPassword = (firstName, lastName,email, password) => {
+
+  }
 
   return (
     <div className="w-full h-[600px] flex flex-col justify-center items-center">
@@ -108,7 +104,7 @@ export const Register = () => {
             className="hover:bg-[#f7e08c] w-[100%] bg-[#ffd740] text-black font-bold 
             py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="button"
-            onClick={() => registerWithEmailAndPassword(firstName + ' ' + lastName ,email, password)}
+            onClick={() => registerWithEmailAndPassword(firstName, lastName,email, password)}
           >
             Register
           </button>
@@ -119,9 +115,6 @@ export const Register = () => {
           </div>
         </div>
       </form>
-      <p className="text-center text-gray-500 text-xs">
-        &copy;{new Date().getFullYear()} Snapshopper. All rights reserved.
-      </p>
     </div>
   );
 };

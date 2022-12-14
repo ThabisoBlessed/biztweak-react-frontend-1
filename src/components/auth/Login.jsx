@@ -7,13 +7,8 @@ export const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (loading) {
-      console.log("loading");
-      // maybe trigger a loading screen
-      return;
-    }
-    if (user) navigate("/dashboard");
-  }, [user, loading, navigate]);
+    // if (user) navigate("/dashboard");
+  }, [navigate]);
 
   return (
     <div className="w-full h-[600px] flex flex-col justify-center items-center">
