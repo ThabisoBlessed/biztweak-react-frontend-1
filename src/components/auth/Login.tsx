@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ILoginRequest, ILoginResponse } from "../../model/login.model";
+import { ILoginRequest, ILoginResponse } from "../../model/auth.model";
 import { userLogin } from "../../services/auth";
 import "./Auth.css";
 
@@ -17,9 +17,9 @@ export const Login = () => {
 
   useEffect(() => {
     // if (user) navigate("/dashboard");
-  }, [navigate, email, password]);
+  }, [navigate]);
 
-  const login = async (event: any) => {
+  const loginWithEmailAndPassword = async (event: any) => {
     event.preventDefault();
 
     const user = {} as ILoginRequest;
@@ -97,7 +97,7 @@ export const Login = () => {
                       </p>
                       <div className="clearfix mb-3"></div>
                       <div className="d-md-flex justify-content-between mb-3 align-items-center">
-                        <button onClick={(event) => login(event)} className="btn btn-lg ml-2 text-white bg-[#00c2cb]">
+                        <button onClick={(event) => loginWithEmailAndPassword(event)} className="btn btn-lg ml-2 text-white bg-[#00c2cb]">
                           Login
                         </button>
                         <div className="float-none float-md-end">

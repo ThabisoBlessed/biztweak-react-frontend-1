@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { IRegisterRequest } from "../../model/auth.model";
+import { userRegister } from "../../services/auth";
 
 export const Register = () => {
   const [fullname, setFullName] = useState("");
@@ -18,11 +20,17 @@ export const Register = () => {
     // if (user) navigate("/dashboard");
   }, [navigate]);
 
-  const registerWithEmailAndPassword = (
-    fullname: string,
-    email: string,
-    password: string
-  ) => {};
+  const registerWithEmailAndPassword = async (event: any) => {
+    event.preventDefault();
+
+    const userRegistration = {} as IRegisterRequest;
+    userRegistration.email = email;
+    userRegistration.fullname = fullname;
+    userRegistration.password = password;
+
+    const register = await userRegister(userRegistration);
+    console.log(register);
+  };
 
   return (
     <div className="w-full bg-[#e5e5e5] text-dark">
@@ -94,7 +102,7 @@ export const Register = () => {
                       </div>
                       <div className="clearfix mb-3"></div>
                       <div className="d-md-flex justify-content-between mb-3 align-items-center">
-                        <button className="btn btn-lg ml-2 text-white bg-[#00c2cb]">
+                        <button onClick={(event) => registerWithEmailAndPassword(event)} className="btn btn-lg ml-2 text-white bg-[#00c2cb]">
                           Create Account
                         </button>
                         <div className="float-none float-md-end">

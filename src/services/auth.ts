@@ -1,24 +1,48 @@
 import axios from "axios";
 import * as constants from "../constants";
 import {
-  ILoginErrorResponse,
+  IAuthErrorResponse,
   ILoginRequest,
   ILoginResponse,
-} from "../model/login.model";
+  IRegisterRequest,
+} from "../model/auth.model";
 
 /**
- *
+ * Login by email
  * @param {string} email
  * @param {string} password
- * @returns
+ * @returns {Promise<IRegisterRequest | IAuthErrorResponse>} response
  */
 export const userLogin = async (
   login: ILoginRequest
-): Promise<ILoginResponse | ILoginErrorResponse> => {
+): Promise<ILoginResponse | IAuthErrorResponse> => {
   try {
-    return await axios.post(constants.baseUrl + `/email-auth`, { email: login.email, password: login.password });
+    return await axios.post(constants.baseUrl + `/email-auth`, {
+      email: login.email,
+      password: login.password,
+    });
   } catch (error: any) {
-    console.log(JSON.stringify(error));
+    return error;
+  }
+};
+
+/**
+ * Register by email
+ * @param {string} fullname
+ * @param {string} email
+ * @param {string} password
+ * @returns {Promise<IRegisterRequest | IAuthErrorResponse>} response
+ */
+export const userRegister = async (
+  register: IRegisterRequest
+): Promise<IRegisterRequest | IAuthErrorResponse> => {
+  try {
+    return await axios.post(constants.baseUrl + `/email-register`, {
+      fullname: register.fullname,
+      email: register.email,
+      password: register.password,
+    });
+  } catch (error: any) {
     return error;
   }
 };
