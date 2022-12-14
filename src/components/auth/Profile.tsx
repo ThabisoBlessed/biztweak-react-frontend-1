@@ -14,13 +14,12 @@ export const Profile = () => {
           <ProfileMenu />
         </div>
         <div className="col-md-9 bg-white">
-          <div className="w-full h-[600px] flex flex-col justify-center items-center">
+          <div className="h-[600px] flex flex-col justify-center items-center">
             <h2 className="text-4xl" style={{ fontSize: "45px" }}>
               Profile Settings
             </h2>
             <form className="rounded px-8 pt-3 pb-8 mb-4 md:w-[50%]">
               <div className="input-group input-group-lg p-2 mb-3">
-                <i className="fa fa-user input-group-text"></i>
                 <input
                   id="fullName"
                   type="text"
@@ -31,7 +30,6 @@ export const Profile = () => {
                 />
               </div>
               <div className="input-group input-group-lg p-2 mb-3">
-                <i className="fa fa-envelope input-group-text"></i>
                 <input
                   id="email"
                   type="email"
@@ -42,7 +40,6 @@ export const Profile = () => {
                 />
               </div>
               <div className="input-group input-group-lg p-2 mb-3">
-                <i className="fa fa-star input-group-text"></i>
                 <input
                   id="password"
                   type="password"
@@ -53,7 +50,6 @@ export const Profile = () => {
                 />
               </div>
               <div className="input-group input-group-lg p-2 mb-3">
-                <i className="fa fa-star input-group-text"></i>
                 <input
                   id="confirmPassword"
                   type="password"
