@@ -76,45 +76,123 @@ export const ProfileMenu = () => {
 
   return (
     <div className="w-full text-dark">
-      <ul className="ml-5 navbar-nav pt-2 mb-4">
-        {menu.map((menu: any, index: number) => {
-          return (
-            <li className="hover:bg-[#00c2cb]">
-              <div
-                key={index}
-                className="m-2"
-                id={`${index}`}
-                onClick={(e) => handleMenuItemClick(e)}
+      <div className="section">
+        <h6 className="fw-bold mb-3">COMPANY</h6>
+        <button
+          data-bs-toggle="modal"
+          data-bs-target="#add-company"
+          className="btn btn-outline-info dotted-border btn-lg col-12"
+        >
+          <i className="fa fa-plus"></i> Add Company
+        </button>
+      </div>
+
+      <ul className="list-group mt-3 ">
+        <li className="top-buffer">
+          <div className="accordion-item">
+            <h2 className="accordion-header" id="heading37">
+              <button
+                className="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse37"
+                aria-expanded="true"
+                aria-controls="collapse37"
               >
-                <Link to={menu.link}>
-                  <i className={menu.iconClass}></i>
-                  <span className={`text-dark ${menu.titleClasses}`}>
-                    {menu.title}
-                  </span>
-                </Link>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-      <div className="p-2 d-none d-md-block">
-        <div className="card bg-light text-dark">
-          <div className="card-header bg-transparent border-0">
-            <h6>Implementatio tasks</h6>
-          </div>
-          <div className="card-body">
-            <div className="text-center">
-              <h5>Upload feedback</h5>
-              <p className="small">
-                Our consultants will take a look and give you feedback
-              </p>
-              <button className="btn px-4 btn-outline-secondary">
-                <i className="fa fa-upload"></i>
+                No name
               </button>
+            </h2>
+            <div
+              id="collapse37"
+              className="accordion-collapse collapse show"
+              aria-labelledby="heading37"
+              data-bs-parent="#assessment-accordion"
+            >
+              <div className="accordion-body">
+                <h2 className="small text-center mb-0">No name</h2>
+
+                <div className="text-center">
+                  <small>Details</small>
+                </div>
+                <hr></hr>
+                <div className="small text-start">
+                  <p className="d-flex">
+                    <i className="fa fa-info me-3"></i> I have an idea but don’t
+                    know what to do next
+                  </p>
+
+                  <p>
+                    <i className="fa fa-industry me-3"></i> Information
+                    Technology
+                  </p>
+                </div>
+                <div className="top-buffer">
+                  <a
+                    className="btn btn-info"
+                    href="https://biztweak.org.za/public/37/manage-company"
+                  >
+                    <i className="fa fa-file-alt"></i> Complete Assessment
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </li>
+        <li className="top-buffer">
+          <div className="accordion-item">
+            <h2 className="accordion-header" id="heading38">
+              <button
+                className="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse38"
+                aria-expanded="true"
+                aria-controls="collapse38"
+              >
+                Developer
+              </button>
+            </h2>
+            <div
+              id="collapse38"
+              className="accordion-collapse collapse show"
+              aria-labelledby="heading38"
+              data-bs-parent="#assessment-accordion"
+            >
+              <div className="accordion-body">
+                <h2 className="small text-center mb-0">Developer</h2>
+
+                <div className="text-center">
+                  <small>Details</small>
+                </div>
+                <hr></hr>
+                <div className="small text-start">
+                  <p className="d-flex">
+                    <i className="fa fa-info me-3"></i> I have an idea but don’t
+                    know what to do next
+                  </p>
+
+                  <p>
+                    <i className="fa fa-industry me-3"></i> Information
+                    Technology
+                  </p>
+                  <p>
+                    <i className="fa fa-map-marker me-3"></i> 20 Bishop Road,
+                    Windermere, Berea, South Africa
+                  </p>
+                </div>
+                <div className="top-buffer">
+                  <a
+                    className="btn btn-info"
+                    href="https://biztweak.org.za/public/38/report-summary"
+                  >
+                    <i className="fa fa-file-alt"></i> View Biz Report
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
   );
 };
