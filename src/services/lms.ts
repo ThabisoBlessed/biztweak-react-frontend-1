@@ -7,7 +7,7 @@ import * as constants from "../constants";
  * @param formData 
  * @returns 
  */
-export const uploadFile = async (formData: FormData, token: string) => {
+export const login = async (email: string, password: string, token: string) => {
   try {
     let config = {
       headers: {
@@ -15,7 +15,7 @@ export const uploadFile = async (formData: FormData, token: string) => {
       }
     }
 
-    return await axios.post(constants.baseUrl + `/storage-uploadFile`, formData, config);
+    return await axios.post(constants.baseUrl + `/storage-uploadFile`, email, config);
   } catch (error) {
     return error;
   }
