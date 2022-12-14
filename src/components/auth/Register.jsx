@@ -17,7 +17,7 @@ export const Register = () => {
   }
 
   return (
-    <div className="w-full h-[600px] flex flex-col justify-center items-center">
+    <div className="w-full h-[600px] flex flex-col justify-center items-center bg-[#e5e5e5]">
        <h3
         className="text-center m-4 text-3xl text-black font-bold"
         id="pageHeader"

@@ -22,13 +22,13 @@ export const Footer = () => {
               height={160}
               width={160}
             ></img>
-            <p className="pl-1 mt-2 sm:ml-2">
+            <p className="pl-1 mt-2 text-dark sm:ml-2">
               ScaleUp - It’s amazing!<br></br>It’s all you need to know
             </p>
           </div>
 
           <div id="usefulLinks">
-            <p className="text-1xl mb-3 font-medium ml-2 mt-2">Useful Links</p>
+            <p className="text-1xl mb-3 font-bold text-dark ml-2 mt-2">Useful Links</p>
             <hr className="md:mr-10"></hr>
             <div className="md:grid md:grid-cols-2 mt-2 text-gray-500">
               <p className="ml-2">About Us</p>
@@ -41,12 +41,13 @@ export const Footer = () => {
           </div>
 
           <div id="legalAndPrivacy">
-            <p className="text-1xl mb-3 font-medium ml-2 mt-2">
+            <p className="text-1xl mb-3 font-bold text-dark ml-2 mt-2">
               Legal and privacy
             </p>
             <hr className="md:mr-10"></hr>
             <p className="mb-3 mt-3 ml-2 text-gray-500">
               <a
+                className="text-gray-500"
                 target="_blank"
                 href="https://app.termly.io/document/terms-of-use-for-website/bae18684-68a5-4feb-b722-2396bf9b3d07"
               >
@@ -55,6 +56,7 @@ export const Footer = () => {
             </p>
             <p className="mb-3 mt-3 ml-2 text-gray-500">
               <a
+                className="text-gray-500"
                 target="_blank"
                 href="https://app.termly.io/document/privacy-policy/6e538943-b793-48ed-876f-bf66701c8e56"
               >
@@ -63,6 +65,7 @@ export const Footer = () => {
             </p>
             <p className="mb-3 mt-3 ml-2 text-gray-500">
               <a
+                className="text-gray-500"
                 target="_blank"
                 href="https://app.termly.io/document/disclaimer/fe8696d1-0ff3-47d6-bdc0-a8eba5fb0466"
               >
@@ -72,19 +75,19 @@ export const Footer = () => {
           </div>
 
           <div id="support">
-            <p className="text-1xl mb-3 font-medium ml-2 mt-2">Support</p>
+            <p className="text-1xl mb-3 font-dark font-bold ml-2 text-dark mt-2">Support</p>
             <hr></hr>
             <p className="mb-3 mt-3 ml-2 text-gray-500">
-              <a href="mailto:hello@biztweak.org.za">hello@biztweak.org.za</a>
+              <a href="mailto:hello@biztweak.org.za" className="text-gray-500">hello@biztweak.org.za</a>
             </p>
             <p className="mb-3 mt-3 ml-2 text-gray-500">
-              <a href="tel:0115689980">011 568 9980</a>
+              <a href="tel:0115689980" className="text-gray-500">011 568 9980</a>
             </p>
           </div>
         </div>
 
         <div id="socialLinks" className="social-links text-center align-middle">
-          <p className="text-1xl mb-3 font-medium ml-2 mt-2">Follow Us</p>
+          <p className="text-1xl mb-3 font-medium ml-2 mt-2 text-dark">Follow Us</p>
           <div className="mx-auto flex align-middle justify-center m-4">
             <a
               className="m-2"
