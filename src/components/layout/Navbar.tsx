@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LogoImg from "../../images/logo.png";
+import UserPlaceholderImg from "../../images/user-placeholder.png";
 import { useNavigate } from "react-router-dom";
-import { FaHome } from "react-icons/fa";
 import * as constants from "../../constants";
 
 export const Navbar = () => {
@@ -18,8 +18,7 @@ export const Navbar = () => {
       <nav className="navbar navbar-expand-md border-bottom navbar-light bg-white">
         <div className="container-fluid">
           <a className="navbar-brand" href="javascript:void(0)">
-            <img src={LogoImg}  height={160}
-              width={160} alt="logo" />
+            <img src={LogoImg} height={160} width={160} alt="logo" />
           </a>
           <button
             className="navbar-toggler"
@@ -49,9 +48,11 @@ export const Navbar = () => {
                 </select>
               </li>
               <li className="nav-item me-2">
-                <a className="nav-link" href="javascript:void(0)">
-                  <i className="fa-lg fa-solid fa-house"></i>
-                </a>
+                <Link to="/">
+                  <a className="nav-link" href="javascript:void(0)">
+                    <i className="fa-lg fa-solid fa-house"></i>
+                  </a>
+                </Link>
               </li>
               <li className="nav-item me-2">
                 <a className="nav-link" href="javascript:void(0)">
@@ -67,7 +68,7 @@ export const Navbar = () => {
                   <span className="d-flex flex-nowrap align-items-center">
                     <div className="me-2">
                       <img
-                        src="../images/avatar.png"
+                        src={UserPlaceholderImg}
                         width="36px"
                         className="img-fluid rounded-circle"
                         alt=""
