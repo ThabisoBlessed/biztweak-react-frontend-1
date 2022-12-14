@@ -27,7 +27,7 @@ export const Register = () => {
 
   return (
     <div className="w-full bg-[#e5e5e5] text-dark">
-        <div className="container">
+      <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-10">
             <div className="row align-items-center">
@@ -41,7 +41,9 @@ export const Register = () => {
               <div className="col-md-7">
                 <div className="card p-3 p-md-5 mt-5 mb-5">
                   <div className="card-body">
-                    <h2 className="text-4xl" style={{fontSize: "40px"}}>Create an Account</h2>
+                    <h2 className="text-4xl" style={{ fontSize: "40px" }}>
+                      Create an Account
+                    </h2>
                     <p className="mb-md-5">
                       Follow the instructions to make it easier to login and you
                       will be able to explore inside.
@@ -97,7 +99,7 @@ export const Register = () => {
                           Create Account
                         </button>
                         <div className="float-none float-md-end">
-                        Already have an Account? 
+                          Already have an Account?
                           <Link to="/auth/login" className="text-[#0d6efd]">
                             &nbsp;Sign in
                           </Link>
