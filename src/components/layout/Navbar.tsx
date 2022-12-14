@@ -89,9 +89,18 @@ export const Navbar = () => {
                     </Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
-                      Logout
-                    </a>
+                    <Link to="/auth/login">
+                      <a className="dropdown-item" href="#">
+                        Login
+                      </a>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/auth/login">
+                      <a className="dropdown-item" href="#">
+                        Logout
+                      </a>
+                    </Link>
                   </li>
                 </ul>
               </li>
