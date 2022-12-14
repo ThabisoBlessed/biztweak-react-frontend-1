@@ -10,7 +10,7 @@ export const Login = () => {
   const loginProviderStyles = {
     color: "white",
     padding: "10px",
-    fontFamily: "Arial"
+    fontFamily: "Arial",
   };
 
   useEffect(() => {
@@ -66,9 +66,11 @@ export const Login = () => {
                           type="checkbox"
                           name="remember"
                           id="remember"
+                          placeholder="******************"
+                          autoComplete="false"
+                          onChange={(e) => setPassword(e.target.value)}
                         />
                         <label className="form-check-label" for="remember">
-                          
                           Keep me logged in
                         </label>
                       </div>
@@ -80,18 +82,21 @@ export const Login = () => {
                       </a>
                       <div className="clearfix mb-3"></div>
                       <div className="d-md-flex justify-content-between mb-3 align-items-center">
-                        <button className="btn btn-lg text-white bg-[#00c2cb]">
+                        <button className="btn btn-lg ml-2 text-white bg-[#00c2cb]">
                           Login
                         </button>
                         <div className="float-none float-md-end">
                           Don't have an Account?
-                          <a className="text-[#0d6efd]" href="https://biztweak.org.za/public/register">
+                          <a
+                            className="text-[#0d6efd]"
+                            href="https://biztweak.org.za/public/register"
+                          >
                             &nbsp;Sign up
                           </a>
                         </div>
                       </div>
                       <div className="clearfix mb-3"></div>
-                      <h6 className="mt-5 mb-3 fw-bold">Or login with</h6>
+                      <h6 className="mt-5 mb-3 fw-bold ml-2">Or login with</h6>
                       <div className="d-flex">
                         <a className="btn btn-outline-light text-dark px-3 px-md-5 border me-3">
                           <img
@@ -126,68 +131,6 @@ export const Login = () => {
           </div>
         </div>
       </div>
-      {/* <h3
-        className="text-center m-4 text-3xl text-black font-bold"
-        id="pageHeader"
-      >
-        Login
-      </h3> */}
-      {/* <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 md:w-[25%]">
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="email"
-          >
-            Email:
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3
-             text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="email"
-            type="email"
-            placeholder="Email"
-            autoComplete="false"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        
-        <div className="mb-6">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="password"
-          >
-            Password:
-          </label>
-          <input
-            className="shadow appearance-none border 
-            rounded w-full py-2 px-3 text-gray-700 mb-3 
-            leading-tight focus:outline-none focus:shadow-outline"
-            id="password"
-            type="password"
-            placeholder="******************"
-            autoComplete="false"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        
-        <div className="items-center justify-between">
-          <button
-            className="hover:bg-[#f7e08c] w-[100%] bg-[#ffd740] text-black font-bold 
-            py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button"
-          >
-            Login
-          </button>
-          <br></br>
-          <br></br>
-          <div className="font-bold text-sm text-black hover:text-[#ffd740]">
-            <Link to="/auth/reset-password">Forgot Password</Link>
-          </div>
-          <div className="font-bold text-sm text-black hover:text-[#ffd740]">
-            <Link to="/auth/register">Don't have an account? Register now.</Link>
-          </div>
-        </div>
-      </form> */}
     </div>
   );
 };
