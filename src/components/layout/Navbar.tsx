@@ -17,9 +17,11 @@ export const Navbar = () => {
     <div className="border-b" data-testid="navbar">
       <nav className="navbar navbar-expand-md border-bottom navbar-light bg-white">
         <div className="container-fluid">
-          <a className="navbar-brand" href="javascript:void(0)">
-            <img src={LogoImg} height={160} width={160} alt="logo" />
-          </a>
+          <Link to="/auth/edit-profile">
+            <div className="navbar-brand">
+              <img src={LogoImg} height={160} width={160} alt="logo" />
+            </div>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -49,24 +51,21 @@ export const Navbar = () => {
               </li>
               <li className="nav-item me-2">
                 <Link to="/">
-                  <a className="nav-link" href="javascript:void(0)">
-                    <i className="fa-lg fa-solid fa-house"></i>
-                  </a>
+                  <i className="fa-lg fa-solid fa-house"></i>
                 </Link>
               </li>
               <li className="nav-item me-2">
-                <a className="nav-link" href="javascript:void(0)">
+                <Link to="/notifications">
                   <i className="fa-lg fa-solid fa-bell"></i>
-                </a>
+                </Link>
               </li>
               <li className="nav-item dropdown no-arrow">
-                <a
+                <div
                   className="nav-link dropdown-toggle"
                   data-bs-toggle="dropdown"
-                  href="javascript:void(0)"
                 >
                   <span className="d-flex flex-nowrap align-items-center">
-                    <div className="me-2">
+                    <div className="mt-4">
                       <img
                         src={UserPlaceholderImg}
                         width="36px"
@@ -74,33 +73,21 @@ export const Navbar = () => {
                         alt=""
                       />
                     </div>
-                    <div>
+                    <div className="mt-4 ml-2">
                       <h6 className="mb-0">Alfred Sinaga</h6>
                       <p className="mb-0 small text-muted">alfreds@email.com</p>
                     </div>
                   </span>
-                </a>
+                </div>
                 <ul className="dropdown-menu">
-                  <li>
-                    <Link to="/auth/edit-profile">
-                      <a className="dropdown-item" href="#">
-                        Edit Profile
-                      </a>
-                    </Link>
+                  <li className="m-2">
+                    <Link to="/auth/edit-profile">Edit Profile</Link>
                   </li>
-                  <li>
-                    <Link to="/auth/login">
-                      <a className="dropdown-item" href="#">
-                        Login
-                      </a>
-                    </Link>
+                  <li className="m-2">
+                    <Link to="/auth/login">Login</Link>
                   </li>
-                  <li>
-                    <Link to="/auth/login">
-                      <a className="dropdown-item" href="#">
-                        Logout
-                      </a>
-                    </Link>
+                  <li className="m-2">
+                    <Link to="/auth/login">Logout</Link>
                   </li>
                 </ul>
               </li>

@@ -70,7 +70,7 @@ export const Login = () => {
                           autoComplete="false"
                           onChange={(e) => setPassword(e.target.value)}
                         />
-                        <label className="form-check-label" for="remember">
+                        <label className="form-check-label" htmlFor="remember">
                           Keep me logged in
                         </label>
                       </div>
