@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "./Auth.css";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -8,7 +9,6 @@ export const Login = () => {
 
   const loginProviderStyles = {
     color: "white",
-    backgroundColor: "DodgerBlue",
     padding: "10px",
     fontFamily: "Arial"
   };
@@ -18,7 +18,7 @@ export const Login = () => {
   }, [navigate]);
 
   return (
-    <div className="w-full h-[700px] bg-[#e5e5e5]">
+    <div className="w-full bg-[#e5e5e5]">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-10">
@@ -31,47 +31,36 @@ export const Login = () => {
                 />
               </div>
               <div className="col-md-7">
-                <div className="card p-3 p-md-5">
+                <div className="card p-3 p-md-5 mt-5 mb-5">
                   <div className="card-body">
-                    <h2>Login Account</h2>
+                    <h2 className="text-4xl">Login Account</h2>
                     <p className="mb-md-5">
                       Follow the instructions to make it easier to login and you
                       will be able to explore inside.
                     </p>
                     <form>
-                      {/* <input
-                        type="hidden"
-                        name="_token"
-                        value="QARW69hx7NbC70BXmXZ4HkLtiWSVZriJ0cU3eIor"
-                      /> */}
                       <div className="input-group input-group-lg p-2 mb-3">
                         <i className="fa fa-envelope input-group-text"></i>
-                        {/* <input
+                        <input
                           id="email"
                           type="email"
                           placeholder="E-mail address"
                           className="form-control "
-                          name="email"
-                          value=""
-                          required=""
-                          autoComplete="email"
-                          autoFocus=""
-                          style='background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAmJJREFUWAntV7uKIkEUvbYGM4KID3wEIgjKRLLpKGLgFwiCfslGhkb7IbLgAzE1GhMxWxRRBEEwmEgDERWfW6fXuttq60a2wU6B1qlzb9U5fatsKROJVigUArvd7oeAyePx6Af3qGYymT7F2h8Wi+V7Pp+fmE7iv4Sw81GieusKIzNh4puCJzdaHIagCW1F4KSeQ4O4pPLoPb/3INBGBZ7avgz8fxWIxWIUCoX43Blegbe3NwoGg88zwMoncFUB8Yokj8dDdrv9MpfHVquV/H4/iVcpc1qgKAp5vV6y2WxaWhefreB0OimXy6kGkD0YDKhSqdB2u+XJqVSK4vE4QWS5XKrx0WjEcZ/PR9lslhwOh8p1Oh2q1Wp0OBw4RwvOKpBOp1kcSdivZPLvmxrjRCKhiiOOSmQyGXp5ecFQbRhLcRDRaJTe39//BHW+2cDr6ysFAoGrlEgkwpwWS1I7z+VykdvtliHuw+Ew40vABvb7Pf6hLuMk/rGY02ImBZC8dqv04lpOYjaw2WzUPZcB2WMPZet2u1cmZ7MZTSYTNWU+n9N4PJbp3GvXYPIE2ADG9Xqder2e+kTr9ZqazSa1222eA6FqtUoQwqHCuFgscgWQWC6XaTgcEiqKQ9poNOiegbNfwWq1olKppB6yW6cWVcDHbDarIuzuBBaLhWrqVvwy/6wCMnhLXMbR4wnvtX/F5VxdAzJoRH+2BUYItlotmk6nLGW4gX6/z+IAT9+CLwPPr8DprnZ2MIwaQBsV+DBKUEfnQ8EtFRdFneBDKWhCW8EVGbdUQfxESR6qKhaHBrSgCe3fbLTpPlS70M0AAAAASUVORK5CYII="); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;'
-                        /> */}
+                          autoComplete="false"
+                        />
                       </div>
                       <div className="input-group input-group-lg p-2 mb-3">
-                        <i className="fa fa-lock input-group-text"></i>
+                        <i className="fa fa-star input-group-text"></i>
                         <input
                           id="password"
                           type="password"
                           placeholder="Password"
-                          className="form-control"
+                          className="form-control text-sm password-input"
                           autoComplete="false"
                           onChange={(e) => setEmail(e.target.value)}
-                          style={{backgroundImage: `url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAmJJREFUWAntV7uKIkEUvbYGM4KID3wEIgjKRLLpKGLgFwiCfslGhkb7IbLgAzE1GhMxWxRRBEEwmEgDERWfW6fXuttq60a2wU6B1qlzb9U5fatsKROJVigUArvd7oeAyePx6Af3qGYymT7F2h8Wi+V7Pp+fmE7iv4Sw81GieusKIzNh4puCJzdaHIagCW1F4KSeQ4O4pPLoPb/3INBGBZ7avgz8fxWIxWIUCoX43Blegbe3NwoGg88zwMoncFUB8Yokj8dDdrv9MpfHVquV/H4/iVcpc1qgKAp5vV6y2WxaWhefreB0OimXy6kGkD0YDKhSqdB2u+XJqVSK4vE4QWS5XKrx0WjEcZ/PR9lslhwOh8p1Oh2q1Wp0OBw4RwvOKpBOp1kcSdivZPLvmxrjRCKhiiOOSmQyGXp5ecFQbRhLcRDRaJTe39//BHW+2cDr6ysFAoGrlEgkwpwWS1I7z+VykdvtliHuw+Ew40vABvb7Pf6hLuMk/rGY02ImBZC8dqv04lpOYjaw2WzUPZcB2WMPZet2u1cmZ7MZTSYTNWU+n9N4PJbp3GvXYPIE2ADG9Xqder2e+kTr9ZqazSa1222eA6FqtUoQwqHCuFgscgWQWC6XaTgcEiqKQ9poNOiegbNfwWq1olKppB6yW6cWVcDHbDarIuzuBBaLhWrqVvwy/6wCMnhLXMbR4wnvtX/F5VxdAzJoRH+2BUYItlotmk6nLGW4gX6/z+IAT9+CLwPPr8DprnZ2MIwaQBsV+DBKUEfnQ8EtFRdFneBDKWhCW8EVGbdUQfxESR6qKhaHBrSgCe3fbLTpPlS70M0AAAAASUVORK5CYII="); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto`}}
                         />
                       </div>
-                      {/* <div className="form-check form-check-inline">
+                      <div className="form-check ml-2 form-check-inline">
                         <input
                           className="form-check-input"
                           type="checkbox"
@@ -82,7 +71,7 @@ export const Login = () => {
                           
                           Keep me logged in
                         </label>
-                      </div> */}
+                      </div>
                       <a
                         href="https://biztweak.org.za/public/password/reset"
                         className="d-block float-none float-md-end text-muted"
@@ -91,13 +80,13 @@ export const Login = () => {
                       </a>
                       <div className="clearfix mb-3"></div>
                       <div className="d-md-flex justify-content-between mb-3 align-items-center">
-                        <button className="btn btn-lg btn-info text-white">
+                        <button className="btn btn-lg text-white bg-[#00c2cb]">
                           Login
                         </button>
                         <div className="float-none float-md-end">
                           Don't have an Account?
-                          <a href="https://biztweak.org.za/public/register">
-                            Sign up
+                          <a className="text-[#0d6efd]" href="https://biztweak.org.za/public/register">
+                            &nbsp;Sign up
                           </a>
                         </div>
                       </div>
