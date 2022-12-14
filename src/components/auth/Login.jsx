@@ -18,7 +18,7 @@ export const Login = () => {
   }, [navigate]);
 
   return (
-    <div className="w-full bg-[#e5e5e5] text-dark">
+    <div className="w-full h-[90vh] bg-[#e5e5e5] text-dark">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-10">
@@ -33,7 +33,9 @@ export const Login = () => {
               <div className="col-md-7">
                 <div className="card p-3 p-md-5 mt-5 mb-5">
                   <div className="card-body">
-                    <h2 className="text-4xl" style={{fontSize: "40px"}}>Login Account</h2>
+                    <h2 className="text-4xl" style={{ fontSize: "40px" }}>
+                      Login Account
+                    </h2>
                     <p className="mb-md-5">
                       Follow the instructions to make it easier to login and you
                       will be able to explore inside.
@@ -74,12 +76,14 @@ export const Login = () => {
                           Keep me logged in
                         </label>
                       </div>
-                      <a
-                        href="https://biztweak.org.za/public/password/reset"
-                        className="d-block float-none float-md-end text-muted"
-                      >
-                        Forgot your password ?
-                      </a>
+                      <p className="d-block float-none float-md-end text-muted">
+                        <Link
+                          to="/auth/reset-password"
+                          className="text-gray-500"
+                        >
+                          &nbsp;Forgot your password ?
+                        </Link>
+                      </p>
                       <div className="clearfix mb-3"></div>
                       <div className="d-md-flex justify-content-between mb-3 align-items-center">
                         <button className="btn btn-lg ml-2 text-white bg-[#00c2cb]">
@@ -93,7 +97,7 @@ export const Login = () => {
                         </div>
                       </div>
                       <div className="clearfix mb-3"></div>
-                      <h6 className="mt-5 mb-3 fw-bold ml-2">Or login with</h6>
+                      {/* <h6 className="mt-5 mb-3 fw-bold ml-2">Or login with</h6>
                       <div className="d-flex">
                         <a className="btn btn-outline-light text-dark px-3 px-md-5 border me-3">
                           <img
@@ -119,7 +123,7 @@ export const Login = () => {
                           />
                           Linkedin
                         </a>
-                      </div>
+                      </div> */}
                     </form>
                   </div>
                 </div>

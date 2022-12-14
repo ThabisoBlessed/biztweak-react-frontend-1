@@ -104,7 +104,7 @@ export const Register = () => {
                         </div>
                       </div>
                       <div className="clearfix mb-3"></div>
-                      <h6 className="mt-5 mb-3 fw-bold ml-2">Or connect with</h6>
+                      {/* <h6 className="mt-5 mb-3 fw-bold ml-2">Or connect with</h6>
                       <div className="d-flex">
                         <a className="btn btn-outline-light text-dark px-3 px-md-5 border me-3">
                           <img
@@ -130,7 +130,7 @@ export const Register = () => {
                           />
                           Linkedin
                         </a>
-                      </div>
+                      </div> */}
                     </form>
                   </div>
                 </div>
@@ -139,104 +139,6 @@ export const Register = () => {
           </div>
         </div>
       </div>
-      {/* <h3
-        className="text-center m-4 text-3xl text-black font-bold"
-        id="pageHeader"
-      >
-        Register
-      </h3>
-      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 md:w-[25%]">
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="firstName"
-          >
-            First Name:
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3
-             text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="firstName"
-            type="text"
-            autoComplete="false"
-            placeholder="First Name"
-            onChange={(e) => setFirstName(e.target.value)}
-          />
-        </div>
-
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="lastName"
-          >
-            Last Name:
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3
-             text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="lastName"
-            type="text"
-            autoComplete="false"
-            placeholder="Last Name"
-            onChange={(e) => setLastName(e.target.value)}
-          />
-        </div>
-
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="email"
-          >
-            Email:
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3
-             text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="email"
-            type="email"
-            autoComplete="false"
-            placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-
-        <div className="mb-6">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="password"
-          >
-            Password:
-          </label>
-          <input
-            className="shadow appearance-none border 
-            rounded w-full py-2 px-3 text-gray-700 mb-3 
-            leading-tight focus:outline-none focus:shadow-outline"
-            id="password"
-            type="password"
-            autoComplete="false"
-            placeholder="******************"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-
-        <div className="items-center justify-between">
-          <button
-            className="hover:bg-[#f7e08c] w-[100%] bg-[#ffd740] text-black font-bold 
-            py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button"
-            onClick={() =>
-              registerWithEmailAndPassword(firstName, lastName, email, password)
-            }
-          >
-            Register
-          </button>
-          <br></br>
-          <br></br>
-          <div className="font-bold text-sm text-black hover:text-[#ffd740]">
-            <Link to="/auth/login">Already have an account? Login now.</Link>
-          </div>
-        </div>
-      </form> */}
     </div>
   );
 };
