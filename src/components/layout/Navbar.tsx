@@ -142,7 +142,7 @@ export const Navbar = () => {
                     to={"/auth/register"}
                     className="nav-link btn btn-outline-info btn-login border-3 px-5 py-2"
                   >
-                    Register
+                    <span className="hover:text-white">Register</span>
                   </Link>
                 </li>
               </ul>

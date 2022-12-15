@@ -1,7 +1,7 @@
-import React, { useState } from "react";
 import { ProfileMenu } from "./ProfileMenu";
 import "./Profile.css";
 import { UpdateProfile } from "./UpdateProfile";
+import { ManageCompany } from "./ManageCompany";
 
 export const Profile = () => {
 
@@ -12,7 +12,8 @@ export const Profile = () => {
           <ProfileMenu />
         </div>
         <div className="col-md-9 bg-white">
-          <UpdateProfile />
+          {/* <UpdateProfile /> */}
+          <ManageCompany />
         </div>
       </div>
     </div>
