@@ -4,12 +4,15 @@ import LogoImg from "../../images/logo.png";
 import UserPlaceholderImg from "../../images/user-placeholder.png";
 import { useNavigate } from "react-router-dom";
 import * as constants from "../../constants";
+import { isLoggedIn, LOCALSTORAGE_VALUES } from "../../config";
 
 export const Navbar = () => {
   const navigate = useNavigate();
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(isLoggedIn());
 
-  useEffect(() => {});
+  useEffect(() => {
+    console.log("Logged in: ", loggedIn);
+  }, [loggedIn]);
 
   return (
     <div className="border-b" data-testid="navbar">

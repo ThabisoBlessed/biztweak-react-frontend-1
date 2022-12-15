@@ -4,23 +4,35 @@ export const LOCALSTORAGE_KEYS = {
   refreshToken: "spotify_refresh_token",
   expireTime: "spotify_token_expire_time",
   timestamp: "spotify_token_timestamp",
-  user: "user"
+  user: "user",
 };
 
 /**
  * Saves values to local storage
- * @param {key} key 
- * @param {any} value 
+ * @param {key} key
+ * @param {any} value
  */
 export const setValue = (key: string, value: any) => {
-    localStorage.setItem(key, JSON.stringify(value));
+  localStorage.setItem(key, JSON.stringify(value));
 };
 
 // Map to retrieve localStorage values
-const LOCALSTORAGE_VALUES = {
+export const LOCALSTORAGE_VALUES = {
   accessToken: window.localStorage.getItem(LOCALSTORAGE_KEYS.accessToken),
   refreshToken: window.localStorage.getItem(LOCALSTORAGE_KEYS.refreshToken),
   expireTime: window.localStorage.getItem(LOCALSTORAGE_KEYS.expireTime),
   timestamp: window.localStorage.getItem(LOCALSTORAGE_KEYS.timestamp),
   user: window.localStorage.getItem(LOCALSTORAGE_KEYS.user),
+};
+
+/**
+ * Checks access token
+ * 
+ * @returns {boolean} loggedIn
+ */
+export const isLoggedIn = () => {
+  if (LOCALSTORAGE_VALUES.accessToken) {
+    return true;
+  }
+  return false;
 };

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { followInstrunction, login } from "../../constants";
+import { followInstrunction, loading, login } from "../../constants";
 import { ILoginRequest, ILoginResponse } from "../../model/auth.model";
 import { userLogin } from "../../services/auth";
 import "./Auth.css";
@@ -106,9 +106,9 @@ export const Login = () => {
                           className="btn btn-lg ml-2 text-white bg-[#00c2cb]"
                         >
                           {isLoading ? (
-                            <span>{login}</span>
+                            <span>{loading}</span>
                           ) : (
-                            <span>{login}</span>
+                            <span className="capitalize">{login}</span>
                           )}
                         </button>
                         <div className="float-none float-md-end">
