@@ -116,19 +116,19 @@ export const ProfileMenu = () => {
                 </div>
                 <hr></hr>
                 <div className="small text-start">
-                  <p className="d-flex">
+                  <p className="d-flex m-2">
                     <i className="fa fa-info me-3"></i> I have an idea but don’t
                     know what to do next
                   </p>
 
-                  <p>
+                  <p className="m-2">
                     <i className="fa fa-industry me-3"></i> Information
                     Technology
                   </p>
                 </div>
                 <div className="top-buffer">
                   <a
-                    className="btn btn-info"
+                    className="btn profile-menu-action-btn mt-2 mb-2 bg-[#00c2cb] text-[white]"
                     href="https://biztweak.org.za/public/37/manage-company"
                   >
                     <i className="fa fa-file-alt"></i> Complete Assessment
@@ -142,7 +142,7 @@ export const ProfileMenu = () => {
           <div className="accordion-item">
             <h2 className="accordion-header" id="heading38">
               <button
-                className="accordion-button"
+                className="accordion-button text-dark"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#collapse38"
@@ -159,30 +159,30 @@ export const ProfileMenu = () => {
               data-bs-parent="#assessment-accordion"
             >
               <div className="accordion-body">
-                <h2 className="small text-center mb-0">Developer</h2>
+                <h2 className="small text-center mb-0 text-dark">Developer</h2>
 
                 <div className="text-center">
                   <small>Details</small>
                 </div>
                 <hr></hr>
                 <div className="small text-start">
-                  <p className="d-flex">
+                  <p className="d-flex m-2">
                     <i className="fa fa-info me-3"></i> I have an idea but don’t
                     know what to do next
                   </p>
 
-                  <p>
+                  <p className="m-2">
                     <i className="fa fa-industry me-3"></i> Information
                     Technology
                   </p>
-                  <p>
+                  <p className="m-2">
                     <i className="fa fa-map-marker me-3"></i> 20 Bishop Road,
                     Windermere, Berea, South Africa
                   </p>
                 </div>
                 <div className="top-buffer">
                   <a
-                    className="btn btn-info"
+                    className="btn profile-menu-action-btn mt-2 mb-2 bg-[#00c2cb] text-[white]"
                     href="https://biztweak.org.za/public/38/report-summary"
                   >
                     <i className="fa fa-file-alt"></i> View Biz Report
