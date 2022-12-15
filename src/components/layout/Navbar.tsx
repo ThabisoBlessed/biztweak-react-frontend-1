@@ -17,12 +17,9 @@ export const Navbar = () => {
     <div className="border-b" data-testid="navbar">
       <nav className="navbar navbar-expand-sm navbar-light bg-white">
         <div className="container-fluid">
-          <a
-            className="navbar-brand logo w-[150px]"
-            href="https://biztweak.org.za/public"
-          >
-           <img src={LogoImg} height={160} width={160} alt="logo" />
-          </a>
+          <Link to={"/"} className="navbar-brand logo w-[150px]">
+            <img src={LogoImg} height={160} width={160} alt="logo" />
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -42,38 +39,29 @@ export const Navbar = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a
-                  className="nav-link px-sm-3"
-                  href="https://biztweak.org.za/Blog/"
-                >
+                <Link to={"/blog"} className="nav-link px-sm-3">
                   Blog
-                </a>
+                </Link>
               </li>
 
               <li className="nav-item">
-                <a
-                  className="nav-link px-sm-3"
-                  href="https://biztweak.org.za/public/about"
-                >
+                <Link to={"/about-us"} className="nav-link px-sm-3">
                   About Us
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a
-                  className="nav-link px-sm-3"
-                  href="https://biztweak.org.za/public/login"
-                >
+                <Link to={"/auth/login"} className="nav-link px-sm-3">
                   Sign in
-                </a>
+                </Link>
               </li>
 
               <li className="nav-item">
-                <a
-                  className="nav-link btn btn-outline-info btn-login border-2 px-5 py-2"
-                  href="https://biztweak.org.za/public/register"
+                <Link
+                  to={"/auth/register"}
+                  className="nav-link btn btn-outline-info btn-login border-3 px-5 py-2"
                 >
                   Register
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
