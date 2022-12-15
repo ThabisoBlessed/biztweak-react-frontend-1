@@ -4,7 +4,7 @@ import LogoImg from "../../images/logo.png";
 import UserPlaceholderImg from "../../images/user-placeholder.png";
 import { useNavigate } from "react-router-dom";
 import * as constants from "../../constants";
-import { isLoggedIn, LOCALSTORAGE_VALUES } from "../../config";
+import { isLoggedIn } from "../../config";
 
 export const Navbar = () => {
   const navigate = useNavigate();

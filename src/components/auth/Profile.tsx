@@ -8,13 +8,13 @@ export const Profile = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   return (
-    <div className="w-full">
-      <div className="row">
+    <div>
+      <div className="row w-full m-0 p-0">
         <div className="col-md-3 border-end">
           <ProfileMenu />
         </div>
         <div className="col-md-9 bg-white">
-          {/* <div className="h-[600px] flex flex-col justify-center items-center">
+          <div className="h-[600px] flex flex-col justify-center items-center">
             <h2 className="text-4xl" style={{ fontSize: "45px" }}>
               Profile Settings
             </h2>
@@ -61,7 +61,7 @@ export const Profile = () => {
               </div>
               <div className="clearfix mb-3"></div>
             </form>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>
