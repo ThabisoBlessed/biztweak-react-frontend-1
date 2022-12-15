@@ -11,6 +11,7 @@ export const Profile = () => {
   const [experience2, setExperience2] = useState("");
   const [location, setLocation] = useState("");
   const [password, setPassword] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   return (
@@ -26,7 +27,7 @@ export const Profile = () => {
             </h2>
             <form className="rounded px-8 pt-3 pb-8 mb-4 md:w-[50%]">
               <div className="form-group mb-2">
-                <label htmlFor="name">Name</label>
+                <label className="small" htmlFor="name">Name</label>
                 <input
                    type="text"
                    name="name"
@@ -39,7 +40,7 @@ export const Profile = () => {
               </div>
 
               <div className="form-group mb-2">
-                <label htmlFor="email">Email</label>
+                <label className="small" htmlFor="email">Email</label>
                 <input
                    type="email"
                    name="email"
@@ -51,8 +52,8 @@ export const Profile = () => {
                 />
               </div>
 
-              <div className="form-group">
-                <label htmlFor="phone">Phone</label>
+              <div className="form-group mb-2">
+                <label className="small" htmlFor="phone">Phone</label>
                 <input
                    type="text"
                    name="phone"
@@ -64,8 +65,8 @@ export const Profile = () => {
                 />
               </div>
 
-              <div className="form-group">
-                <label htmlFor="eductaion">Education</label>
+              <div className="form-group mb-2">
+                <label className="small" htmlFor="eductaion">Education</label>
                 <input
                    type="text"
                    name="eductaion"
@@ -77,8 +78,8 @@ export const Profile = () => {
                 />
               </div>
 
-              <div className="form-group">
-                <label htmlFor="phone">Work Experience 1</label>
+              <div className="form-group mb-2">
+                <label className="small" htmlFor="phone">Work Experience 1</label>
                 <input
                    type="text"
                    name="workExperience1"
@@ -90,8 +91,8 @@ export const Profile = () => {
                 />
               </div>
 
-              <div className="form-group">
-                <label htmlFor="phone">Work Experience 2</label>
+              <div className="form-group mb-2">
+                <label className="small" htmlFor="phone">Work Experience 2</label>
                 <input
                    type="text"
                    name="workExperience2"
@@ -103,8 +104,8 @@ export const Profile = () => {
                 />
               </div>
 
-              <div className="form-group">
-                <label htmlFor="location">Location</label>
+              <div className="form-group mb-2">
+                <label className="small" htmlFor="location">Location</label>
                 <input
                    type="text"
                    name="location"
@@ -113,6 +114,60 @@ export const Profile = () => {
                    placeholder="Location"
                    autoComplete="false"
                    onChange={(e) => setLocation(e.target.value)}
+                />
+              </div>
+
+              <p className="small mb-2">NOTE: Only fill bottom fields if you want to change your password</p>
+
+              <div className="form-group mb-2">
+                <label className="small" htmlFor="phone">Phone</label>
+                <input
+                   type="text"
+                   name="phone"
+                   className="form-control form-control-lg"
+                   id="phone"
+                   placeholder="Phone"
+                   autoComplete="false"
+                   onChange={(e) => setPhone(e.target.value)}
+                />
+              </div>
+
+              <div className="form-group mb-2">
+                <label className="small" htmlFor="currentPassword">Current Password</label>
+                <input
+                   type="password"
+                   name="currentPassword"
+                   className="form-control form-control-lg"
+                   id="currentPassword"
+                   placeholder="Current Password"
+                   autoComplete="false"
+                   onChange={(e) => setCurrentPassword(e.target.value)}
+                />
+              </div>
+
+              <div className="form-group mb-2">
+                <label className="small" htmlFor="newPassword">New Password</label>
+                <input
+                   type="password"
+                   name="newPassword"
+                   className="form-control form-control-lg"
+                   id="newpPassword"
+                   placeholder="New Password"
+                   autoComplete="false"
+                   onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+
+              <div className="form-group mb-2">
+                <label className="small" htmlFor="confirmPassword">Confirm Password</label>
+                <input
+                   type="password"
+                   name="confirmPassword"
+                   className="form-control form-control-lg"
+                   id="confirmPassword"
+                   placeholder="Confirm Password"
+                   autoComplete="false"
+                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </div>
 
