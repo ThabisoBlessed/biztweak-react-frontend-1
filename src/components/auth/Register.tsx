@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { isLoggedIn } from "../../config";
 import { createAnAccount, followInstrunction } from "../../constants";
 import { IRegisterRequest } from "../../model/auth.model";
 import { userRegister } from "../../services/auth";
@@ -19,21 +20,25 @@ export const Register = () => {
   };
 
   useEffect(() => {
-    // if (user) navigate("/dashboard");
+    if (isLoggedIn()) navigate("/dashboard");
   }, [navigate]);
 
   const registerWithEmailAndPassword = async (event: any) => {
-    setIsLoading(true);
     event.preventDefault();
+    setIsLoading(true);
 
     const userRegistration = {} as IRegisterRequest;
     userRegistration.email = email;
     userRegistration.fullname = fullname;
     userRegistration.password = password;
+    userRegistration.confirmPassword = confirmPassword;
 
-    const register = await userRegister(userRegistration);
-    console.log(register);
-    // setIsLoading(false);
+    if (password === confirmPassword) {
+      const register = await userRegister(userRegistration);
+      console.log(register);
+    }
+   
+    setIsLoading(false);
   };
 
   return (

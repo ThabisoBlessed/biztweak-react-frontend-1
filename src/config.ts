@@ -12,8 +12,16 @@ export const LOCALSTORAGE_KEYS = {
  * @param {key} key
  * @param {any} value
  */
-export const setValue = (key: string, value: any) => {
+export const setLocalStorageValue = (key: string, value: any) => {
   localStorage.setItem(key, JSON.stringify(value));
+};
+
+/**
+ * Gets values from local storage
+ * @param {key} key
+ */
+ export const getLocalStorageValue = (key: string) => {
+  localStorage.getItem(key);
 };
 
 // Map to retrieve localStorage values

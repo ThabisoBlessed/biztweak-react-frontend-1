@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { isLoggedIn, LOCALSTORAGE_KEYS, setLocalStorageValue } from "../../config";
 import { followInstrunction, loading, login } from "../../constants";
 import { ILoginRequest, ILoginResponse } from "../../model/auth.model";
 import { userLogin } from "../../services/auth";
@@ -18,11 +19,12 @@ export const Login = () => {
   };
 
   useEffect(() => {
-    // if (user) navigate("/dashboard");
+    if (isLoggedIn()) navigate("/dashboard");
   }, [navigate]);
 
   const loginWithEmailAndPassword = async (event: any) => {
     event.preventDefault();
+
     setIsLoading(true);
 
     const user = {} as ILoginRequest;
@@ -32,7 +34,8 @@ export const Login = () => {
     const loginResult = await userLogin(user);
     console.log(loginResult);
     if (loginResult.status) {
-      if (user) navigate("/auth/profile");
+      setLocalStorageValue(LOCALSTORAGE_KEYS.accessToken, JSON.stringify(loginResult.package.data));
+      navigate("/auth/profile");
     }
     setIsLoading(false);
   };
@@ -102,11 +105,12 @@ export const Login = () => {
                       <div className="clearfix mb-3"></div>
                       <div className="d-md-flex justify-content-between mb-3 align-items-center">
                         <button
+                          disabled={isLoading}
                           onClick={(event) => loginWithEmailAndPassword(event)}
                           className="btn btn-lg ml-2 text-white bg-[#00c2cb]"
                         >
                           {isLoading ? (
-                            <span>{loading}</span>
+                            <span className="capitalize">{loading}...</span>
                           ) : (
                             <span className="capitalize">{login}</span>
                           )}

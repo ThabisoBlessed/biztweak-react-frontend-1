@@ -11,11 +11,11 @@ import {
  * Login by email
  * @param {string} email
  * @param {string} password
- * @returns {Promise<IRegisterRequest | IAuthErrorResponse>} response
+ * @returns {Promise<IRegisterRequest>} response
  */
 export const userLogin = async (
   login: ILoginRequest
-): Promise<ILoginResponse | IAuthErrorResponse> => {
+): Promise<ILoginResponse> => {
   try {
     return await axios.post(constants.baseUrl + `/email-auth`, {
       email: login.email,
