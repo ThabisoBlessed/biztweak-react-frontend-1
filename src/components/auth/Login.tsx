@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { followInstrunction, login } from "../../constants";
 import { ILoginRequest, ILoginResponse } from "../../model/auth.model";
 import { userLogin } from "../../services/auth";
 import "./Auth.css";
@@ -8,6 +9,7 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const loginProviderStyles = {
     color: "white",
@@ -21,6 +23,7 @@ export const Login = () => {
 
   const loginWithEmailAndPassword = async (event: any) => {
     event.preventDefault();
+    setIsLoading(true);
 
     const user = {} as ILoginRequest;
     user.email = email;
@@ -28,7 +31,11 @@ export const Login = () => {
 
     const loginResult = await userLogin(user);
     console.log(loginResult);
-  }
+    if (loginResult.status) {
+      if (user) navigate("/auth/profile");
+    }
+    setIsLoading(false);
+  };
 
   return (
     <div className="w-full h-[90vh] bg-[#e5e5e5] text-dark">
@@ -49,10 +56,7 @@ export const Login = () => {
                     <h2 className="text-4xl" style={{ fontSize: "40px" }}>
                       Login Account
                     </h2>
-                    <p className="mb-md-5">
-                      Follow the instructions to make it easier to login and you
-                      will be able to explore inside.
-                    </p>
+                    <p className="mb-md-5">{followInstrunction}</p>
                     <form>
                       <div className="input-group input-group-lg p-2 mb-3">
                         <i className="fa fa-envelope input-group-text"></i>
@@ -97,8 +101,15 @@ export const Login = () => {
                       </p>
                       <div className="clearfix mb-3"></div>
                       <div className="d-md-flex justify-content-between mb-3 align-items-center">
-                        <button onClick={(event) => loginWithEmailAndPassword(event)} className="btn btn-lg ml-2 text-white bg-[#00c2cb]">
-                          Login
+                        <button
+                          onClick={(event) => loginWithEmailAndPassword(event)}
+                          className="btn btn-lg ml-2 text-white bg-[#00c2cb]"
+                        >
+                          {isLoading ? (
+                            <span>{login}</span>
+                          ) : (
+                            <span>{login}</span>
+                          )}
                         </button>
                         <div className="float-none float-md-end">
                           Don't have an Account?

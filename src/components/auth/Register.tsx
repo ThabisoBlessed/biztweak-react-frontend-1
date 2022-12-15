@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { createAnAccount, followInstrunction } from "../../constants";
 import { IRegisterRequest } from "../../model/auth.model";
 import { userRegister } from "../../services/auth";
 
@@ -8,6 +9,7 @@ export const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const registerProviderStyles = {
@@ -21,6 +23,7 @@ export const Register = () => {
   }, [navigate]);
 
   const registerWithEmailAndPassword = async (event: any) => {
+    setIsLoading(true);
     event.preventDefault();
 
     const userRegistration = {} as IRegisterRequest;
@@ -30,6 +33,7 @@ export const Register = () => {
 
     const register = await userRegister(userRegistration);
     console.log(register);
+    // setIsLoading(false);
   };
 
   return (
@@ -49,11 +53,10 @@ export const Register = () => {
                 <div className="card p-3 p-md-5 mt-5 mb-5">
                   <div className="card-body">
                     <h2 className="text-4xl" style={{ fontSize: "40px" }}>
-                      Create an Account
+                      {createAnAccount}
                     </h2>
                     <p className="mb-md-5">
-                      Follow the instructions to make it easier to login and you
-                      will be able to explore inside.
+                      {followInstrunction}
                     </p>
                     <form>
                       <div className="input-group input-group-lg p-2 mb-3">
@@ -102,8 +105,18 @@ export const Register = () => {
                       </div>
                       <div className="clearfix mb-3"></div>
                       <div className="d-md-flex justify-content-between mb-3 align-items-center">
-                        <button onClick={(event) => registerWithEmailAndPassword(event)} className="btn btn-lg ml-2 text-white bg-[#00c2cb]">
-                          Create Account
+                        <button
+                          disabled={isLoading}
+                          onClick={(event) =>
+                            registerWithEmailAndPassword(event)
+                          }
+                          className="btn btn-lg ml-2 text-white bg-[#00c2cb]"
+                        >
+                          {isLoading ? (
+                            <span>Loading...</span>
+                          ) : (
+                            <span>Create Account</span>
+                          )}
                         </button>
                         <div className="float-none float-md-end">
                           Already have an Account?
