@@ -31,12 +31,9 @@ export const Navbar = () => {
           <div className="collapse navbar-collapse" id="mynavbar">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <a
-                  className="nav-link px-sm-3"
-                  href="https://biztweak.org.za/public"
-                >
+                <Link to={"/blog"} className="nav-link px-sm-3">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
                 <Link to={"/blog"} className="nav-link px-sm-3">

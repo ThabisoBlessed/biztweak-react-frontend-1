@@ -8,6 +8,7 @@ import {
   FaYoutube,
   FaInstagram,
 } from "react-icons/fa";
+import "./Layout.css";
 
 export const Footer = () => {
   return (
@@ -87,8 +88,8 @@ export const Footer = () => {
         </div>
 
         <div id="socialLinks" className="social-links text-center align-middle">
-          <p className="text-1xl mb-3 font-medium ml-2 mt-2 text-dark">Follow Us</p>
-          <div className="mx-auto flex align-middle justify-center m-4">
+          <p className="text-1xl mb-3 font-medium ml-2 mt-2">Follow Us</p>
+          <div className="mx-auto flex align-middle justify-center m-4 social-links ">
             <a
               className="m-2"
               target="_blank"
