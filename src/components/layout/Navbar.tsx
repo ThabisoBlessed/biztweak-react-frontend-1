@@ -102,7 +102,7 @@ export const Navbar = () => {
       ) : (
         <nav className="navbar navbar-expand-sm navbar-light bg-white">
           <div className="container-fluid">
-            <Link to={"/"} className="navbar-brand logo w-[150px]">
+            <Link to={"/"} className="navbar-brand logo w-[150px] ml-2">
               <img src={LogoImg} height={160} width={160} alt="logo" />
             </Link>
             <button

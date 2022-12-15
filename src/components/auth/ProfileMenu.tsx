@@ -75,9 +75,9 @@ export const ProfileMenu = () => {
   };
 
   return (
-    <div className="w-full text-dark">
-      <div className="section">
-        <h6 className="fw-bold mb-3">COMPANY</h6>
+    <div className="b-0 m-0 text-dark">
+      <div className="section ml-2">
+        <h6 className="fw-bold mt-2 mb-3">COMPANY</h6>
         <button
           data-bs-toggle="modal"
           data-bs-target="#add-company"
@@ -87,7 +87,7 @@ export const ProfileMenu = () => {
         </button>
       </div>
 
-      <ul className="list-group mt-3 ">
+      <ul className="list-group mt-3 ml-2">
         <li className="top-buffer">
           <div className="accordion-item">
             <h2 className="accordion-header" id="heading37">
