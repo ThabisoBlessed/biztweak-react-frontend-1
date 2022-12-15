@@ -15,7 +15,72 @@ export const Navbar = () => {
 
   return (
     <div className="border-b" data-testid="navbar">
-      <nav className="navbar navbar-expand-md border-bottom navbar-light bg-white">
+      <nav className="navbar navbar-expand-sm navbar-light bg-white">
+        <div className="container-fluid">
+          <a
+            className="navbar-brand logo w-[150px]"
+            href="https://biztweak.org.za/public"
+          >
+           <img src={LogoImg} height={160} width={160} alt="logo" />
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mynavbar"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="mynavbar">
+            <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <a
+                  className="nav-link px-sm-3"
+                  href="https://biztweak.org.za/public"
+                >
+                  Home
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className="nav-link px-sm-3"
+                  href="https://biztweak.org.za/Blog/"
+                >
+                  Blog
+                </a>
+              </li>
+
+              <li className="nav-item">
+                <a
+                  className="nav-link px-sm-3"
+                  href="https://biztweak.org.za/public/about"
+                >
+                  About Us
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className="nav-link px-sm-3"
+                  href="https://biztweak.org.za/public/login"
+                >
+                  Sign in
+                </a>
+              </li>
+
+              <li className="nav-item">
+                <a
+                  className="nav-link btn btn-outline-info btn-login border-2 px-5 py-2"
+                  href="https://biztweak.org.za/public/register"
+                >
+                  Register
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      {/* <nav className="navbar navbar-expand-md border-bottom navbar-light bg-white">
         <div className="container-fluid">
           <Link to="/auth/edit-profile">
             <div className="navbar-brand">
@@ -84,9 +149,6 @@ export const Navbar = () => {
                     <Link to="/auth/edit-profile">Edit Profile</Link>
                   </li>
                   <li className="m-2">
-                    <Link to="/auth/login">Login</Link>
-                  </li>
-                  <li className="m-2">
                     <Link to="/auth/login">Logout</Link>
                   </li>
                 </ul>
@@ -94,7 +156,7 @@ export const Navbar = () => {
             </ul>
           </div>
         </div>
-      </nav>
+      </nav> */}
     </div>
   );
 };
