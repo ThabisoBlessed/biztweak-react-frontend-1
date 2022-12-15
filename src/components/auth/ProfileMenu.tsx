@@ -92,7 +92,7 @@ export const ProfileMenu = () => {
           <div className="accordion-item">
             <h2 className="accordion-header" id="heading37">
               <button
-                className="accordion-button text-dark"
+                className="accordion-button text-dark bg-[#f1feff]"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#collapse37"
@@ -142,7 +142,7 @@ export const ProfileMenu = () => {
           <div className="accordion-item">
             <h2 className="accordion-header" id="heading38">
               <button
-                className="accordion-button text-dark"
+                className="accordion-button text-dark bg-[#f1feff]"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#collapse38"
