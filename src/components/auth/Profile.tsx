@@ -7,17 +7,17 @@ export const Profile = () => {
   const bizPhaseList: any[] = [
     {
       id: 0,
-      title: "I have an idea but don’t know what to do next",
+      name: "I have an idea but don’t know what to do next",
       value: "phase_1",
     },
     {
       id: 1,
-      title: "I have a business but am not making money",
+      name: "I have a business but am not making money",
       value: "phase_2",
     },
     {
       id: 2,
-      title: "I have products/services but I have poor sales",
+      name: "I have products/services but I have poor sales",
       value: "phase_3",
     },
     {
@@ -28,15 +28,94 @@ export const Profile = () => {
     },
     {
       id: 4,
-      title:
-        " I would like to be an entrepreneur but don’t know where to start",
+      name: " I would like to be an entrepreneur but don’t know where to start",
       value: "phase_5",
+    },
+  ];
+  const industryList: any[] = [
+    {
+      id: 0,
+      name: "Admin/Business Support",
+      value: "AdminBusinessSupport",
+    },
+    {
+      id: 1,
+      name: "Agriculture, Forestry,Fishing and Hunting",
+      value: "AgricultureForestryFishingAndHunting",
+    },
+    {
+      id: 2,
+      name: "Arts, Entertainment and Recreation",
+      value: "ArtsEntertainmentAndRecreation",
+    },
+    {
+      id: 3,
+      name: "Finance and Insurance",
+      value: "FinanceAndInsurance",
+    },
+    {
+      id: 4,
+      name: "Healthcare and Social Assistance",
+      value: "HealthcareAndSocialAssistance",
+    },
+    {
+      id: 5,
+      name: "Hospitality",
+      value: "Hospitality",
+    },
+    {
+      id: 6,
+      name: "Information Technology",
+      value: "InformationTechnology",
+    },
+    {
+      id: 7,
+      name: "Hospitality",
+      value: "Hospitality",
+    },
+    {
+      id: 8,
+      name: "Manufacturing",
+      value: "Manufacturing",
+    },
+    {
+      id: 5,
+      name: "Mining and Mineral processing",
+      value: "MiningAndMineralProcessing",
+    },
+    {
+      id: 6,
+      name: "Professional, Scientific and Technical Services",
+      value: "ProfessionalScientificAndTechnicalServices",
+    },
+    {
+      id: 8,
+      name: "Real Estate",
+      value: "RealEstate",
+    },
+    {
+      id: 9,
+      name: "Retail",
+      value: "Retail",
+    },
+    {
+      id: 10,
+      name: "TransportAndLogistics",
+      value: "Transport and Logistics",
+    },
+    {
+      id: 12,
+      name: "Other",
+      value: "Other",
     },
   ];
   const [isOpen, setIsOpen] = useState(false);
   const [bizPhases, setBizPhases] = useState(bizPhaseList);
+  const [industries, setIndustries] = useState(industryList);
 
   const handleBizPhaseItemClick = (event: any) => {};
+
+  const handleIndustryItemClick = (event: any) => {};
 
   return (
     <div>
@@ -98,10 +177,7 @@ export const Profile = () => {
                     />
                   </div>
                   <h5>Add new company</h5>
-                  <form
-                    action="https://biztweak.org.za/public/102/save-company-new"
-                    method="POST"
-                  >
+                  <form>
                     <input type="hidden" />{" "}
                     <div className="form-group my-3">
                       <div className="col-auto">
@@ -111,40 +187,18 @@ export const Profile = () => {
                             id="industry"
                             name="industry"
                           >
-                            <option value="Admin/Business support">
-                              Admin/Business support
-                            </option>
-                            <option value="Agriculture, Forestry,Fishing and Hunting">
-                              Agriculture, Forestry,Fishing and Hunting
-                            </option>
-                            <option value="Arts, Entertainment and Recreation">
-                              Arts, Entertainment and Recreation
-                            </option>
-                            <option value="Constrution">Constrution</option>
-                            <option value="Education">Education</option>
-                            <option value="Finance and Insurance">
-                              Finance and Insurance
-                            </option>
-                            <option value="Healthcare and Social Assistance">
-                              Healthcare and Social Assistance
-                            </option>
-                            <option value="Hospitality">Hospitality</option>
-                            <option value="Information Technology">
-                              Information Technology
-                            </option>
-                            <option value="Manufacturing">Manufacturing</option>
-                            <option value="Mining and Mineral processing">
-                              Mining and Mineral processing
-                            </option>
-                            <option value="Professional, Scientific and Technical Services">
-                              Professional, Scientific and Technical Services
-                            </option>
-                            <option value="Real Estate">Real Estate</option>
-                            <option value="Retail">Retail</option>
-                            <option value="Transport and Logistics">
-                              Transport and Logistics
-                            </option>
-                            <option value="Other">Other</option>
+                            {industries.map((industry: any, index: number) => {
+                              return (
+                                <option
+                                  key={index}
+                                  id={`${index}`}
+                                  onClick={(e) => handleIndustryItemClick(e)}
+                                  value={industry.value}
+                                >
+                                  {industry.name}
+                                </option>
+                              );
+                            })}
                           </select>
                           <label htmlFor="industry" className="form-label">
                             Business industry
@@ -168,7 +222,7 @@ export const Profile = () => {
                                   onClick={(e) => handleBizPhaseItemClick(e)}
                                   value={phase.value}
                                 >
-                                  {phase.title}
+                                  {phase.name}
                                 </option>
                               );
                             })}
