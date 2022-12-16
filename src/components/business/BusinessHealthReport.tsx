@@ -1,7 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { ProfileMenu } from "../auth/ProfileMenu";
 
 export const BusinessHealthReport = () => {
+    const navigate = useNavigate();
+    
+    const onViewBizReport = () => {
+        navigate("/business/manage-business/report-summary");
+    }
+
   return (
     <div className="row w-full m-0 p-0">
       <div className="col-md-3 border-end">
@@ -34,12 +41,12 @@ export const BusinessHealthReport = () => {
               in graphical way and understand easily, moreover you will also get
               recommendations from our system based on the assessment.
             </p>
-            <a
+            <button
               className="btn btn-info"
-              href="https://biztweak.org.za/public/46/report-summary"
+              onClick={onViewBizReport}
             >
               <i className="fa fa-file-alt"></i> View Biz Report
-            </a>
+            </button>
           </div>
         </div>
       </div>
