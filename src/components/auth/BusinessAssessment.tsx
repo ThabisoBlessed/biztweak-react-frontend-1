@@ -13,7 +13,7 @@ export const BusinessAssessment = (props: any): JSX.Element => {
         },
         {
           id: "drwtetwe",
-          value: "Post sales support has been provided.",
+          value: "Do you have a marketing plan in place?",
           answer: 0,
         },
       ],
@@ -67,8 +67,8 @@ export const BusinessAssessment = (props: any): JSX.Element => {
             return (
               <div
                 className="accordion-item bg-[#f1feff]"
-                key={index}
-                id={`${index}`}
+                key={`${question.name}_index`}
+                id={`${question.name}_index`}
               >
                 <h2 className="accordion-header" id="heading62">
                   <button
@@ -89,25 +89,35 @@ export const BusinessAssessment = (props: any): JSX.Element => {
                   data-bs-parent="#assessment-accordion"
                 >
                   <div className="accordion-body">
-                    <div className="question" id="yes_no_group_3">
-                      <p className="mb-1">{question.name}</p>
-                      <label htmlFor="question-yes-3">Yes</label>
-                      <input
-                        name="question-3"
-                        type="radio"
-                        value="1"
-                        id="question-yes-3"
-                        className="m-2"
-                      />
-                      <label htmlFor="question-no-3">No</label>
-                      <input
-                        name="question-3"
-                        type="radio"
-                        value="0"
-                        id="question-no-3"
-                        className="m-2"
-                      />
-                    </div>
+                    {question.questions.map(
+                      (subQuestion: any, index: number) => {
+                        return (
+                          <div
+                            className="question mb-3"
+                            key={index}
+                            id={`${index}`}
+                          >
+                            <p className="mb-1">{subQuestion.value}</p>
+                            <label htmlFor="question-yes-3">Yes</label>
+                            <input
+                              name="question-3"
+                              type="radio"
+                              value="1"
+                              id="question-yes-3"
+                              className="m-2"
+                            />
+                            <label htmlFor="question-no-3">No</label>
+                            <input
+                              name="question-3"
+                              type="radio"
+                              value="0"
+                              id="question-no-3"
+                              className="m-2"
+                            />
+                          </div>
+                        );
+                      }
+                    )}
 
                     <input name="assessment_id_4" type="hidden" value="4" />
                   </div>
