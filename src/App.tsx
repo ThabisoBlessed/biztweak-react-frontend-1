@@ -28,9 +28,6 @@ function App() {
           <Route path="/auth/reset-password" element={<ResetPassword />}></Route>
           <Route path="/auth/profile" element={<Profile />}></Route>
 
-          <Route path="/business/*" element={<ManageBusiness />}></Route>
-          <Route path="/business/manage-business" element={<ManageBusiness />}></Route>
-
           <Route path="/lms/*" element={<LMS />}></Route>
           <Route path="/lms/courses" element={<Courses />}></Route>
           <Route path="/lms/dashboard" element={<Dashboard />}></Route>

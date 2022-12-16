@@ -261,7 +261,7 @@ export const Profile = () => {
                         <div className="text-end">
                           <button
                             type="submit"
-                            className="btn bg-[#00c2cb] btn-info text-white"
+                            className="btn bg-[#00c2cb] p-3 w-[100px] btn-info text-white"
                             data-bs-dismiss="modal"
                             aria-label="Close"
                             onClick={(e) => onSave(e)}
