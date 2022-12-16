@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 
 export const ProfileMenu = () => {
+  const onCompleteAssessment = () => {
+
+  }
+  
   return (
     <div className="b-0 m-0 text-dark">
       <div className="section">
@@ -54,12 +58,12 @@ export const ProfileMenu = () => {
                   </p>
                 </div>
                 <div className="top-buffer">
-                  <a
+                  <button
+                  onClick={onCompleteAssessment}
                     className="btn profile-menu-action-btn mt-2 mb-2 bg-[#00c2cb] text-[white]"
-                    href="https://biztweak.org.za/public/37/manage-company"
                   >
                     <i className="fa fa-file-alt"></i> Complete Assessment
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
