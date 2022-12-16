@@ -1,8 +1,6 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import { BusinessAssessmentQuestions } from "./BusinessAssessmentQuestions";
 import { CompleteCompanyProfileModal } from "./CompleteCompanyProfileModal";
-import { ManageBusiness } from "./ManageBusiness";
 
 export const BusinessAssessment = (props: any): JSX.Element => {
   const questionList: any[] = [
@@ -23,12 +21,6 @@ export const BusinessAssessment = (props: any): JSX.Element => {
       ],
     },
   ];
-  const navigate = useNavigate();
-  const [showManageBusiness, setShowManageBusiness] = useState(false);
-
-  const onSave = () => {
-    navigate("/business/manage-business");
-  };
 
   return (
     <div>
