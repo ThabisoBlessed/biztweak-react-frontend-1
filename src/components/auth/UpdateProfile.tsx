@@ -128,21 +128,6 @@ export const UpdateProfile = () => {
         </p>
 
         <div className="form-group mb-2">
-          <label className="small" htmlFor="phone">
-            Phone
-          </label>
-          <input
-            type="text"
-            name="phone"
-            className="form-control form-control-lg"
-            id="phone"
-            placeholder="Phone"
-            autoComplete="false"
-            onChange={(e) => setPhone(e.target.value)}
-          />
-        </div>
-
-        <div className="form-group mb-2">
           <label className="small" htmlFor="currentPassword">
             Current Password
           </label>
