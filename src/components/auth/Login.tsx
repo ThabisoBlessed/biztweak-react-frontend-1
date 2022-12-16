@@ -60,7 +60,6 @@ export const Login = () => {
                       Login Account
                     </h2>
                     <p className="mb-md-5">{followInstrunction}</p>
-                    <form>
                       <div className="input-group input-group-lg p-2 mb-3">
                         <i className="fa fa-envelope input-group-text"></i>
                         <input
@@ -150,7 +149,6 @@ export const Login = () => {
                           Linkedin
                         </a>
                       </div> */}
-                    </form>
                   </div>
                 </div>
               </div>
