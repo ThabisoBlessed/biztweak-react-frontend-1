@@ -28,7 +28,7 @@ export const BusinessAssessment = (props: any): JSX.Element => {
                 </p>
                 <p>
                   <b>Industry:</b> {props.industries.find((b: any) => b.id === props.businessIndustry).name}
-                </p>industries
+                </p>
                 <p>
                   <b>Business phase:</b> {props.bizPhases.find((b: any) => b.id === props.businessPhase).name}
                 </p>
@@ -59,25 +59,6 @@ export const BusinessAssessment = (props: any): JSX.Element => {
               data-bs-parent="#assessment-accordion"
             >
               <div className="accordion-body">
-                <input name="assessment_id_3" type="hidden" value="3" />
-                <input name="company_id" type="hidden" value="47" />
-                <input name="category_id_3" type="hidden" value="62" />
-                <input
-                  name="po_outcome3"
-                  type="hidden"
-                  value="Channels to reach customers are developed"
-                />
-                <input
-                  name="ne_outcome3"
-                  type="hidden"
-                  value="Channels to reach customers not developed"
-                />
-                <input
-                  name="recom3"
-                  type="hidden"
-                  value="Social media marketing, marketing plan, marketing startegy, sales funnel, customer acquisition plan."
-                />
-
                 <div className="question" id="yes_no_group_3">
                   <p className="mb-1">
                     Do you know how you are going to reach your customers?
