@@ -4,7 +4,39 @@ import { UpdateProfile } from "./UpdateProfile";
 import { useState } from "react";
 
 export const Profile = () => {
+  const bizPhaseList: any[] = [
+    {
+      id: 0,
+      title: "I have an idea but don’t know what to do next",
+      value: "phase_1",
+    },
+    {
+      id: 1,
+      title: "I have a business but am not making money",
+      value: "phase_2",
+    },
+    {
+      id: 2,
+      title: "I have products/services but I have poor sales",
+      value: "phase_3",
+    },
+    {
+      id: 3,
+      title:
+        "We are generating revenue, we would like to grow through investment",
+      value: "phase_4",
+    },
+    {
+      id: 4,
+      title:
+        " I would like to be an entrepreneur but don’t know where to start",
+      value: "phase_5",
+    },
+  ];
   const [isOpen, setIsOpen] = useState(false);
+  const [bizPhases, setBizPhases] = useState(bizPhaseList);
+
+  const handleBizPhaseItemClick = (event: any) => {};
 
   return (
     <div>
@@ -53,7 +85,9 @@ export const Profile = () => {
                     className="btn-close"
                     data-bs-dismiss="modal"
                     aria-label="Close"
-                  ><i className="fa fa-close"></i></button>
+                  >
+                    <i className="fa fa-close"></i>
+                  </button>
                 </div>
                 <div className="modal-body">
                   <div className="text-center">
@@ -126,23 +160,18 @@ export const Profile = () => {
                             id="biz_phase"
                             name="biz_phase"
                           >
-                            <option value="phase_i">
-                              I have an idea but don’t know what to do next
-                            </option>
-                            <option value="phase_ii">
-                              I have a business but am not making money
-                            </option>
-                            <option value="phase_iii">
-                              I have products/services but I have poor sales
-                            </option>
-                            <option value="phase_iv">
-                              We are generating revenue, we would like to grow
-                              through investment
-                            </option>
-                            <option value="phase_v">
-                              I would like to be an entrepreneur but don’t know
-                              where to start
-                            </option>
+                            {bizPhases.map((phase: any, index: number) => {
+                              return (
+                                <option
+                                  key={index}
+                                  id={`${index}`}
+                                  onClick={(e) => handleBizPhaseItemClick(e)}
+                                  value={phase.value}
+                                >
+                                  {phase.title}
+                                </option>
+                              );
+                            })}
                           </select>
                           <label htmlFor="biz_phase" className="form-label">
                             Business phase
@@ -151,7 +180,10 @@ export const Profile = () => {
                       </div>
                     </div>
                     <div className="text-end">
-                      <button type="submit" className="btn bg-[#00c2cb] btn-info text-white">
+                      <button
+                        type="submit"
+                        className="btn bg-[#00c2cb] btn-info text-white"
+                      >
                         Save
                       </button>
                     </div>
