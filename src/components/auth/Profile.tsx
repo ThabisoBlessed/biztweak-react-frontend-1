@@ -1,7 +1,7 @@
 import { ProfileMenu } from "./ProfileMenu";
 import "./Profile.css";
-import { UpdateProfile } from "./UpdateProfile";
 import { useState } from "react";
+import { BusinessAssessment } from "./BusinessAssessment";
 
 export const Profile = () => {
   const bizPhaseList: any[] = [
@@ -135,7 +135,7 @@ export const Profile = () => {
         </div>
         <div className="col-md-9 bg-white">
           {showBizAssessment ? (
-            <span>Loading...</span>
+            <BusinessAssessment businessPhase={businessPhase} businessIndustry={businessIndustry}/>
           ) : (
             <>
               <div className="row justify-content-center">
@@ -257,6 +257,8 @@ export const Profile = () => {
                           <button
                             type="submit"
                             className="btn bg-[#00c2cb] btn-info text-white"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
                             onClick={(e) => onSave(e)}
                           >
                             Save
