@@ -10,7 +10,7 @@ export const BusinessAssessment = (props: any): JSX.Element => {
           </strong>{" "}
           Complete your Company Assessment.
         </div>
-        <h4 className="mt-3">Biz Assessment</h4>
+        <h4 className="mt-3 text-3xl text-dark">Biz Assessment</h4>
         <div className="card my-3 bg-light">
           <div className="card-body">
             <div className="d-flex align-items-center">
@@ -31,6 +31,23 @@ export const BusinessAssessment = (props: any): JSX.Element => {
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div className="accordion" id="assessment-accordion">
+          <div className="accordion-item bg-[#f1feff]">
+            <h2 className="accordion-header" id="heading62">
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse62"
+                aria-expanded="false"
+                aria-controls="collapse62"
+              >
+                Channels
+              </button>
+            </h2>
           </div>
         </div>
       </div>
