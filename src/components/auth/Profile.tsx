@@ -1,7 +1,6 @@
 import { ProfileMenu } from "./ProfileMenu";
 import "./Profile.css";
 import { UpdateProfile } from "./UpdateProfile";
-import { ManageCompany } from "./ManageCompany";
 import { useState } from "react";
 
 export const Profile = () => {
@@ -27,7 +26,7 @@ export const Profile = () => {
               <button
                 type="button"
                 data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
+                data-bs-target="#addCompany"
                 className="btn btn-outline-info dotted-border col-12 mb-2 btn-lg"
               >
                 <i className="fa fa-plus"></i> Add Company
@@ -41,15 +40,15 @@ export const Profile = () => {
 
           <div
             className="modal fade"
-            id="exampleModal"
+            id="addCompany"
             tabIndex={-1}
-            aria-labelledby="exampleModalLabel"
+            aria-labelledby="addCompanyLabel"
             aria-hidden="true"
           >
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header">
-                  <h5 className="modal-title" id="exampleModalLabel">
+                  <h5 className="modal-title" id="addCompanyLabel">
                     Modal title
                   </h5>
                   <button

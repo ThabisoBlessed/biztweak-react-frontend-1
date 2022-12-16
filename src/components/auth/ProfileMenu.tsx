@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 
 export const ProfileMenu = () => {
   const menuList: any[] = [
@@ -68,11 +67,6 @@ export const ProfileMenu = () => {
       titleClasses: "ml-3",
     },
   ];
-  const [menu, setMenu] = useState(menuList);
-
-  const handleMenuItemClick = (event: any) => {
-    console.log(event.currentTarget.id);
-  };
 
   return (
     <div className="b-0 m-0 text-dark">
@@ -80,7 +74,7 @@ export const ProfileMenu = () => {
         <h6 className="fw-bold mt-3 mb-3">COMPANY</h6>
         <button
           data-bs-toggle="modal"
-          data-bs-target="#add-company"
+          data-bs-target="#addCompany"
           className="btn btn-outline-info dotted-border btn-lg col-12"
         >
           <i className="fa fa-plus"></i> Add Company
