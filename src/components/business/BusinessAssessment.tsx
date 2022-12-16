@@ -118,7 +118,7 @@ export const BusinessAssessment = (props: any): JSX.Element => {
                             <input
                               name={`${String(
                                 subQuestion.value
-                              ).toLowerCase()}_yes`}
+                              ).toLowerCase()}`}
                               type="radio"
                               value="1"
                               id={`${String(
@@ -136,7 +136,7 @@ export const BusinessAssessment = (props: any): JSX.Element => {
                             <input
                               name={`${String(
                                 subQuestion.value
-                              ).toLowerCase()}_no`}
+                              ).toLowerCase()}`}
                               type="radio"
                               value="0"
                               id={`${String(

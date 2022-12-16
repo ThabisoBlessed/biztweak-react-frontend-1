@@ -196,80 +196,76 @@ export const Profile = () => {
                         />
                       </div>
                       <h5>Add new company</h5>
-                      <form>
-                        <input type="hidden" />{" "}
-                        <div className="form-group my-3">
-                          <div className="col-auto">
-                            <div className="form-floating">
-                              <select
-                                className="form-select"
-                                id="industry"
-                                name="industry"
-                              >
-                                {industries.map(
-                                  (industry: any, index: number) => {
-                                    return (
-                                      <option
-                                        key={index}
-                                        id={`${index}`}
-                                        onClick={(e) =>
-                                          handleIndustryItemClick(e)
-                                        }
-                                        value={industry.value}
-                                      >
-                                        {industry.name}
-                                      </option>
-                                    );
-                                  }
-                                )}
-                              </select>
-                              <label htmlFor="industry" className="form-label">
-                                Business industry
-                              </label>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="form-group my-3">
-                          <div className="col-auto">
-                            <div className="form-floating">
-                              <select
-                                className="form-select"
-                                id="biz_phase"
-                                name="biz_phase"
-                              >
-                                {bizPhases.map((phase: any, index: number) => {
+                      <input type="hidden" />{" "}
+                      <div className="form-group my-3">
+                        <div className="col-auto">
+                          <div className="form-floating">
+                            <select
+                              className="form-select"
+                              id="industry"
+                              name="industry"
+                            >
+                              {industries.map(
+                                (industry: any, index: number) => {
                                   return (
                                     <option
                                       key={index}
                                       id={`${index}`}
                                       onClick={(e) =>
-                                        handleBizPhaseItemClick(e)
+                                        handleIndustryItemClick(e)
                                       }
-                                      value={phase.value}
+                                      value={industry.value}
                                     >
-                                      {phase.name}
+                                      {industry.name}
                                     </option>
                                   );
-                                })}
-                              </select>
-                              <label htmlFor="biz_phase" className="form-label">
-                                Business phase
-                              </label>
-                            </div>
+                                }
+                              )}
+                            </select>
+                            <label htmlFor="industry" className="form-label">
+                              Business industry
+                            </label>
                           </div>
                         </div>
-                        <div className="text-end">
-                          <button
-                            type="submit"
-                            className="btn bg-[#00c2cb] p-3 w-[100px]btn-info text-white"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                            onClick={(e) => onSave(e)}
-                          >
-                            Save
-                          </button>
+                      </div>
+                      <div className="form-group my-3">
+                        <div className="col-auto">
+                          <div className="form-floating">
+                            <select
+                              className="form-select"
+                              id="biz_phase"
+                              name="biz_phase"
+                            >
+                              {bizPhases.map((phase: any, index: number) => {
+                                return (
+                                  <option
+                                    key={index}
+                                    id={`${index}`}
+                                    onClick={(e) => handleBizPhaseItemClick(e)}
+                                    value={phase.value}
+                                  >
+                                    {phase.name}
+                                  </option>
+                                );
+                              })}
+                            </select>
+                            <label htmlFor="biz_phase" className="form-label">
+                              Business phase
+                            </label>
+                          </div>
                         </div>
-                      </form>
+                      </div>
+                      <div className="text-end">
+                        <button
+                          type="submit"
+                          className="btn bg-[#00c2cb] p-3 w-[100px]btn-info text-white"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                          onClick={(e) => onSave(e)}
+                        >
+                          Save
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
