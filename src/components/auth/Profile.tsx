@@ -2,7 +2,7 @@ import { ProfileMenu } from "./ProfileMenu";
 import "./Profile.css";
 import { useState } from "react";
 import { BusinessAssessment } from "../business/BusinessAssessment";
-import { AddCompanyModal } from "./AddCompanyModal";
+import { AddCompanyModal } from "../business/AddCompanyModal";
 
 export const Profile = () => {
   const bizPhaseList: any[] = [
