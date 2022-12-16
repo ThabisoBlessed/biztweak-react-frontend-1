@@ -11,6 +11,7 @@ import { Register } from "./components/auth/Register";
 import { Login } from "./components/auth/Login";
 import { ResetPassword } from "./components/auth/ResetPassword";
 import { Profile } from "./components/auth/Profile";
+import { ManageBusiness } from "./components/business/ManageBusiness";
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
           <Route path="/auth/login" element={<Login />}></Route>
           <Route path="/auth/reset-password" element={<ResetPassword />}></Route>
           <Route path="/auth/profile" element={<Profile />}></Route>
+
+          <Route path="/business/*" element={<ManageBusiness />}></Route>
+          <Route path="/business/manage-business" element={<ManageBusiness />}></Route>
 
           <Route path="/lms/*" element={<LMS />}></Route>
           <Route path="/lms/courses" element={<Courses />}></Route>

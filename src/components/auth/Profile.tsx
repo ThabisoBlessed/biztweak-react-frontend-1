@@ -1,7 +1,7 @@
 import { ProfileMenu } from "./ProfileMenu";
 import "./Profile.css";
 import { useState } from "react";
-import { BusinessAssessment } from "./BusinessAssessment";
+import { BusinessAssessment } from "../business/BusinessAssessment";
 
 export const Profile = () => {
   const bizPhaseList: any[] = [

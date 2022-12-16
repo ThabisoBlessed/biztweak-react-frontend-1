@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export const BusinessAssessment = (props: any): JSX.Element => {
   const questionList: any[] = [
@@ -19,6 +20,11 @@ export const BusinessAssessment = (props: any): JSX.Element => {
       ],
     },
   ];
+  const navigate = useNavigate();
+
+  const onSave = () => {
+    navigate("/business/manage-business");
+  };
 
   return (
     <div>
@@ -99,33 +105,61 @@ export const BusinessAssessment = (props: any): JSX.Element => {
                             id={`${String(subQuestion.value).toLowerCase()}`}
                           >
                             <p className="mb-1">{subQuestion.value}</p>
-                            <label htmlFor={`${String(subQuestion.value).toLowerCase()}_yes`}>Yes</label>
+                            <label
+                              htmlFor={`${String(
+                                subQuestion.value
+                              ).toLowerCase()}_yes`}
+                            >
+                              Yes
+                            </label>
                             <input
-                              name={`${String(subQuestion.value).toLowerCase()}_yes`}
+                              name={`${String(
+                                subQuestion.value
+                              ).toLowerCase()}_yes`}
                               type="radio"
                               value="1"
-                              id={`${String(subQuestion.value).toLowerCase()}_yes`}
+                              id={`${String(
+                                subQuestion.value
+                              ).toLowerCase()}_yes`}
                               className="m-2"
                             />
-                            <label htmlFor={`${String(subQuestion.value).toLowerCase()}_no`}>No</label>
+                            <label
+                              htmlFor={`${String(
+                                subQuestion.value
+                              ).toLowerCase()}_no`}
+                            >
+                              No
+                            </label>
                             <input
-                              name={`${String(subQuestion.value).toLowerCase()}_no`}
+                              name={`${String(
+                                subQuestion.value
+                              ).toLowerCase()}_no`}
                               type="radio"
                               value="0"
-                              id={`${String(subQuestion.value).toLowerCase()}_no`}
+                              id={`${String(
+                                subQuestion.value
+                              ).toLowerCase()}_no`}
                               className="m-2"
                             />
                           </div>
                         );
                       }
                     )}
-
-                    <input name="assessment_id_4" type="hidden" value="4" />
                   </div>
                 </div>
               </div>
             );
           })}
+        </div>
+
+        <div className="text-end mt-3">
+          <button
+            type="button"
+            className="btn bg-[#00c2cb] btn-info btn-lg text-white"
+            onClick={() => onSave()}
+          >
+            Save
+          </button>
         </div>
       </div>
     </div>
