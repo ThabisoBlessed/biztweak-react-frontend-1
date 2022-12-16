@@ -1,7 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export const CompleteCompanyProfileModal = () => {
-  const onSave = () => {};
+  const navigate = useNavigate();
+
+  const onSave = () => {
+    navigate("/business/manage-business");
+  };
 
   return (
     <div>
