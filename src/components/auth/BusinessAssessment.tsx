@@ -38,7 +38,7 @@ export const BusinessAssessment = (props: any): JSX.Element => {
           <div className="accordion-item bg-[#f1feff]">
             <h2 className="accordion-header" id="heading62">
               <button
-                className="accordion-button collapsed"
+                className="accordion-button collapsed text-dark"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#collapse62"
@@ -48,6 +48,58 @@ export const BusinessAssessment = (props: any): JSX.Element => {
                 Channels
               </button>
             </h2>
+
+            <div
+              id="collapse62"
+              className="accordion-collapse collapse show"
+              aria-labelledby="heading62"
+              data-bs-parent="#assessment-accordion"
+            >
+              <div className="accordion-body">
+                <input name="assessment_id_3" type="hidden" value="3" />
+                <input name="company_id" type="hidden" value="47" />
+                <input name="category_id_3" type="hidden" value="62" />
+                <input
+                  name="po_outcome3"
+                  type="hidden"
+                  value="Channels to reach customers are developed"
+                />
+                <input
+                  name="ne_outcome3"
+                  type="hidden"
+                  value="Channels to reach customers not developed"
+                />
+                <input
+                  name="recom3"
+                  type="hidden"
+                  value="Social media marketing, marketing plan, marketing startegy, sales funnel, customer acquisition plan."
+                />
+
+                <div className="question" id="yes_no_group_3">
+                  <p className="mb-1">
+                    Do you know how you are going to reach your customers?
+                  </p>
+                  <label htmlFor="question-yes-3">Yes</label>
+                  <input
+                    name="question-3"
+                    type="radio"
+                    value="1"
+                    id="question-yes-3"
+                    className="m-2"
+                  />
+                  <label htmlFor="question-no-3">No</label>
+                  <input
+                    name="question-3"
+                    type="radio"
+                    value="0"
+                    id="question-no-3"
+                    className="m-2"
+                  />
+                </div>
+
+                <input name="assessment_id_4" type="hidden" value="4" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
