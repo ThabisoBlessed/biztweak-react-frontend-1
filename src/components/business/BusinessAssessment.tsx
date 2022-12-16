@@ -197,6 +197,8 @@ export const BusinessAssessment = (props: any): JSX.Element => {
                     data-bs-dismiss="modal"
                     aria-label="Close"
                     id="okBtn"
+                    type="button"
+                    className="btn bg-[#00c2cb] btn-info btn-lg text-white"
                     onClick={() => onSave()}
                   >
                     OK
