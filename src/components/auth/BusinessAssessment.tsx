@@ -19,13 +19,14 @@ export const BusinessAssessment = (props: any): JSX.Element => {
       ],
     },
   ];
+
   return (
     <div>
       <div className="row justify-content-center m-3">
         <div className="alert alert-info mt-4">
           <strong>
             <i className="fa fa-info-circle"></i> Next Step!
-          </strong>{" "}
+          </strong>
           Complete your Company Assessment.
         </div>
         <h4 className="mt-3 text-3xl text-dark">Biz Assessment</h4>
@@ -35,14 +36,14 @@ export const BusinessAssessment = (props: any): JSX.Element => {
               <img
                 src="https://biztweak.org.za/public/new/images/company.png"
                 className="img-fluid h-[80px] w-[80px] rounded-circle me-4"
-                alt=""
+                alt="companyLogo"
               />
               <div>
                 <p>
                   <b>Location:</b> n/a
                 </p>
                 <p>
-                  <b>Industry:</b>{" "}
+                  <b>Industry:</b>
                   {
                     props.industries.find(
                       (b: any) => b.id === props.businessIndustry
@@ -50,7 +51,7 @@ export const BusinessAssessment = (props: any): JSX.Element => {
                   }
                 </p>
                 <p>
-                  <b>Business phase:</b>{" "}
+                  <b>Business phase:</b>
                   {
                     props.bizPhases.find(
                       (b: any) => b.id === props.businessPhase
@@ -67,8 +68,8 @@ export const BusinessAssessment = (props: any): JSX.Element => {
             return (
               <div
                 className="accordion-item bg-[#f1feff]"
-                key={`${question.name}_index`}
-                id={`${question.name}_index`}
+                key={`${String(question.name).toLowerCase()}_${index}`}
+                id={`${String(question.name).toLowerCase()}_${index}`}
               >
                 <h2 className="accordion-header" id="heading62">
                   <button
@@ -88,30 +89,30 @@ export const BusinessAssessment = (props: any): JSX.Element => {
                   aria-labelledby="heading62"
                   data-bs-parent="#assessment-accordion"
                 >
-                  <div className="accordion-body">
+                  <div className="accordion-body bg-[white]">
                     {question.questions.map(
                       (subQuestion: any, index: number) => {
                         return (
                           <div
                             className="question mb-3"
-                            key={index}
-                            id={`${index}`}
+                            key={`${String(subQuestion.value).toLowerCase()}`}
+                            id={`${String(subQuestion.value).toLowerCase()}`}
                           >
                             <p className="mb-1">{subQuestion.value}</p>
-                            <label htmlFor="question-yes-3">Yes</label>
+                            <label htmlFor={`${String(subQuestion.value).toLowerCase()}_yes`}>Yes</label>
                             <input
-                              name="question-3"
+                              name={`${String(subQuestion.value).toLowerCase()}_yes`}
                               type="radio"
                               value="1"
-                              id="question-yes-3"
+                              id={`${String(subQuestion.value).toLowerCase()}_yes`}
                               className="m-2"
                             />
-                            <label htmlFor="question-no-3">No</label>
+                            <label htmlFor={`${String(subQuestion.value).toLowerCase()}_no`}>No</label>
                             <input
-                              name="question-3"
+                              name={`${String(subQuestion.value).toLowerCase()}_no`}
                               type="radio"
                               value="0"
-                              id="question-no-3"
+                              id={`${String(subQuestion.value).toLowerCase()}_no`}
                               className="m-2"
                             />
                           </div>
