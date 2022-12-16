@@ -1,5 +1,6 @@
 import React from 'react'
 import { ProfileMenu } from '../auth/ProfileMenu'
+import { ReportSummaryModal } from './ReportSummaryModal'
 
 export const ReportSummary = () => {
   return (
@@ -9,7 +10,7 @@ export const ReportSummary = () => {
           <ProfileMenu />
         </div>
         <div className="col-md-9 bg-white">
-        
+            <ReportSummaryModal />
         </div>
       </div>
     </div>

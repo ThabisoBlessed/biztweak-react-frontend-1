@@ -13,6 +13,7 @@ import { ResetPassword } from "./components/auth/ResetPassword";
 import { Profile } from "./components/auth/Profile";
 import { ManageBusiness } from "./components/business/ManageBusiness";
 import { ReportSummary } from "./components/business/ReportSummary";
+import { BusinessHealthReport } from "./components/business/BusinessHealthReport";
 
 function App() {
   return (
@@ -32,7 +33,8 @@ function App() {
           <Route path="/business/*" element={<ManageBusiness />}></Route>
           <Route path="/business/manage-business" element={<ManageBusiness />}></Route>
           <Route path="/business/manage-business/report-summary" element={<ReportSummary />}></Route>
-
+          <Route path="/business/manage-business/business-health-report" element={<BusinessHealthReport />}></Route>
+          
           <Route path="/lms/*" element={<LMS />}></Route>
           <Route path="/lms/courses" element={<Courses />}></Route>
           <Route path="/lms/dashboard" element={<Dashboard />}></Route>

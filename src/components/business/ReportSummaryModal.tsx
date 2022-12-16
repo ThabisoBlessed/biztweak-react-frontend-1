@@ -7,7 +7,7 @@ export const ReportSummaryModal = () => {
         className="modal fade"
         id="completeCompanyProfile"
         tabIndex={-1}
-        aria-labelledby="completeCompanyProfileLabel"
+        aria-labelledby="showReportSummary"
         aria-hidden="false"
       >
         <div className="modal-dialog modal-dialog-centered">
