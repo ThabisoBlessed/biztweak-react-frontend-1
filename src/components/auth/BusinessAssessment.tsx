@@ -1,6 +1,9 @@
 import React from "react";
 
 export const BusinessAssessment = (props: any): JSX.Element => {
+  const questionList: any[] = [
+    {id: "345342", name: "Channels", value: "Do you know how you are going to reach your customers?", answer: 0}
+  ];
   return (
     <div>
       <div className="row justify-content-center m-3">
@@ -24,10 +27,10 @@ export const BusinessAssessment = (props: any): JSX.Element => {
                   <b>Location:</b> n/a
                 </p>
                 <p>
-                  <b>Industry:</b> {props.businessIndustry}
-                </p>
+                  <b>Industry:</b> {props.industries.find((b: any) => b.id === props.businessIndustry).name}
+                </p>industries
                 <p>
-                  <b>Business phase:</b> {props.businessPhase}
+                  <b>Business phase:</b> {props.bizPhases.find((b: any) => b.id === props.businessPhase).name}
                 </p>
               </div>
             </div>

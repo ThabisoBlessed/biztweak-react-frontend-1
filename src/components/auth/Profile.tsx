@@ -135,7 +135,12 @@ export const Profile = () => {
         </div>
         <div className="col-md-9 bg-white">
           {showBizAssessment ? (
-            <BusinessAssessment businessPhase={businessPhase} businessIndustry={businessIndustry}/>
+            <BusinessAssessment
+              businessPhase={businessPhase}
+              bizPhases={bizPhases}
+              industries={industries}
+              businessIndustry={businessIndustry}
+            />
           ) : (
             <>
               <div className="row justify-content-center">
