@@ -13,19 +13,19 @@ export const BusinessHealthReport = () => {
             <div className="alert alert-success mt-4">
               <strong>
                 <i className="fa fa-check"></i> SUCCESS!
-              </strong>{" "}
+              </strong>
               Company Assessment Completed.
             </div>
             <div className="alert alert-info mt-4">
               <strong>
                 <i className="fa fa-check"></i> SUCCESS!
-              </strong>{" "}
+              </strong>
               Company Profile Completed.
             </div>
             <div className="alert alert-primary mt-4">
               <strong>
                 <i className="fa fa-info-circle"></i> Congratulations!
-              </strong>{" "}
+              </strong>
               Your report is ready.
             </div>
             <h2>Business Health Report</h2>

@@ -23,13 +23,13 @@ export const ManageBusiness = () => {
               <div className="alert alert-success mt-4">
                 <strong>
                   <i className="fa fa-check"></i> SUCCESS!
-                </strong>{" "}
+                </strong>
                 Company Assessment Completed.
               </div>
               <div className="alert alert-info mt-4">
                 <strong>
                   <i className="fa fa-info-circle"></i> Next Step!
-                </strong>{" "}
+                </strong>
                 Complete your Company Profile.
               </div>
               <h4 className="mt-3">Complete Company Profile</h4>
@@ -61,7 +61,7 @@ export const ManageBusiness = () => {
                 </div>
                 <div className="col-md-8">
                   <label>
-                    Yes{" "}
+                    Yes
                     <input
                       name="registered"
                       type="radio"
@@ -70,7 +70,7 @@ export const ManageBusiness = () => {
                     />
                   </label>
                   <label>
-                    No{" "}
+                    No
                     <input
                       name="registered"
                       type="radio"

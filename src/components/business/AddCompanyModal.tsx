@@ -31,7 +31,7 @@ export const AddCompanyModal = (props: any) => {
                 />
               </div>
               <h5>Add new company</h5>
-              <input type="hidden" />{" "}
+              <input type="hidden" />
               <div className="form-group my-3">
                 <div className="col-auto">
                   <div className="form-floating">

@@ -34,7 +34,7 @@ function App() {
           <Route path="/business/manage-business" element={<ManageBusiness />}></Route>
           <Route path="/business/manage-business/report-summary" element={<ReportSummary />}></Route>
           <Route path="/business/manage-business/business-health-report" element={<BusinessHealthReport />}></Route>
-          
+
           <Route path="/lms/*" element={<LMS />}></Route>
           <Route path="/lms/courses" element={<Courses />}></Route>
           <Route path="/lms/dashboard" element={<Dashboard />}></Route>
