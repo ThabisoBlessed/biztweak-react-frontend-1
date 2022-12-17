@@ -23,25 +23,11 @@ export const BusinessAssessment = (): JSX.Element => {
       ],
     },
   ];
-  const bizPhaseList: any[] = [
-    {
-      id: 0,
-      name: "I have an idea but don’t know what to do next",
-      value: "phase_1",
-    },
-  ];
-  const industryList: any[] = [
-    {
-      id: 0,
-      name: "Admin/Business Support",
-      value: "AdminBusinessSupport",
-    },
-  ];
-  const [businessPhase, setBusinessPhase] = useState(bizPhaseList[0]);
-  const [businessIndustry, setBusinessIndustry] = useState(industryList[0]);
-  const navigate = useNavigate();
   const { state } = useLocation();
   const [businessIndustryAndPhase] = useState(state);
+  const [businessPhase, setBusinessPhase] = useState(businessIndustryAndPhase.businessPhase);
+  const [businessIndustry, setBusinessIndustry] = useState(businessIndustryAndPhase.businessIndustry);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
