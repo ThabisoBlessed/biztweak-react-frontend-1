@@ -33,15 +33,14 @@ export const Assessment = () => {
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
 
-    console.log(selecteBusinessIndustryAndPhase);
+    const stringify = JSON.stringify(JSON.stringify(selecteBusinessIndustryAndPhase));
+    const parse = JSON.parse(stringify);
+    console.log(parse);
+    console.log();
 
-    const business = getLocalStorageValue(
-      BUSINESS_KEYS.businessIndustryAndPhase
-    );
-    if (business) {
-      const selectedBusiness = JSON.parse(business);
-      setBusinessIndustry(selectedBusiness.businessIndustry);
-      setBusinessPhase(selectedBusiness.businessPhase);
+    if (selecteBusinessIndustryAndPhase) {
+      // setBusinessIndustry(selectedBusiness.businessIndustry);
+      // setBusinessPhase(selectedBusiness.businessPhase);
 
       businessIndustryAndPhase.businessIndustry = businessIndustry;
       businessIndustryAndPhase.businessPhase = businessPhase;
@@ -56,7 +55,7 @@ export const Assessment = () => {
           <ProfileMenu />
         </div>
         <div className="col-md-9 bg-white">
-            <BusinessAssessment />
+            <BusinessAssessment selecteBusinessIndustryAndPhase={selecteBusinessIndustryAndPhase} />
         </div>
       </div>
     </div>

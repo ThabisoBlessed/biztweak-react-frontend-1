@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { BUSINESS_KEYS, getLocalStorageValue, isLoggedIn } from "../../config";
+import { isLoggedIn } from "../../config";
 import { BusinessAssessmentQuestions } from "./BusinessAssessmentQuestions";
 import { CompleteCompanyProfileModal } from "./CompleteCompanyProfileModal";
 
-export const BusinessAssessment = (): JSX.Element => {
+export const BusinessAssessment = (props: any): JSX.Element => {
   const questionList: any[] = [
     {
       id: "345342",
@@ -23,26 +23,14 @@ export const BusinessAssessment = (): JSX.Element => {
       ],
     },
   ];
-  const { state } = useLocation();
-  const [businessIndustryAndPhase] = useState(state);
-  const [businessPhase, setBusinessPhase] = useState(businessIndustryAndPhase.businessPhase);
-  const [businessIndustry, setBusinessIndustry] = useState(businessIndustryAndPhase.businessIndustry);
+  const [businessPhase, setBusinessPhase] = useState(props.selecteBusinessIndustryAndPhase.businessIndustryAndPhase.businessPhase);
+  const [businessIndustry, setBusinessIndustry] = useState(props.selecteBusinessIndustryAndPhase.businessIndustryAndPhase.businessIndustry);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
 
-    console.log(businessIndustryAndPhase);
-
-    const business = getLocalStorageValue(
-      BUSINESS_KEYS.businessIndustryAndPhase
-    );
-    if (business) {
-      const selectedBusiness = JSON.parse(business);
-      setBusinessIndustry(selectedBusiness.businessIndustry);
-      setBusinessPhase(selectedBusiness.businessPhase);
-      console.log(businessPhase, businessIndustry);
-    }
+    console.log(businessPhase, businessIndustry);
   }, [navigate]);
 
   return (
@@ -67,7 +55,7 @@ export const BusinessAssessment = (): JSX.Element => {
                 <p>
                   <b>Location:</b> n/a
                 </p>
-                <p>
+                {/* <p>
                   <b>Industry:</b>
                   {businessIndustry ? (
                     <span>{businessIndustry.name}</span>
@@ -79,7 +67,7 @@ export const BusinessAssessment = (): JSX.Element => {
                   {businessPhase ? (
                     <span>{businessPhase.name}</span>
                   ) : "n/a"}
-                </p>
+                </p> */}
               </div>
             </div>
           </div>
