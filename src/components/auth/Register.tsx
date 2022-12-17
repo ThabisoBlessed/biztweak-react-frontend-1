@@ -36,6 +36,9 @@ export const Register = () => {
     if (password === confirmPassword) {
       const register = await userRegister(userRegistration);
       console.log(register);
+      if (register.status) {
+        navigate("/auth/login");
+      }
     }
    
     setIsLoading(false);

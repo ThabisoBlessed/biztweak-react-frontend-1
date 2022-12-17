@@ -5,6 +5,7 @@ import {
   ILoginRequest,
   ILoginResponse,
   IRegisterRequest,
+  IRegisterResponse,
 } from "../model/auth.model";
 
 /**
@@ -31,11 +32,11 @@ export const userLogin = async (
  * @param {string} fullname
  * @param {string} email
  * @param {string} password
- * @returns {Promise<IRegisterRequest | IAuthErrorResponse>} response
+ * @returns {Promise<IRegisterRequest} response
  */
 export const userRegister = async (
   register: IRegisterRequest
-): Promise<IRegisterRequest | IAuthErrorResponse> => {
+): Promise<IRegisterResponse> => {
   try {
     return await axios.post(constants.baseUrl + `/email-register`, {
       fullname: register.fullname,
