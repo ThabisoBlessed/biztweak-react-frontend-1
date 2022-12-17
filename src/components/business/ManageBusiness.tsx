@@ -12,7 +12,7 @@ export const ManageBusiness = () => {
   };
 
   const onBack = () => {
-    navigate("/auth/profile");
+    navigate("/business/assessment");
   }
 
   return (
