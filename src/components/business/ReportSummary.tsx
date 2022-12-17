@@ -86,11 +86,75 @@ export const ReportSummary = () => {
                             Business Concept
                           </button>
                         </h1>
-                        <div id="collapse1" className="accordion-collapse collapse show">
+                        <div
+                          id="collapse1"
+                          className="accordion-collapse collapse show"
+                        >
                           <div className="accordion-body">
                             <p>Business Diagnosis</p>
-                            <div className="accordion">
-                              
+                            <div id="accordion1" className="accordion">
+                              <div className="accordion-item bg-transparent cust-accordion">
+                                <h2
+                                  className="accordion-header"
+                                  id="headingOne"
+                                >
+                                  <button
+                                    className="accordion-button collapsed bg-[#f1feff]"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo"
+                                    aria-expanded="false"
+                                    aria-controls="collapseOne"
+                                    data-bs-parent="#accordion1"
+                                  >
+                                    Priority Elements
+                                  </button>
+                                  <div id="collapseTwo" className="accordion-body">
+                                    <ul className="list-group">
+                                      <li className="list-group-item bg-[#f1feff]">
+                                        <h5>
+                                          Value proposition
+                                          <span className="badge float-end rounded-pill bg-primary">
+                                            30%
+                                          </span>
+                                        </h5>
+                                        <div className="clearfix"></div>
+                                        <ul className="list-group list-group-numbered">
+                                          <div className="list-group-item d-flex justify-content-between align-items-start list-group-item-danger">
+                                            <p className="mb-0 color-code">
+                                              Problem being solved not
+                                              determined
+                                            </p>
+                                          </div>
+                                          <div className="list-group-item d-flex justify-content-between align-items-start list-group-item-danger">
+                                            <p className="mb-0 color-code">
+                                              Value being delivered not
+                                              determined.
+                                            </p>
+                                          </div>
+                                          <div className="list-group-item d-flex justify-content-between align-items-start list-group-item-success">
+                                            <p className="mb-0 color-code">
+                                              Customer needs have been
+                                              determined.
+                                            </p>
+                                          </div>
+                                          <div className="list-group-item d-flex justify-content-between align-items-start list-group-item-danger">
+                                            <p className="mb-0 color-code">
+                                              Unique selling point not
+                                              determined.
+                                            </p>
+                                          </div>
+                                          <div className="list-group-item d-flex justify-content-between align-items-start list-group-item-danger">
+                                            <p className="mb-0 color-code">
+                                              No elevator pitch
+                                            </p>
+                                          </div>
+                                        </ul>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </h2>
+                              </div>
                             </div>
                           </div>
                         </div>
