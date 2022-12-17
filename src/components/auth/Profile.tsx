@@ -1,8 +1,10 @@
 import { ProfileMenu } from "./ProfileMenu";
 import "./Profile.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BusinessAssessment } from "../business/BusinessAssessment";
 import { AddCompanyModal } from "../business/AddCompanyModal";
+import { isLoggedIn } from "../../config";
+import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
   const bizPhaseList: any[] = [
@@ -115,6 +117,11 @@ export const Profile = () => {
   const [showBizAssessment, setShowBizAssessment] = useState(false);
   const [businessPhase, setBusinessPhase] = useState(0);
   const [businessIndustry, setBusinessIndustry] = useState(0);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn()) navigate("/auth/login");
+  }, [navigate]);
 
   const handleBizPhaseItemClick = (event: any) => {
     setBusinessPhase(Number(event.currentTarget.id));
