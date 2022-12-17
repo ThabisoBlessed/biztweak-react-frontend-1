@@ -55,7 +55,7 @@ export const ReportSummary = () => {
 
               <div className="card shadow-lg p-3 mb-5 text-dark mt-3 bg-white rounded align-content-center">
                 <h6>Sales Score</h6>
-                <div id="barChart" className="card-body">
+                <div id="barChart" className="card-body m-0 p-0">
                   <BarChart
                     data={data}
                     width={"100%"}
@@ -63,6 +63,32 @@ export const ReportSummary = () => {
                     options={columnChartOptions}
                   />
                 </div>
+              </div>
+
+              <div className="full-report row my-5">
+                <h2 className="mt-3 col-12 text-3xl text-dark">Full Report</h2>
+                <div className="col-md-6">
+                  <div className="card shadow-lg p-3 mb-5 bg-white rounded">
+                    <div className="card-body">
+                      <div className="accordion-item bg-transparent">
+                        <h1 className="accordion-header mb-0 mt-0" id="heading1">
+                          <button
+                            className="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#collapse1"
+                            aria-expanded="false"
+                            aria-controls="collapse1"
+                          >
+                            Business Concept
+                          </button>
+                        </h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-md-6"></div>
               </div>
             </div>
           </div>
