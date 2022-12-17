@@ -7,6 +7,10 @@ export const LOCALSTORAGE_KEYS = {
   user: "user",
 };
 
+export const BUSINESS_KEYS = {
+  businessIndustryAndPhase: "business_industry_and_phase",
+};
+
 /**
  * Saves values to local storage
  * @param {key} key
@@ -29,7 +33,7 @@ export const setLocalStorageValue = (key: string, value: any) => {
  * @param {key} key
  */
  export const getLocalStorageValue = (key: string) => {
-  localStorage.getItem(key);
+  return localStorage.getItem(key);
 };
 
 // Map to retrieve localStorage values

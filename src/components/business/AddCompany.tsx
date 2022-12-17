@@ -126,10 +126,12 @@ export const AddCompany = () => {
 
   const handleBizPhaseItemClick = (event: any) => {
     setBusinessPhase(Number(event.currentTarget.id));
+    console.log(businessPhase);
   };
 
   const handleIndustryItemClick = (event: any) => {
     setBusinessIndustry(Number(event.currentTarget.id));
+    console.log(businessIndustry);
   };
 
   return (
@@ -168,8 +170,6 @@ export const AddCompany = () => {
                 industries={industries}
                 bizPhases={bizPhases}
                 onSave={onSave}
-                handleBizPhaseItemClick={handleBizPhaseItemClick}
-                handleIndustryItemClick={handleIndustryItemClick}
               />
         </div>
       </div>

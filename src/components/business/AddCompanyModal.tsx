@@ -1,6 +1,20 @@
 import React from "react";
+import { BUSINESS_KEYS, getLocalStorageValue, removeLocalStorageValue } from "../../config";
 
 export const AddCompanyModal = (props: any) => {
+  const handleIndustryItemClick = (event: any) => {
+    console.log(event.currentTarget.id);
+    const business = getLocalStorageValue(BUSINESS_KEYS.businessIndustryAndPhase);
+    console.log(business);
+    if (business) {
+      removeLocalStorageValue(BUSINESS_KEYS.businessIndustryAndPhase);
+    }
+  }
+  
+  const handleBizPhaseItemClick = (event: any) => {
+    console.log(event.currentTarget.id);
+  }
+
   return (
     <div>
       <div
@@ -39,13 +53,13 @@ export const AddCompanyModal = (props: any) => {
                       className="form-select"
                       id="industry"
                       name="industry"
+                      onChange={(e) => handleIndustryItemClick(e)}
                     >
                       {props.industries.map((industry: any, index: number) => {
                         return (
                           <option
                             key={index}
                             id={`${index}`}
-                            onClick={(e) => props.handleIndustryItemClick(e)}
                             value={industry.value}
                           >
                             {industry.name}
@@ -66,13 +80,13 @@ export const AddCompanyModal = (props: any) => {
                       className="form-select"
                       id="biz_phase"
                       name="biz_phase"
+                      onChange={(e) => handleBizPhaseItemClick(e)}
                     >
                       {props.bizPhases.map((phase: any, index: number) => {
                         return (
                           <option
                             key={index}
                             id={`${index}`}
-                            onClick={(e) => props.handleBizPhaseItemClick(e)}
                             value={phase.value}
                           >
                             {phase.name}
