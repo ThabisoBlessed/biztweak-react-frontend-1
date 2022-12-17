@@ -1,9 +1,16 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const ProfileMenu = () => {
+  const navigate = useNavigate();
+  
   const onCompleteAssessment = () => {
-
+    navigate("/auth/profile");
   }
+
+  const onViewBizReport = () => {
+    navigate("/business/manage-business/report-summary");
+}
   
   return (
     <div className="b-0 m-0 text-dark">
@@ -112,12 +119,12 @@ export const ProfileMenu = () => {
                   </p>
                 </div>
                 <div className="top-buffer">
-                  <a
+                  <button
                     className="btn profile-menu-action-btn mt-2 mb-2 bg-[#00c2cb] text-[white]"
-                    href="https://biztweak.org.za/public/38/report-summary"
+                    onClick={onViewBizReport}
                   >
                     <i className="fa fa-file-alt"></i> View Biz Report
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>

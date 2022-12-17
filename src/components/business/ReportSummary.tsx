@@ -9,9 +9,10 @@ export const ReportSummary = () => {
         <div className="col-md-3 border-end">
           <ProfileMenu />
         </div>
-        <div className="col-md-9 bg-white">
+        {/* <div className="col-md-9 bg-white">
             <ReportSummaryModal />
-        </div>
+        </div> */}
+        
       </div>
     </div>
   )
