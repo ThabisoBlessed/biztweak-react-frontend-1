@@ -5,6 +5,8 @@ import { PieChart } from "../shared/charts/PieChart";
 import { FullReport } from "./FullReport";
 import { Recommendations } from "./Recommendations";
 import { Webinar } from "./Webinar";
+import jsPDF from 'jspdf';
+import * as htmlToImage from 'html-to-image';
 
 export const ReportSummary = () => {
   const data = [
@@ -29,6 +31,20 @@ export const ReportSummary = () => {
     // backgroundColor: "#00c2cb",
   };
 
+  const onDownloadReport = () => {
+    let domElement: any = document.getElementById('myReport');
+    htmlToImage.toPng(domElement)
+      .then(function (dataUrl) {
+        console.log(dataUrl);
+        const pdf = new jsPDF();
+        pdf.addImage(dataUrl, 'PNG', 10, 20, 380, 200);
+        pdf.save("download.pdf");
+      })
+      .catch(function (error) {
+        console.error('oops, something went wrong!', error);
+      });
+  };
+
   return (
     <div>
       <div className="row w-full m-0 p-0">
@@ -40,7 +56,7 @@ export const ReportSummary = () => {
             <div className="card-body">
               <h2 className="mt-3 text-3xl text-dark">
                 My Company's Report Summary
-                <button className="btn btn-sm text-white bg-[#00c2cb] btn-info p-3 float-end">
+                <button className="btn btn-sm text-white bg-[#00c2cb] btn-info p-3 float-end" onClick={onDownloadReport}>
                   Download Report
                 </button>
               </h2>
@@ -49,7 +65,7 @@ export const ReportSummary = () => {
                 we would like to grow through investment
               </p>
 
-              <div className="card shadow-lg p-3 mb-5 text-dark mt-3 bg-white rounded align-content-center">
+              <div id="myReport" className="card shadow-lg p-3 mb-5 text-dark mt-3 bg-white rounded align-content-center">
                 <h6>Sales Score</h6>
                 <div id="doughnutChart" className="card-body m-0 p-0">
                   <PieChart data={data} width={"100%"} height={"300px"} />
