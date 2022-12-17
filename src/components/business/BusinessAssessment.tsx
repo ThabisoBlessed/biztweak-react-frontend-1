@@ -29,8 +29,6 @@ export const BusinessAssessment = (props: any): JSX.Element => {
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
-
-    console.log(businessPhase, businessIndustry);
   }, [navigate]);
 
   return (
@@ -55,7 +53,7 @@ export const BusinessAssessment = (props: any): JSX.Element => {
                 <p>
                   <b>Location:</b> n/a
                 </p>
-                {/* <p>
+                <p>
                   <b>Industry:</b>
                   {businessIndustry ? (
                     <span>{businessIndustry.name}</span>
@@ -63,11 +61,10 @@ export const BusinessAssessment = (props: any): JSX.Element => {
                 </p>
                 <p>
                   <b>Business phase:</b>
-                  <b>Industry:</b>
                   {businessPhase ? (
                     <span>{businessPhase.name}</span>
                   ) : "n/a"}
-                </p> */}
+                </p>
               </div>
             </div>
           </div>
