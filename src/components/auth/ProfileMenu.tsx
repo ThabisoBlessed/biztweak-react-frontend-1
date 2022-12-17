@@ -3,15 +3,15 @@ import { useNavigate } from "react-router-dom";
 
 export const ProfileMenu = () => {
   const navigate = useNavigate();
-  
+
   const onCompleteAssessment = () => {
     navigate("/auth/profile");
-  }
+  };
 
   const onViewBizReport = () => {
     navigate("/business/manage-business/report-summary");
-}
-  
+  };
+
   return (
     <div className="b-0 m-0 text-dark">
       <div className="section">
@@ -66,7 +66,7 @@ export const ProfileMenu = () => {
                 </div>
                 <div className="top-buffer">
                   <button
-                  onClick={onCompleteAssessment}
+                    onClick={onCompleteAssessment}
                     className="btn profile-menu-action-btn mt-2 mb-2 bg-[#00c2cb] text-[white]"
                   >
                     <i className="fa fa-file-alt"></i> Complete Assessment
