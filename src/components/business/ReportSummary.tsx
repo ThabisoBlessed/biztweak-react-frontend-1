@@ -71,7 +71,10 @@ export const ReportSummary = () => {
                   <div className="card shadow-lg p-3 mb-5 bg-white rounded">
                     <div className="card-body">
                       <div className="accordion-item bg-transparent">
-                        <h1 className="accordion-header mb-0 mt-0" id="heading1">
+                        <h1
+                          className="accordion-header mb-0 mt-0"
+                          id="heading1"
+                        >
                           <button
                             className="accordion-button collapsed"
                             type="button"
@@ -83,12 +86,20 @@ export const ReportSummary = () => {
                             Business Concept
                           </button>
                         </h1>
+                        <div id="collapse1" className="accordion-collapse collapse show">
+                          <div className="accordion-body">
+                            <p>Business Diagnosis</p>
+                            <div className="accordion">
+                              
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="col-md-6"></div>
+                <div id="collapse1" className="col-md-6"></div>
               </div>
             </div>
           </div>
