@@ -4,6 +4,7 @@ import { BarChart } from "../shared/charts/BarChart";
 import { PieChart } from "../shared/charts/PieChart";
 import { FullReport } from "./FullReport";
 import { Recommendations } from "./Recommendations";
+import { Webinar } from "./Webinar";
 
 export const ReportSummary = () => {
   const data = [
@@ -73,6 +74,10 @@ export const ReportSummary = () => {
 
               <div className="recommendation">
                 <Recommendations />
+              </div>
+
+              <div className="webinar">
+                <Webinar />
               </div>
             </div>
           </div>
