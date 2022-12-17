@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BUSINESS_KEYS,
   getLocalStorageValue,
@@ -10,17 +10,9 @@ export const AddCompanyModal = (props: any) => {
   const [businessPhase, setBusinessPhase] = useState(props.bizPhases[0]);
   const [businessIndustry, setBusinessIndustry] = useState(props.industries[0]);
 
-  const handleIndustryItemClick = (event: any) => {
-    const businessIndustryAndPhase = {} as IBusinessIndustryAndPhase;
-    businessIndustryAndPhase.businessIndustry = businessIndustry;
-    businessIndustryAndPhase.businessPhase = businessPhase;
-
-    const selected = props.industries.find((i: any) => i.value === event.target.value);
-    setBusinessIndustry(selected);
+  useEffect(() => {
 
     console.log(businessIndustry);
-    // setBusinessIndustry(Number(event.currentTarget.id));
-
     const business = getLocalStorageValue(
       BUSINESS_KEYS.businessIndustryAndPhase
     );
@@ -28,6 +20,16 @@ export const AddCompanyModal = (props: any) => {
     if (business) {
       removeLocalStorageValue(BUSINESS_KEYS.businessIndustryAndPhase);
     }
+
+  }, [businessIndustry, businessPhase])
+
+  const handleIndustryItemClick = (event: any) => {
+    const businessIndustryAndPhase = {} as IBusinessIndustryAndPhase;
+    businessIndustryAndPhase.businessIndustry = businessIndustry;
+    businessIndustryAndPhase.businessPhase = businessPhase;
+
+    const selected = props.industries.find((i: any) => i.value === event.target.value);
+    setBusinessIndustry(selected);
   };
 
   const handleBizPhaseItemClick = (event: any) => {
