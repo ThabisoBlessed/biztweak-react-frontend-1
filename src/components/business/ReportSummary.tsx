@@ -1,6 +1,7 @@
 import React from "react";
 import { ProfileMenu } from "../auth/ProfileMenu";
 import { Chart } from "react-google-charts";
+import { PieChart } from "../shared/charts/PieChart";
 
 export const ReportSummary = () => {
   const data = [
@@ -11,6 +12,10 @@ export const ReportSummary = () => {
     ["Watch TV", 2],
     ["Sleep", 7],
   ];
+
+  const options = {
+    title: "My Daily Activities",
+  };
 
   return (
     <div>
@@ -34,7 +39,9 @@ export const ReportSummary = () => {
 
               <div className="card shadow-lg p-3 mb-5 text-dark mt-3 bg-white rounded align-content-center">
                 <h6>Sales Score</h6>
-                <div className="card-body"></div>
+                <div id="doughnutChart" className="card-body">
+                <PieChart data={data} width={"100%"} height={"300px"} />
+                </div>
               </div>
             </div>
           </div>
