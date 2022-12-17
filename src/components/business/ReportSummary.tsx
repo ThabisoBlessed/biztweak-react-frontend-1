@@ -76,7 +76,7 @@ export const ReportSummary = () => {
                           id="heading1"
                         >
                           <button
-                            className="accordion-button collapsed"
+                            className="accordion-button collapsed bg-[#f1feff]"
                             type="button"
                             data-bs-toggle="collapse"
                             data-bs-target="#collapse1"
@@ -91,7 +91,7 @@ export const ReportSummary = () => {
                           className="accordion-collapse collapse show"
                         >
                           <div className="accordion-body">
-                            <p>Business Diagnosis</p>
+                            <p className="text-dark">Business Diagnosis</p>
                             <div id="accordion1" className="accordion">
                               <div className="accordion-item bg-transparent cust-accordion">
                                 <h2
@@ -102,50 +102,53 @@ export const ReportSummary = () => {
                                     className="accordion-button collapsed bg-[#f1feff]"
                                     type="button"
                                     data-bs-toggle="collapse"
-                                    data-bs-target="#collapseTwo"
+                                    data-bs-target="#collapse2"
                                     aria-expanded="false"
                                     aria-controls="collapseOne"
                                     data-bs-parent="#accordion1"
                                   >
                                     Priority Elements
                                   </button>
-                                  <div id="collapseTwo" className="accordion-body">
+                                  <div
+                                    id="collapse2"
+                                    className="accordion-body"
+                                  >
                                     <ul className="list-group">
                                       <li className="list-group-item bg-[#f1feff]">
-                                        <h5>
+                                        <p className="text-2xl">
                                           Value proposition
-                                          <span className="badge float-end rounded-pill bg-primary">
+                                          <span className="badge float-end rounded-pill bg-[#00c2cb]">
                                             30%
                                           </span>
-                                        </h5>
+                                        </p>
                                         <div className="clearfix"></div>
                                         <ul className="list-group list-group-numbered">
                                           <div className="list-group-item d-flex justify-content-between align-items-start list-group-item-danger">
-                                            <p className="mb-0 color-code">
+                                            <p className="mb-0 color-code text-sm">
                                               Problem being solved not
                                               determined
                                             </p>
                                           </div>
                                           <div className="list-group-item d-flex justify-content-between align-items-start list-group-item-danger">
-                                            <p className="mb-0 color-code">
+                                            <p className="mb-0 color-code text-sm">
                                               Value being delivered not
                                               determined.
                                             </p>
                                           </div>
                                           <div className="list-group-item d-flex justify-content-between align-items-start list-group-item-success">
-                                            <p className="mb-0 color-code">
+                                            <p className="mb-0 color-code text-sm">
                                               Customer needs have been
                                               determined.
                                             </p>
                                           </div>
                                           <div className="list-group-item d-flex justify-content-between align-items-start list-group-item-danger">
-                                            <p className="mb-0 color-code">
+                                            <p className="mb-0 color-code text-sm">
                                               Unique selling point not
                                               determined.
                                             </p>
                                           </div>
                                           <div className="list-group-item d-flex justify-content-between align-items-start list-group-item-danger">
-                                            <p className="mb-0 color-code">
+                                            <p className="mb-0 color-code text-sm">
                                               No elevator pitch
                                             </p>
                                           </div>
@@ -163,7 +166,8 @@ export const ReportSummary = () => {
                   </div>
                 </div>
 
-                <div id="collapse1" className="col-md-6"></div>
+                <div className="col-md-6">
+                </div>
               </div>
             </div>
           </div>
