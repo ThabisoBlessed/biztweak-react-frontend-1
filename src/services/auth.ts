@@ -32,11 +32,11 @@ export const userLogin = async (
  * @param {string} fullname
  * @param {string} email
  * @param {string} password
- * @returns {Promise<IRegisterRequest} response
+ * @returns {Promise<IRegisterRequest | any} response
  */
 export const userRegister = async (
   register: IRegisterRequest
-): Promise<IRegisterResponse> => {
+): Promise<IRegisterResponse | any> => {
   try {
     return await axios.post(constants.baseUrl + `/email-register`, {
       fullname: register.fullname,

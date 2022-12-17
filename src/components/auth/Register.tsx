@@ -3,7 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../config";
 import { createAnAccount, followInstrunction } from "../../constants";
 import { IRegisterRequest } from "../../model/auth.model";
+import { StatusCode } from "../../model/enum/status-code-enum";
 import { userRegister } from "../../services/auth";
+import { errorCodeToMessage } from "../util/string-util";
 
 export const Register = () => {
   const [fullname, setFullName] = useState("");
@@ -11,6 +13,7 @@ export const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const registerProviderStyles = {
@@ -38,9 +41,15 @@ export const Register = () => {
       console.log(register);
       if (register.status) {
         navigate("/auth/login");
+      } else {
+        if (register.code === "ERR_BAD_REQUEST") {
+          setErrorMessage(errorCodeToMessage(StatusCode.badRequest));
+        }
       }
+    } else {
+      setErrorMessage("Passwords don't match.");
     }
-   
+
     setIsLoading(false);
   };
 
@@ -63,9 +72,7 @@ export const Register = () => {
                     <h2 className="text-4xl" style={{ fontSize: "40px" }}>
                       {createAnAccount}
                     </h2>
-                    <p className="mb-md-5">
-                      {followInstrunction}
-                    </p>
+                    <p className="mb-md-5">{followInstrunction}</p>
                     <form>
                       <div className="input-group input-group-lg p-2 mb-3">
                         <i className="fa fa-user input-group-text"></i>
@@ -99,6 +106,13 @@ export const Register = () => {
                           autoComplete="false"
                           onChange={(e) => setPassword(e.target.value)}
                         />
+                        <small
+                          id="passwordHelp"
+                          className="form-text text-muted"
+                        >
+                          Should include number and special character eg.
+                          "2020@hello"
+                        </small>
                       </div>
                       <div className="input-group input-group-lg p-2 mb-3">
                         <i className="fa fa-star input-group-text"></i>
@@ -126,13 +140,25 @@ export const Register = () => {
                             <span>Create Account</span>
                           )}
                         </button>
-                        <div className="float-none float-md-end">
-                          Already have an Account?
-                          <Link to="/auth/login" className="text-[#0d6efd]">
-                            &nbsp;Sign in
-                          </Link>
-                        </div>
+                        {errorMessage.length > 0 ? null : (
+                          <div className="float-none float-md-end">
+                            Already have an Account?
+                            <Link to="/auth/login" className="text-[#0d6efd]">
+                              &nbsp;Sign in
+                            </Link>
+                          </div>
+                        )}
                       </div>
+                      <div className="col-12">
+                        {errorMessage.length > 0 ? (
+                          <small
+                            id="registerErrorMessage"
+                            className="ml-3 form-text text-danger"
+                          >
+                            {errorMessage}
+                          </small>
+                        ) : null}
+                        </div>
                       <div className="clearfix mb-3"></div>
                       {/* <h6 className="mt-5 mb-3 fw-bold ml-2">Or connect with</h6>
                       <div className="d-flex">
