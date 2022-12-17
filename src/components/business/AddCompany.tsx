@@ -72,41 +72,36 @@ export const AddCompany = () => {
     },
     {
       id: 7,
-      name: "Hospitality",
-      value: "Hospitality",
-    },
-    {
-      id: 8,
       name: "Manufacturing",
       value: "Manufacturing",
     },
     {
-      id: 5,
+      id: 8,
       name: "Mining and Mineral processing",
       value: "MiningAndMineralProcessing",
     },
     {
-      id: 6,
+      id: 9,
       name: "Professional, Scientific and Technical Services",
       value: "ProfessionalScientificAndTechnicalServices",
     },
     {
-      id: 8,
+      id: 10,
       name: "Real Estate",
       value: "RealEstate",
     },
     {
-      id: 9,
+      id: 11,
       name: "Retail",
       value: "Retail",
     },
     {
-      id: 10,
+      id: 12,
       name: "TransportAndLogistics",
       value: "Transport and Logistics",
     },
     {
-      id: 12,
+      id: 13,
       name: "Other",
       value: "Other",
     },

@@ -4,15 +4,23 @@ import {
   getLocalStorageValue,
   removeLocalStorageValue,
 } from "../../config";
+import { IBusinessIndustryAndPhase } from "../../model/business-industry-and-phase.model";
 
 export const AddCompanyModal = (props: any) => {
-  const [businessPhase, setBusinessPhase] = useState(0);
-  const [businessIndustry, setBusinessIndustry] = useState(0);
-  
+  const [businessPhase, setBusinessPhase] = useState(props.bizPhases[0]);
+  const [businessIndustry, setBusinessIndustry] = useState(props.industries[0]);
+
   const handleIndustryItemClick = (event: any) => {
-    console.log(event.currentTarget.id);
-    setBusinessIndustry(Number(event.currentTarget.id));
-    
+    const businessIndustryAndPhase = {} as IBusinessIndustryAndPhase;
+    businessIndustryAndPhase.businessIndustry = businessIndustry;
+    businessIndustryAndPhase.businessPhase = businessPhase;
+
+    const selected = props.industries.find((i: any) => i.value === event.target.value);
+    setBusinessIndustry(selected);
+
+    console.log(businessIndustry);
+    // setBusinessIndustry(Number(event.currentTarget.id));
+
     const business = getLocalStorageValue(
       BUSINESS_KEYS.businessIndustryAndPhase
     );
@@ -23,9 +31,11 @@ export const AddCompanyModal = (props: any) => {
   };
 
   const handleBizPhaseItemClick = (event: any) => {
-    console.log(event.currentTarget.id);
-    setBusinessPhase(Number(event.currentTarget.id));
+    console.log(event.target.value);
+    // setBusinessPhase(Number(event.currentTarget.id));
   };
+
+  const onSave = () => {};
 
   return (
     <div>
@@ -65,14 +75,13 @@ export const AddCompanyModal = (props: any) => {
                       className="form-select"
                       id="industry"
                       name="industry"
-                      onChange={(e) => handleIndustryItemClick(e)}
+                      value={businessIndustry.value}
+                      onChange={handleIndustryItemClick}
                     >
                       {props.industries.map((industry: any, index: number) => {
                         return (
                           <option
-                            key={index}
-                            id={`${index}`}
-                            value={industry.value}
+                          key={index} value={industry.value}
                           >
                             {industry.name}
                           </option>
@@ -92,14 +101,14 @@ export const AddCompanyModal = (props: any) => {
                       className="form-select"
                       id="biz_phase"
                       name="biz_phase"
-                      onChange={(e) => handleBizPhaseItemClick(e)}
+                      value={businessPhase}
+                      onChange={handleBizPhaseItemClick}
                     >
                       {props.bizPhases.map((phase: any, index: number) => {
                         return (
                           <option
                             key={index}
                             id={`${index}`}
-                            value={phase.value}
                           >
                             {phase.name}
                           </option>
@@ -118,7 +127,7 @@ export const AddCompanyModal = (props: any) => {
                   className="btn bg-[#00c2cb] p-3 w-[100px] btn-info text-white"
                   data-bs-dismiss="modal"
                   aria-label="Close"
-                  onClick={(e) => props.onSave(e)}
+                  onClick={(e) => onSave()}
                 >
                   Save
                 </button>
