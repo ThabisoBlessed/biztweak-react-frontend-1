@@ -28,7 +28,9 @@ export const Register = () => {
 
   const registerWithEmailAndPassword = async (event: any) => {
     event.preventDefault();
+    
     setIsLoading(true);
+    setErrorMessage("");
 
     const userRegistration = {} as IRegisterRequest;
     userRegistration.email = email;
@@ -38,7 +40,6 @@ export const Register = () => {
 
     if (password === confirmPassword) {
       const register = await userRegister(userRegistration);
-      console.log(register);
       if (register.status) {
         navigate("/auth/login");
       } else {
@@ -158,7 +159,7 @@ export const Register = () => {
                             {errorMessage}
                           </small>
                         ) : null}
-                        </div>
+                      </div>
                       <div className="clearfix mb-3"></div>
                       {/* <h6 className="mt-5 mb-3 fw-bold ml-2">Or connect with</h6>
                       <div className="d-flex">

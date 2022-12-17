@@ -17,6 +17,14 @@ export const setLocalStorageValue = (key: string, value: any) => {
 };
 
 /**
+ * Removes value from local storage
+ * @param {key} key
+ */
+ export const removeLocalStorageValue = (key: string) => {
+  localStorage.removeItem(key);
+};
+
+/**
  * Gets values from local storage
  * @param {key} key
  */
