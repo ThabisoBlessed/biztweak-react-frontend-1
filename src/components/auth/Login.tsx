@@ -49,7 +49,7 @@ export const Login = () => {
         LOCALSTORAGE_KEYS.accessToken,
         JSON.stringify(loginResult.data.package.data)
       );
-      navigate("/auth/profile");
+      window.location.reload();
     } else {
       console.log(loginResult.data.message);
       setErrorMessage(loginResult.data.message);

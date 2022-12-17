@@ -4,7 +4,7 @@ import LogoImg from "../../images/logo.png";
 import UserPlaceholderImg from "../../images/user-placeholder.png";
 import { useNavigate } from "react-router-dom";
 import * as constants from "../../constants";
-import { isLoggedIn } from "../../config";
+import { isLoggedIn, LOCALSTORAGE_KEYS, removeLocalStorageValue } from "../../config";
 
 export const Navbar = () => {
   const navigate = useNavigate();
@@ -13,6 +13,11 @@ export const Navbar = () => {
   useEffect(() => {
     console.log("Logged in: ", loggedIn);
   }, [loggedIn]);
+
+  const onLogout = () => {
+    removeLocalStorageValue(LOCALSTORAGE_KEYS.accessToken);
+    window.location.reload();
+  }
 
   return (
     <div className="border-b" data-testid="navbar">
@@ -90,7 +95,7 @@ export const Navbar = () => {
                     <li className="m-2">
                       <Link to="/auth/edit-profile">Edit Profile</Link>
                     </li>
-                    <li className="m-2">
+                    <li className="m-2" onClick={onLogout}>
                       <Link to="/auth/login">Logout</Link>
                     </li>
                   </ul>
