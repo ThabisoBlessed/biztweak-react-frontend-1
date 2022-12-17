@@ -42,7 +42,6 @@ export const ManageBusiness = () => {
                     placeholder="Company name..."
                     name="name"
                     type="text"
-                    value=""
                     className="form-control"
                   />
                 </div>
@@ -65,6 +64,7 @@ export const ManageBusiness = () => {
                     <input
                       name="registered"
                       type="radio"
+                      onChange={() => {}}
                       value="1"
                       className="radio"
                     />
@@ -75,6 +75,7 @@ export const ManageBusiness = () => {
                       name="registered"
                       type="radio"
                       value="0"
+                      onChange={() => {}}
                       className="radio"
                     />
                   </label>
@@ -91,7 +92,6 @@ export const ManageBusiness = () => {
                       placeholder="Registration number..."
                       name="reg_number"
                       type="text"
-                      value=""
                       className="form-control"
                     />
                   </div>
@@ -106,7 +106,6 @@ export const ManageBusiness = () => {
                       placeholder="Registration date..."
                       name="reg_date"
                       type="date"
-                      value=""
                       className="form-control"
                     />
                   </div>
@@ -122,7 +121,6 @@ export const ManageBusiness = () => {
                     placeholder="Company physical address..."
                     name="location"
                     type="text"
-                    value=""
                     className="form-control pac-target-input"
                     autoComplete="off"
                   />
@@ -138,7 +136,6 @@ export const ManageBusiness = () => {
                     placeholder="Number of employees at your company..."
                     name="num_employees"
                     type="number"
-                    value=""
                     className="form-control"
                   />
                 </div>
@@ -153,7 +150,6 @@ export const ManageBusiness = () => {
                     placeholder="What is your yearly turnover..."
                     name="annual_turnover"
                     type="number"
-                    value=""
                     className="form-control"
                   />
                 </div>
@@ -168,7 +164,6 @@ export const ManageBusiness = () => {
                     placeholder="What was your monthly turnover in the past 6 months..."
                     name="6mo_turnover"
                     type="number"
-                    value=""
                     className="form-control"
                   />
                 </div>

@@ -3,9 +3,14 @@ import * as constants from "../../constants";
 import { PrimaryButton } from "../shared/PrimaryButton";
 import "./Home.css";
 import { Newsletter } from "../Newsletter/Newsletter";
+import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
-  const handleClick = (event: any) => {};
+  const navigate = useNavigate();
+  
+  const handleClick = (event: any) => {
+    navigate("/auth/profile");
+  };
 
   return (
     <div className="w-full">
