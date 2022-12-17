@@ -9,7 +9,7 @@ export const Home = () => {
   const navigate = useNavigate();
   
   const handleClick = (event: any) => {
-    navigate("/auth/profile");
+    navigate("/business/assessment");
   };
 
   return (

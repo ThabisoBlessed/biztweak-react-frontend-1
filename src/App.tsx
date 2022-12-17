@@ -10,10 +10,10 @@ import { Dashboard } from "./components/lms/Dashboard";
 import { Register } from "./components/auth/Register";
 import { Login } from "./components/auth/Login";
 import { ResetPassword } from "./components/auth/ResetPassword";
-import { Profile } from "./components/auth/Profile";
 import { ManageBusiness } from "./components/business/ManageBusiness";
 import { ReportSummary } from "./components/business/ReportSummary";
 import { BusinessHealthReport } from "./components/business/BusinessHealthReport";
+import { Assessment } from "./components/business/Assessment";
 
 function App() {
   return (
@@ -28,9 +28,9 @@ function App() {
           <Route path="/auth/register" element={<Register />}></Route>
           <Route path="/auth/login" element={<Login />}></Route>
           <Route path="/auth/reset-password" element={<ResetPassword />}></Route>
-          <Route path="/auth/profile" element={<Profile />}></Route>
 
           <Route path="/business/*" element={<ManageBusiness />}></Route>
+          <Route path="/business/assessment" element={<Assessment />}></Route>
           <Route path="/business/manage-business" element={<ManageBusiness />}></Route>
           <Route path="/business/manage-business/report-summary" element={<ReportSummary />}></Route>
           <Route path="/business/manage-business/business-health-report" element={<BusinessHealthReport />}></Route>

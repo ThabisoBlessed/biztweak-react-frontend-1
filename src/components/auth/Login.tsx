@@ -27,7 +27,7 @@ export const Login = () => {
   };
 
   useEffect(() => {
-    if (isLoggedIn()) navigate("/auth/profile");
+    if (isLoggedIn()) navigate("/business/assessment");
   }, [navigate]);
 
   const loginWithEmailAndPassword = async (event: any) => {

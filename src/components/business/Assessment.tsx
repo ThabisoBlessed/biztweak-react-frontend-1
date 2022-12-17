@@ -1,12 +1,12 @@
-import { ProfileMenu } from "./ProfileMenu";
-import "./Profile.css";
+import { ProfileMenu } from "../auth/ProfileMenu";
+import "./Assessment.css";
 import { useEffect, useState } from "react";
-import { BusinessAssessment } from "../business/BusinessAssessment";
-import { AddCompanyModal } from "../business/AddCompanyModal";
+import { BusinessAssessment } from "./BusinessAssessment";
+import { AddCompanyModal } from "./AddCompanyModal";
 import { isLoggedIn } from "../../config";
 import { useNavigate } from "react-router-dom";
 
-export const Profile = () => {
+export const Assessment = () => {
   const bizPhaseList: any[] = [
     {
       id: 0,

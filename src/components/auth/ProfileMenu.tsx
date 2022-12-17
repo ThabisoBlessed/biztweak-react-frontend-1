@@ -5,7 +5,7 @@ export const ProfileMenu = () => {
   const navigate = useNavigate();
 
   const onCompleteAssessment = () => {
-    navigate("/auth/profile");
+    navigate("/business/assessment");
   };
 
   const onViewBizReport = () => {
