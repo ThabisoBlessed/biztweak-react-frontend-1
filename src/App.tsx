@@ -14,6 +14,8 @@ import { ManageBusiness } from "./components/business/ManageBusiness";
 import { ReportSummary } from "./components/business/ReportSummary";
 import { BusinessHealthReport } from "./components/business/BusinessHealthReport";
 import { Assessment } from "./components/business/Assessment";
+import { AddCompany } from "./components/business/AddCompany";
+import { BusinessAssessment } from "./components/business/BusinessAssessment";
 
 function App() {
   return (
@@ -29,8 +31,9 @@ function App() {
           <Route path="/auth/login" element={<Login />}></Route>
           <Route path="/auth/reset-password" element={<ResetPassword />}></Route>
 
-          <Route path="/business/*" element={<ManageBusiness />}></Route>
-          <Route path="/business/assessment" element={<Assessment />}></Route>
+          <Route path="/business/*" element={<AddCompany />}></Route>
+          <Route path="/business/manage-business/add-company" element={<AddCompany />}></Route>
+          <Route path="/business/manage-business/assessment" element={<Assessment />}></Route>
           <Route path="/business/manage-business" element={<ManageBusiness />}></Route>
           <Route path="/business/manage-business/report-summary" element={<ReportSummary />}></Route>
           <Route path="/business/manage-business/business-health-report" element={<BusinessHealthReport />}></Route>

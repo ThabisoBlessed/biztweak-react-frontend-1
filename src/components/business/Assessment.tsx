@@ -2,7 +2,6 @@ import { ProfileMenu } from "../auth/ProfileMenu";
 import "./Assessment.css";
 import { useEffect, useState } from "react";
 import { BusinessAssessment } from "./BusinessAssessment";
-import { AddCompanyModal } from "./AddCompanyModal";
 import { isLoggedIn } from "../../config";
 import { useNavigate } from "react-router-dom";
 
@@ -117,23 +116,12 @@ export const Assessment = () => {
   const [showBizAssessment, setShowBizAssessment] = useState(true);
   const [businessPhase, setBusinessPhase] = useState(0);
   const [businessIndustry, setBusinessIndustry] = useState(0);
+
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
   }, [navigate]);
-
-  const handleBizPhaseItemClick = (event: any) => {
-    setBusinessPhase(Number(event.currentTarget.id));
-  };
-
-  const handleIndustryItemClick = (event: any) => {
-    setBusinessIndustry(Number(event.currentTarget.id));
-  };
-
-  const onSave = (event: any) => {
-    setShowBizAssessment(true);
-  };
 
   return (
     <div>
@@ -142,49 +130,12 @@ export const Assessment = () => {
           <ProfileMenu />
         </div>
         <div className="col-md-9 bg-white">
-          {showBizAssessment ? (
             <BusinessAssessment
               businessPhase={businessPhase}
               bizPhases={bizPhases}
               industries={industries}
               businessIndustry={businessIndustry}
             />
-          ) : (
-            <>
-              <div className="row justify-content-center">
-                <img
-                  src="https://biztweak.org.za/public/new/images/dashboard-placeholder.png"
-                  className="img-fluid col-md-5"
-                  alt=""
-                />
-              </div>
-
-              <div className="row justify-content-center">
-                <div className="col-md-6">
-                  <button
-                    type="button"
-                    data-bs-toggle="modal"
-                    data-bs-target="#addCompany"
-                    className="btn btn-outline-info dotted-border col-12 mb-2 btn-lg"
-                  >
-                    <i className="fa fa-plus"></i> Add Company
-                  </button>
-                  <p className="text-center">
-                    After completing the assessment you will get a business
-                    health report that will give you recommendations on
-                  </p>
-                </div>
-              </div>
-
-              <AddCompanyModal
-                industries={industries}
-                bizPhases={bizPhases}
-                onSave={onSave}
-                handleBizPhaseItemClick={handleBizPhaseItemClick}
-                handleIndustryItemClick={handleIndustryItemClick}
-              />
-            </>
-          )}
         </div>
       </div>
     </div>

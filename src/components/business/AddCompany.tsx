@@ -1,12 +1,135 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { isLoggedIn } from "../../config";
 import { ProfileMenu } from "../auth/ProfileMenu";
+import { AddCompanyModal } from "./AddCompanyModal";
 
 export const AddCompany = () => {
   const navigate = useNavigate();
+  const bizPhaseList: any[] = [
+    {
+      id: 0,
+      name: "I have an idea but don’t know what to do next",
+      value: "phase_1",
+    },
+    {
+      id: 1,
+      name: "I have a business but am not making money",
+      value: "phase_2",
+    },
+    {
+      id: 2,
+      name: "I have products/services but I have poor sales",
+      value: "phase_3",
+    },
+    {
+      id: 3,
+      title:
+        "We are generating revenue, we would like to grow through investment",
+      value: "phase_4",
+    },
+    {
+      id: 4,
+      name: " I would like to be an entrepreneur but don’t know where to start",
+      value: "phase_5",
+    },
+  ];
+  const industryList: any[] = [
+    {
+      id: 0,
+      name: "Admin/Business Support",
+      value: "AdminBusinessSupport",
+    },
+    {
+      id: 1,
+      name: "Agriculture, Forestry,Fishing and Hunting",
+      value: "AgricultureForestryFishingAndHunting",
+    },
+    {
+      id: 2,
+      name: "Arts, Entertainment and Recreation",
+      value: "ArtsEntertainmentAndRecreation",
+    },
+    {
+      id: 3,
+      name: "Finance and Insurance",
+      value: "FinanceAndInsurance",
+    },
+    {
+      id: 4,
+      name: "Healthcare and Social Assistance",
+      value: "HealthcareAndSocialAssistance",
+    },
+    {
+      id: 5,
+      name: "Hospitality",
+      value: "Hospitality",
+    },
+    {
+      id: 6,
+      name: "Information Technology",
+      value: "InformationTechnology",
+    },
+    {
+      id: 7,
+      name: "Hospitality",
+      value: "Hospitality",
+    },
+    {
+      id: 8,
+      name: "Manufacturing",
+      value: "Manufacturing",
+    },
+    {
+      id: 5,
+      name: "Mining and Mineral processing",
+      value: "MiningAndMineralProcessing",
+    },
+    {
+      id: 6,
+      name: "Professional, Scientific and Technical Services",
+      value: "ProfessionalScientificAndTechnicalServices",
+    },
+    {
+      id: 8,
+      name: "Real Estate",
+      value: "RealEstate",
+    },
+    {
+      id: 9,
+      name: "Retail",
+      value: "Retail",
+    },
+    {
+      id: 10,
+      name: "TransportAndLogistics",
+      value: "Transport and Logistics",
+    },
+    {
+      id: 12,
+      name: "Other",
+      value: "Other",
+    },
+  ];
+  const [bizPhases, setBizPhases] = useState(bizPhaseList);
+  const [industries, setIndustries] = useState(industryList);
+  const [businessPhase, setBusinessPhase] = useState(0);
+  const [businessIndustry, setBusinessIndustry] = useState(0);
+
+  useEffect(() => {
+    if (!isLoggedIn()) navigate("/auth/login");
+  }, [navigate]);
 
   const onSave = () => {
-    navigate("/business/manage-business/business-health-report");
+    navigate("/business/manage-business/assessment");
+  };
+
+  const handleBizPhaseItemClick = (event: any) => {
+    setBusinessPhase(Number(event.currentTarget.id));
+  };
+
+  const handleIndustryItemClick = (event: any) => {
+    setBusinessIndustry(Number(event.currentTarget.id));
   };
 
   return (
@@ -16,186 +139,38 @@ export const AddCompany = () => {
           <ProfileMenu />
         </div>
         <div className="col-md-9 bg-white">
-          <div className="row justify-content-center">
-            <div className="col-md-10">
-              <div className="alert alert-success mt-4">
-                <strong>
-                  <i className="fa fa-check"></i> SUCCESS!
-                </strong>
-                Company Assessment Completed.
+        <div className="row justify-content-center">
+                <img
+                  src="https://biztweak.org.za/public/new/images/dashboard-placeholder.png"
+                  className="img-fluid col-md-5"
+                  alt=""
+                />
               </div>
-              <div className="alert alert-info mt-4">
-                <strong>
-                  <i className="fa fa-info-circle"></i> Next Step!
-                </strong>
-                Complete your Company Profile.
-              </div>
-              <h4 className="mt-3">Complete Company Profile</h4>
-              <div className="row my-4">
-                <div className="col-md-4">
-                  <label>Company Name</label>
-                </div>
-                <div className="col-md-8">
-                  <input
-                    placeholder="Company name..."
-                    name="name"
-                    type="text"
-                    value=""
-                    className="form-control"
-                  />
-                </div>
-              </div>
-              <div className="row my-4">
-                <div className="col-md-4">
-                  <label>Company Logo</label>
-                </div>
-                <div className="col-md-8">
-                  <input name="image" type="file" className="form-control" />
-                </div>
-              </div>
-              <div className="row my-4">
-                <div className="col-md-4">
-                  <label>Is your company registered?</label>
-                </div>
-                <div className="col-md-8">
-                  <label>
-                    Yes
-                    <input
-                      name="registered"
-                      type="radio"
-                      value="1"
-                      className="radio"
-                    />
-                  </label>
-                  <label>
-                    No
-                    <input
-                      name="registered"
-                      type="radio"
-                      value="0"
-                      className="radio"
-                    />
-                  </label>
-                </div>
-              </div>
-              <div style={{ display: "none;" }} id="reg-bin">
-                <div className="row my-4">
-                  <div className="col-md-4">
-                    <label>Registration Number</label>
-                  </div>
-                  <div className="col-md-8">
-                    <input
-                      id="reg_number"
-                      placeholder="Registration number..."
-                      name="reg_number"
-                      type="text"
-                      value=""
-                      className="form-control"
-                    />
-                  </div>
-                </div>
-                <div className="row my-4">
-                  <div className="col-md-4">
-                    <label>Registration Date</label>
-                  </div>
-                  <div className="col-md-8">
-                    <input
-                      id="reg_date"
-                      placeholder="Registration date..."
-                      name="reg_date"
-                      type="date"
-                      value=""
-                      className="form-control"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="row my-4">
-                <div className="col-md-4">
-                  <label>Company Location</label>
-                </div>
-                <div className="col-md-8">
-                  <input
-                    id="autocomplete"
-                    placeholder="Company physical address..."
-                    name="location"
-                    type="text"
-                    value=""
-                    className="form-control pac-target-input"
-                    autoComplete="off"
-                  />
-                </div>
-              </div>
-              <div className="row my-4">
-                <div className="col-md-4">
-                  <label>Number of employees</label>
-                </div>
-                <div className="col-md-8">
-                  <input
-                    id="num_employees"
-                    placeholder="Number of employees at your company..."
-                    name="num_employees"
-                    type="number"
-                    value=""
-                    className="form-control"
-                  />
-                </div>
-              </div>
-              <div className="row my-4">
-                <div className="col-md-4">
-                  <label>Annual Turnover</label>
-                </div>
-                <div className="col-md-8">
-                  <input
-                    id="annual_turnover"
-                    placeholder="What is your yearly turnover..."
-                    name="annual_turnover"
-                    type="number"
-                    value=""
-                    className="form-control"
-                  />
-                </div>
-              </div>
-              <div className="row my-4">
-                <div className="col-md-4">
-                  <label>Monthly Turnover (Over 6 months)</label>
-                </div>
-                <div className="col-md-8">
-                  <input
-                    id="monthly_turnover"
-                    placeholder="What was your monthly turnover in the past 6 months..."
-                    name="6mo_turnover"
-                    type="number"
-                    value=""
-                    className="form-control"
-                  />
-                </div>
-              </div>
-              <div className="row my-4">
-                <div className="col-md-4">
-                  <label>Products/Services</label>
-                </div>
-                <div className="col-md-8">
-                  <textarea
-                    id="offering"
-                    placeholder="What products or services is your company offering?"
-                    name="offering"
-                    className="form-control"
-                  ></textarea>
-                </div>
-              </div>
-              <div className="row my-4">
-                <div className="col-12 text-end">
-                  <button className="btn btn-outline-info mr-2 text-white">
-                    Back
+
+              <div className="row justify-content-center">
+                <div className="col-md-6">
+                  <button
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addCompany"
+                    className="btn btn-outline-info dotted-border col-12 mb-2 btn-lg"
+                  >
+                    <i className="fa fa-plus"></i> Add Company
                   </button>
-                  <button className="btn btn-info text-white" onClick={onSave}>
-                    Save
-                  </button>
+                  <p className="text-center">
+                    After completing the assessment you will get a business
+                    health report that will give you recommendations on
+                  </p>
                 </div>
               </div>
-            </div>
-          </div>
+
+              <AddCompanyModal
+                industries={industries}
+                bizPhases={bizPhases}
+                onSave={onSave}
+                handleBizPhaseItemClick={handleBizPhaseItemClick}
+                handleIndustryItemClick={handleIndustryItemClick}
+              />
         </div>
       </div>
     </div>
