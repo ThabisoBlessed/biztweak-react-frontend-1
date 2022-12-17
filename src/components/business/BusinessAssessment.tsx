@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { BUSINESS_KEYS, getLocalStorageValue, isLoggedIn } from "../../config";
 import { BusinessAssessmentQuestions } from "./BusinessAssessmentQuestions";
 import { CompleteCompanyProfileModal } from "./CompleteCompanyProfileModal";
 
-export const BusinessAssessment = (props: any): JSX.Element => {
+export const BusinessAssessment = (): JSX.Element => {
   const questionList: any[] = [
     {
       id: "345342",
@@ -21,6 +23,41 @@ export const BusinessAssessment = (props: any): JSX.Element => {
       ],
     },
   ];
+  const bizPhaseList: any[] = [
+    {
+      id: 0,
+      name: "I have an idea but don’t know what to do next",
+      value: "phase_1",
+    },
+  ];
+  const industryList: any[] = [
+    {
+      id: 0,
+      name: "Admin/Business Support",
+      value: "AdminBusinessSupport",
+    },
+  ];
+  const [businessPhase, setBusinessPhase] = useState(bizPhaseList[0]);
+  const [businessIndustry, setBusinessIndustry] = useState(industryList[0]);
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const [businessIndustryAndPhase] = useState(state);
+
+  useEffect(() => {
+    if (!isLoggedIn()) navigate("/auth/login");
+
+    console.log(businessIndustryAndPhase);
+
+    const business = getLocalStorageValue(
+      BUSINESS_KEYS.businessIndustryAndPhase
+    );
+    if (business) {
+      const selectedBusiness = JSON.parse(business);
+      setBusinessIndustry(selectedBusiness.businessIndustry);
+      setBusinessPhase(selectedBusiness.businessPhase);
+      console.log(businessPhase, businessIndustry);
+    }
+  }, [navigate]);
 
   return (
     <div>
@@ -46,19 +83,16 @@ export const BusinessAssessment = (props: any): JSX.Element => {
                 </p>
                 <p>
                   <b>Industry:</b>
-                  {
-                    props.industries.find(
-                      (b: any) => b.id === props.businessIndustry
-                    ).name
-                  }
+                  {businessIndustry ? (
+                    <span>{businessIndustry.name}</span>
+                  ) : "n/a"}
                 </p>
                 <p>
                   <b>Business phase:</b>
-                  {
-                    props.bizPhases.find(
-                      (b: any) => b.id === props.businessPhase
-                    ).name
-                  }
+                  <b>Industry:</b>
+                  {businessPhase ? (
+                    <span>{businessPhase.name}</span>
+                  ) : "n/a"}
                 </p>
               </div>
             </div>

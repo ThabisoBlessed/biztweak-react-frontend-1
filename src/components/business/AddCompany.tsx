@@ -113,10 +113,6 @@ export const AddCompany = () => {
     if (!isLoggedIn()) navigate("/auth/login");
   }, [navigate]);
 
-  const onSave = () => {
-    navigate("/business/manage-business/assessment");
-  };
-
   return (
     <div>
        <div className="row w-full m-0 p-0">
@@ -152,7 +148,6 @@ export const AddCompany = () => {
               <AddCompanyModal
                 industries={industries}
                 bizPhases={bizPhases}
-                onSave={onSave}
               />
         </div>
       </div>

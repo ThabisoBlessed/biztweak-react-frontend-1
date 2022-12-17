@@ -1,28 +1,31 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   BUSINESS_KEYS,
   getLocalStorageValue,
   removeLocalStorageValue,
+  setLocalStorageValue,
 } from "../../config";
 import { IBusinessIndustryAndPhase } from "../../model/business-industry-and-phase.model";
 
 export const AddCompanyModal = (props: any) => {
   const [businessPhase, setBusinessPhase] = useState(props.bizPhases[0]);
   const [businessIndustry, setBusinessIndustry] = useState(props.industries[0]);
-
+  const navigate = useNavigate();
+  
   useEffect(() => {
     const businessIndustryAndPhase = {} as IBusinessIndustryAndPhase;
     businessIndustryAndPhase.businessIndustry = businessIndustry;
     businessIndustryAndPhase.businessPhase = businessPhase;
 
-    console.log(businessIndustryAndPhase);
-    // const business = getLocalStorageValue(
-    //   BUSINESS_KEYS.businessIndustryAndPhase
-    // );
-    // console.log(business);
-    // if (business) {
-    //   removeLocalStorageValue(BUSINESS_KEYS.businessIndustryAndPhase);
-    // }
+    const business = getLocalStorageValue(
+      BUSINESS_KEYS.businessIndustryAndPhase
+    );
+    if (business) {
+      removeLocalStorageValue(BUSINESS_KEYS.businessIndustryAndPhase);
+    } else {
+      setLocalStorageValue(BUSINESS_KEYS.businessIndustryAndPhase, JSON.stringify(businessIndustryAndPhase));
+    }
   }, [businessIndustry, businessPhase]);
 
   const handleIndustryItemClick = (event: any) => {
@@ -39,7 +42,13 @@ export const AddCompanyModal = (props: any) => {
     setBusinessPhase(selected);
   };
 
-  const onSave = () => {};
+  const onSave = () => {
+    const businessIndustryAndPhase = {} as IBusinessIndustryAndPhase;
+    businessIndustryAndPhase.businessIndustry = businessIndustry;
+    businessIndustryAndPhase.businessPhase = businessPhase;
+
+    navigate("/business/manage-business/assessment", { state: { businessIndustryAndPhase } });
+  };
 
   return (
     <div>
