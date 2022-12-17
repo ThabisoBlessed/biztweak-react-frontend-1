@@ -114,7 +114,7 @@ export const Profile = () => {
   ];
   const [bizPhases, setBizPhases] = useState(bizPhaseList);
   const [industries, setIndustries] = useState(industryList);
-  const [showBizAssessment, setShowBizAssessment] = useState(false);
+  const [showBizAssessment, setShowBizAssessment] = useState(true);
   const [businessPhase, setBusinessPhase] = useState(0);
   const [businessIndustry, setBusinessIndustry] = useState(0);
   const navigate = useNavigate();
