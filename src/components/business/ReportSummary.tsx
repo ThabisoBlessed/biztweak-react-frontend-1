@@ -3,6 +3,7 @@ import { ProfileMenu } from "../auth/ProfileMenu";
 import { BarChart } from "../shared/charts/BarChart";
 import { PieChart } from "../shared/charts/PieChart";
 import { FullReport } from "./FullReport";
+import { Recommendations } from "./Recommendations";
 
 export const ReportSummary = () => {
   const data = [
@@ -68,6 +69,10 @@ export const ReportSummary = () => {
 
               <div className="full-report">
                 <FullReport />
+              </div>
+
+              <div className="recommendation">
+                <Recommendations />
               </div>
             </div>
           </div>
