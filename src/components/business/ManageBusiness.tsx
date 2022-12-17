@@ -11,6 +11,10 @@ export const ManageBusiness = () => {
     navigate("/business/manage-business/business-health-report");
   };
 
+  const onBack = () => {
+    navigate("/auth/profile");
+  }
+
   return (
     <div>
       <div className="row w-full m-0 p-0">
@@ -81,7 +85,7 @@ export const ManageBusiness = () => {
                   </label>
                 </div>
               </div>
-              <div style={{ display: "none;" }} id="reg-bin">
+              <div style={{ display: "none" }} id="reg-bin">
                 <div className="row my-4">
                   <div className="col-md-4">
                     <label>Registration Number</label>
@@ -183,7 +187,7 @@ export const ManageBusiness = () => {
               </div>
               <div className="row my-4">
                 <div className="col-12 text-end">
-                  <button className="btn btn-outline-info mr-2 text-white">
+                  <button className="btn btn-outline-info mr-2 text-white" onClick={onBack}>
                     Back
                   </button>
                   <button className="btn btn-info text-white" onClick={onSave}>
