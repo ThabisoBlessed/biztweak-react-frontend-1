@@ -11,30 +11,32 @@ export const AddCompanyModal = (props: any) => {
   const [businessIndustry, setBusinessIndustry] = useState(props.industries[0]);
 
   useEffect(() => {
-
-    console.log(businessIndustry);
-    const business = getLocalStorageValue(
-      BUSINESS_KEYS.businessIndustryAndPhase
-    );
-    console.log(business);
-    if (business) {
-      removeLocalStorageValue(BUSINESS_KEYS.businessIndustryAndPhase);
-    }
-
-  }, [businessIndustry, businessPhase])
-
-  const handleIndustryItemClick = (event: any) => {
     const businessIndustryAndPhase = {} as IBusinessIndustryAndPhase;
     businessIndustryAndPhase.businessIndustry = businessIndustry;
     businessIndustryAndPhase.businessPhase = businessPhase;
 
-    const selected = props.industries.find((i: any) => i.value === event.target.value);
+    console.log(businessIndustryAndPhase);
+    // const business = getLocalStorageValue(
+    //   BUSINESS_KEYS.businessIndustryAndPhase
+    // );
+    // console.log(business);
+    // if (business) {
+    //   removeLocalStorageValue(BUSINESS_KEYS.businessIndustryAndPhase);
+    // }
+  }, [businessIndustry, businessPhase]);
+
+  const handleIndustryItemClick = (event: any) => {
+    const selected = props.industries.find(
+      (i: any) => i.value === event.target.value
+    );
     setBusinessIndustry(selected);
   };
 
   const handleBizPhaseItemClick = (event: any) => {
-    console.log(event.target.value);
-    // setBusinessPhase(Number(event.currentTarget.id));
+    const selected = props.bizPhases.find(
+      (i: any) => i.value === event.target.value
+    );
+    setBusinessPhase(selected);
   };
 
   const onSave = () => {};
@@ -82,9 +84,7 @@ export const AddCompanyModal = (props: any) => {
                     >
                       {props.industries.map((industry: any, index: number) => {
                         return (
-                          <option
-                          key={index} value={industry.value}
-                          >
+                          <option key={index} value={industry.value}>
                             {industry.name}
                           </option>
                         );
@@ -103,15 +103,12 @@ export const AddCompanyModal = (props: any) => {
                       className="form-select"
                       id="biz_phase"
                       name="biz_phase"
-                      value={businessPhase}
+                      value={businessPhase.value}
                       onChange={handleBizPhaseItemClick}
                     >
                       {props.bizPhases.map((phase: any, index: number) => {
                         return (
-                          <option
-                            key={index}
-                            id={`${index}`}
-                          >
+                          <option key={index} value={phase.value}>
                             {phase.name}
                           </option>
                         );
