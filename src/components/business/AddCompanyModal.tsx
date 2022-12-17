@@ -1,19 +1,31 @@
-import React from "react";
-import { BUSINESS_KEYS, getLocalStorageValue, removeLocalStorageValue } from "../../config";
+import React, { useState } from "react";
+import {
+  BUSINESS_KEYS,
+  getLocalStorageValue,
+  removeLocalStorageValue,
+} from "../../config";
 
 export const AddCompanyModal = (props: any) => {
+  const [businessPhase, setBusinessPhase] = useState(0);
+  const [businessIndustry, setBusinessIndustry] = useState(0);
+  
   const handleIndustryItemClick = (event: any) => {
     console.log(event.currentTarget.id);
-    const business = getLocalStorageValue(BUSINESS_KEYS.businessIndustryAndPhase);
+    setBusinessIndustry(Number(event.currentTarget.id));
+    
+    const business = getLocalStorageValue(
+      BUSINESS_KEYS.businessIndustryAndPhase
+    );
     console.log(business);
     if (business) {
       removeLocalStorageValue(BUSINESS_KEYS.businessIndustryAndPhase);
     }
-  }
-  
+  };
+
   const handleBizPhaseItemClick = (event: any) => {
     console.log(event.currentTarget.id);
-  }
+    setBusinessPhase(Number(event.currentTarget.id));
+  };
 
   return (
     <div>

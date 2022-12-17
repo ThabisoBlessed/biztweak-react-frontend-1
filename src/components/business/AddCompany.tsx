@@ -113,8 +113,6 @@ export const AddCompany = () => {
   ];
   const [bizPhases, setBizPhases] = useState(bizPhaseList);
   const [industries, setIndustries] = useState(industryList);
-  const [businessPhase, setBusinessPhase] = useState(0);
-  const [businessIndustry, setBusinessIndustry] = useState(0);
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
@@ -122,16 +120,6 @@ export const AddCompany = () => {
 
   const onSave = () => {
     navigate("/business/manage-business/assessment");
-  };
-
-  const handleBizPhaseItemClick = (event: any) => {
-    setBusinessPhase(Number(event.currentTarget.id));
-    console.log(businessPhase);
-  };
-
-  const handleIndustryItemClick = (event: any) => {
-    setBusinessIndustry(Number(event.currentTarget.id));
-    console.log(businessIndustry);
   };
 
   return (
