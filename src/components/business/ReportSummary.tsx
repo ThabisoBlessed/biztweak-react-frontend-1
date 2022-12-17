@@ -1,11 +1,11 @@
 import React from "react";
 import { ProfileMenu } from "../auth/ProfileMenu";
-import { Chart } from "react-google-charts";
+import { BarChart } from "../shared/charts/BarChart";
 import { PieChart } from "../shared/charts/PieChart";
 
 export const ReportSummary = () => {
   const data = [
-    ["Task", "Hours per Day"],
+    ["Elements", "Priority Elements"],
     ["Work", 11],
     ["Eat", 2],
     ["Commute", 2],
@@ -15,6 +15,15 @@ export const ReportSummary = () => {
 
   const options = {
     title: "My Daily Activities",
+  };
+
+  const columnChartOptions = {
+    chart: {
+      title: "Priorities",
+      subtitle: "Priority Elements Percentages",
+    },
+    colors: ["#00c2cb"],
+    // backgroundColor: "#00c2cb",
   };
 
   return (
@@ -39,23 +48,24 @@ export const ReportSummary = () => {
 
               <div className="card shadow-lg p-3 mb-5 text-dark mt-3 bg-white rounded align-content-center">
                 <h6>Sales Score</h6>
-                <div id="doughnutChart" className="card-body">
-                <PieChart data={data} width={"100%"} height={"300px"} />
+                <div id="doughnutChart" className="card-body m-0 p-0">
+                  <PieChart data={data} width={"100%"} height={"300px"} />
+                </div>
+              </div>
+
+              <div className="card shadow-lg p-3 mb-5 text-dark mt-3 bg-white rounded align-content-center">
+                <h6>Sales Score</h6>
+                <div id="barChart" className="card-body">
+                  <BarChart
+                    data={data}
+                    width={"100%"}
+                    height={"300px"}
+                    options={columnChartOptions}
+                  />
                 </div>
               </div>
             </div>
           </div>
-          {/* <Chart
-            chartType="ScatterChart"
-            data={[
-              ["Age", "Weight"],
-              [4, 5.5],
-              [8, 12],
-            ]}
-            width="100%"
-            height="400px"
-            legendToggle
-          /> */}
         </div>
       </div>
     </div>
