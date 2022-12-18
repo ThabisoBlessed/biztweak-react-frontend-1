@@ -19,7 +19,7 @@ export const BusinessMenu = () => {
   };
 
   return (
-    <div className="b-0 m-0 text-dark">
+    <div className="b-0 m-0 text-dark min-h-[100vh]">
       <div className="section">
         <h6 className="fw-bold mt-3 mb-3">COMPANY</h6>
         <button

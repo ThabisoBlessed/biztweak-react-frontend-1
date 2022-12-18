@@ -66,7 +66,7 @@ export const BusinessProfile = () => {
                   <label>Is your company registered?</label>
                 </div>
                 <div className="col-md-8">
-                  <label>
+                  <label className="mr-2">
                     Yes
                     <input
                       name="registered"
