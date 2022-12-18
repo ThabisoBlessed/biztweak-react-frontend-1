@@ -1,4 +1,4 @@
-import { ProfileMenu } from "../auth/ProfileMenu";
+import { BusinessMenu } from "./BusinessMenu";
 import "./Assessment.css";
 import { useEffect, useState } from "react";
 import { BusinessAssessment } from "./BusinessAssessment";
@@ -37,7 +37,7 @@ export const Assessment = () => {
     <div>
       <div className="row w-full m-0 p-0">
         <div className="col-md-3 border-end">
-          <ProfileMenu />
+          <BusinessMenu />
         </div>
         <div className="col-md-9 bg-white">
           <BusinessAssessment

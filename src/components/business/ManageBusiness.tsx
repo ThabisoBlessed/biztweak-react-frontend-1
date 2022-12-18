@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../config";
-import { ProfileMenu } from "../auth/ProfileMenu";
+import { BusinessMenu } from "./BusinessMenu";
 
 export const ManageBusiness = () => {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ export const ManageBusiness = () => {
     <div>
       <div className="row w-full m-0 p-0">
         <div className="col-md-3 border-end">
-          <ProfileMenu />
+          <BusinessMenu />
         </div>
         <div className="col-md-9 bg-white">
           <div className="row justify-content-center">

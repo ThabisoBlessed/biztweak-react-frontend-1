@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { ProfileMenu } from "../auth/ProfileMenu";
+import { BusinessMenu } from "./BusinessMenu";
 import { BarChart } from "../shared/charts/BarChart";
 import { PieChart } from "../shared/charts/PieChart";
 import { FullReport } from "./FullReport";
@@ -57,7 +57,7 @@ export const ReportSummary = () => {
     <div>
       <div className="row w-full m-0 p-0">
         <div className="col-md-3 border-end">
-          <ProfileMenu />
+          <BusinessMenu />
         </div>
         <div className="col-md-9 bg-white">
           <div className="card shadow-lg p-1 mb-5 bg-white rounded">
