@@ -28,13 +28,14 @@ export const BusinessMenu = (props: any) => {
   }, [navigate]);
 
 
-  const onCompleteAssessment = (value: IBusinessMenuBusinessModel) => {
-    const businessIndustryAndPhase = JSON.stringify(value);
+  const onCompleteAssessment = (business: IBusinessMenuBusinessModel) => {
+    const businessIndustryAndPhase = JSON.stringify(business);
     navigate("/business/manage-business/assessment", { state: { businessIndustryAndPhase } });
   };
 
-  const onViewBizReport = () => {
-    navigate("/business/manage-business/report-summary");
+  const onViewBizReport = (business: IBusinessMenuBusinessModel) => {
+    const selecteBusiness = JSON.stringify(business);
+    navigate("/business/manage-business/report-summary", { state: { selecteBusiness } });
   };
 
   const onAddCompany = () => {
@@ -107,7 +108,7 @@ export const BusinessMenu = (props: any) => {
                           {business.assessmentComplete ? (
                             <button
                               className="btn profile-menu-action-btn mt-2 mb-2 bg-[#00c2cb] text-[white]"
-                              onClick={onViewBizReport}
+                              onClick={() => onViewBizReport(business)}
                             >
                               <i className="fa fa-file-alt"></i> View Biz Report
                             </button>

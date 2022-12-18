@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BusinessMenu } from "./BusinessMenu";
 import { BarChart } from "../shared/charts/BarChart";
 import { PieChart } from "../shared/charts/PieChart";
@@ -7,15 +7,20 @@ import { Recommendations } from "./Recommendations";
 import { Webinar } from "./Webinar";
 import jsPDF from 'jspdf';
 import * as htmlToImage from 'html-to-image';
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../config";
 
 export const ReportSummary = () => {
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const [selecteBusiness] = useState(
+    state || { }
+  );
   
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
     window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    console.log(selecteBusiness);
   }, [navigate]);
 
   const data = [
