@@ -4,7 +4,10 @@ import { isLoggedIn } from "../../config";
 import { IBusinessMenuBusinessModel } from "../../model/business-menu-business-model";
 
 export const BusinessMenu = () => {
-  const businesses: IBusinessMenuBusinessModel[] = [];
+  const businesses: IBusinessMenuBusinessModel[] = [
+    { id: "asdfasd", name: "New Company", businessIndustry: "Admin/Business Support", businessPhase: "I have products/services but I have poor sales", assessmentComplete: false  },
+    { id: "asdfasdsfawe", name: "Old Company", businessIndustry: "Admin/Business Support", businessPhase: "I have products/services but I have poor sales", assessmentComplete: true  }
+  ];
   const navigate = useNavigate();
   const [activeBusinesses, setActiveBusinesses] = useState(businesses);
 
