@@ -16,7 +16,7 @@ export const BusinessMenu = () => {
   }, [navigate]);
 
   const onCompleteAssessment = () => {
-    navigate("/business/assessment");
+    navigate("/business/manage-business/assessment");
   };
 
   const onViewBizReport = () => {
