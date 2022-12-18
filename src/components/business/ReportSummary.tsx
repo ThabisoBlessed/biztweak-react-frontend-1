@@ -5,22 +5,24 @@ import { PieChart } from "../shared/charts/PieChart";
 import { FullReport } from "./FullReport";
 import { Recommendations } from "./Recommendations";
 import { Webinar } from "./Webinar";
-import jsPDF from 'jspdf';
-import * as htmlToImage from 'html-to-image';
+import jsPDF from "jspdf";
+import * as htmlToImage from "html-to-image";
 import { useLocation, useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../config";
+import { IBusinessMenuBusinessModel } from "../../model/business-menu-business-model";
 
 export const ReportSummary = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const [selecteBusiness] = useState(
-    state || { }
+  const [selectedBusiness] = useState(state || {});
+  const [selectedBusinessValue, setSelectedBusinessValue] = useState(
+    JSON.parse(selectedBusiness.selecteBusiness) as IBusinessMenuBusinessModel
   );
-  
+
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-    console.log(selecteBusiness);
+    console.log(selectedBusinessValue);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [navigate]);
 
   const data = [
@@ -46,16 +48,17 @@ export const ReportSummary = () => {
   };
 
   const onDownloadReport = () => {
-    let domElement: any = document.getElementById('myReport');
-    htmlToImage.toPng(domElement)
+    let domElement: any = document.getElementById("myReport");
+    htmlToImage
+      .toPng(domElement)
       .then(function (dataUrl) {
         console.log(dataUrl);
         const pdf = new jsPDF();
-        pdf.addImage(dataUrl, 'PNG', 10, 20, 380, 200);
+        pdf.addImage(dataUrl, "PNG", 10, 20, 380, 200);
         pdf.save("download.pdf");
       })
       .catch(function (error) {
-        console.error('oops, something went wrong!', error);
+        console.error("oops, something went wrong!", error);
       });
   };
 
@@ -69,8 +72,11 @@ export const ReportSummary = () => {
           <div className="card shadow-lg p-1 mb-5 bg-white rounded">
             <div className="card-body">
               <h2 className="mt-3 text-3xl text-dark">
-                My Company's Report Summary
-                <button className="btn btn-sm text-white bg-[#00c2cb] btn-info p-3 float-end" onClick={onDownloadReport}>
+                {selectedBusinessValue.name}'s Report Summary
+                <button
+                  className="btn btn-sm text-white bg-[#00c2cb] btn-info p-3 float-end"
+                  onClick={onDownloadReport}
+                >
                   Download Report
                 </button>
               </h2>
@@ -79,7 +85,10 @@ export const ReportSummary = () => {
                 we would like to grow through investment
               </p>
 
-              <div id="myReport" className="card shadow-lg p-3 mb-5 text-dark mt-3 bg-white rounded align-content-center">
+              <div
+                id="myReport"
+                className="card shadow-lg p-3 mb-5 text-dark mt-3 bg-white rounded align-content-center"
+              >
                 <h6>Sales Score</h6>
                 <div id="doughnutChart" className="card-body m-0 p-0">
                   <PieChart data={data} width={"100%"} height={"300px"} />
