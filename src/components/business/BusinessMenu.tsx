@@ -3,10 +3,22 @@ import { useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../config";
 import { IBusinessMenuBusinessModel } from "../../model/business-menu-business-model";
 
-export const BusinessMenu = () => {
+export const BusinessMenu = (props: any) => {
   const businesses: IBusinessMenuBusinessModel[] = [
-    { id: "asdfasd", name: "New Company", businessIndustry: "Admin/Business Support", businessPhase: "I have products/services but I have poor sales", assessmentComplete: false  },
-    { id: "asdfasdsfawe", name: "Old Company", businessIndustry: "Admin/Business Support", businessPhase: "I have products/services but I have poor sales", assessmentComplete: true  }
+    {
+      id: "asdfasd",
+      name: "New Company",
+      businessIndustry: "Admin/Business Support",
+      businessPhase: "I have products/services but I have poor sales",
+      assessmentComplete: false,
+    },
+    {
+      id: "asdfasdsfawe",
+      name: "Old Company",
+      businessIndustry: "Admin/Business Support",
+      businessPhase: "I have products/services but I have poor sales",
+      assessmentComplete: true,
+    },
   ];
   const navigate = useNavigate();
   const [activeBusinesses, setActiveBusinesses] = useState(businesses);
@@ -15,8 +27,10 @@ export const BusinessMenu = () => {
     if (!isLoggedIn()) navigate("/auth/login");
   }, [navigate]);
 
-  const onCompleteAssessment = () => {
-    navigate("/business/manage-business/assessment");
+
+  const onCompleteAssessment = (value: IBusinessMenuBusinessModel) => {
+    const businessIndustryAndPhase = JSON.stringify(value);
+    navigate("/business/manage-business/assessment", { state: { businessIndustryAndPhase } });
   };
 
   const onViewBizReport = () => {
@@ -91,7 +105,7 @@ export const BusinessMenu = () => {
                             </button>
                           ) : (
                             <button
-                              onClick={onCompleteAssessment}
+                              onClick={() => onCompleteAssessment(business)}
                               className="btn profile-menu-action-btn mt-2 mb-2 bg-[#00c2cb] text-[white]"
                             >
                               <i className="fa fa-file-alt"></i> Complete

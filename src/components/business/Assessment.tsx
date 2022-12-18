@@ -9,39 +9,37 @@ import { IBusinessIndustryAndPhase } from "../../model/business-industry-and-pha
 export const Assessment = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const [businessIndustryAndPhase, setBusinessIndustryAndPhase] = useState(
-    {} as IBusinessIndustryAndPhase
-  );
+  const [businessIndustryAndPhase, setBusinessIndustryAndPhase] = useState({ businessIndustry: "", businessPhase: "" });
   const [selecteBusinessIndustryAndPhase] = useState(
     state || { businessIndustryAndPhase }
   );
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
-
-    const stringifiedState = JSON.stringify(
-      JSON.stringify(selecteBusinessIndustryAndPhase)
-    );
-    const parsedState = JSON.parse(stringifiedState);
-
     if (selecteBusinessIndustryAndPhase) {
-      businessIndustryAndPhase.businessIndustry = parsedState.businessIndustry;
-      businessIndustryAndPhase.businessPhase = parsedState.businessPhase;
+      const parsed = JSON.parse(
+        selecteBusinessIndustryAndPhase.businessIndustryAndPhase
+      );
+
+      businessIndustryAndPhase.businessIndustry = parsed.businessIndustry;
+      businessIndustryAndPhase.businessPhase = parsed.businessPhase;
       setBusinessIndustryAndPhase(businessIndustryAndPhase);
     } else {
       navigate("/business/manage-business/add-company");
     }
-  }, [navigate]);
+
+    console.log(businessIndustryAndPhase);
+  }, [navigate, selecteBusinessIndustryAndPhase]);
 
   return (
     <div>
       <div className="row w-full m-0 p-0">
         <div className="col-md-3 border-end">
-          <BusinessMenu />
+          <BusinessMenu businessIndustryAndPhase={businessIndustryAndPhase} />
         </div>
         <div className="col-md-9 bg-white">
           <BusinessAssessment
-            selecteBusinessIndustryAndPhase={selecteBusinessIndustryAndPhase}
+            businessIndustryAndPhase={businessIndustryAndPhase}
           />
         </div>
       </div>
