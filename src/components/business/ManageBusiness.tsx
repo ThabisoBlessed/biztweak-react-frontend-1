@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { isLoggedIn } from "../../config";
 import { ProfileMenu } from "../auth/ProfileMenu";
 
 export const ManageBusiness = () => {
-  const [showCompanyProfileUpdateDone, setShowShowCompanyProfileUpdateDone] =
-    useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn()) navigate("/auth/login");
+  }, [navigate]);
 
   const onSave = () => {
     navigate("/business/manage-business/business-health-report");

@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { isLoggedIn } from "../../config";
 import { ProfileMenu } from "../auth/ProfileMenu";
 
 export const BusinessHealthReport = () => {
     const navigate = useNavigate();
     
+    useEffect(() => {
+      if (!isLoggedIn()) navigate("/auth/login");
+    }, [navigate]);
+    
     const onViewBizReport = () => {
         navigate("/business/manage-business/report-summary");
     }
+    
+
 
   return (
     <div className="row w-full m-0 p-0">

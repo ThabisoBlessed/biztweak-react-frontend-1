@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { isLoggedIn } from "../../config";
 
 export const FullReport = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn()) navigate("/auth/login");
+  }, [navigate]);
+
   return (
     <div className="row my-5">
       <h2 className="mt-3 col-12 text-3xl text-dark">Full Report</h2>

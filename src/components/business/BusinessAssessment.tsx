@@ -23,8 +23,13 @@ export const BusinessAssessment = (props: any): JSX.Element => {
       ],
     },
   ];
-  const [businessPhase, setBusinessPhase] = useState(props.selecteBusinessIndustryAndPhase.businessIndustryAndPhase.businessPhase);
-  const [businessIndustry, setBusinessIndustry] = useState(props.selecteBusinessIndustryAndPhase.businessIndustryAndPhase.businessIndustry);
+  const [businessPhase, setBusinessPhase] = useState(
+    props.selecteBusinessIndustryAndPhase.businessIndustryAndPhase.businessPhase
+  );
+  const [businessIndustry, setBusinessIndustry] = useState(
+    props.selecteBusinessIndustryAndPhase.businessIndustryAndPhase
+      .businessIndustry
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -57,13 +62,13 @@ export const BusinessAssessment = (props: any): JSX.Element => {
                   <b>Industry:</b>
                   {businessIndustry ? (
                     <span>{businessIndustry.name}</span>
-                  ) : "n/a"}
+                  ) : (
+                    "n/a"
+                  )}
                 </p>
                 <p>
                   <b>Business phase:</b>
-                  {businessPhase ? (
-                    <span>{businessPhase.name}</span>
-                  ) : "n/a"}
+                  {businessPhase ? <span>{businessPhase.name}</span> : "n/a"}
                 </p>
               </div>
             </div>

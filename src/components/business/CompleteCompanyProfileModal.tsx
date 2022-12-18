@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { isLoggedIn } from "../../config";
 
 export const CompleteCompanyProfileModal = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn()) navigate("/auth/login");
+  }, [navigate]);
 
   const onSave = () => {
     navigate("/business/manage-business/company-profile");

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ProfileMenu } from "../auth/ProfileMenu";
 import { BarChart } from "../shared/charts/BarChart";
 import { PieChart } from "../shared/charts/PieChart";
@@ -7,8 +7,16 @@ import { Recommendations } from "./Recommendations";
 import { Webinar } from "./Webinar";
 import jsPDF from 'jspdf';
 import * as htmlToImage from 'html-to-image';
+import { useNavigate } from "react-router-dom";
+import { isLoggedIn } from "../../config";
 
 export const ReportSummary = () => {
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    if (!isLoggedIn()) navigate("/auth/login");
+  }, [navigate]);
+
   const data = [
     ["Elements", "Priority Elements"],
     ["Work", 11],
