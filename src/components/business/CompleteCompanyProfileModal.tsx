@@ -5,7 +5,7 @@ export const CompleteCompanyProfileModal = () => {
   const navigate = useNavigate();
 
   const onSave = () => {
-    navigate("/business/manage-business");
+    navigate("/business/manage-business/company-profile");
   };
 
   return (
