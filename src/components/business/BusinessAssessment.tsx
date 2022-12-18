@@ -23,17 +23,17 @@ export const BusinessAssessment = (props: any): JSX.Element => {
       ],
     },
   ];
-  // const [businessPhase, setBusinessPhase] = useState(
-  //   props.businessIndustryAndPhase.businessIndustryAndPhase.businessPhase
-  // );
-  // const [businessIndustry, setBusinessIndustry] = useState(
-  //   props.businessIndustryAndPhase.businessIndustryAndPhase
-  //     .businessIndustry
-  // );
+  const [businessPhase, setBusinessPhase] = useState(
+    props.businessIndustryAndPhase.businessPhase
+  );
+  const [businessIndustry, setBusinessIndustry] = useState(
+    props.businessIndustryAndPhase.businessIndustry
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
+    console.log(props.businessIndustryAndPhase.businessIndustry);
   }, [navigate]);
 
   return (
@@ -54,23 +54,23 @@ export const BusinessAssessment = (props: any): JSX.Element => {
                 className="img-fluid h-[80px] w-[80px] rounded-circle me-4"
                 alt="companyLogo"
               />
-              {/* <div>
+              <div>
                 <p>
                   <b>Location:</b> n/a
                 </p>
                 <p>
                   <b>Industry:</b>
                   {businessIndustry ? (
-                    <span>{businessIndustry.name}</span>
+                    <span>{businessIndustry}</span>
                   ) : (
                     "n/a"
                   )}
                 </p>
                 <p>
                   <b>Business phase:</b>
-                  {businessPhase ? <span>{businessPhase.name}</span> : "n/a"}
+                  {businessPhase ? <span>{businessPhase}</span> : "n/a"}
                 </p>
-              </div> */}
+              </div>
             </div>
           </div>
         </div>

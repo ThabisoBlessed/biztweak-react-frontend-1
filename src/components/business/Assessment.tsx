@@ -27,8 +27,6 @@ export const Assessment = () => {
     } else {
       navigate("/business/manage-business/add-company");
     }
-
-    console.log(businessIndustryAndPhase);
   }, [navigate, selecteBusinessIndustryAndPhase]);
 
   return (
