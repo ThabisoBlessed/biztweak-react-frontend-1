@@ -15,6 +15,7 @@ export const ReportSummary = () => {
   
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
   }, [navigate]);
 
   const data = [
