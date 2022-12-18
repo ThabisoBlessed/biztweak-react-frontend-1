@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  BUSINESS_KEYS,
-  getLocalStorageValue,
-  removeLocalStorageValue,
-  setLocalStorageValue,
-} from "../../config";
 import { IBusinessIndustryAndPhase } from "../../model/business-industry-and-phase.model";
 
 export const AddCompanyModal = (props: any) => {
@@ -14,18 +8,6 @@ export const AddCompanyModal = (props: any) => {
   const navigate = useNavigate();
   
   useEffect(() => {
-    const businessIndustryAndPhase = {} as IBusinessIndustryAndPhase;
-    businessIndustryAndPhase.businessIndustry = businessIndustry;
-    businessIndustryAndPhase.businessPhase = businessPhase;
-
-    const business = getLocalStorageValue(
-      BUSINESS_KEYS.businessIndustryAndPhase
-    );
-    if (business) {
-      removeLocalStorageValue(BUSINESS_KEYS.businessIndustryAndPhase);
-    } else {
-      setLocalStorageValue(BUSINESS_KEYS.businessIndustryAndPhase, JSON.stringify(businessIndustryAndPhase));
-    }
   }, [businessIndustry, businessPhase]);
 
   const handleIndustryItemClick = (event: any) => {
