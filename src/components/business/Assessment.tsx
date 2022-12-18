@@ -9,7 +9,9 @@ import { IBusinessIndustryAndPhase } from "../../model/business-industry-and-pha
 export const Assessment = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const [businessIndustryAndPhase, setBusinessIndustryAndPhase] = useState({ } as IBusinessIndustryAndPhase);
+  const [businessIndustryAndPhase, setBusinessIndustryAndPhase] = useState(
+    {} as IBusinessIndustryAndPhase
+  );
   const [selecteBusinessIndustryAndPhase] = useState(
     state || { businessIndustryAndPhase }
   );
@@ -17,16 +19,17 @@ export const Assessment = () => {
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
 
-    const stringify = JSON.stringify(JSON.stringify(selecteBusinessIndustryAndPhase));
-    const parse = JSON.parse(stringify);
-    console.log(parse);
+    const stringifiedState = JSON.stringify(
+      JSON.stringify(selecteBusinessIndustryAndPhase)
+    );
+    const parsedState = JSON.parse(stringifiedState);
 
     if (selecteBusinessIndustryAndPhase) {
-      businessIndustryAndPhase.businessIndustry = parse.businessIndustry;
-      businessIndustryAndPhase.businessPhase = parse.businessPhase;
+      businessIndustryAndPhase.businessIndustry = parsedState.businessIndustry;
+      businessIndustryAndPhase.businessPhase = parsedState.businessPhase;
       setBusinessIndustryAndPhase(businessIndustryAndPhase);
     } else {
-      navigate("/business/manage-business/add-company")
+      navigate("/business/manage-business/add-company");
     }
   }, [navigate]);
 
@@ -37,7 +40,9 @@ export const Assessment = () => {
           <ProfileMenu />
         </div>
         <div className="col-md-9 bg-white">
-            <BusinessAssessment selecteBusinessIndustryAndPhase={selecteBusinessIndustryAndPhase} />
+          <BusinessAssessment
+            selecteBusinessIndustryAndPhase={selecteBusinessIndustryAndPhase}
+          />
         </div>
       </div>
     </div>
