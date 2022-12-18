@@ -24,8 +24,7 @@ export const AddCompany = () => {
     },
     {
       id: 3,
-      name:
-        "We are generating revenue, we would like to grow through investment",
+      name: "We are generating revenue, we would like to grow through investment",
       value: "phase_4",
     },
     {
@@ -115,40 +114,37 @@ export const AddCompany = () => {
 
   return (
     <div>
-       <div className="row w-full m-0 p-0" id="addCompanyModal">
+      <div className="row w-full m-0 p-0" id="addCompanyModal">
         <div className="col-md-3 border-end">
           <BusinessMenu />
         </div>
         <div className="col-md-9 bg-white">
-        <div className="row justify-content-center">
-                <img
-                  src="https://biztweak.org.za/public/new/images/dashboard-placeholder.png"
-                  className="img-fluid col-md-5"
-                  alt=""
-                />
-              </div>
+          <div className="row justify-content-center">
+            <img
+              src="https://biztweak.org.za/public/new/images/dashboard-placeholder.png"
+              className="img-fluid col-md-5"
+              alt=""
+            />
+          </div>
 
-              <div className="row justify-content-center">
-                <div className="col-md-6">
-                  <button
-                    type="button"
-                    data-bs-toggle="modal"
-                    data-bs-target="#addCompany"
-                    className="btn btn-outline-info dotted-border col-12 mb-2 btn-lg"
-                  >
-                    <i className="fa fa-plus"></i> Add Company
-                  </button>
-                  <p className="text-center">
-                    After completing the assessment you will get a business
-                    health report that will give you recommendations
-                  </p>
-                </div>
-              </div>
+          <div className="row justify-content-center">
+            <div className="col-md-6">
+              <button
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#addCompany"
+                className="btn btn-outline-info dotted-border col-12 mb-2 btn-lg"
+              >
+                <i className="fa fa-plus"></i> Add Company
+              </button>
+              <p className="text-center">
+                After completing the assessment you will get a business health
+                report that will give you recommendations
+              </p>
+            </div>
+          </div>
 
-              <AddCompanyModal
-                industries={industries}
-                bizPhases={bizPhases}
-              />
+          <AddCompanyModal industries={industries} bizPhases={bizPhases} />
         </div>
       </div>
     </div>
