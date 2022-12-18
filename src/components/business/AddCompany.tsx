@@ -140,7 +140,7 @@ export const AddCompany = () => {
                   </button>
                   <p className="text-center">
                     After completing the assessment you will get a business
-                    health report that will give you recommendations on
+                    health report that will give you recommendations
                   </p>
                 </div>
               </div>
