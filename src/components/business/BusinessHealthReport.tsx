@@ -4,17 +4,15 @@ import { isLoggedIn } from "../../config";
 import { BusinessMenu } from "./BusinessMenu";
 
 export const BusinessHealthReport = () => {
-    const navigate = useNavigate();
-    
-    useEffect(() => {
-      if (!isLoggedIn()) navigate("/auth/login");
-    }, [navigate]);
-    
-    const onViewBizReport = () => {
-        navigate("/business/manage-business/report-summary");
-    }
-    
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    if (!isLoggedIn()) navigate("/auth/login");
+  }, [navigate]);
+
+  const onViewBizReport = () => {
+    navigate("/business/manage-business/report-summary");
+  };
 
   return (
     <div className="row w-full m-0 p-0">
@@ -48,10 +46,7 @@ export const BusinessHealthReport = () => {
               in graphical way and understand easily, moreover you will also get
               recommendations from our system based on the assessment.
             </p>
-            <button
-              className="btn btn-info"
-              onClick={onViewBizReport}
-            >
+            <button className="btn btn-info" onClick={onViewBizReport}>
               <i className="fa fa-file-alt"></i> View Biz Report
             </button>
           </div>
