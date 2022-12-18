@@ -17,6 +17,7 @@ export const Assessment = () => {
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
     if (selecteBusinessIndustryAndPhase) {
+      console.log(selecteBusinessIndustryAndPhase.businessIndustryAndPhase);
       const parsed = JSON.parse(
         selecteBusinessIndustryAndPhase.businessIndustryAndPhase
       );

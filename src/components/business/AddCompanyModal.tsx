@@ -25,9 +25,11 @@ export const AddCompanyModal = (props: any) => {
   };
 
   const onSave = () => {
-    const businessIndustryAndPhase = {} as IBusinessIndustryAndPhase;
-    businessIndustryAndPhase.businessIndustry = businessIndustry;
-    businessIndustryAndPhase.businessPhase = businessPhase;
+    const businessIndustryAndPhaseModel = {} as IBusinessIndustryAndPhase;
+    businessIndustryAndPhaseModel.businessIndustry = businessIndustry.name;
+    businessIndustryAndPhaseModel.businessPhase = businessPhase.name;
+
+    const businessIndustryAndPhase = JSON.stringify(businessIndustryAndPhaseModel);
 
     navigate("/business/manage-business/assessment", { state: { businessIndustryAndPhase } });
   };

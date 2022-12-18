@@ -23,17 +23,14 @@ export const BusinessAssessment = (props: any): JSX.Element => {
       ],
     },
   ];
-  const [businessPhase, setBusinessPhase] = useState(
-    props.businessIndustryAndPhase.businessPhase
-  );
-  const [businessIndustry, setBusinessIndustry] = useState(
-    props.businessIndustryAndPhase.businessIndustry
-  );
+  const [businessPhase, setBusinessPhase] = useState();
+  const [businessIndustry, setBusinessIndustry] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
-    console.log(props.businessIndustryAndPhase.businessIndustry);
+    setBusinessIndustry(props.businessIndustryAndPhase.businessIndustry);
+    setBusinessPhase(props.businessIndustryAndPhase.businessPhase);
   }, [navigate]);
 
   return (
