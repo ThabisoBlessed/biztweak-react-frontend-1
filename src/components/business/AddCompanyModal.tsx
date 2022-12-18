@@ -6,9 +6,8 @@ export const AddCompanyModal = (props: any) => {
   const [businessPhase, setBusinessPhase] = useState(props.bizPhases[0]);
   const [businessIndustry, setBusinessIndustry] = useState(props.industries[0]);
   const navigate = useNavigate();
-  
-  useEffect(() => {
-  }, [businessIndustry, businessPhase]);
+
+  useEffect(() => {}, [businessIndustry, businessPhase]);
 
   const handleIndustryItemClick = (event: any) => {
     const selected = props.industries.find(
@@ -29,9 +28,13 @@ export const AddCompanyModal = (props: any) => {
     businessIndustryAndPhaseModel.businessIndustry = businessIndustry.name;
     businessIndustryAndPhaseModel.businessPhase = businessPhase.name;
 
-    const businessIndustryAndPhase = JSON.stringify(businessIndustryAndPhaseModel);
+    const businessIndustryAndPhase = JSON.stringify(
+      businessIndustryAndPhaseModel
+    );
 
-    navigate("/business/manage-business/assessment", { state: { businessIndustryAndPhase } });
+    navigate("/business/manage-business/assessment", {
+      state: { businessIndustryAndPhase },
+    });
   };
 
   return (

@@ -37,6 +37,13 @@ export const BusinessMenu = (props: any) => {
     navigate("/business/manage-business/report-summary");
   };
 
+  const onAddCompany = () => {
+    const addCompanyModal = document.getElementById('addCompanyModal');
+    if (!addCompanyModal) {
+      navigate("/business");
+    }
+  }
+
   return (
     <div className="b-0 m-0 text-dark min-h-[100vh]">
       <div className="section">
@@ -45,6 +52,7 @@ export const BusinessMenu = (props: any) => {
           data-bs-toggle="modal"
           data-bs-target="#addCompany"
           className="btn btn-outline-info dotted-border btn-lg col-12"
+          onClick={onAddCompany}
         >
           <i className="fa fa-plus"></i> Add Company
         </button>

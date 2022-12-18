@@ -115,7 +115,7 @@ export const AddCompany = () => {
 
   return (
     <div>
-       <div className="row w-full m-0 p-0">
+       <div className="row w-full m-0 p-0" id="addCompanyModal">
         <div className="col-md-3 border-end">
           <BusinessMenu />
         </div>
