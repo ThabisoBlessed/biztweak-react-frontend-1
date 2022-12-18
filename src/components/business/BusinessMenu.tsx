@@ -41,25 +41,25 @@ export const BusinessMenu = () => {
           {businesses.map(
             (business: IBusinessMenuBusinessModel, index: number) => {
               return (
-                <li className="top-buffer">
+                <li className="top-buffer" key={index} id={index.toString()}>
                   <div className="accordion-item">
                     <h2 className="accordion-header" id="heading37">
                       <button
                         className="accordion-button text-dark bg-[#f1feff]"
                         type="button"
                         data-bs-toggle="collapse"
-                        data-bs-target="#collapse37"
+                        data-bs-target={`#collapse${index}`}
                         aria-expanded="true"
-                        aria-controls="collapse37"
+                        aria-controls={`collapse${index}`}
                       >
                         {business.name}
                       </button>
                     </h2>
                     <div
-                      id="collapse37"
+                      id={`collapse${index}`}
                       className="accordion-collapse collapse show"
                       aria-labelledby="heading37"
-                      data-bs-parent="#assessment-accordion"
+                      data-bs-parent={`#collapse${index}`}
                     >
                       <div className="accordion-body">
                         <h2 className="small text-center mb-0">

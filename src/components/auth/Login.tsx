@@ -45,9 +45,14 @@ export const Login = () => {
     if (loginResult.data.status) {
       setIsLoading(false);
       removeLocalStorageValue(LOCALSTORAGE_KEYS.accessToken);
+      removeLocalStorageValue(LOCALSTORAGE_KEYS.user);
       setLocalStorageValue(
         LOCALSTORAGE_KEYS.accessToken,
         JSON.stringify(loginResult.data.package.data)
+      );
+      setLocalStorageValue(
+        LOCALSTORAGE_KEYS.user,
+        JSON.stringify(user)
       );
       window.location.reload();
     } else {

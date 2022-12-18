@@ -16,6 +16,7 @@ export const Navbar = () => {
 
   const onLogout = () => {
     removeLocalStorageValue(LOCALSTORAGE_KEYS.accessToken);
+    removeLocalStorageValue(LOCALSTORAGE_KEYS.user);
     window.location.reload();
   }
 
