@@ -24,13 +24,13 @@ export const AddCompany = () => {
     },
     {
       id: 3,
-      title:
+      name:
         "We are generating revenue, we would like to grow through investment",
       value: "phase_4",
     },
     {
       id: 4,
-      name: " I would like to be an entrepreneur but don’t know where to start",
+      name: "I would like to be an entrepreneur but don’t know where to start",
       value: "phase_5",
     },
   ];

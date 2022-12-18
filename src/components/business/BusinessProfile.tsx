@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../config";
 import { BusinessMenu } from "./BusinessMenu";
 
-export const ManageBusiness = () => {
+export const BusinessProfile = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
