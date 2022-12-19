@@ -10,6 +10,7 @@ export const BusinessAssessmentQuestions = () => {
   const questions: Assessment[] = [];
   const [questionList, setQuestionList] = useState(questions);
   const mappedQuestionList: IMappedAssessmentQuestion[] = [];
+  const [mappedQuestions, setMappedQuestions] = useState(mappedQuestionList);
 
   useEffect(() => {
     if (questionList.length === 0) {
@@ -19,31 +20,41 @@ export const BusinessAssessmentQuestions = () => {
     if (questionList.length > 0) {
       for (let index = 0; index < questionList.length; index++) {
         const question = questionList[index];
-
-        const exist = mappedQuestionList.find((q) => q.category === question.category);
-        if (exist) {
-          const questionToSave = {} as IQuestion;
-          questionToSave.answer = question.answer;
-          questionToSave.label = question.label;
-          exist.questions.push(questionToSave);
-        } else {
-          const answer = {} as IMappedAssessmentQuestion;
-          answer.id = question.id;
-          answer.category = question.category;
-          answer.questions = [];
-
-          const questionToSave = {} as IQuestion;
-          questionToSave.answer = question.answer;
-          questionToSave.label = question.label;
-          answer.questions.push(questionToSave);
-
-          mappedQuestionList.push(answer);
-        }
+        mapQuestions(question);
       }
     }
 
-    console.log(mappedQuestionList);
+    setMappedQuestions(mappedQuestionList);
   }, [questionList]);
+
+  /**
+   * Maps question for display
+   * @param mappedQuestions 
+   * @param question 
+   */
+  const mapQuestions = (question: Assessment) => {
+    const existing = mappedQuestionList.find((q) => q.category === question.category);
+    const questionToSave = {} as IQuestion;
+
+    if (existing) {
+      questionToSave.answer = question.answer;
+      questionToSave.label = question.label;
+      questionToSave.id = question.id;
+      existing.questions.push(questionToSave);
+    } else {
+      const answer = {} as IMappedAssessmentQuestion;
+      answer.id = question.id;
+      answer.category = question.category;
+      answer.questions = [];
+
+      questionToSave.answer = question.answer;
+      questionToSave.label = question.label;
+      questionToSave.id = question.id;
+      answer.questions.push(questionToSave);
+
+      mappedQuestionList.push(answer);
+    }
+  }
 
   const assessmentQuestions = async () => {
     const assessmentQuestions = await getAssessmentQuestions();
@@ -53,7 +64,7 @@ export const BusinessAssessmentQuestions = () => {
   return (
     <div>
       <div className="accordion" id="assessment-accordion">
-        {questionList.map((question: any, index: number) => {
+        {mappedQuestions.map((question: any, index: number) => {
           return (
             <div
               className="accordion-item bg-[#f1feff]"
