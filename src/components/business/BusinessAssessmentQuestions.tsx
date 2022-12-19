@@ -29,11 +29,13 @@ export const BusinessAssessmentQuestions = () => {
 
   /**
    * Maps question for display
-   * @param mappedQuestions 
-   * @param question 
+   * @param mappedQuestions
+   * @param question
    */
   const mapQuestions = (question: Assessment) => {
-    const existing = mappedQuestionList.find((q) => q.category === question.category);
+    const existing = mappedQuestionList.find(
+      (q) => q.category === question.category
+    );
     const questionToSave = {} as IQuestion;
 
     if (existing) {
@@ -54,7 +56,7 @@ export const BusinessAssessmentQuestions = () => {
 
       mappedQuestionList.push(answer);
     }
-  }
+  };
 
   const assessmentQuestions = async () => {
     const assessmentQuestions = await getAssessmentQuestions();
@@ -90,45 +92,57 @@ export const BusinessAssessmentQuestions = () => {
                 data-bs-parent="#assessment-accordion"
               >
                 <div className="accordion-body bg-[white]">
-                  {/* {question.questions.map((subQuestion: any, index: number) => {
+                  {question.questions.map((subQuestion: any, index: number) => {
                     return (
                       <div
                         className="question mb-3"
-                        key={`${String(subQuestion.value).toLowerCase()}`}
-                        id={`${String(subQuestion.value).toLowerCase()}`}
+                        key={`${String(subQuestion.label)
+                          .toLowerCase()
+                          .replace(/[^a-zA-Z0-9 ]/g, "")}`}
+                        id={`${String(subQuestion.label)
+                          .toLowerCase()
+                          .replace(/[^a-zA-Z0-9 ]/g, "")}`}
                       >
-                        <p className="mb-1">{subQuestion.value}</p>
+                        <p className="mb-1">{subQuestion.label}</p>
                         <label
-                          htmlFor={`${String(
-                            subQuestion.value
-                          ).toLowerCase()}_yes`}
+                          htmlFor={`${String(subQuestion.label)
+                            .toLowerCase()
+                            .replace(/[^a-zA-Z0-9 ]/g, "")}_yes`}
                         >
                           Yes
                         </label>
                         <input
-                          name={`${String(subQuestion.value).toLowerCase()}`}
+                          name={`${String(subQuestion.label)
+                            .toLowerCase()
+                            .replace(/[^a-zA-Z0-9 ]/g, "")}`}
                           type="radio"
                           value="1"
-                          id={`${String(subQuestion.value).toLowerCase()}_yes`}
+                          id={`${String(subQuestion.label)
+                            .toLowerCase()
+                            .replace(/[^a-zA-Z0-9 ]/g, "")}_yes`}
                           className="m-2"
                         />
                         <label
-                          htmlFor={`${String(
-                            subQuestion.value
-                          ).toLowerCase()}_no`}
+                          htmlFor={`${String(subQuestion.label)
+                            .toLowerCase()
+                            .replace(/[^a-zA-Z0-9 ]/g, "")}_no`}
                         >
                           No
                         </label>
                         <input
-                          name={`${String(subQuestion.value).toLowerCase()}`}
+                          name={`${String(subQuestion.label)
+                            .toLowerCase()
+                            .replace(/[^a-zA-Z0-9 ]/g, "")}`}
                           type="radio"
                           value="0"
-                          id={`${String(subQuestion.value).toLowerCase()}_no`}
+                          id={`${String(subQuestion.label)
+                            .toLowerCase()
+                            .replace(/[^a-zA-Z0-9 ]/g, "")}_no`}
                           className="m-2"
                         />
                       </div>
                     );
-                  })} */}
+                  })}
                 </div>
               </div>
             </div>
