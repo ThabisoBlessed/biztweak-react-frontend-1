@@ -1,29 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../config";
-import { getAssessmentQuestions } from "../../services/assessment";
 import { BusinessAssessmentQuestions } from "./BusinessAssessmentQuestions";
 import { CompleteCompanyProfileModal } from "./CompleteCompanyProfileModal";
 
 export const BusinessAssessment = (props: any): JSX.Element => {
-  const questionList: any[] = [
-    {
-      id: "345342",
-      name: "Channels",
-      questions: [
-        {
-          id: "dajsdflfsd",
-          value: "Do you know how you are going to reach your customers?",
-          answer: 0,
-        },
-        {
-          id: "drwtetwe",
-          value: "Do you have a marketing plan in place?",
-          answer: 0,
-        },
-      ],
-    },
-  ];
   const [businessPhase, setBusinessPhase] = useState();
   const [businessIndustry, setBusinessIndustry] = useState();
   const navigate = useNavigate();
@@ -32,14 +13,7 @@ export const BusinessAssessment = (props: any): JSX.Element => {
     if (!isLoggedIn()) navigate("/auth/login");
     setBusinessIndustry(props.businessIndustryAndPhase.businessIndustry);
     setBusinessPhase(props.businessIndustryAndPhase.businessPhase);
-
-    assessmentQuestions();
   }, [navigate]);
-
-  const assessmentQuestions = async () => {
-    const assessmentQuestions = await getAssessmentQuestions();
-    console.log(assessmentQuestions.data.package.data)
-  }
 
   return (
     <div>
@@ -80,7 +54,7 @@ export const BusinessAssessment = (props: any): JSX.Element => {
           </div>
         </div>
 
-        <BusinessAssessmentQuestions questionList={questionList} />
+        <BusinessAssessmentQuestions />
 
         <div className="text-end mt-3">
           <button

@@ -1,15 +1,64 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Assessment } from "../../model/assessment.model";
+import {
+  IMappedAssessmentQuestion,
+  IQuestion,
+} from "../../model/mapped-assessment-question.model";
+import { getAssessmentQuestions } from "../../services/assessment";
 
-export const BusinessAssessmentQuestions = (props: any) => {
+export const BusinessAssessmentQuestions = () => {
+  const questions: Assessment[] = [];
+  const [questionList, setQuestionList] = useState(questions);
+  const mappedQuestionList: IMappedAssessmentQuestion[] = [];
+
+  useEffect(() => {
+    if (questionList.length === 0) {
+      assessmentQuestions();
+    }
+
+    if (questionList.length > 0) {
+      for (let index = 0; index < questionList.length; index++) {
+        const question = questionList[index];
+
+        const exist = mappedQuestionList.find((q) => q.category === question.category);
+        if (exist) {
+          const questionToSave = {} as IQuestion;
+          questionToSave.answer = question.answer;
+          questionToSave.label = question.label;
+          exist.questions.push(questionToSave);
+        } else {
+          const answer = {} as IMappedAssessmentQuestion;
+          answer.id = question.id;
+          answer.category = question.category;
+          answer.questions = [];
+
+          const questionToSave = {} as IQuestion;
+          questionToSave.answer = question.answer;
+          questionToSave.label = question.label;
+          answer.questions.push(questionToSave);
+
+          mappedQuestionList.push(answer);
+        }
+      }
+    }
+
+    console.log(mappedQuestionList);
+  }, [questionList]);
+
+  const assessmentQuestions = async () => {
+    const assessmentQuestions = await getAssessmentQuestions();
+    setQuestionList(assessmentQuestions.data.package.data);
+  };
+
   return (
     <div>
       <div className="accordion" id="assessment-accordion">
-        {props.questionList.map((question: any, index: number) => {
+        {questionList.map((question: any, index: number) => {
           return (
             <div
               className="accordion-item bg-[#f1feff]"
-              key={`${String(question.name).toLowerCase()}_${index}`}
-              id={`${String(question.name).toLowerCase()}_${index}`}
+              key={`${String(question.category).toLowerCase()}_${index}`}
+              id={`${String(question.category).toLowerCase()}_${index}`}
             >
               <h2 className="accordion-header" id="heading62">
                 <button
@@ -20,7 +69,7 @@ export const BusinessAssessmentQuestions = (props: any) => {
                   aria-expanded="false"
                   aria-controls="collapse62"
                 >
-                  {question.name}
+                  {question.category}
                 </button>
               </h2>
               <div
@@ -30,7 +79,7 @@ export const BusinessAssessmentQuestions = (props: any) => {
                 data-bs-parent="#assessment-accordion"
               >
                 <div className="accordion-body bg-[white]">
-                  {question.questions.map((subQuestion: any, index: number) => {
+                  {/* {question.questions.map((subQuestion: any, index: number) => {
                     return (
                       <div
                         className="question mb-3"
@@ -68,7 +117,7 @@ export const BusinessAssessmentQuestions = (props: any) => {
                         />
                       </div>
                     );
-                  })}
+                  })} */}
                 </div>
               </div>
             </div>
