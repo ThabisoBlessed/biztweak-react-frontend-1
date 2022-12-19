@@ -78,15 +78,15 @@ export const BusinessAssessmentQuestions = () => {
                   className="accordion-button collapsed text-dark"
                   type="button"
                   data-bs-toggle="collapse"
-                  data-bs-target="#collapse62"
+                  data-bs-target={`#collapse${index}_assessment`}
                   aria-expanded="false"
-                  aria-controls="collapse62"
+                  aria-controls={`collapse${index}_assessment`}
                 >
                   {question.category}
                 </button>
               </h2>
               <div
-                id="collapse62"
+                id={`collapse${index}_assessment`}
                 className="accordion-collapse collapse show"
                 aria-labelledby="heading62"
                 data-bs-parent="#assessment-accordion"
