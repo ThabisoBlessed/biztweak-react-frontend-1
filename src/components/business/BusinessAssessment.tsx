@@ -85,7 +85,7 @@ export const BusinessAssessment = (props: any): JSX.Element => {
           </button>
         </div>
 
-        <CompleteCompanyProfileModal />
+        <CompleteCompanyProfileModal businessIndustry={businessIndustry} />
       </div>
     </div>
   );

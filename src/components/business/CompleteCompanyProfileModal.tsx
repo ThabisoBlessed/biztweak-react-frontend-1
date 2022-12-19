@@ -2,11 +2,12 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../config";
 
-export const CompleteCompanyProfileModal = () => {
+export const CompleteCompanyProfileModal = (props: any) => {
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
+    console.log(props.businessIndustry);
   }, [navigate]);
 
   const onSave = () => {

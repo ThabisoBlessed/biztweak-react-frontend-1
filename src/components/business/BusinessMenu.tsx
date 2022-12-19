@@ -10,7 +10,7 @@ export const BusinessMenu = (props: any) => {
       name: "New Company",
       businessIndustry: "Admin/Business Support",
       businessPhase: "I have products/services but I have poor sales",
-      assessmentComplete: false,
+      assessmentComplete: true,
     },
     {
       id: "asdfasdsfawe",
