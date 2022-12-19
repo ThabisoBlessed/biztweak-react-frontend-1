@@ -15,13 +15,13 @@ export const ReportSummary = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [selectedBusiness] = useState(state || {});
-  const [selectedBusinessValue, setSelectedBusinessValue] = useState(
-    JSON.parse(selectedBusiness.selecteBusiness) as IBusinessMenuBusinessModel
-  );
+  // const [selectedBusinessValue, setSelectedBusinessValue] = useState(
+  //   JSON.parse(selectedBusiness.selecteBusiness) as IBusinessMenuBusinessModel
+  // );
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
-    console.log(selectedBusinessValue);
+    // console.log(selectedBusinessValue);
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [navigate]);
 
@@ -72,7 +72,7 @@ export const ReportSummary = () => {
           <div className="card shadow-lg p-1 mb-5 bg-white rounded">
             <div className="card-body">
               <h2 className="mt-3 text-3xl text-dark">
-                {selectedBusinessValue.name}'s Report Summary
+                Company's Report Summary
                 <button
                   className="btn btn-sm text-white bg-[#00c2cb] btn-info p-3 float-end"
                   onClick={onDownloadReport}
