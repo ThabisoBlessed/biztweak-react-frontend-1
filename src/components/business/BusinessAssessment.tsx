@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../config";
+import { getAssessmentQuestions } from "../../services/assessment";
 import { BusinessAssessmentQuestions } from "./BusinessAssessmentQuestions";
 import { CompleteCompanyProfileModal } from "./CompleteCompanyProfileModal";
 
@@ -31,7 +32,14 @@ export const BusinessAssessment = (props: any): JSX.Element => {
     if (!isLoggedIn()) navigate("/auth/login");
     setBusinessIndustry(props.businessIndustryAndPhase.businessIndustry);
     setBusinessPhase(props.businessIndustryAndPhase.businessPhase);
+
+    assessmentQuestions();
   }, [navigate]);
+
+  const assessmentQuestions = async () => {
+    const assessmentQuestions = await getAssessmentQuestions();
+    console.log(assessmentQuestions.data.package.data)
+  }
 
   return (
     <div>

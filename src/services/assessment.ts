@@ -1,14 +1,20 @@
 import axios from "axios";
+import { LOCALSTORAGE_KEYS } from "../config";
 import * as constants from "../constants";
-import { Assessment } from "../model/assessment.model";
 
 /**
  * Gets a list of assessement questions
- * @returns {Promise<Assessment>} response
+ * @returns {Promise<Assessment[]>} response
  */
-export const getAssessments = async (): Promise<Assessment> => {
+export const getAssessmentQuestions = async (): Promise<any> => {
   try {
-    return await axios.get(constants.baseUrl + `/assessments`, {});
+    let config = {
+      headers: {
+        'Authorization': 'Bearer ' + String(localStorage.getItem(LOCALSTORAGE_KEYS.accessToken)).replace(/['"\\]+/g, '')
+      }
+    }
+
+    return await axios.get(constants.baseUrl + `/assessments`, config);
   } catch (error: any) {
     return error;
   }
