@@ -122,7 +122,7 @@ export const AddCompany = () => {
           <div className="row justify-content-center">
             <img
               src="https://biztweak.org.za/public/new/images/dashboard-placeholder.png"
-              className="img-fluid col-md-5"
+              className="img-fluid mt-4 col-md-5"
               alt=""
             />
           </div>

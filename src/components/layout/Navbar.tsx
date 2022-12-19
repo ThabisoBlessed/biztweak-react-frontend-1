@@ -9,9 +9,14 @@ import { isLoggedIn, LOCALSTORAGE_KEYS, removeLocalStorageValue } from "../../co
 export const Navbar = () => {
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(isLoggedIn());
+  const [userEmail, setUserEmail] = useState("");
 
   useEffect(() => {
     console.log("Logged in: ", loggedIn);
+    const user = localStorage.getItem(LOCALSTORAGE_KEYS.user);
+    if (user) {
+      setUserEmail(JSON.parse(user).replace(/['"]+/g, ''));
+    }
   }, [loggedIn]);
 
   const onLogout = () => {
@@ -85,9 +90,9 @@ export const Navbar = () => {
                         />
                       </div>
                       <div className="mt-4 ml-2">
-                        <h6 className="mb-0">Alfred Sinaga</h6>
+                        <h6 className="mb-0">Test</h6>
                         <p className="mb-0 small text-muted">
-                          alfreds@email.com
+                          {userEmail}
                         </p>
                       </div>
                     </span>
