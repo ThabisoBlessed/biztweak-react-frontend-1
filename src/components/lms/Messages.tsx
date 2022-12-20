@@ -35,7 +35,7 @@ export const Messages = () => {
                               <h6 className="text-dark fw-600 mb-0">Waelchi</h6>
                               <p className="small mb-0">03:30PM</p>
                             </div>
-                            <div>When do you release the coded...</div>
+                            <div className="text-sm">When do you release the coded...</div>
                           </div>
                         </a>
                         <a
@@ -52,7 +52,7 @@ export const Messages = () => {
                               <h6 className="text-dark fw-600 mb-0">Waelchi</h6>
                               <p className="small mb-0">03:30PM</p>
                             </div>
-                            <div>When do you release the coded...</div>
+                            <div className="text-sm">When do you release the coded...</div>
                           </div>
                         </a>
                         <a
@@ -69,7 +69,7 @@ export const Messages = () => {
                               <h6 className="text-dark fw-600 mb-0">Waelchi</h6>
                               <p className="small mb-0">03:30PM</p>
                             </div>
-                            <div>When do you release the coded...</div>
+                            <div className="text-sm">When do you release the coded...</div>
                           </div>
                         </a>
                         <a
@@ -86,7 +86,7 @@ export const Messages = () => {
                               <h6 className="text-dark fw-600 mb-0">Waelchi</h6>
                               <p className="small mb-0">03:30PM</p>
                             </div>
-                            <div>When do you release the coded...</div>
+                            <div className="text-sm">When do you release the coded...</div>
                           </div>
                         </a>
                       </div>
