@@ -3,8 +3,19 @@ import { LMSMenu } from "./LMSMenu";
 import CourseImg from "../../images/course.png";
 import AvatarImg from "../../images/avatar.png";
 import CourseVideo from "../../images/video.mp4";
+import { useNavigate } from "react-router-dom";
 
 export const Course = () => {
+  const navigate = useNavigate();
+
+  const onStartCourse = () => {
+    // navigate("/lms/course");
+  } 
+
+  const onClickInstructor = () => {
+    navigate("/lms/instructor-profile");
+  }
+
   return (
     <div className="w-full">
       <div className="row">
@@ -28,7 +39,7 @@ export const Course = () => {
                     <i className="fa fa-eye text-dark"></i> 2.3K
                   </div>
                 </div>
-                <div className="d-flex my-3">
+                <div className="d-flex my-3 cursor-pointer" onClick={onClickInstructor}>
                   <img src={AvatarImg} className="h-[40px] w-[40px]" alt="" />
                   <div className="ms-2">
                     <h6 className="mb-0 text-dark">Kitani Studio</h6>
@@ -46,7 +57,7 @@ export const Course = () => {
                   graphic designers, programmers and printers with the aim of
                   occupying the spaces of a website, an advertising product or .
                 </p>
-                <button className="btn btn-main bg-[#00c2cb] text-[white]">Start Course</button>
+                <button className="btn btn-main bg-[#00c2cb] text-[white]" onClick={onStartCourse}>Start Course</button>
               </div>
               <div className="order-0 mb-3 mb-md-0 order-md-1 col-md-4 bg-light">
                 <div className="accordion" id="accordionExample">
