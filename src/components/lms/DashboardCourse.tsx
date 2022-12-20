@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import CourseImg from "../../images/course.png";
 import AvatarImg from "../../images/avatar.png";
+import { useNavigate } from "react-router-dom";
 
 export const DashboardCourse = (props: any) => {
+  const navigate = useNavigate();
+  
   const [dashboardCourses, setDashboardCourse] = useState(
     props.dashboardCourses
   );
@@ -15,6 +18,10 @@ export const DashboardCourse = (props: any) => {
     const index = event.currentTarget.id;
     props.handleCourseClick(index);
   };
+
+  const onStartCourse = () => {
+    navigate("/lms/course");
+  }
 
   return (
     <div className="row col-12">
@@ -59,7 +66,7 @@ export const DashboardCourse = (props: any) => {
                     </div>
                   </div>
                   <div>
-                    <button className="btn btn-main">Continue</button>
+                    <button className="btn btn-main bg-[#00c2cb] text-[white]" onClick={onStartCourse}>Continue</button>
                   </div>
                 </div>
               </div>

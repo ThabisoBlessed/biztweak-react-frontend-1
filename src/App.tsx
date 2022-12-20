@@ -18,6 +18,7 @@ import { BusinessProfile } from "./components/business/BusinessProfile";
 import { CourseProgress } from "./components/lms/CourseProgress";
 import { Messages } from "./components/lms/Messages";
 import { Course } from "./components/lms/Course";
+import { InstructorProfile } from "./components/lms/InstructorProfile";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
           <Route path="/lms/course-progress" element={<CourseProgress />}></Route>
           <Route path="/lms/dashboard" element={<Dashboard />}></Route>
           <Route path="/lms/messages" element={<Messages />}></Route>
+          <Route path="/lms/instructor-profile" element={<InstructorProfile />}></Route>
         </Routes>
       </Router>
       <Footer />

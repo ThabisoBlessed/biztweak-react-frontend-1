@@ -19,7 +19,7 @@ export const Course = () => {
                   <video
                     controls={true}
                     src="../images/video.mp4"
-                    className="img-fluid"
+                    className="img-fluid h-[400px]"
                   ></video>
                 </div>
                 <div className="title d-flex justify-content-between align-items-center">
@@ -29,7 +29,7 @@ export const Course = () => {
                   </div>
                 </div>
                 <div className="d-flex my-3">
-                  <img src={CourseVideo} className="h-[40px] w-[40px]" alt="" />
+                  <img src={AvatarImg} className="h-[40px] w-[40px]" alt="" />
                   <div className="ms-2">
                     <h6 className="mb-0 text-dark">Kitani Studio</h6>
                     <p className="mb-0">BizTweak</p>
@@ -46,7 +46,7 @@ export const Course = () => {
                   graphic designers, programmers and printers with the aim of
                   occupying the spaces of a website, an advertising product or .
                 </p>
-                <button className="btn btn-main">Start Course</button>
+                <button className="btn btn-main bg-[#00c2cb] text-[white]">Start Course</button>
               </div>
               <div className="order-0 mb-3 mb-md-0 order-md-1 col-md-4 bg-light">
                 <div className="accordion" id="accordionExample">

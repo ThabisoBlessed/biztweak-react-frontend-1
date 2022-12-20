@@ -10,6 +10,10 @@ export const Courses = () => {
   const onStartCourse = () => {
     navigate("/lms/course");
   }
+
+  const onClickInstructor = () => {
+    navigate("/lms/instructor-profile");
+  }
   
   return (
     <div className="w-full">
@@ -35,7 +39,7 @@ export const Courses = () => {
                   <h5 className="my-2">
                     E-Bussiness Managment course learning
                   </h5>
-                  <div className="d-flex justify-content-between align-items-center">
+                  <div className="d-flex justify-content-between align-items-center cursor-pointer" onClick={onClickInstructor}>
                     <div className="w-100 me-3 d-flex align-items-center">
                       <img
                         src={AvatarImg}
@@ -48,7 +52,7 @@ export const Courses = () => {
                       </div>
                     </div>
                     <div className="w-100 text-end">
-                      <button className="btn btn-main" onClick={onStartCourse}>Start Course</button>
+                      <button className="btn btn-main bg-[#00c2cb] text-[white]" onClick={onStartCourse}>Start Course</button>
                     </div>
                   </div>
                 </div>

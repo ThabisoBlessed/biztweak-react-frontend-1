@@ -80,7 +80,7 @@ export const LMSMenu = () => {
       <ul className="ml-5 navbar-nav pt-2 mb-4">
         {menu.map((menu: any, index: number) => {
           return (
-            <li className="hover:bg-[#00c2cb]">
+            <li className="hover:bg-[#00c2cb] cursor-pointer">
               <div
                 key={index}
                 className="m-2"
