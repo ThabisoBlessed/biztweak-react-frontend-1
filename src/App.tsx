@@ -14,10 +14,10 @@ import { ReportSummary } from "./components/business/ReportSummary";
 import { BusinessHealthReport } from "./components/business/BusinessHealthReport";
 import { Assessment } from "./components/business/Assessment";
 import { AddCompany } from "./components/business/AddCompany";
-import { BusinessAssessment } from "./components/business/BusinessAssessment";
 import { BusinessProfile } from "./components/business/BusinessProfile";
 import { CourseProgress } from "./components/lms/CourseProgress";
 import { Messages } from "./components/lms/Messages";
+import { Course } from "./components/lms/Course";
 
 function App() {
   return (
@@ -41,6 +41,7 @@ function App() {
           <Route path="/business/manage-business/business-health-report" element={<BusinessHealthReport />}></Route>
 
           <Route path="/lms/*" element={<LMS />}></Route>
+          <Route path="/lms/course" element={<Course />}></Route>
           <Route path="/lms/courses" element={<Courses />}></Route>
           <Route path="/lms/course-progress" element={<CourseProgress />}></Route>
           <Route path="/lms/dashboard" element={<Dashboard />}></Route>

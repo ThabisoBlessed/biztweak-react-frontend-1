@@ -2,8 +2,15 @@ import React from "react";
 import { LMSMenu } from "./LMSMenu";
 import CourseImg from "../../images/course.png";
 import AvatarImg from "../../images/avatar.png";
+import { useNavigate } from "react-router-dom";
 
 export const Courses = () => {
+  const navigate = useNavigate();
+
+  const onStartCourse = () => {
+    navigate("/lms/course");
+  }
+  
   return (
     <div className="w-full">
       <div className="row">
@@ -41,7 +48,7 @@ export const Courses = () => {
                       </div>
                     </div>
                     <div className="w-100 text-end">
-                      <button className="btn btn-main">Start Course</button>
+                      <button className="btn btn-main" onClick={onStartCourse}>Start Course</button>
                     </div>
                   </div>
                 </div>
