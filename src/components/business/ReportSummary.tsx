@@ -8,31 +8,20 @@ import { Webinar } from "./Webinar";
 import jsPDF from "jspdf";
 import * as htmlToImage from "html-to-image";
 import { useLocation, useNavigate } from "react-router-dom";
-import { isLoggedIn } from "../../config";
+import { getLocalStorageValue, isLoggedIn, LOCALSTORAGE_KEYS } from "../../config";
 import { IBusinessMenuBusinessModel } from "../../model/business-menu-business-model";
+import { IMappedAssessmentQuestion } from "../../model/mapped-assessment-question.model";
 
 export const ReportSummary = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [selectedBusiness] = useState(state || {});
+  const initdata: any[][] = [];
+  initdata[0] = ["Elements", "Priority Elements"];
+  const [data, setData] = useState(initdata);
   // const [selectedBusinessValue, setSelectedBusinessValue] = useState(
   //   JSON.parse(selectedBusiness.selecteBusiness) as IBusinessMenuBusinessModel
   // );
-
-  useEffect(() => {
-    if (!isLoggedIn()) navigate("/auth/login");
-    // console.log(selectedBusinessValue);
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, [navigate]);
-
-  const data = [
-    ["Elements", "Priority Elements"],
-    ["Work", 11],
-    ["Eat", 2],
-    ["Commute", 2],
-    ["Watch TV", 2],
-    ["Sleep", 7],
-  ];
 
   const options = {
     title: "My Daily Activities",
@@ -46,6 +35,28 @@ export const ReportSummary = () => {
     colors: ["#00c2cb"],
     // backgroundColor: "#00c2cb",
   };
+
+  useEffect(() => {
+    if (!isLoggedIn()) navigate("/auth/login");
+    // console.log(selectedBusinessValue);
+    setGraphData();    
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, [navigate]);
+
+  const setGraphData = () => {
+    let tempdata = data;
+    const mappedQuestions = getLocalStorageValue(LOCALSTORAGE_KEYS.assessmentQuestions);
+    if (mappedQuestions) {
+      const result: IMappedAssessmentQuestion[] = JSON.parse(mappedQuestions);
+      result.forEach(element => {
+        tempdata.push([element.category, Number(element.questions.filter(q => q.answer === "yes").length)]);
+      });
+
+    }
+
+    console.log(tempdata);
+    setData(tempdata);
+  }
 
   const onDownloadReport = () => {
     let domElement: any = document.getElementById("myReport");

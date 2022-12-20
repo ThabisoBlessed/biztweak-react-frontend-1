@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { LOCALSTORAGE_KEYS, setLocalStorageValue } from "../../config";
 import { Assessment } from "../../model/assessment.model";
 import {
   IMappedAssessmentQuestion,
@@ -82,8 +83,10 @@ export const BusinessAssessmentQuestions = () => {
         checked.answer = checkedAnswer;
       }
     }
+  }
 
-    console.log(mappedQuestions);
+  const onSave = () => {
+    setLocalStorageValue(LOCALSTORAGE_KEYS.assessmentQuestions, mappedQuestions);
   }
 
   return (
@@ -175,6 +178,18 @@ export const BusinessAssessmentQuestions = () => {
           );
         })}
       </div>
+
+      <div className="text-end mt-3">
+          <button
+            type="button"
+            className="btn bg-[#00c2cb] btn-info btn-lg p-3 w-[100px] text-white"
+            data-bs-toggle="modal"
+            data-bs-target="#completeCompanyProfile"
+            onClick={onSave}
+          >
+            Save
+          </button>
+        </div>
     </div>
   );
 };

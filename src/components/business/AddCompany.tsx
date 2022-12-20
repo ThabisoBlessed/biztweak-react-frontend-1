@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { isLoggedIn } from "../../config";
+import { getLocalStorageValue, isLoggedIn, LOCALSTORAGE_KEYS } from "../../config";
 import { BusinessMenu } from "./BusinessMenu";
 import { AddCompanyModal } from "./AddCompanyModal";
 

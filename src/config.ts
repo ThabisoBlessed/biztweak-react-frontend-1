@@ -5,6 +5,7 @@ export const LOCALSTORAGE_KEYS = {
   expireTime: "spotify_token_expire_time",
   timestamp: "spotify_token_timestamp",
   user: "user",
+  assessmentQuestions: "assessment_questions",
 };
 
 export const BUSINESS_KEYS = {

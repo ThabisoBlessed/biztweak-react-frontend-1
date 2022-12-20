@@ -56,17 +56,6 @@ export const BusinessAssessment = (props: any): JSX.Element => {
 
         <BusinessAssessmentQuestions />
 
-        <div className="text-end mt-3">
-          <button
-            type="button"
-            className="btn bg-[#00c2cb] btn-info btn-lg p-3 w-[100px] text-white"
-            data-bs-toggle="modal"
-            data-bs-target="#completeCompanyProfile"
-          >
-            Save
-          </button>
-        </div>
-
         <CompleteCompanyProfileModal businessIndustry={businessIndustry} />
       </div>
     </div>
