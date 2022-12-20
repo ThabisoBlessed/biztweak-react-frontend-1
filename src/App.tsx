@@ -19,6 +19,7 @@ import { CourseProgress } from "./components/lms/CourseProgress";
 import { Messages } from "./components/lms/Messages";
 import { Course } from "./components/lms/Course";
 import { InstructorProfile } from "./components/lms/InstructorProfile";
+import { PlayCourse } from "./components/lms/PlayCourse";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           <Route path="/lms/*" element={<LMS />}></Route>
           <Route path="/lms/course" element={<Course />}></Route>
           <Route path="/lms/courses" element={<Courses />}></Route>
+          <Route path="/lms/play-course" element={<PlayCourse />}></Route>
           <Route path="/lms/course-progress" element={<CourseProgress />}></Route>
           <Route path="/lms/dashboard" element={<Dashboard />}></Route>
           <Route path="/lms/messages" element={<Messages />}></Route>

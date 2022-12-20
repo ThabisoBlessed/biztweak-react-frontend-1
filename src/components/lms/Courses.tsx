@@ -39,8 +39,8 @@ export const Courses = () => {
                   <h5 className="my-2">
                     E-Bussiness Managment course learning
                   </h5>
-                  <div className="d-flex justify-content-between align-items-center cursor-pointer" onClick={onClickInstructor}>
-                    <div className="w-100 me-3 d-flex align-items-center">
+                  <div className="d-flex justify-content-between align-items-center cursor-pointer">
+                    <div className="w-100 me-3 d-flex align-items-center" onClick={onClickInstructor}>
                       <img
                         src={AvatarImg}
                         className="rounded-circle me-2 w-[30px] h-[30px]"

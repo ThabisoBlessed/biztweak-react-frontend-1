@@ -9,7 +9,7 @@ export const Course = () => {
   const navigate = useNavigate();
 
   const onStartCourse = () => {
-    // navigate("/lms/course");
+    navigate("/lms/play-course");
   } 
 
   const onClickInstructor = () => {
