@@ -8,7 +8,12 @@ import CoinsImg from "../../images/icons/coins.png";
 import { DashboardCourse } from "./DashboardCourse";
 
 export const Dashboard = () => {
-  const courses: any[] = [{id: "test", title: "E-Bussiness Managment course learning", provider: "BizTweak", lessons: "10/40"}];
+  const courses: any[] = [
+    {id: "test1", title: "E-Bussiness Managment course learning", provider: "BizTweak", lessons: "10/40"},
+    {id: "test2", title: "E-Bussiness Managment course learning", provider: "BizTweak", lessons: "10/40"},
+    {id: "test3", title: "E-Bussiness Managment course learning", provider: "BizTweak", lessons: "10/40"},
+    {id: "test4", title: "E-Bussiness Managment course learning", provider: "BizTweak", lessons: "10/40"}
+  ];
   const [dashboardCourses, setDashboardCourses] = useState([...courses]);
 
   useEffect(() => {
@@ -71,7 +76,7 @@ export const Dashboard = () => {
               </div>
             </div>
 
-            <div className="row m-3">
+            <div className="m-3">
               <DashboardCourse dashboardCourses={dashboardCourses} />
             </div>
 
