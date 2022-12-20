@@ -52,6 +52,9 @@ export const DashboardCourse = (props: any) => {
                         className="progress-bar bg-warning w-[75%]"
                         role="progressbar"
                         aria-label="progress"
+                        aria-valuenow={75} 
+                        aria-valuemin={0} 
+                        aria-valuemax={100}
                       ></div>
                     </div>
                   </div>
