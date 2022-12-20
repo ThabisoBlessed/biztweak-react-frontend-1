@@ -11,6 +11,9 @@ export const BusinessAssessmentQuestions = () => {
   const [questionList, setQuestionList] = useState(questions);
   const mappedQuestionList: IMappedAssessmentQuestion[] = [];
   const [mappedQuestions, setMappedQuestions] = useState(mappedQuestionList);
+  const question = {} as IQuestion;
+  const [checkedQuestion, setCheckedQuestion] = useState(question);
+  const [checkedAnswer, setCheckedAnswer] = useState("");
 
   useEffect(() => {
     if (questionList.length === 0) {
@@ -58,10 +61,30 @@ export const BusinessAssessmentQuestions = () => {
     }
   };
 
+  /**
+   * Gets assessment question list
+   */
   const assessmentQuestions = async () => {
     const assessmentQuestions = await getAssessmentQuestions();
     setQuestionList(assessmentQuestions.data.package.data);
   };
+
+  const questionChecked = (question: IQuestion, answer: string) => {
+    setCheckedQuestion(question);
+    setCheckedAnswer(answer);
+  }
+
+  const mainQuestion = (mapped: IMappedAssessmentQuestion) => {
+    const questionAndAnswer = mappedQuestions.find(m => m.id === mapped.id);
+    if (questionAndAnswer) {
+      const checked = questionAndAnswer.questions.find(q => q.id === checkedQuestion.id);
+      if (checked) {
+        checked.answer = checkedAnswer;
+      }
+    }
+
+    console.log(mappedQuestions);
+  }
 
   return (
     <div>
@@ -102,6 +125,7 @@ export const BusinessAssessmentQuestions = () => {
                         id={`${String(subQuestion.label)
                           .toLowerCase()
                           .replace(/[^a-zA-Z0-9 ]/g, "")}`}
+                        onChange={() => mainQuestion(question)}
                       >
                         <p className="mb-1">{subQuestion.label}</p>
                         <label
@@ -121,6 +145,7 @@ export const BusinessAssessmentQuestions = () => {
                             .toLowerCase()
                             .replace(/[^a-zA-Z0-9 ]/g, "")}_yes`}
                           className="m-2"
+                          onChange={() => questionChecked(subQuestion ,"yes")}
                         />
                         <label
                           htmlFor={`${String(subQuestion.label)
@@ -139,6 +164,7 @@ export const BusinessAssessmentQuestions = () => {
                             .toLowerCase()
                             .replace(/[^a-zA-Z0-9 ]/g, "")}_no`}
                           className="m-2"
+                          onChange={() => questionChecked(subQuestion ,"no")}
                         />
                       </div>
                     );
