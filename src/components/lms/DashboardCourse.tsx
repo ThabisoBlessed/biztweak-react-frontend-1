@@ -24,7 +24,7 @@ export const DashboardCourse = (props: any) => {
   }
 
   return (
-    <div className="row col-12">
+    <div className="row">
       {dashboardCourses.map((course: any, i: number) => {
         return (
           <div
