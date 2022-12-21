@@ -4,13 +4,13 @@ import { IMenuListItem } from "../../model/menu-list-item.model";
 import "./LMS.css";
 
 export const LMSMenu = () => {
-  const menuList: any[] = [
+  const menuList: IMenuListItem[] = [
     {
       id: 0,
       title: "Dashboard",
       link: "/lms/dashboard",
       iconClass: "fa-lg fa-solid fa-home",
-      isActive: false,
+      isActive: true,
       titleClasses: "ml-3",
     },
     {
@@ -72,24 +72,24 @@ export const LMSMenu = () => {
   ];
   const [menu, setMenu] = useState(menuList);
 
-  const handleMenuItemClick = (event: any) => {
-    console.log(event.currentTarget.id);
+  const handleMenuItemClick = (menu: any) => {
+    console.log(menu);
   };
 
   return (
-    <div className="w-full text-dark">
+    <div className="w-full">
       <ul className="ml-5 navbar-nav pt-2 mb-4">
         {menu.map((menu: IMenuListItem, index: number) => {
           return (
-            <li className="hover:bg-[#00c2cb] cursor-pointer" key={`lms_menu_${index}`}>
+            <li className={`hover:bg-[#00c2cb] text-dark w-full ${menu.isActive ? "bg-[#00c2cb] text-white" : ""} rounded-lg cursor-pointer`} key={`lms_menu_${index}`}>
               <div
                 className="m-2"
                 id={`${index}`}
-                onClick={(e) => handleMenuItemClick(e)}
+                onClick={() => handleMenuItemClick(menu)}
               >
                 <Link to={menu.link}>
-                  <i className={menu.iconClass}></i>
-                  <span className={`text-dark ${menu.titleClasses}`}>
+                  <i className={`${menu.iconClass} ${menu.isActive ? "text-white" : ""}}`}></i>
+                  <span className={`hover:text-white ${menu.titleClasses}`}>
                     {menu.title}
                   </span>
                 </Link>
