@@ -63,7 +63,7 @@ export const Profile = () => {
                                   <div className="d-flex justify-content-between">
                                     <label className="text-dark">
                                       Display name
-                                      <i
+                                      &nbsp;<i
                                         className="fa fa-info-circle text-muted"
                                         data-bs-toggle="tooltip"
                                         title="Name is required"
@@ -81,7 +81,7 @@ export const Profile = () => {
                                   <div className="d-flex justify-content-between">
                                     <label className="text-dark">
                                       Email
-                                      <i
+                                      &nbsp;<i
                                         className="fa fa-info-circle text-muted"
                                         data-bs-toggle="tooltip"
                                         title="Email is required."
@@ -99,7 +99,7 @@ export const Profile = () => {
                                   <div className="d-flex justify-content-between">
                                     <label className="text-dark">
                                       Location
-                                      <i
+                                      &nbsp;<i
                                         className="fa fa-info-circle text-muted"
                                         data-bs-toggle="tooltip"
                                         title="Location is required"
@@ -117,7 +117,7 @@ export const Profile = () => {
                                   <div className="d-flex justify-content-between">
                                     <label className="text-dark">
                                       Bio
-                                      <i
+                                      &nbsp;<i
                                         className="fa fa-info-circle text-muted"
                                         data-bs-toggle="tooltip"
                                         title="Bio is required"
@@ -136,7 +136,7 @@ export const Profile = () => {
                                   <div className="d-flex justify-content-between">
                                     <label className="text-dark">
                                       Old Password
-                                      {/* <i
+                                      {/* &nbsp;<i
                                         className="fa fa-info-circle text-muted"
                                         data-bs-toggle="tooltip"
                                         title="Password is required"
