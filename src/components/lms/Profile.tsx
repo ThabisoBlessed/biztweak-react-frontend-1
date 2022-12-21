@@ -148,6 +148,7 @@ export const Profile = () => {
                                   <input
                                     type="password"
                                     className="form-control core"
+                                    autoComplete="false"
                                   />
                                 </div>
                                 <div className="row">
@@ -167,6 +168,7 @@ export const Profile = () => {
                                     <input
                                       type="password"
                                       className="form-control core"
+                                      autoComplete="false"
                                     />
                                   </div>
                                   <div className="form-group mt-2 col-lg-6">
@@ -185,6 +187,7 @@ export const Profile = () => {
                                     <input
                                       type="password"
                                       className="form-control core"
+                                      autoComplete="false"
                                     />
                                   </div>
                                 </div>

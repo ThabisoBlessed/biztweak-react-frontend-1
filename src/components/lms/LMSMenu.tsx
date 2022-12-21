@@ -96,9 +96,8 @@ export const LMSMenu = () => {
       newActive.isActive = true;
     }
 
+    console.log(menuList);
     setMenu(menuList);
-
-    console.log(menu);
   };
 
   return (
