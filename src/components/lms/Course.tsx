@@ -4,6 +4,7 @@ import CourseImg from "../../images/course.png";
 import AvatarImg from "../../images/avatar.png";
 import CourseVideo from "../../images/video.mp4";
 import { useNavigate } from "react-router-dom";
+import "./Course.css";
 
 export const Course = () => {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ export const Course = () => {
                 <div className="video">
                   <video
                     controls={true}
-                    src="../images/video.mp4"
+                    src={CourseVideo}
                     className="img-fluid h-[400px]"
                   ></video>
                 </div>

@@ -3,6 +3,7 @@ import { LMSMenu } from "./LMSMenu";
 import CourseImg from "../../images/course.png";
 import AvatarImg from "../../images/avatar.png";
 import { useNavigate } from "react-router-dom";
+import "./Course.css";
 
 export const Courses = () => {
   const navigate = useNavigate();
