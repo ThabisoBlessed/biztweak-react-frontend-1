@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { IMenuListItem } from "../../model/menu-list-item.model";
 import "./LMS.css";
 
 export const LMSMenu = () => {
@@ -78,11 +79,10 @@ export const LMSMenu = () => {
   return (
     <div className="w-full text-dark">
       <ul className="ml-5 navbar-nav pt-2 mb-4">
-        {menu.map((menu: any, index: number) => {
+        {menu.map((menu: IMenuListItem, index: number) => {
           return (
-            <li className="hover:bg-[#00c2cb] cursor-pointer">
+            <li className="hover:bg-[#00c2cb] cursor-pointer" key={`lms_menu_${index}`}>
               <div
-                key={index}
                 className="m-2"
                 id={`${index}`}
                 onClick={(e) => handleMenuItemClick(e)}

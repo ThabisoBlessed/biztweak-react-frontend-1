@@ -46,9 +46,9 @@ export const PlayCourse = () => {
                   <div className="btn-group">
                     {menuList.map((menu: IMenuListItem, index: number) => {
                       return (
-                        <a key={index} href="#" className={menu.titleClasses}>
+                        <button key={`play_course_top_menu_${index}`} className={menu.titleClasses}>
                           <i className={menu.iconClass}></i>
-                        </a>
+                        </button>
                       );
                     })}
                   </div>
