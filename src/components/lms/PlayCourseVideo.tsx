@@ -5,12 +5,12 @@ import CourseVideo from "../../images/video.mp4";
 import { useNavigate } from "react-router-dom";
 
 export const PlayCourseVideo = () => {
-    const navigate = useNavigate();
-  
-    const onClickInstructor = () => {
-      navigate("/lms/instructor-profile");
-    }
-    
+  const navigate = useNavigate();
+
+  const onClickInstructor = () => {
+    navigate("/lms/instructor-profile");
+  };
+
   return (
     <div>
       <div className="row">
@@ -28,12 +28,11 @@ export const PlayCourseVideo = () => {
               <i className="fa fa-eye text-dark"></i> 2.3K
             </div>
           </div>
-          <div className="d-flex my-3 cursor-pointer" onClick={onClickInstructor}>
-            <img
-              src={AvatarImg}
-              className="h-[40px] w-[40px]"
-              alt=""
-            />
+          <div
+            className="d-flex my-3 cursor-pointer"
+            onClick={onClickInstructor}
+          >
+            <img src={AvatarImg} className="h-[40px] w-[40px]" alt="" />
             <div className="ms-2">
               <h6 className="mb-0 text-dark">Kitani Studio</h6>
               <p className="mb-0">BizTweak</p>
@@ -57,7 +56,9 @@ export const PlayCourseVideo = () => {
               <br></br>
               <small className="text-muted">(308.76MB)</small>
             </div>
-            <button className="btn btn-main-outline bg-[#00c2cb]">Download</button>
+            <button className="btn btn-main-outline bg-[#00c2cb]">
+              Download
+            </button>
           </div>
         </div>
         <div className="order-0 mb-3 mb-md-0 order-md-1 col-md-4 bg-light">
