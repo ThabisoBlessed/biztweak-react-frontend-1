@@ -131,7 +131,7 @@ export const Profile = () => {
                                     className="form-control core"
                                   />
                                 </div>
-                                <h5 className="text-dark fw-bold">Logins</h5>
+                                <h5 className="text-dark mt-2 fw-bold">Logins</h5>
                                 <div className="form-group mt-2">
                                   <div className="d-flex justify-content-between">
                                     <label className="text-dark">
@@ -209,7 +209,6 @@ export const Profile = () => {
                                       <input
                                         className="form-check-input"
                                         type="checkbox"
-                                        checked={false}
                                       />
                                     </div>
                                   </div>

@@ -400,6 +400,7 @@ export const Messages = () => {
                             type="text"
                             className="shadow-none bg-light border-0 form-control"
                             value="P/s: One more thing I need to tell you"
+                            onChange={() => {}}
                           />
                           <button className="btn rounded-3 btn-main">
                             Send

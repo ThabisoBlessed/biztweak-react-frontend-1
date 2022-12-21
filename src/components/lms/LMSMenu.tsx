@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { LOCALSTORAGE_KEYS } from "../../config";
 import { IMenuListItem } from "../../model/menu-list-item.model";
 import "./LMS.css";
 
@@ -10,7 +11,7 @@ export const LMSMenu = () => {
       title: "Dashboard",
       link: "/lms/dashboard",
       iconClass: "fa-lg fa-solid fa-home",
-      isActive: true,
+      isActive: false,
       titleClasses: "ml-3",
     },
     {
@@ -54,7 +55,7 @@ export const LMSMenu = () => {
     //   titleClasses: "ml-3",
     // },
     {
-      id: 6,
+      id: 4,
       title: "Calendar",
       link: "/lms/calendar",
       iconClass: "fa-lg fas fa-calendar-alt",
@@ -70,7 +71,7 @@ export const LMSMenu = () => {
     //   titleClasses: "ml-3",
     // },
     {
-      id: 8,
+      id: 5,
       title: "Profile",
       link: "/lms/profile",
       iconClass: "fa-lg fas fa-user",
@@ -79,25 +80,25 @@ export const LMSMenu = () => {
     },
   ];
   const [menu, setMenu] = useState(menuList);
+  const [clickedMenuItem, setClickedMenuItem] = useState({} as IMenuListItem);
 
   useEffect(() => {
-    console.log(menu);
-  }, [menu]);
-
-  const handleMenuItemClick = (menu: IMenuListItem) => {
-    console.log(menu);
-    const active = menuList.find(a => a.isActive);
-    if (active) {
-      active.isActive = false;
+    const selected = localStorage.getItem(LOCALSTORAGE_KEYS.selectedMenu);
+    if (selected) {
+      setClickedMenuItem(JSON.parse(selected));
+    } else {
+      setClickedMenuItem(menuList[0]);
     }
+  }, []);
 
-    const newActive = menuList.find(n => n.id === menu.id);
-    if (newActive) {
-      newActive.isActive = true;
+  const handleMenuItemClick = (menuItem: IMenuListItem) => {
+    localStorage.removeItem(LOCALSTORAGE_KEYS.selectedMenu);
+    localStorage.setItem(LOCALSTORAGE_KEYS.selectedMenu, JSON.stringify(menuItem));
+    const selected = localStorage.getItem(LOCALSTORAGE_KEYS.selectedMenu);
+    if (selected) {
+      setClickedMenuItem(JSON.parse(selected));
     }
-
-    console.log(menuList);
-    setMenu(menuList);
+    // window.location.reload();
   };
 
   return (
@@ -105,14 +106,22 @@ export const LMSMenu = () => {
       <ul className="ml-5 navbar-nav pt-2 mb-4">
         {menu.map((menu: IMenuListItem, index: number) => {
           return (
-            <li className={`hover:bg-[#00c2cb] text-dark w-full ${menu.isActive ? "bg-[#00c2cb] text-white" : ""} rounded-lg cursor-pointer`} key={`lms_menu_${index}`}>
-              <div
-                className="m-2"
-                id={`${index}`}
-                onClick={() => handleMenuItemClick(menu)}
-              >
+            <li
+              className={`hover:bg-[#00c2cb] text-dark w-full ${
+                menu.id === clickedMenuItem.id
+                  ? "bg-[#00c2cb] text-white"
+                  : null
+              } rounded-lg cursor-pointer`}
+              key={`lms_menu_${index}`}
+              onClick={() => handleMenuItemClick(menu)}
+            >
+              <div className="m-2" id={`${index}`}>
                 <Link to={menu.link}>
-                  <i className={`${menu.iconClass} ${menu.isActive ? "text-white" : ""}}`}></i>
+                  <i
+                    className={`${menu.iconClass} ${
+                      menu.id === clickedMenuItem.id ? "text-white" : null
+                    }`}
+                  ></i>
                   <span className={`hover:text-white ${menu.titleClasses}`}>
                     {menu.title}
                   </span>

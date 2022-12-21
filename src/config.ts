@@ -6,6 +6,7 @@ export const LOCALSTORAGE_KEYS = {
   timestamp: "spotify_token_timestamp",
   user: "user",
   assessmentQuestions: "assessment_questions",
+  selectedMenu: "selected_menu",
 };
 
 export const BUSINESS_KEYS = {
