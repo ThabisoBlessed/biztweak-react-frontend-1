@@ -31,7 +31,7 @@ export const Dashboard = () => {
               <div className="card shadow mt-3">
                 <div className="alert mb-0">
                   <i className="fa fa-exclamation-circle text-warning me-2"></i>
-                  The following course are recommended as a result of your
+                  The following courses are recommended as a result of your
                   BizTweak assesmenmt and full report. You need to know and
                   apply the following information in your bussiness.
                 </div>

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LOCALSTORAGE_KEYS } from "../../config";
 import { IMenuListItem } from "../../model/menu-list-item.model";
 import "./LMS.css";
 
 export const LMSMenu = () => {
+  const navigate = useNavigate();
+
   const menuList: IMenuListItem[] = [
     {
       id: 0,
@@ -89,16 +91,23 @@ export const LMSMenu = () => {
     } else {
       setClickedMenuItem(menuList[0]);
     }
-  }, []);
+  });
 
+  /**
+   * Handles menu item click
+   * @param menuItem
+   */
   const handleMenuItemClick = (menuItem: IMenuListItem) => {
     localStorage.removeItem(LOCALSTORAGE_KEYS.selectedMenu);
-    localStorage.setItem(LOCALSTORAGE_KEYS.selectedMenu, JSON.stringify(menuItem));
+    localStorage.setItem(
+      LOCALSTORAGE_KEYS.selectedMenu,
+      JSON.stringify(menuItem)
+    );
     const selected = localStorage.getItem(LOCALSTORAGE_KEYS.selectedMenu);
     if (selected) {
       setClickedMenuItem(JSON.parse(selected));
     }
-    // window.location.reload();
+    navigate(menuItem.link);
   };
 
   return (
@@ -116,16 +125,14 @@ export const LMSMenu = () => {
               onClick={() => handleMenuItemClick(menu)}
             >
               <div className="m-2" id={`${index}`}>
-                <Link to={menu.link}>
-                  <i
-                    className={`${menu.iconClass} ${
-                      menu.id === clickedMenuItem.id ? "text-white" : null
-                    }`}
-                  ></i>
-                  <span className={`hover:text-white ${menu.titleClasses}`}>
-                    {menu.title}
-                  </span>
-                </Link>
+                <i
+                  className={`${menu.iconClass} ${
+                    menu.id === clickedMenuItem.id ? "text-white" : null
+                  }`}
+                ></i>
+                <span className={`hover:text-white ${menu.titleClasses}`}>
+                  {menu.title}
+                </span>
               </div>
             </li>
           );
