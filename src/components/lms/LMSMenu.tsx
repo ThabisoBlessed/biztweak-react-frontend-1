@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { IMenuListItem } from "../../model/menu-list-item.model";
 import "./LMS.css";
@@ -72,7 +72,24 @@ export const LMSMenu = () => {
   ];
   const [menu, setMenu] = useState(menuList);
 
-  const handleMenuItemClick = (menu: any) => {
+  useEffect(() => {
+    console.log(menu);
+  }, [menu]);
+
+  const handleMenuItemClick = (menu: IMenuListItem) => {
+    console.log(menu);
+    const active = menuList.find(a => a.isActive);
+    if (active) {
+      active.isActive = false;
+    }
+
+    const newActive = menuList.find(n => n.id === menu.id);
+    if (newActive) {
+      newActive.isActive = true;
+    }
+
+    setMenu(menuList);
+
     console.log(menu);
   };
 
