@@ -57,7 +57,7 @@ export const PlayCourseVideo = () => {
               <br></br>
               <small className="text-muted">(308.76MB)</small>
             </div>
-            <button className=" ml-3 pt-0 btn bg-[#00c2cb] btn-sm text-[white]">Download</button>
+            <button className="btn btn-main-outline bg-[#00c2cb]">Download</button>
           </div>
         </div>
         <div className="order-0 mb-3 mb-md-0 order-md-1 col-md-4 bg-light">
