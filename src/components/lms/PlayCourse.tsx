@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LMSMenu } from "./LMSMenu";
 import { PlayCourseVideo } from "./PlayCourseVideo";
 import "./Course.css";
 import { IMenuListItem } from "../../model/menu-list-item.model";
 import { PlayCourseAudio } from "./PlayCourseAudio";
 import { PlayCourseText } from "./PlayCourseText";
+import { LOCALSTORAGE_KEYS } from "../../config";
 
 export const PlayCourse = () => {
   const [selectedTopMenu, setSelectedTopMenu] = useState("video");
@@ -13,7 +14,7 @@ export const PlayCourse = () => {
       id: 0,
       title: "video",
       link: "",
-      iconClass: "fa fa-video text-dark",
+      iconClass: "fa fa-video",
       isActive: true,
       titleClasses: "btn btn-lg btn-main",
     },
@@ -21,7 +22,7 @@ export const PlayCourse = () => {
       id: 1,
       title: "audio",
       link: "",
-      iconClass: "fa-solid fa-microphone text-dark",
+      iconClass: "fa-solid fa-microphone",
       isActive: false,
       titleClasses: "btn btn-lg btn-main",
     },
@@ -29,14 +30,34 @@ export const PlayCourse = () => {
       id: 2,
       title: "text",
       link: "",
-      iconClass: "fa-solid fa-align-justify text-dark",
+      iconClass: "fa-solid fa-align-justify",
       isActive: false,
       titleClasses: "btn btn-lg btn-main",
     },
   ];
+  const [clickedMenuItem, setClickedMenuItem] = useState({} as IMenuListItem);
 
-  const onClickCourseTopMenu = (title: string) => {
-    setSelectedTopMenu(title);
+  useEffect(() => {
+    const selected = localStorage.getItem(LOCALSTORAGE_KEYS.selectedMenu);
+    if (selected) {
+      setClickedMenuItem(JSON.parse(selected));
+    } else {
+      setClickedMenuItem(menuList[0]);
+    }
+  }, []);
+
+  const onClickCourseTopMenu = (menu: IMenuListItem) => {
+    setSelectedTopMenu(menu.title);
+
+    localStorage.removeItem(LOCALSTORAGE_KEYS.selectedCourseTypeMenu);
+    localStorage.setItem(
+      LOCALSTORAGE_KEYS.selectedCourseTypeMenu,
+      JSON.stringify(menu)
+    );
+    const selected = localStorage.getItem(LOCALSTORAGE_KEYS.selectedCourseTypeMenu);
+    if (selected) {
+      setClickedMenuItem(JSON.parse(selected));
+    }
   };
 
   return (
@@ -55,10 +76,14 @@ export const PlayCourse = () => {
                       return (
                         <button
                           onClick={() => {
-                            onClickCourseTopMenu(menu.title);
+                            onClickCourseTopMenu(menu);
                           }}
                           key={`play_course_top_menu_${index}`}
-                          className={menu.titleClasses}
+                          className={`${menu.titleClasses} ${
+                            menu.id === clickedMenuItem.id
+                              ? "bg-[#00c2cb] text-white"
+                              : null
+                          }`}
                         >
                           <i className={menu.iconClass}></i>
                         </button>

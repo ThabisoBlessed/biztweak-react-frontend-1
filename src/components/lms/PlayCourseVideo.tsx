@@ -19,7 +19,7 @@ export const PlayCourseVideo = () => {
             <video
               controls={true}
               src={CourseVideo}
-              className="img-fluid h-[400px]"
+              className="img-fluid h-[400px] mt-2"
             ></video>
           </div>
           <div className="title d-flex justify-content-between align-items-center">

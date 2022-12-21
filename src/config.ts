@@ -7,6 +7,7 @@ export const LOCALSTORAGE_KEYS = {
   user: "user",
   assessmentQuestions: "assessment_questions",
   selectedMenu: "selected_menu",
+  selectedCourseTypeMenu: "selected_course_type_menu"
 };
 
 export const BUSINESS_KEYS = {
