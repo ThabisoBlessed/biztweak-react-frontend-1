@@ -23,7 +23,7 @@ export const PlayCourseVideo = () => {
           </div>
           <div className="d-flex my-3">
             <img
-              src="../images/avatar.png"
+              src={AvatarImg}
               className="h-[40px] w-[40px]"
               alt=""
             />
@@ -44,13 +44,13 @@ export const PlayCourseVideo = () => {
             advertising product or .
           </p>
           <h5 className="text-dark fw-600">Related to this Course</h5>
-          <div className="d-flex">
-            <div className="me-4">
+          <div className="flex">
+            <div className="mt-3">
               <small className="text-dark">Ex_Files_Figma_EssT.zip</small>
               <br></br>
               <small className="text-muted">(308.76MB)</small>
             </div>
-            <button className="btn btn-main-outline">Download</button>
+            <button className=" ml-3 pt-0 btn bg-[#00c2cb] btn-sm text-[white]">Download</button>
           </div>
         </div>
         <div className="order-0 mb-3 mb-md-0 order-md-1 col-md-4 bg-light">
