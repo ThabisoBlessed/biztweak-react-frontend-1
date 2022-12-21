@@ -1,22 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { LMSMenu } from "./LMSMenu";
 import { PlayCourseVideo } from "./PlayCourseVideo";
 import "./Course.css";
 import { IMenuListItem } from "../../model/menu-list-item.model";
+import { PlayCourseAudio } from "./PlayCourseAudio";
+import { PlayCourseText } from "./PlayCourseText";
 
 export const PlayCourse = () => {
+  const [selectedTopMenu, setSelectedTopMenu] = useState("video");
   const menuList: IMenuListItem[] = [
     {
       id: 0,
-      title: "Course Video",
+      title: "video",
       link: "",
       iconClass: "fa fa-video text-dark",
-      isActive: false,
+      isActive: true,
       titleClasses: "btn btn-lg btn-main",
     },
     {
       id: 1,
-      title: "Course Audio",
+      title: "audio",
       link: "",
       iconClass: "fa-solid fa-microphone text-dark",
       isActive: false,
@@ -24,13 +27,17 @@ export const PlayCourse = () => {
     },
     {
       id: 2,
-      title: "Course Text",
+      title: "text",
       link: "",
       iconClass: "fa-solid fa-align-justify text-dark",
       isActive: false,
       titleClasses: "btn btn-lg btn-main",
     },
   ];
+
+  const onClickCourseTopMenu = (title: string) => {
+    setSelectedTopMenu(title);
+  };
 
   return (
     <div className="w-full">
@@ -46,7 +53,13 @@ export const PlayCourse = () => {
                   <div className="btn-group">
                     {menuList.map((menu: IMenuListItem, index: number) => {
                       return (
-                        <button key={`play_course_top_menu_${index}`} className={menu.titleClasses}>
+                        <button
+                          onClick={() => {
+                            onClickCourseTopMenu(menu.title);
+                          }}
+                          key={`play_course_top_menu_${index}`}
+                          className={menu.titleClasses}
+                        >
                           <i className={menu.iconClass}></i>
                         </button>
                       );
@@ -55,7 +68,9 @@ export const PlayCourse = () => {
                 </div>
               </div>
             </div>
-            <PlayCourseVideo />
+            {selectedTopMenu === "video" ? <PlayCourseVideo /> : null}
+            {selectedTopMenu === "audio" ? <PlayCourseAudio /> : null}
+            {selectedTopMenu === "text" ? <PlayCourseText /> : null}
           </div>
         </div>
       </div>

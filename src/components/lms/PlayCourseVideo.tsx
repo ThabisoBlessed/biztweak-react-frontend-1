@@ -2,8 +2,15 @@ import React from "react";
 import CourseImg from "../../images/course.png";
 import AvatarImg from "../../images/avatar.png";
 import CourseVideo from "../../images/video.mp4";
+import { useNavigate } from "react-router-dom";
 
 export const PlayCourseVideo = () => {
+    const navigate = useNavigate();
+  
+    const onClickInstructor = () => {
+      navigate("/lms/instructor-profile");
+    }
+    
   return (
     <div>
       <div className="row">
@@ -21,7 +28,7 @@ export const PlayCourseVideo = () => {
               <i className="fa fa-eye text-dark"></i> 2.3K
             </div>
           </div>
-          <div className="d-flex my-3">
+          <div className="d-flex my-3 cursor-pointer" onClick={onClickInstructor}>
             <img
               src={AvatarImg}
               className="h-[40px] w-[40px]"
