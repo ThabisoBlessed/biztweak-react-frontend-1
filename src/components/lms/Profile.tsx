@@ -50,11 +50,11 @@ export const Profile = () => {
                                         alt=""
                                       />
                                     </div>
-                                    <button className="mx-3 btn btn-main">
+                                    <button className="mx-3 btn bg-[#00c2cb] text-white">
                                       <i className="fa fa-plus"></i> Upload new
                                       picture
                                     </button>
-                                    <button className="btn btn-white">
+                                    <button className="btn  hover:bg-black hover:text-white border-black">
                                       Remove
                                     </button>
                                   </div>
@@ -66,7 +66,7 @@ export const Profile = () => {
                                       <i
                                         className="fa fa-info-circle text-muted"
                                         data-bs-toggle="tooltip"
-                                        title=""
+                                        title="Name is required"
                                         data-bs-original-title="Name is required."
                                         aria-label="Name is required."
                                       ></i>
@@ -102,9 +102,9 @@ export const Profile = () => {
                                       <i
                                         className="fa fa-info-circle text-muted"
                                         data-bs-toggle="tooltip"
-                                        title=""
-                                        data-bs-original-title="Name is required."
-                                        aria-label="Name is required."
+                                        title="Location is required"
+                                        data-bs-original-title="Location is required."
+                                        aria-label="Location is required."
                                       ></i>
                                     </label>
                                   </div>
@@ -120,9 +120,9 @@ export const Profile = () => {
                                       <i
                                         className="fa fa-info-circle text-muted"
                                         data-bs-toggle="tooltip"
-                                        title=""
+                                        title="Bio is required"
                                         data-bs-original-title="Name is required."
-                                        aria-label="Name is required."
+                                        aria-label="Bio is required."
                                       ></i>
                                     </label>
                                   </div>
@@ -136,13 +136,13 @@ export const Profile = () => {
                                   <div className="d-flex justify-content-between">
                                     <label className="text-dark">
                                       Old Password
-                                      <i
+                                      {/* <i
                                         className="fa fa-info-circle text-muted"
                                         data-bs-toggle="tooltip"
-                                        title=""
-                                        data-bs-original-title="Name is required."
-                                        aria-label="Name is required."
-                                      ></i>
+                                        title="Password is required"
+                                        data-bs-original-title="Password is required."
+                                        aria-label="Password is required."
+                                      ></i> */}
                                     </label>
                                   </div>
                                   <input
@@ -151,17 +151,17 @@ export const Profile = () => {
                                   />
                                 </div>
                                 <div className="row">
-                                  <div className="form-group col-lg-6">
+                                  <div className="form-group mt-2 col-lg-6">
                                     <div className="d-flex justify-content-between">
                                       <label className="text-dark">
                                         New Password
-                                        <i
+                                        {/* <i
                                           className="fa fa-info-circle text-muted"
                                           data-bs-toggle="tooltip"
-                                          title=""
+                                          title="New Password is Required"
                                           data-bs-original-title="Name is required."
-                                          aria-label="Name is required."
-                                        ></i>
+                                          aria-label="New Password is required."
+                                        ></i> */}
                                       </label>
                                     </div>
                                     <input
@@ -169,17 +169,17 @@ export const Profile = () => {
                                       className="form-control core"
                                     />
                                   </div>
-                                  <div className="form-group col-lg-6">
+                                  <div className="form-group mt-2 col-lg-6">
                                     <div className="d-flex justify-content-between">
                                       <label className="text-dark">
                                         Confirm New Password
-                                        <i
+                                        {/* <i
                                           className="fa fa-info-circle text-muted"
                                           data-bs-toggle="tooltip"
                                           title=""
                                           data-bs-original-title="Name is required."
                                           aria-label="Name is required."
-                                        ></i>
+                                        ></i> */}
                                       </label>
                                     </div>
                                     <input
@@ -189,7 +189,7 @@ export const Profile = () => {
                                   </div>
                                 </div>
                                 <div className="form-group mt-2">
-                                  <button className="btn btn-white">
+                                  <button className="btn mb-2 hover:bg-black hover:text-white border-black">
                                     Update Password
                                   </button>
                                 </div>
@@ -223,7 +223,7 @@ export const Profile = () => {
                                   </div>
                                 </div>
                                 <div className="form-group mt-2">
-                                  <button className="btn btn-main w-[150px] text-white bg-[#00c2cb]">Save</button>
+                                  <button className="btn btn-main w-[150px] text-white bg-[#00c2cb] hover:bg-[#16f0fb]">Save</button>
                                 </div>
                               </form>
                             </div>
