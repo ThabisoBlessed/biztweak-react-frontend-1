@@ -41,7 +41,7 @@ export const Profile = () => {
                                 <h5 className="text-dark fw-bold">
                                   Profile Information
                                 </h5>
-                                <div className="form-group">
+                                <div className="form-group mt-2">
                                   <div className="d-flex align-items-center">
                                     <div>
                                       <img
@@ -59,10 +59,10 @@ export const Profile = () => {
                                     </button>
                                   </div>
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group mt-2">
                                   <div className="d-flex justify-content-between">
                                     <label className="text-dark">
-                                      Display name{" "}
+                                      Display name
                                       <i
                                         className="fa fa-info-circle text-muted"
                                         data-bs-toggle="tooltip"
@@ -77,10 +77,28 @@ export const Profile = () => {
                                     className="form-control core"
                                   />
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group mt-2">
                                   <div className="d-flex justify-content-between">
                                     <label className="text-dark">
-                                      Email{" "}
+                                      Email
+                                      <i
+                                        className="fa fa-info-circle text-muted"
+                                        data-bs-toggle="tooltip"
+                                        title="Email is required."
+                                        data-bs-original-title="Email is required."
+                                        aria-label="Email is required."
+                                      ></i>
+                                    </label>
+                                  </div>
+                                  <input
+                                    type="text"
+                                    className="form-control core"
+                                  />
+                                </div>
+                                <div className="form-group mt-2">
+                                  <div className="d-flex justify-content-between">
+                                    <label className="text-dark">
+                                      Location
                                       <i
                                         className="fa fa-info-circle text-muted"
                                         data-bs-toggle="tooltip"
@@ -95,28 +113,10 @@ export const Profile = () => {
                                     className="form-control core"
                                   />
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group mt-2">
                                   <div className="d-flex justify-content-between">
                                     <label className="text-dark">
-                                      Location{" "}
-                                      <i
-                                        className="fa fa-info-circle text-muted"
-                                        data-bs-toggle="tooltip"
-                                        title=""
-                                        data-bs-original-title="Name is required."
-                                        aria-label="Name is required."
-                                      ></i>
-                                    </label>
-                                  </div>
-                                  <input
-                                    type="text"
-                                    className="form-control core"
-                                  />
-                                </div>
-                                <div className="form-group">
-                                  <div className="d-flex justify-content-between">
-                                    <label className="text-dark">
-                                      Bio{" "}
+                                      Bio
                                       <i
                                         className="fa fa-info-circle text-muted"
                                         data-bs-toggle="tooltip"
@@ -132,10 +132,10 @@ export const Profile = () => {
                                   />
                                 </div>
                                 <h5 className="text-dark fw-bold">Logins</h5>
-                                <div className="form-group">
+                                <div className="form-group mt-2">
                                   <div className="d-flex justify-content-between">
                                     <label className="text-dark">
-                                      Old Password{" "}
+                                      Old Password
                                       <i
                                         className="fa fa-info-circle text-muted"
                                         data-bs-toggle="tooltip"
@@ -154,7 +154,7 @@ export const Profile = () => {
                                   <div className="form-group col-lg-6">
                                     <div className="d-flex justify-content-between">
                                       <label className="text-dark">
-                                        New Password{" "}
+                                        New Password
                                         <i
                                           className="fa fa-info-circle text-muted"
                                           data-bs-toggle="tooltip"
@@ -172,7 +172,7 @@ export const Profile = () => {
                                   <div className="form-group col-lg-6">
                                     <div className="d-flex justify-content-between">
                                       <label className="text-dark">
-                                        Confirm New Password{" "}
+                                        Confirm New Password
                                         <i
                                           className="fa fa-info-circle text-muted"
                                           data-bs-toggle="tooltip"
@@ -188,7 +188,7 @@ export const Profile = () => {
                                     />
                                   </div>
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group mt-2">
                                   <button className="btn btn-white">
                                     Update Password
                                   </button>
@@ -196,7 +196,7 @@ export const Profile = () => {
                                 <h5 className="text-dark fw-bold">
                                   Notifications
                                 </h5>
-                                <div className="form-group">
+                                <div className="form-group mt-2">
                                   <div className="d-flex justify-content-between">
                                     <label>
                                       Product updates and community
@@ -211,7 +211,7 @@ export const Profile = () => {
                                     </div>
                                   </div>
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group mt-2">
                                   <div className="d-flex justify-content-between">
                                     <label>Market Newsletter</label>
                                     <div className="form-check form-switch form-switch-md">
@@ -222,8 +222,8 @@ export const Profile = () => {
                                     </div>
                                   </div>
                                 </div>
-                                <div className="form-group">
-                                  <button className="btn btn-main">Save</button>
+                                <div className="form-group mt-2">
+                                  <button className="btn btn-main w-[150px] text-white bg-[#00c2cb]">Save</button>
                                 </div>
                               </form>
                             </div>

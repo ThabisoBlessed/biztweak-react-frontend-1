@@ -21,6 +21,7 @@ import { Course } from "./components/lms/Course";
 import { InstructorProfile } from "./components/lms/InstructorProfile";
 import { PlayCourse } from "./components/lms/PlayCourse";
 import { Calendar } from "./components/business/Calendar";
+import { Profile } from "./components/lms/Profile";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
           <Route path="/lms/dashboard" element={<Dashboard />}></Route>
           <Route path="/lms/messages" element={<Messages />}></Route>
           <Route path="/lms/calendar" element={<Calendar />}></Route>
+          <Route path="/lms/profile" element={<Profile />}></Route>
           <Route path="/lms/instructor-profile" element={<InstructorProfile />}></Route>
         </Routes>
       </Router>

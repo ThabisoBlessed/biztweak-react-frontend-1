@@ -69,6 +69,14 @@ export const LMSMenu = () => {
       isActive: false,
       titleClasses: "ml-3",
     },
+    {
+      id: 8,
+      title: "Profile",
+      link: "/lms/profile",
+      iconClass: "fa-lg fas fa-user",
+      isActive: false,
+      titleClasses: "ml-3",
+    },
   ];
   const [menu, setMenu] = useState(menuList);
 
