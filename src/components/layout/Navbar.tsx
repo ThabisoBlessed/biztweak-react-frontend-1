@@ -66,6 +66,11 @@ export const Navbar = () => {
                   </select>
                 </li>
                 <li className="nav-item me-2" id="home">
+                  <Link to="/lms">
+                    LMS
+                  </Link>
+                </li>
+                <li className="nav-item me-2" id="home">
                   <Link to="/">
                     <i className="fa-lg fa-solid fa-house"></i>
                   </Link>

@@ -2,6 +2,7 @@ import React from "react";
 import { LMSMenu } from "./LMSMenu";
 import CourseImg from "../../images/course.png";
 import AvatarImg from "../../images/avatar.png";
+import "./Profile.css";
 
 export const InstructorProfile = () => {
   return (
@@ -19,11 +20,18 @@ export const InstructorProfile = () => {
               <div className="card-body border-0">
                 <div className="row">
                   <div className="col-12 text-center">
-                    <img
-                      src={AvatarImg}
-                      className="h-[150px] w-[150px] rounded-circle img-thumbnail"
-                      alt=""
-                    />
+                    <div className="row">
+                      <div className="col"></div>
+                      <div className="col">
+                        <img
+                          src={AvatarImg}
+                          className="h-[150px] w-[150px] center-block rounded-circle img-thumbnail"
+                          alt=""
+                        />
+                      </div>
+                      <div className="col"></div>
+                    </div>
+
                     <h4 className="my-2 fw-600 text-dark">Jason Ritchey</h4>
                     <p className="text-dark small">Instructor</p>
                     <p className="small text-muted">Total Course : 27</p>
