@@ -69,7 +69,7 @@ export const BusinessProfile = () => {
                 </div>
                 <div className="col-md-8">
                   <label className="mr-2">
-                    Yes
+                    Yes&nbsp;
                     <input
                       name="registered"
                       type="radio"
@@ -79,7 +79,7 @@ export const BusinessProfile = () => {
                     />
                   </label>
                   <label>
-                    No
+                    No&nbsp;
                     <input
                       name="registered"
                       type="radio"
