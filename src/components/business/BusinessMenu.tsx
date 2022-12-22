@@ -27,7 +27,6 @@ export const BusinessMenu = (props: any) => {
     if (!isLoggedIn()) navigate("/auth/login");
   }, [navigate]);
 
-
   const onCompleteAssessment = (business: IBusinessMenuBusinessModel) => {
     const businessIndustryAndPhase = JSON.stringify(business);
     navigate("/business/manage-business/assessment", { state: { businessIndustryAndPhase } });

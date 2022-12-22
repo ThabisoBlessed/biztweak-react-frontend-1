@@ -4,18 +4,26 @@ import LogoImg from "../../images/logo.png";
 import UserPlaceholderImg from "../../images/user-placeholder.png";
 import { useNavigate } from "react-router-dom";
 import * as constants from "../../constants";
-import { isLoggedIn, LOCALSTORAGE_KEYS, removeLocalStorageValue } from "../../config";
+import {
+  isLoggedIn,
+  LOCALSTORAGE_KEYS,
+  removeLocalStorageValue,
+} from "../../config";
+import { IUser } from "../../model/user.model";
 
 export const Navbar = () => {
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(isLoggedIn());
   const [userEmail, setUserEmail] = useState("");
+  const [userName, setUserName] = useState("");
 
   useEffect(() => {
     console.log("Logged in: ", loggedIn);
     const user = localStorage.getItem(LOCALSTORAGE_KEYS.user);
     if (user) {
-      setUserEmail(JSON.parse(user).replace(/['"]+/g, ''));
+      const userResult: IUser = JSON.parse(JSON.parse(user));
+      setUserEmail(userResult.email);
+      setUserName(userResult.fullname);
     }
   }, [loggedIn]);
 
@@ -23,16 +31,20 @@ export const Navbar = () => {
     removeLocalStorageValue(LOCALSTORAGE_KEYS.accessToken);
     removeLocalStorageValue(LOCALSTORAGE_KEYS.user);
     window.location.reload();
-  }
+  };
 
   const onClearSelectedMenukNav = () => {
     localStorage.removeItem(LOCALSTORAGE_KEYS.selectedMenu);
-  }
+  };
 
   return (
-    <div className="border-b" data-testid="navbar" onClick={onClearSelectedMenukNav}>
+    <div
+      className="border-b"
+      data-testid="navbar"
+      onClick={onClearSelectedMenukNav}
+    >
       {loggedIn ? (
-        <nav className="navbar navbar-expand-md border-bottom navbar-light bg-white">
+        <nav className="navbar navbar-expand-md border-bottom navbar-light text-dark bg-white">
           <div className="container-fluid">
             <Link to="/auth/edit-profile">
               <div className="navbar-brand">
@@ -79,7 +91,10 @@ export const Navbar = () => {
                     <i className="fa-lg fa-solid fa-house"></i>
                   </Link>
                 </li>
-                <li className="nav-item me-2 hover:text-[#00c2cb]" id="notification">
+                <li
+                  className="nav-item me-2 hover:text-[#00c2cb]"
+                  id="notification"
+                >
                   <Link to="/notifications" className="hover:text-[#00c2cb]">
                     <i className="fa-lg fa-solid fa-bell"></i>
                   </Link>
@@ -99,19 +114,24 @@ export const Navbar = () => {
                         />
                       </div>
                       <div className="mt-4 ml-2">
-                        <h6 className="mb-0">Test</h6>
-                        <p className="mb-0 small text-muted">
-                          {userEmail}
-                        </p>
+                        <h6 className="mb-0">{userName}</h6>
+                        <p className="mb-0 small text-muted">{userEmail}</p>
                       </div>
                     </span>
                   </div>
                   <ul className="dropdown-menu">
                     <li className="m-2 hover:text-[#00c2cb]">
-                      <Link to="/auth/edit-profile" className="hover:text-[#00c2cb]">Edit Profile</Link>
+                      <Link
+                        to="/auth/edit-profile"
+                        className="hover:text-[#00c2cb]"
+                      >
+                        Edit Profile
+                      </Link>
                     </li>
                     <li className="m-2 hover:text-[#00c2cb]" onClick={onLogout}>
-                      <Link to="/auth/login" className="hover:text-[#00c2cb]">Logout</Link>
+                      <Link to="/auth/login" className="hover:text-[#00c2cb]">
+                        Logout
+                      </Link>
                     </li>
                   </ul>
                 </li>
