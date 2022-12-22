@@ -91,6 +91,7 @@ export const LMSMenu = () => {
     } else {
       setClickedMenuItem(menuList[0]);
     }
+    navigate(clickedMenuItem.link)
   });
 
   /**
