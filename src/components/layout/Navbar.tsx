@@ -25,8 +25,12 @@ export const Navbar = () => {
     window.location.reload();
   }
 
+  const onClearSelectedMenukNav = () => {
+    localStorage.removeItem(LOCALSTORAGE_KEYS.selectedMenu);
+  }
+
   return (
-    <div className="border-b" data-testid="navbar">
+    <div className="border-b" data-testid="navbar" onClick={onClearSelectedMenukNav}>
       {loggedIn ? (
         <nav className="navbar navbar-expand-md border-bottom navbar-light bg-white">
           <div className="container-fluid">
