@@ -50,7 +50,7 @@ export const Profile = () => {
                                         alt=""
                                       />
                                     </div>
-                                    <button className="mx-3 btn bg-[#00c2cb] text-white">
+                                    <button className="mx-3 btn hover:bg-[#16f0fb]  hover:text-white bg-[#00c2cb] mt-2 text-[white]">
                                       <i className="fa fa-plus"></i> Upload new
                                       picture
                                     </button>

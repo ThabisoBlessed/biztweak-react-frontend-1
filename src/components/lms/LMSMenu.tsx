@@ -113,11 +113,11 @@ export const LMSMenu = () => {
 
   return (
     <div className="w-full">
-      <ul className="ml-5 navbar-nav pt-2 mb-4">
+      <ul className="ml-5 navbar-nav pt-2 mb-4 text-dark">
         {menu.map((menu: IMenuListItem, index: number) => {
           return (
             <li
-              className={`hover:bg-[#16f0fb] text-dark w-full ${
+              className={`hover:bg-[#16f0fb]  hover:text-white w-full ${
                 menu.id === clickedMenuItem.id
                   ? "bg-[#00c2cb] text-white"
                   : null

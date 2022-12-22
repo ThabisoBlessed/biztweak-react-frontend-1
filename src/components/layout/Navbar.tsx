@@ -69,18 +69,18 @@ export const Navbar = () => {
                     <option value="">English</option>
                   </select>
                 </li>
-                <li className="nav-item me-2" id="home">
-                  <Link to="/lms">
+                <li className="nav-item me-2 hover:text-[#00c2cb]" id="home">
+                  <Link to="/lms" className="hover:text-[#00c2cb]">
                     LMS
                   </Link>
                 </li>
-                <li className="nav-item me-2" id="home">
-                  <Link to="/">
+                <li className="nav-item me-2 hover:text-[#00c2cb]" id="home">
+                  <Link to="/" className="hover:text-[#00c2cb]">
                     <i className="fa-lg fa-solid fa-house"></i>
                   </Link>
                 </li>
-                <li className="nav-item me-2" id="notification">
-                  <Link to="/notifications">
+                <li className="nav-item me-2 hover:text-[#00c2cb]" id="notification">
+                  <Link to="/notifications" className="hover:text-[#00c2cb]">
                     <i className="fa-lg fa-solid fa-bell"></i>
                   </Link>
                 </li>
@@ -107,11 +107,11 @@ export const Navbar = () => {
                     </span>
                   </div>
                   <ul className="dropdown-menu">
-                    <li className="m-2">
-                      <Link to="/auth/edit-profile">Edit Profile</Link>
+                    <li className="m-2 hover:text-[#00c2cb]">
+                      <Link to="/auth/edit-profile" className="hover:text-[#00c2cb]">Edit Profile</Link>
                     </li>
-                    <li className="m-2" onClick={onLogout}>
-                      <Link to="/auth/login">Logout</Link>
+                    <li className="m-2 hover:text-[#00c2cb]" onClick={onLogout}>
+                      <Link to="/auth/login" className="hover:text-[#00c2cb]">Logout</Link>
                     </li>
                   </ul>
                 </li>

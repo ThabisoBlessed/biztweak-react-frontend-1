@@ -81,7 +81,7 @@ export const ReportSummary = () => {
                 </button>
               </h2>
               <p className="d-flex mt-4 text-dark">
-                <i className="fa fa-info me-3"></i> We are generating revenue,
+                <i className="fa fa-info m-0"></i>&nbsp;We are generating revenue,
                 we would like to grow through investment
               </p>
 
