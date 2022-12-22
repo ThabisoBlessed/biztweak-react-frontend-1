@@ -192,10 +192,10 @@ export const BusinessProfile = () => {
               </div>
               <div className="row my-4">
                 <div className="col-12 text-end">
-                  <button className="btn btn-outline-info mr-2 btn-lg mt-2 p-3 w-[100px] text-white" onClick={onBack}>
+                  <button className="btn btn-outline-info mr-2 btn-lg mt-2 p-3 w-[100px] hover:text-white hover:bg-[#16f0fb]" onClick={onBack}>
                     Back
                   </button>
-                  <button className="btn bg-[#00c2cb] btn-info btn-lg mt-2 p-3 w-[100px] text-white" onClick={onSave}>
+                  <button className="btn bg-[#00c2cb] btn-info btn-lg mt-2 p-3 w-[100px] text-white hover:text-white hover:bg-[#16f0fb]" onClick={onSave}>
                     Save
                   </button>
                 </div>

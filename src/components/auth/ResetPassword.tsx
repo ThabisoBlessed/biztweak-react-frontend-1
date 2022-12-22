@@ -53,7 +53,7 @@ export const ResetPassword = () => {
                       </p>
                       <div className="clearfix mb-3"></div>
                       <div className="d-md-flex justify-content-between mb-3 align-items-center">
-                        <button className="btn btn-lg ml-2 text-white bg-[#00c2cb]">
+                        <button className="btn btn-lg ml-2 w-[150px] text-white bg-[#00c2cb] hover:bg-[#16f0fb]">
                           Reset Password
                         </button>
                         <div className="float-none float-md-end">

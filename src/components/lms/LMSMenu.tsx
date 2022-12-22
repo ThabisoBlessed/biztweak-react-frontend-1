@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LOCALSTORAGE_KEYS } from "../../config";
 import { IMenuListItem } from "../../model/menu-list-item.model";
 import "./LMS.css";
 
 export const LMSMenu = () => {
   const navigate = useNavigate();
-
+  
   const menuList: IMenuListItem[] = [
     {
       id: 0,
@@ -91,7 +91,7 @@ export const LMSMenu = () => {
     } else {
       setClickedMenuItem(menuList[0]);
     }
-  }, []);
+  });
 
   /**
    * Handles menu item click
@@ -107,7 +107,7 @@ export const LMSMenu = () => {
     if (selected) {
       setClickedMenuItem(JSON.parse(selected));
     }
-    navigate(menuItem.link);
+    navigate(menuItem.link)
   };
 
   return (
@@ -116,7 +116,7 @@ export const LMSMenu = () => {
         {menu.map((menu: IMenuListItem, index: number) => {
           return (
             <li
-              className={`hover:bg-[#00c2cb] text-dark w-full ${
+              className={`hover:bg-[#16f0fb] text-dark w-full ${
                 menu.id === clickedMenuItem.id
                   ? "bg-[#00c2cb] text-white"
                   : null
@@ -130,7 +130,7 @@ export const LMSMenu = () => {
                     menu.id === clickedMenuItem.id ? "text-white" : null
                   }`}
                 ></i>
-                <span className={`hover:text-white ${menu.titleClasses}`}>
+                <span className={`${menu.titleClasses}`}>
                   {menu.title}
                 </span>
               </div>

@@ -133,7 +133,7 @@ export const AddCompany = () => {
                 type="button"
                 data-bs-toggle="modal"
                 data-bs-target="#addCompany"
-                className="btn btn-outline-info dotted-border col-12 mb-2 btn-lg"
+                className="btn btn-outline-info dotted-border col-12 mb-2 btn-lg hover:text-white hover:bg-[#16f0fb]"
               >
                 <i className="fa fa-plus"></i> Add Company
               </button>

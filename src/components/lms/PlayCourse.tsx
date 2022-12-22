@@ -15,7 +15,7 @@ export const PlayCourse = () => {
       title: "video",
       link: "",
       iconClass: "fa fa-video",
-      isActive: true,
+      isActive: false,
       titleClasses: "btn btn-lg btn-main",
     },
     {
@@ -35,17 +35,19 @@ export const PlayCourse = () => {
       titleClasses: "btn btn-lg btn-main",
     },
   ];
-  const [clickedMenuItem, setClickedMenuItem] = useState({} as IMenuListItem);
+  const [clickedMenuItem, setClickedMenuItem] = useState(menuList[0]);
 
   useEffect(() => {
     const selected = localStorage.getItem(LOCALSTORAGE_KEYS.selectedMenu);
     if (selected) {
       setClickedMenuItem(JSON.parse(selected));
-    } else {
-      setClickedMenuItem(menuList[0]);
-    }
+    } 
   }, []);
 
+  /**
+   * Styles top course type menu
+   * @param menu 
+   */
   const onClickCourseTopMenu = (menu: IMenuListItem) => {
     setSelectedTopMenu(menu.title);
 
@@ -81,9 +83,10 @@ export const PlayCourse = () => {
                           key={`play_course_top_menu_${index}`}
                           className={`${menu.titleClasses} ${
                             menu.id === clickedMenuItem.id
-                              ? "bg-[#00c2cb] text-white"
+                              ? "w-[150px] text-white bg-[#00c2cb] hover:bg-[#16f0fb]"
                               : null
                           }`}
+                          id={`play_course_top_menu_${index}`}
                         >
                           <i className={menu.iconClass}></i>
                         </button>

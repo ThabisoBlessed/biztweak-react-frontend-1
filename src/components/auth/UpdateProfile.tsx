@@ -173,7 +173,7 @@ export const UpdateProfile = () => {
         </div>
 
         <div className="form-group">
-          <button className="btn btn-info mt-2 profile-menu-action-btn text-white bg-[#00C2CB]">
+          <button className="btn btn-info mt-2 profile-menu-action-btn w-[150px] text-white bg-[#00c2cb] hover:bg-[#16f0fb]">
             Update Profile
           </button>
         </div>

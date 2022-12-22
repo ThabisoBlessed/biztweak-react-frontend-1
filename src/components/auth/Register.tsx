@@ -133,7 +133,7 @@ export const Register = () => {
                           onClick={(event) =>
                             registerWithEmailAndPassword(event)
                           }
-                          className="btn btn-lg ml-2 w-[150px] text-white bg-[#00c2cb]"
+                          className="btn btn-lg ml-2 w-[150px] text-white bg-[#00c2cb] hover:bg-[#16f0fb]"
                         >
                           {isLoading ? (
                             <span>Loading...</span>

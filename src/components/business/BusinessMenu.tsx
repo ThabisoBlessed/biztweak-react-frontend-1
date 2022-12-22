@@ -46,13 +46,13 @@ export const BusinessMenu = (props: any) => {
   }
 
   return (
-    <div className="b-0 m-0 text-dark min-h-[100vh]">
+    <div className="b-0 m-0 min-h-[100vh]">
       <div className="section">
-        <h6 className="fw-bold mt-3 mb-3">COMPANY</h6>
+        <h6 className="fw-bold mt-3 mb-3 text-dark">COMPANY</h6>
         <button
           data-bs-toggle="modal"
           data-bs-target="#addCompany"
-          className="btn btn-outline-info dotted-border btn-lg col-12"
+          className="btn btn-outline-info dotted-border btn-lg col-12 hover:text-white hover:bg-[#16f0fb]"
           onClick={onAddCompany}
         >
           <i className="fa fa-plus"></i> Add Company
@@ -107,7 +107,7 @@ export const BusinessMenu = (props: any) => {
                         <div className="top-buffer">
                           {business.assessmentComplete ? (
                             <button
-                              className="btn profile-menu-action-btn mt-2 mb-2 bg-[#00c2cb] text-[white]"
+                              className="btn profile-menu-action-btn mt-2 mb-2 text-white bg-[#00c2cb] hover:bg-[#16f0fb]"
                               onClick={() => onViewBizReport(business)}
                             >
                               <i className="fa fa-file-alt"></i> View Biz Report
@@ -115,7 +115,7 @@ export const BusinessMenu = (props: any) => {
                           ) : (
                             <button
                               onClick={() => onCompleteAssessment(business)}
-                              className="btn profile-menu-action-btn mt-2 mb-2 bg-[#00c2cb] text-[white]"
+                              className="btn profile-menu-action-btn mt-2 mb-2 text-white bg-[#00c2cb] hover:bg-[#16f0fb]"
                             >
                               <i className="fa fa-file-alt"></i> Complete
                               Assessment

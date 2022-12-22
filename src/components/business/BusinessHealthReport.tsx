@@ -47,7 +47,7 @@ export const BusinessHealthReport = () => {
               in graphical way and understand easily, moreover you will also get
               recommendations from our system based on the assessment.
             </p>
-            <button className="btn btn-info" onClick={onViewBizReport}>
+            <button className="btn w-[150px] text-white bg-[#00c2cb] hover:bg-[#16f0fb]" onClick={onViewBizReport}>
               <i className="fa fa-file-alt"></i> View Biz Report
             </button>
           </div>

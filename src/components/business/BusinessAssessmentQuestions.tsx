@@ -182,7 +182,7 @@ export const BusinessAssessmentQuestions = () => {
       <div className="text-end mt-3">
           <button
             type="button"
-            className="btn bg-[#00c2cb] btn-info btn-lg p-3 w-[100px] text-white"
+            className="btn text-white bg-[#00c2cb] hover:bg-[#16f0fb] btn-info btn-lg p-3 w-[100px]"
             data-bs-toggle="modal"
             data-bs-target="#completeCompanyProfile"
             onClick={onSave}
