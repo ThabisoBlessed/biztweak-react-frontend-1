@@ -56,7 +56,7 @@ function App() {
           <Route path="/lms/profile" element={<Profile />}></Route>
           <Route path="/lms/instructor-profile" element={<InstructorProfile />}></Route>
 
-          <Route path="/cms/*" element={<CMP />}></Route>
+          <Route path="/cmp/*" element={<CMP />}></Route>
         </Routes>
       </Router>
       <Footer />

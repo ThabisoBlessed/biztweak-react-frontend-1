@@ -102,8 +102,8 @@ export const Navbar = () => {
                   </Link>
                 </li>
                 <li className="nav-item me-2 hover:text-[#00c2cb]" id="cms">
-                  <Link to="/cms" className="hover:text-[#00c2cb]">
-                    CMS
+                  <Link to="/cmp" className="hover:text-[#00c2cb]">
+                    CMP
                   </Link>
                 </li>
                 <li className="nav-item me-2 hover:text-[#00c2cb]" id="home">

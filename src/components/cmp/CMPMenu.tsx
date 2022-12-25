@@ -10,75 +10,35 @@ export const CMPMenu = () => {
     {
       id: 0,
       title: "Dashboard",
-      link: "/lms/dashboard",
+      link: "/cmp/dashboard",
       iconClass: "fa-lg fa-solid fa-home",
       isActive: false,
       titleClasses: "ml-3",
     },
     {
       id: 1,
-      title: "Course Progress",
-      link: "/lms/course-progress",
-      iconClass: "fa-lg fa-solid fa-clock",
+      title: "Admin User",
+      link: "/cmp/admin-user",
+      iconClass: "fa-lg fa-solid fa-user",
       isActive: false,
       titleClasses: "ml-3",
     },
     {
       id: 2,
-      title: "Courses",
-      link: "/lms/courses",
-      iconClass: "fa-lg fas fa-file-text",
+      title: "Statistics",
+      link: "/cmp/statistics",
+      iconClass: "fa-lg fas fa-chart-bar",
       isActive: false,
       titleClasses: "ml-4",
     },
     {
       id: 3,
-      title: "Messages",
-      link: "/lms/messages",
-      iconClass: "fa-lg fa-solid fa-envelope",
+      title: "Manage Course",
+      link: "/cmp/manage-courses",
+      iconClass: "fa-lg fa-solid fa-bars",
       isActive: false,
       titleClasses: "ml-3",
-    },
-    // {
-    //   id: 4,
-    //   title: "Digital Tools",
-    //   link: "/lms/digital-tools",
-    //   iconClass: "fa-lg fa-solid fa-cog",
-    //   isActive: false,
-    //   titleClasses: "ml-3",
-    // },
-    // {
-    //   id: 5,
-    //   title: "Growth Plan",
-    //   link: "/lms/growth-plan",
-    //   iconClass: "fa-lg fas fa-bar-chart",
-    //   isActive: false,
-    //   titleClasses: "ml-3",
-    // },
-    {
-      id: 4,
-      title: "Calendar",
-      link: "/lms/calendar",
-      iconClass: "fa-lg fas fa-calendar-alt",
-      isActive: false,
-      titleClasses: "ml-3",
-    },
-    // {
-    //   id: 7,
-    //   title: "Attendance",
-    //   link: "/lms/attendance",
-    //   iconClass: "fa-lg fas fa-file-waveform",
-    //   isActive: false,
-    //   titleClasses: "ml-3",
-    // },
-    {
-      id: 5,
-      title: "Profile",
-      link: "/lms/profile",
-      iconClass: "fa-lg fas fa-user",
-      isActive: false,
-      titleClasses: "ml-3",
-    },
+    }
   ];
   const [menu, setMenu] = useState(menuList);
   const [clickedMenuItem, setClickedMenuItem] = useState({} as IMenuListItem);
@@ -139,24 +99,6 @@ export const CMPMenu = () => {
           );
         })}
       </ul>
-      <div className="p-2 d-none d-md-block">
-        <div className="card bg-light text-dark">
-          <div className="card-header bg-transparent border-0">
-            <h6>Implementatio tasks</h6>
-          </div>
-          <div className="card-body">
-            <div className="text-center">
-              <h5>Upload feedback</h5>
-              <p className="small">
-                Our consultants will take a look and give you feedback
-              </p>
-              <button className="btn px-4 btn-outline-secondary">
-                <i className="fa fa-upload"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
