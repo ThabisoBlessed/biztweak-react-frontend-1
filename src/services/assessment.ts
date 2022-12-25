@@ -19,3 +19,23 @@ export const getAssessmentQuestions = async (): Promise<any> => {
     return error;
   }
 };
+
+/**
+ * Updates assessment questions with updated answers
+ * 
+ * @param questions 
+ * @returns {any} result
+ */
+export const updateAssessmentQuestions = async (questions: string): Promise<any> => {
+  try {
+    let config = {
+      headers: {
+        'Authorization': 'Bearer ' + String(localStorage.getItem(LOCALSTORAGE_KEYS.accessToken)).replace(/['"\\]+/g, '')
+      }
+    }
+
+    return await axios.post(constants.baseUrl + `/assessments`, {data: questions}, config);
+  } catch (error: any) {
+    return error;
+  }
+};

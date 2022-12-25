@@ -5,16 +5,14 @@ import {
   IMappedAssessmentQuestion,
   IQuestion,
 } from "../../model/mapped-assessment-question.model";
-import { getAssessmentQuestions } from "../../services/assessment";
+import { getAssessmentQuestions, updateAssessmentQuestions } from "../../services/assessment";
 
 export const BusinessAssessmentQuestions = () => {
   const questions: Assessment[] = [];
   const [questionList, setQuestionList] = useState(questions);
   const mappedQuestionList: IMappedAssessmentQuestion[] = [];
   const [mappedQuestions, setMappedQuestions] = useState(mappedQuestionList);
-  const question = {} as IQuestion;
-  const [checkedQuestion, setCheckedQuestion] = useState(question);
-  const [checkedAnswer, setCheckedAnswer] = useState("");
+  const [canSave, setCanSave] = useState(false);
 
   useEffect(() => {
     if (questionList.length === 0) {
@@ -70,8 +68,13 @@ export const BusinessAssessmentQuestions = () => {
     setQuestionList(assessmentQuestions.data.package.data);
   };
 
+  /**
+   * Updates questions with checked answers
+   * 
+   * @param question 
+   * @param answer 
+   */
   const questionChecked = (question: IQuestion, answer: string) => {
-    console.log(question, answer);
     for (let index = 0; index < questionList.length; index++) {
       const element = questionList[index];
       if (element.id === question.id) {
@@ -83,26 +86,30 @@ export const BusinessAssessmentQuestions = () => {
         }
       }
     }
-    // setCheckedQuestion(question);
-    // setCheckedAnswer(answer);
-    console.log(questionList);
+    allQuestionsAnswered();
   };
 
-  const mainQuestion = (mapped: IMappedAssessmentQuestion) => {
-    // const questionAndAnswer = mappedQuestions.find((m) => m.id === mapped.id);
-    // if (questionAndAnswer) {
-    //   const checked = questionAndAnswer.questions.find(
-    //     (q) => q.id === checkedQuestion.id
-    //   );
-    //   if (checked) {
-    //     checked.answer = checkedAnswer;
-    //   }
-    // }
+  /**
+   * Save updated questions
+   */
+  const onSave = async() => {
+    const updated = await updateAssessmentQuestions(JSON.stringify(questionList));
+    console.log(updated);
   };
 
-  const onSave = () => {
-    console.log(mappedQuestions);
-  };
+  /**
+   * Checks whether all questions are answered
+   * 
+   */
+  const allQuestionsAnswered = () => {
+    const answered = questionList.filter(q => q.answer === "yes|no");
+    console.log(answered.length);
+    if (answered.length > 0) {
+      setCanSave(false);
+    } else {
+      setCanSave(true);
+    }
+  }
 
   return (
     <div>
@@ -143,7 +150,6 @@ export const BusinessAssessmentQuestions = () => {
                         id={`${String(subQuestion.label)
                           .toLowerCase()
                           .replace(/[^a-zA-Z0-9 ]/g, "")}`}
-                        onChange={() => mainQuestion(question)}
                       >
                         <p className="mb-1">{subQuestion.label}</p>
                         <label
@@ -201,6 +207,7 @@ export const BusinessAssessmentQuestions = () => {
           data-bs-toggle="modal"
           data-bs-target="#completeCompanyProfile"
           onClick={onSave}
+          disabled={!canSave}
         >
           Save
         </button>
