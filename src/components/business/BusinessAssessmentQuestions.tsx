@@ -71,23 +71,38 @@ export const BusinessAssessmentQuestions = () => {
   };
 
   const questionChecked = (question: IQuestion, answer: string) => {
-    setCheckedQuestion(question);
-    setCheckedAnswer(answer);
-  }
-
-  const mainQuestion = (mapped: IMappedAssessmentQuestion) => {
-    const questionAndAnswer = mappedQuestions.find(m => m.id === mapped.id);
-    if (questionAndAnswer) {
-      const checked = questionAndAnswer.questions.find(q => q.id === checkedQuestion.id);
-      if (checked) {
-        checked.answer = checkedAnswer;
+    console.log(question, answer);
+    for (let index = 0; index < questionList.length; index++) {
+      const element = questionList[index];
+      if (element.id === question.id) {
+        if (element.answer === answer) {
+          break;
+        } else {
+          element.answer = answer;
+          break;
+        }
       }
     }
-  }
+    // setCheckedQuestion(question);
+    // setCheckedAnswer(answer);
+    console.log(questionList);
+  };
+
+  const mainQuestion = (mapped: IMappedAssessmentQuestion) => {
+    // const questionAndAnswer = mappedQuestions.find((m) => m.id === mapped.id);
+    // if (questionAndAnswer) {
+    //   const checked = questionAndAnswer.questions.find(
+    //     (q) => q.id === checkedQuestion.id
+    //   );
+    //   if (checked) {
+    //     checked.answer = checkedAnswer;
+    //   }
+    // }
+  };
 
   const onSave = () => {
-    setLocalStorageValue(LOCALSTORAGE_KEYS.assessmentQuestions, mappedQuestions);
-  }
+    console.log(mappedQuestions);
+  };
 
   return (
     <div>
@@ -148,7 +163,7 @@ export const BusinessAssessmentQuestions = () => {
                             .toLowerCase()
                             .replace(/[^a-zA-Z0-9 ]/g, "")}_yes`}
                           className="m-2"
-                          onChange={() => questionChecked(subQuestion ,"yes")}
+                          onChange={() => questionChecked(subQuestion, "yes")}
                         />
                         <label
                           htmlFor={`${String(subQuestion.label)
@@ -167,7 +182,7 @@ export const BusinessAssessmentQuestions = () => {
                             .toLowerCase()
                             .replace(/[^a-zA-Z0-9 ]/g, "")}_no`}
                           className="m-2"
-                          onChange={() => questionChecked(subQuestion ,"no")}
+                          onChange={() => questionChecked(subQuestion, "no")}
                         />
                       </div>
                     );
@@ -180,16 +195,16 @@ export const BusinessAssessmentQuestions = () => {
       </div>
 
       <div className="text-end mt-3">
-          <button
-            type="button"
-            className="btn text-white bg-[#00c2cb] hover:bg-[#16f0fb] btn-info btn-lg p-3 w-[100px]"
-            data-bs-toggle="modal"
-            data-bs-target="#completeCompanyProfile"
-            onClick={onSave}
-          >
-            Save
-          </button>
-        </div>
+        <button
+          type="button"
+          className="btn text-white bg-[#00c2cb] hover:bg-[#16f0fb] btn-info btn-lg p-3 w-[100px]"
+          data-bs-toggle="modal"
+          data-bs-target="#completeCompanyProfile"
+          onClick={onSave}
+        >
+          Save
+        </button>
+      </div>
     </div>
   );
 };

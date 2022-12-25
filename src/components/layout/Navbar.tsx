@@ -33,6 +33,21 @@ export const Navbar = () => {
     window.location.reload();
   };
 
+  const onEditProfile = () => {
+    localStorage.setItem(
+      LOCALSTORAGE_KEYS.selectedMenu,
+      JSON.stringify({
+        id: 5,
+        title: "Profile",
+        link: "/lms/profile",
+        iconClass: "fa-lg fas fa-user",
+        isActive: false,
+        titleClasses: "ml-3",
+      })
+    );
+    navigate("/lms/profile");
+  };
+
   const onClearSelectedMenukNav = () => {
     localStorage.removeItem(LOCALSTORAGE_KEYS.selectedMenu);
   };
@@ -120,14 +135,11 @@ export const Navbar = () => {
                     </span>
                   </div>
                   <ul className="dropdown-menu">
-                    <li className="m-2 hover:text-[#00c2cb]">
-                      <Link
-                        to="/auth/edit-profile"
-                        className="hover:text-[#00c2cb]"
-                      >
+                    {/* <li className="m-2 hover:text-[#00c2cb]">
+                      <Link to="/lms/profile" className="hover:text-[#00c2cb]">
                         Edit Profile
                       </Link>
-                    </li>
+                    </li> */}
                     <li className="m-2 hover:text-[#00c2cb]" onClick={onLogout}>
                       <Link to="/auth/login" className="hover:text-[#00c2cb]">
                         Logout

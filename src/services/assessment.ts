@@ -7,7 +7,6 @@ import * as constants from "../constants";
  * @returns {Promise<Assessment[]>} response
  */
 export const getAssessmentQuestions = async (): Promise<any> => {
-  console.log(String(localStorage.getItem(LOCALSTORAGE_KEYS.accessToken)).replace(/['"\\]+/g, ''));
   try {
     let config = {
       headers: {

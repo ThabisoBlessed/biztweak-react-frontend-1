@@ -6,7 +6,6 @@ import "./LMS.css";
 
 export const LMSMenu = () => {
   const navigate = useNavigate();
-  
   const menuList: IMenuListItem[] = [
     {
       id: 0,
@@ -86,6 +85,7 @@ export const LMSMenu = () => {
 
   useEffect(() => {
     const selected = localStorage.getItem(LOCALSTORAGE_KEYS.selectedMenu);
+    console.log(selected);
     if (selected) {
       setClickedMenuItem(JSON.parse(selected));
     } else {

@@ -11,4 +11,5 @@ export interface IUser {
     location: string,
     role: UserRole
     registered: string;
+    imageUrl: string;
 }
