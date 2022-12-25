@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { LOCALSTORAGE_KEYS, setLocalStorageValue } from "../../config";
 import { Assessment } from "../../model/assessment.model";
 import {
   IMappedAssessmentQuestion,
