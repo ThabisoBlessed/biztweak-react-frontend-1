@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LOCALSTORAGE_KEYS } from "../../config";
 import { IMenuListItem } from "../../model/menu-list-item.model";
-import "./LMS.css";
+import "./CMP.css";
 
-export const CMSMenu = () => {
+export const CMPMenu = () => {
   const navigate = useNavigate();
   const menuList: IMenuListItem[] = [
     {

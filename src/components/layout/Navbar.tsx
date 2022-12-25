@@ -96,9 +96,14 @@ export const Navbar = () => {
                     <option value="">English</option>
                   </select>
                 </li>
-                <li className="nav-item me-2 hover:text-[#00c2cb]" id="home">
+                <li className="nav-item me-2 hover:text-[#00c2cb]" id="lms">
                   <Link to="/lms" className="hover:text-[#00c2cb]">
                     LMS
+                  </Link>
+                </li>
+                <li className="nav-item me-2 hover:text-[#00c2cb]" id="cms">
+                  <Link to="/cms" className="hover:text-[#00c2cb]">
+                    CMS
                   </Link>
                 </li>
                 <li className="nav-item me-2 hover:text-[#00c2cb]" id="home">

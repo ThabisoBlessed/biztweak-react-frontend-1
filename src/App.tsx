@@ -22,6 +22,7 @@ import { InstructorProfile } from "./components/lms/InstructorProfile";
 import { PlayCourse } from "./components/lms/PlayCourse";
 import { Calendar } from "./components/business/Calendar";
 import { Profile } from "./components/lms/Profile";
+import { CMP } from "./components/cmp/CMP";
 
 function App() {
   return (
@@ -54,6 +55,8 @@ function App() {
           <Route path="/lms/calendar" element={<Calendar />}></Route>
           <Route path="/lms/profile" element={<Profile />}></Route>
           <Route path="/lms/instructor-profile" element={<InstructorProfile />}></Route>
+
+          <Route path="/cms/*" element={<CMP />}></Route>
         </Routes>
       </Router>
       <Footer />

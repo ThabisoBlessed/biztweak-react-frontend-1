@@ -1,8 +1,8 @@
 import React from "react";
 import { Dashboard } from "./Dashboard";
-import "./CMS.css";
+import "./CMP.css";
 
-export const LMS = () => {
+export const CMP = () => {
   return (
     <div className="w-full">
       <Dashboard />

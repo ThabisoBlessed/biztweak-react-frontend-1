@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "./CMS.css";
+import "./CMP.css";
 import FileImg from "../../images/icons/file.png";
 import ClockImg from "../../images/icons/clock.png";
 import CheckImg from "../../images/icons/check.png";
 import CoinsImg from "../../images/icons/coins.png";
-import { CMSMenu } from "./CMSMenu";
+import { CMPMenu } from "./CMPMenu";
 
 export const Dashboard = () => {
   const courses: any[] = [
@@ -22,7 +22,7 @@ export const Dashboard = () => {
     <div className="w-full">
       <div className="row">
         <div className="col-md-2 min-h-[100vh]">
-          <CMSMenu />
+          <CMPMenu />
         </div>
         <div className="col-md-10 text-left bg-light border-start">
           <div className="container-fluid">
