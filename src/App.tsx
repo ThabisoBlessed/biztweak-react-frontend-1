@@ -20,7 +20,7 @@ import { Messages } from "./components/lms/Messages";
 import { Course } from "./components/lms/Course";
 import { InstructorProfile } from "./components/lms/InstructorProfile";
 import { PlayCourse } from "./components/lms/PlayCourse";
-import { Calendar } from "./components/business/Calendar";
+import { Calendar } from "./components/lms/Calendar";
 import { Profile } from "./components/lms/Profile";
 import { CMP } from "./components/cmp/CMP";
 
