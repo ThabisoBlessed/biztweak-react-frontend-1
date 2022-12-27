@@ -2,6 +2,7 @@ import React from "react";
 import { LMSMenu } from "./LMSMenu";
 import { CalendarItem } from "./CalendarItem";
 import { DatePicker } from "./DatePicker";
+import { CalendarFull } from "./CalendarFull";
 
 export const Calendar = () => {
   return (
@@ -14,7 +15,7 @@ export const Calendar = () => {
           <div className="container-fluid">
             <div className="row">
               <div className="col-lg-8 py-4">
-                <CalendarItem />
+                <CalendarFull />
               </div>
 
               <div className="col-lg-4 bg-white py-4">
