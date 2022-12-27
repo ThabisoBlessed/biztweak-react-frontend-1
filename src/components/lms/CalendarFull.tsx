@@ -89,7 +89,7 @@ export const CalendarFull = () => {
   return (
     <>
       {/* {renderSidebar} */}
-      <div className="demo-app-main">
+      <div className="demo-app-main bg-white">
         <FullCalendar
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
           headerToolbar={{
