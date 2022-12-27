@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./CMP.css";
 import EntreprenursImg from "../../images/icons/entreprenuers.png";
 import ConsultantsImg from "../../images/icons/consultants.png";
 import MentorImg from "../../images/icons/mentor.png";
 import CoachesImg from "../../images/icons/mic.png";
 import { CMPMenu } from "./CMPMenu";
+import { AddCourse } from "./AddCourse";
 
 export const Dashboard = () => {
-
-  useEffect(() => {
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div className="w-full">
@@ -58,8 +57,8 @@ export const Dashboard = () => {
             </div>
 
             <div className="m-3">
+              <AddCourse />
             </div>
-
           </div>
         </div>
       </div>

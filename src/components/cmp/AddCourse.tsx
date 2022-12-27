@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import UserImg from "../../images/icons/user.png";
 
 export const AddCourse = () => {
+  const [videoType, setVideoType] = useState("upload");
+  const [videoChecked, setVideoChecked] = useState(true);
+
+  useEffect(() => {
+
+  }, [videoType])
+
+  const chooseVideoType = (type: string) => {
+    setVideoType(type);
+  };
+
   return (
     <div>
       <form className="row mt-3">
         <div className="col-md-7">
-          <button className="btn btn-wide btn-secondary">
+          {/* <button className="btn btn-wide btn-secondary">
             <i className="fa fa-plus"></i> Add Course
-          </button>
+          </button> */}
           <div className="form-group row align-items-center my-3">
             <div className="col-md-2">
               <label>Course Name</label>
@@ -44,6 +55,9 @@ export const AddCourse = () => {
                   name="options"
                   id="youtube"
                   autoComplete="off"
+                  onClick={() => {
+                    chooseVideoType("youtube");
+                  }}
                 />
                 <label className="btn btn-outline-secondary" htmlFor="youtube">
                   Youtube
@@ -54,17 +68,24 @@ export const AddCourse = () => {
                   name="options"
                   id="upload"
                   autoComplete="off"
+                  onClick={() => {
+                    chooseVideoType("upload");
+                  }}
                 />
                 <label className="btn btn-outline-secondary" htmlFor="upload">
                   Upload Video
                 </label>
               </div>
               <div>
-                <input
-                  type="text"
-                  className="video-input form-control d-none"
-                />
-                <input type="file" className="video-input form-control" />
+                {videoType === "upload" ? (
+                  <input type="file" className="video-input form-control" />
+                ) : (
+                    <input
+                    type="text"
+                    placeholder="Link"
+                    className="video-input form-control d-none"
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -128,15 +149,21 @@ export const AddCourse = () => {
               </select>
             </div>
           </div>
-          <button className="btn btn-main btn-wide my-5">
+          <button className="btn btn-lg hover:bg-[#16f0fb] hover:text-white bg-[#00c2cb] mt-2 text-[white]">
             Save &amp; Continue
           </button>
         </div>
         <div className="col-md-4">
           <div className="form-group">
             <div>Overview card</div>
-            <label className="rounded-3 bg-3 px-5 py-4 text-center">
-              <img src={UserImg} alt="" height="60px" />
+            <label className="rounded-3 bg-[#dfdbec] px-5 py-4 text-center">
+              <img
+                src={UserImg}
+                alt=""
+                className="mx-auto"
+                height={60}
+                width={60}
+              />
               <div className="mt-2 text-dark">Upload Course Image</div>
               <input type="file" className="d-none" />
             </label>
