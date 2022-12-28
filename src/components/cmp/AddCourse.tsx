@@ -14,7 +14,7 @@ export const AddCourse = () => {
   };
 
   const onSaveAndContinue = () => {
-    navigate("/cmp/course/add-test");
+    navigate("/cmp/dashboard/add-test");
   }
 
   return (

@@ -13,7 +13,7 @@ export const AddTest = () => {
           <div className="container-fluid">
             <form className="row mt-3">
               <div className="col-md-7">
-                <button type="button" className="btn btn-wide btn-secondary">
+                <button type="button" className="btn btn-wide bg-[#6c757d] hover:bg-[#a1b0bc] text-white w-[150px]">
                   <i className="fa fa-plus"></i> Add Test
                 </button>
                 <div className="form-group row align-items-center my-3">
@@ -21,15 +21,15 @@ export const AddTest = () => {
                     <TextEditor />
                   </div>
                 </div>
-                <div className="form-group row align-items-center my-3">
-                  <div className="col-md-8 answers">
+                <div className="form-group my-3">
+                  <div className="answers">
                     <div className="d-flex align-items-center mb-2 answer">
                       <input
                         type="text"
                         className="form-control"
                         placeholder="Answer 1"
                       />
-                      <div className="form-check align-items-center ms-2">
+                      <div className="form-check w-[100%] ms-2">
                         <label className="form-check-label">
                           <input
                             type="radio"
@@ -44,7 +44,7 @@ export const AddTest = () => {
                   </div>
                   <div className="col-12">
                     <button
-                      className="btn btn-secondary"
+                      className="btn bg-[#6c757d] hover:bg-[#a1b0bc] text-white w-[150px]"
                       type="button"
                       id="add-answer"
                     >
@@ -53,7 +53,7 @@ export const AddTest = () => {
                   </div>
                 </div>
                 <div className="form-group d-flex justify-content-between my-5">
-                  <button className="btn btn-main btn-wide">
+                  <button className="btn btn-main btn-wide bg-[#6c757d] hover:bg-[#a1b0bc] text-white w-[150px]">
                     Submit Question
                   </button>
                 </div>
