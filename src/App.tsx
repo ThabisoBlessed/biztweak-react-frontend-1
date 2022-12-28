@@ -23,6 +23,7 @@ import { PlayCourse } from "./components/lms/PlayCourse";
 import { Calendar } from "./components/lms/Calendar";
 import { Profile } from "./components/lms/Profile";
 import { CMP } from "./components/cmp/CMP";
+import { AddTest } from "./components/cmp/AddTest";
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
           <Route path="/lms/instructor-profile" element={<InstructorProfile />}></Route>
 
           <Route path="/cmp/*" element={<CMP />}></Route>
+          <Route path="/cmp/course/add-test" element={<AddTest />}></Route>
         </Routes>
       </Router>
       <Footer />

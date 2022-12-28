@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import UserImg from "../../images/icons/user.png";
 
 export const AddCourse = () => {
   const [videoType, setVideoType] = useState("upload");
   const [videoChecked, setVideoChecked] = useState(true);
+  const navigate = useNavigate();
 
-  useEffect(() => {}, [videoType]);
+  useEffect(() => {}, [videoType, navigate]);
 
   const chooseVideoType = (type: string) => {
     setVideoType(type);
   };
+
+  const onSaveAndContinue = () => {
+    navigate("/cmp/course/add-test");
+  }
 
   return (
     <div>
@@ -149,7 +155,7 @@ export const AddCourse = () => {
               </select>
             </div>
           </div>
-          <button className="btn btn-lg hover:bg-[#16f0fb] hover:text-white bg-[#00c2cb] mt-2 text-[white]">
+          <button onClick={onSaveAndContinue} className="btn btn-lg hover:bg-[#16f0fb] hover:text-white bg-[#00c2cb] mt-2 text-[white]">
             Save &amp; Continue
           </button>
         </div>
