@@ -23,10 +23,10 @@ export const getAssessmentQuestions = async (): Promise<any> => {
 /**
  * Updates assessment questions with updated answers
  * 
- * @param questions 
+ * @param {string} answers 
  * @returns {any} result
  */
-export const updateAssessmentQuestions = async (questions: string): Promise<any> => {
+export const updateAssessmentQuestions = async (answers: string): Promise<any> => {
   try {
     let config = {
       headers: {
@@ -34,7 +34,7 @@ export const updateAssessmentQuestions = async (questions: string): Promise<any>
       }
     }
 
-    return await axios.post(constants.baseUrl + `/assessments`, {data: questions}, config);
+    return await axios.post(constants.baseUrl + `/assessments`, {answers}, config);
   } catch (error: any) {
     return error;
   }

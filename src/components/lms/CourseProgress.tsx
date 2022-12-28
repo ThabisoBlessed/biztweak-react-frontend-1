@@ -49,9 +49,9 @@ export const CourseProgress = () => {
                             <div
                               className="progress-bar bg-main width-[75%]"
                               role="progressbar"
-                              aria-label="Warning example"
-                              aria-valuenow={75}
-                              aria-valuemin={0}
+                              aria-label="progress"
+                              aria-valuenow={75} 
+                              aria-valuemin={0} 
                               aria-valuemax={100}
                             ></div>
                           </div>

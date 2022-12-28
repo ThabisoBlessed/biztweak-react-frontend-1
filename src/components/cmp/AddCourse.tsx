@@ -5,9 +5,7 @@ export const AddCourse = () => {
   const [videoType, setVideoType] = useState("upload");
   const [videoChecked, setVideoChecked] = useState(true);
 
-  useEffect(() => {
-
-  }, [videoType])
+  useEffect(() => {}, [videoType]);
 
   const chooseVideoType = (type: string) => {
     setVideoType(type);
@@ -76,20 +74,22 @@ export const AddCourse = () => {
                   Upload Video
                 </label>
               </div>
-              <div>
+              <div className="mt-2">
                 {videoType === "upload" ? (
                   <input type="file" className="video-input form-control" />
                 ) : (
+                  <div>
                     <input
-                    type="text"
-                    placeholder="Link"
-                    className="video-input form-control d-none"
-                  />
+                      type="text"
+                      placeholder="Link"
+                      className="video-input form-control"
+                    />
+                  </div>
                 )}
               </div>
             </div>
           </div>
-          <div className="form-group row align-items-center my-3">
+          <div className="form-group row align-items-center mt-2 mb-2">
             <div className="col-md-2">
               <label>Time Option</label>
             </div>
@@ -116,7 +116,7 @@ export const AddCourse = () => {
                   Time Limit
                 </label>
               </div>
-              <div className="d-flex align-items-center mb-3">
+              <div className="d-flex align-items-center mb-3 mt-3">
                 <span>Start&nbsp;date</span>
                 <input
                   type="date"
