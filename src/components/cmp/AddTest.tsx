@@ -4,8 +4,6 @@ import { Answer } from "./Answer";
 import { CMPMenu } from "./CMPMenu";
 import { TextEditor } from "./TextEditor";
 
-
-
 export const AddTest = () => {
   const initAnswers: ITestAnswer[] = [];
   const [isLoading, setIsLoading] = useState(false);
