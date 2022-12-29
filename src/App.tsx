@@ -24,6 +24,7 @@ import { Calendar } from "./components/lms/Calendar";
 import { Profile } from "./components/lms/Profile";
 import { CMP } from "./components/cmp/CMP";
 import { AddTest } from "./components/cmp/AddTest";
+import { Quiz } from "./components/cmp/Quiz";
 
 function App() {
   return (
@@ -60,7 +61,8 @@ function App() {
           <Route path="/cmp*" element={<CMP />}></Route>
           <Route path="/cmp/manage-courses/product-overview" element={<CMP />}></Route>
           <Route path="/cmp/manage-courses" element={<CMP />}></Route>
-          <Route path="/cmp/manage-courses/add-test" element={<AddTest />}></Route>
+          <Route path="/cmp/manage-courses/add-test" element={<AddTest />}></Route>/cmp/quiz
+          <Route path="/cmp/manage-courses/quiz" element={<Quiz />}></Route>
         </Routes>
       </Router>
       <Footer />
