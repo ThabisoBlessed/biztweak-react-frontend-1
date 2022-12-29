@@ -27,6 +27,11 @@ import { AddTest } from "./components/cmp/AddTest";
 import { Quiz } from "./components/cmp/Quiz";
 import { CourseInfo } from "./components/cmp/CourseInfo";
 import { CoursePreview } from "./components/cmp/CoursePreview";
+import { AddVideo } from "./components/cmp/AddVideo";
+import { AddText } from "./components/cmp/AddText";
+import { AddAudio } from "./components/cmp/AddAudio";
+import { AddQuiz } from "./components/cmp/AddQuiz";
+import { AddAssignment } from "./components/cmp/AddAssignment";
 
 function App() {
   return (
@@ -63,10 +68,15 @@ function App() {
           <Route path="/cmp*" element={<CMP />}></Route>
           <Route path="/cmp/manage-courses/product-overview" element={<CMP />}></Route>
           <Route path="/cmp/manage-courses" element={<CMP />}></Route>
-          <Route path="/cmp/manage-courses/add-test" element={<AddTest />}></Route>/cmp/quiz
-          <Route path="/cmp/manage-courses/quiz" element={<Quiz />}></Route>/cmp/manage-course/course-info
+          <Route path="/cmp/manage-courses/add-test" element={<AddTest />}></Route>
+          <Route path="/cmp/manage-courses/quiz" element={<Quiz />}></Route>
           <Route path="/cmp/manage-courses/course-info" element={<CourseInfo />}></Route>
           <Route path="/cmp/manage-courses/course-preview" element={<CoursePreview />}></Route>
+          <Route path="/cmp/manage-courses/add-video" element={<AddVideo />}></Route>
+          <Route path="/cmp/manage-courses/add-text" element={<AddText />}></Route>
+          <Route path="/cmp/manage-courses/add-audio" element={<AddAudio />}></Route>
+          <Route path="/cmp/manage-courses/add-quiz" element={<AddQuiz />}></Route>
+          <Route path="/cmp/manage-courses/add-assignment" element={<AddAssignment />}></Route>
         </Routes>
       </Router>
       <Footer />

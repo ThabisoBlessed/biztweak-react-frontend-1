@@ -49,6 +49,7 @@ export const CourseInfo = () => {
   ];
   const navigate = useNavigate();
   const [dropdown, setDropdown] = useState(dropDownMenuInit);
+  const [clickedMenuItem, setClickedMenuItem] = useState({} as IMenuListItem);
 
   const onEditCourse = () => {
     navigate("/cmp/manage-courses/edit-course");
@@ -58,7 +59,12 @@ export const CourseInfo = () => {
     navigate("/cmp/manage-courses/course-preview");
   };
 
-  const handleDropdownItemClick = (menu: IMenuListItem) => {};
+  const handleDropdownItemClick = (menu: IMenuListItem) => {
+    const selected = dropdown.find(s => s.id === menu.id);
+    if (selected) {
+      navigate(selected.link);
+    }
+  };
 
   return (
     <div className="w-full">
