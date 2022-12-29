@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
+import { IQuiz } from "../../model/quiz.model";
 import { CMPMenu } from "./CMPMenu";
 
 export const Quiz = () => {
+  const quizes: IQuiz[] = [
+    {
+      status: "Added",
+      question:
+        " Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+    },
+  ];
+  const [quiz, setQuiz] = useState(quizes);
+
   return (
     <div className="w-full">
       <div className="m-3">
@@ -22,29 +32,29 @@ export const Quiz = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Added</td>
-                      <td>
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. Lorem Ipsum has been the
-                        industry's standard dummy text ever since the 1500s.
-                      </td>
-                      <td>
-                        <a className="btn text-dark btn-link" href="#">
-                          <i className="fa fa-edit fa-lg"></i>
-                        </a>
-                        <a
-                          className="btn text-dark btn-link"
-                          href="#quiz-modal"
-                          data-bs-toggle="modal"
-                        >
-                          <i className="fa fa-search fa-lg"></i>
-                        </a>
-                        <a className="btn text-dark btn-link" href="#">
-                          <i className="fa fa-trash fa-lg"></i>
-                        </a>
-                      </td>
-                    </tr>
+                    {quizes.map((quiz: IQuiz, index: number) => {
+                      return (
+                        <tr key={index}>
+                          <td>{quiz.status}</td>
+                          <td>{quiz.question}</td>
+                          <td>
+                            <a className="btn text-dark btn-link" href="#">
+                              <i className="fa fa-edit fa-lg"></i>
+                            </a>
+                            <a
+                              className="btn text-dark btn-link"
+                              href="#quiz-modal"
+                              data-bs-toggle="modal"
+                            >
+                              <i className="fa fa-search fa-lg"></i>
+                            </a>
+                            <a className="btn text-dark btn-link" href="#">
+                              <i className="fa fa-trash fa-lg"></i>
+                            </a>
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>
