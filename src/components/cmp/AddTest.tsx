@@ -11,11 +11,10 @@ export const AddTest = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
   }, [isLoading]);
 
   const onAddAnswer = () => {
-    setIsLoading(true);
-    setIsLoading(false);
   };
 
   return (

@@ -10,7 +10,7 @@ export const CMPMenu = () => {
     {
       id: 0,
       title: "Dashboard",
-      link: "/cmp/dashboard",
+      link: "/cmp",
       iconClass: "fa-lg fa-solid fa-home",
       isActive: false,
       titleClasses: "ml-3",
@@ -34,7 +34,7 @@ export const CMPMenu = () => {
     {
       id: 3,
       title: "Manage Course",
-      link: "/cmp/manage-courses",
+      link: "/cmp/manage-courses/add-test",
       iconClass: "fa-lg fa-solid fa-bars",
       isActive: false,
       titleClasses: "ml-3",
