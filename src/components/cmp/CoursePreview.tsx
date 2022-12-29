@@ -1,7 +1,9 @@
 import React from "react";
 import { CMPMenu } from "./CMPMenu";
+import CourseVideo from "../../images/video.mp4";
 
 export const CoursePreview = () => {
+    
   return (
     <div className="w-full">
       <div className="row">
@@ -64,9 +66,9 @@ export const CoursePreview = () => {
             <div className="row mt-3">
               <div className="col-md-8">
                 <video
-                  src="../images/video.mp4"
+                  src={CourseVideo}
                   controls={true}
-                  className="img-fluid h-[400px] mt-2"
+                  className="img-fluid h-[450px] mt-2"
                 ></video>
                 <div className="mt-2 text-end">
                   <button className="btn border-[#212529] hover:bg-[#212529] hover:text-white">Cancel</button>
