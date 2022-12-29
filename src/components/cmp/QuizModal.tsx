@@ -1,13 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { isLoggedIn } from "../../config";
+import { IQuestion } from "../../model/mapped-assessment-question.model";
+import { ITestAnswer } from "../../model/test-answer.model";
 
 export const QuizModal = (props: any) => {
   const navigate = useNavigate();
+  const initAnswers: ITestAnswer[] = [
+    { id: 0, value: "Question 1", correctAnswer: false },
+    { id: 1, value: "Question 2", correctAnswer: true },
+  ];
+  const [answers, setAnswers] = useState(initAnswers);
 
-  useEffect(() => {
-    
-  }, [navigate]);
+  useEffect(() => {}, [navigate]);
 
   const onSave = () => {
     navigate("/business/manage-business/company-profile");
@@ -29,31 +33,49 @@ export const QuizModal = (props: any) => {
                 type="button"
                 className="btn-close"
                 data-bs-dismiss="modal"
-              ></button>
+              >
+                <i className="fa fa-close"></i>
+              </button>
             </div>
-            <div className="modal-body">
-              <div className="text-center">
-                <img
-                  src="https://biztweak.org.za/public/new/images/complete-profile.png"
-                  alt=""
-                  className="col-md-6 img-fluid"
-                />
-                <h1 className="h3">Complete Company Profile</h1>
-                <p>
-                  Completing your company information will help us know more
-                  about your business. Lets fill the assessment text: Completing
-                  your business assessment will help us know what kind of help
-                  your business needs.
-                </p>
+            <div className="modal-body m-0">
+              <h4 className="text-dark text-2xl font-medium">
+                Preview Question
+              </h4>
+              <p className="my-3">
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s.
+              </p>
+              <div className="form-group row align-items-center mb-3">
+                <div className="col-md-6">
+                  {answers.map((answer: ITestAnswer, index: number) => {
+                    return (
+                      <div key={index}>
+                        <label
+                          className="form-check-label"
+                          id={`answer_${index}`}
+                        >
+                          <input
+                            type="radio"
+                            className="form-check-input"
+                            name="answer"
+                            autoComplete="off"
+                            checked={answer.correctAnswer}
+                          />
+                          &nbsp;{answer.value}
+                        </label>
+                        <br></br>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="text-end">
                 <button
+                  className="btn btn-sm text-white bg-[#00c2cb]"
                   data-bs-dismiss="modal"
-                  aria-label="Close"
-                  id="okBtn"
-                  type="button"
-                  className="btn bg-[#00c2cb] btn-info btn-lg mt-2 p-3 w-[100px] text-white"
-                  onClick={() => onSave()}
                 >
-                  OK
+                  Cancel
                 </button>
               </div>
             </div>
