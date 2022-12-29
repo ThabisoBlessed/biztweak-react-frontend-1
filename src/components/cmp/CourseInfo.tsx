@@ -1,5 +1,6 @@
 import React from "react";
 import { CMPMenu } from "./CMPMenu";
+import UserImg from "../../images/icons/user.png";
 
 export const CourseInfo = () => {
   return (
@@ -15,9 +16,9 @@ export const CourseInfo = () => {
                   <div className="row align-items-center">
                     <div className="col-md-3">
                       <div>Overview card</div>
-                      <label className="rounded-3 bg-3 px-5 py-4 text-center">
+                      <label className="rounded-3 bg-[#dfdbec] px-5 py-4 text-center">
                         <img
-                          src="../images/icons/user.png"
+                          src={UserImg}
                           alt=""
                           height="60px"
                         />
@@ -28,7 +29,7 @@ export const CourseInfo = () => {
                       </label>
                     </div>
                     <div className="col-md-9">
-                      <h4 className="fw-600">
+                      <h4 className="text-dark text-2xl font-medium">
                         Introduction to Entrepreneurship
                       </h4>
                       <p className="mb-0">
@@ -52,7 +53,7 @@ export const CourseInfo = () => {
                   <div>
                     <div className="dropdown d-inline-block">
                       <button
-                        className="btn btn-main dropdown-toggle"
+                        className="btn btn-main dropdown-toggle mr-2 hover:bg-[#16f0fb]  hover:text-white bg-[#00c2cb] mt-2 text-[white]"
                         type="button"
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
@@ -87,9 +88,9 @@ export const CourseInfo = () => {
                         </li>
                       </ul>
                     </div>
-                    <button className="btn btn-main">Edit Course</button>
-                    <button className="btn btn-main">Preview Course</button>
-                    <button className="btn btn-secondary">...</button>
+                    <button className="btn btn btn-main mr-2 hover:bg-[#16f0fb]  hover:text-white bg-[#00c2cb] mt-2 text-[white]">Edit Course</button>
+                    <button className="btn btn btn-main hover:bg-[#16f0fb]  hover:text-white bg-[#00c2cb] mt-2 text-[white]">Preview Course</button>
+                    {/* <button className="btn btn-secondary">...</button> */}
                   </div>
                 </div>
                 <div className="col-md-4"></div>
@@ -100,25 +101,25 @@ export const CourseInfo = () => {
                 </div>
                 <div className="col-md-4 text-center">
                   <div>
-                    <span className="badge bg-main text-dark">
+                    <span className="badge bg-[#65c8d0] text-dark">
                       Total Courses
                     </span>
                     <h2 className="text-dark fw-600">52</h2>
                   </div>
                   <div>
-                    <span className="badge bg-main text-dark">
+                    <span className="badge bg-[#65c8d0] text-dark">
                       Total Videos
                     </span>
                     <h2 className="text-dark fw-600">452</h2>
                   </div>
                   <div>
-                    <span className="badge bg-main text-dark">
+                    <span className="badge bg-[#65c8d0] text-dark">
                       Total Audios
                     </span>
                     <h2 className="text-dark fw-600">524</h2>
                   </div>
                   <div>
-                    <span className="badge bg-main text-dark">Total Text</span>
+                    <span className="badge bg-[#65c8d0] text-dark">Total Text</span>
                     <h2 className="text-dark fw-600">525</h2>
                   </div>
                 </div>
