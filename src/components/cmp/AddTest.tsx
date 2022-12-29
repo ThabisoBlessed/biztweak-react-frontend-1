@@ -28,12 +28,13 @@ export const AddTest = () => {
           <div className="container-fluid">
             <form className="row mt-3">
               <div className="col-md-7">
-                <button
+                {/* <button
                   type="button"
                   className="btn btn-wide bg-[#6c757d] hover:bg-[#a1b0bc] text-white w-[150px]"
                 >
                   <i className="fa fa-plus"></i> Add Test
-                </button>
+                </button> */}
+                
                 <div className="form-group row align-items-center my-3">
                   <div className="col-md-12 bg-white">
                     <TextEditor />
@@ -41,8 +42,6 @@ export const AddTest = () => {
                 </div>
 
                 <Answer />
-
-                
 
                 <div className="form-group d-flex justify-content-between my-5">
                   <button className="btn btn-main btn-wide bg-[#6c757d] hover:bg-[#a1b0bc] text-white w-[150px]">
