@@ -24,7 +24,7 @@ export const AddVideo = () => {
             <form className="row mt-3">
               <div className="col-md-7">
                 {/* <button type="button" className="btn btn-wide btn-secondary">
-                  <i className="fa fa-plus"></i> Add Course Audio
+                  <i className="fa fa-plus"></i> Add Course Video
                 </button> */}
                 <div className="form-group row align-items-center my-3">
                   <div className="col-md-2">
