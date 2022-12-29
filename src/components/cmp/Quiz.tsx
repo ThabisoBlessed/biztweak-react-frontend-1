@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { IQuiz } from "../../model/quiz.model";
 import { CMPMenu } from "./CMPMenu";
+import { QuizModal } from "./QuizModal";
 
 export const Quiz = () => {
   const quizes: IQuiz[] = [
@@ -43,8 +44,9 @@ export const Quiz = () => {
                             </a>
                             <a
                               className="btn text-dark btn-link"
-                              href="#quiz-modal"
                               data-bs-toggle="modal"
+                              data-bs-target="#quizModal"
+                              href="#quizModal"
                             >
                               <i className="fa fa-search fa-lg"></i>
                             </a>
@@ -59,6 +61,8 @@ export const Quiz = () => {
                 </table>
               </div>
             </form>
+
+            <QuizModal />
           </div>
         </div>
       </div>
