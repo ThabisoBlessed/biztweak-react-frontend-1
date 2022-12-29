@@ -26,6 +26,7 @@ import { CMP } from "./components/cmp/CMP";
 import { AddTest } from "./components/cmp/AddTest";
 import { Quiz } from "./components/cmp/Quiz";
 import { CourseInfo } from "./components/cmp/CourseInfo";
+import { CoursePreview } from "./components/cmp/CoursePreview";
 
 function App() {
   return (
@@ -65,6 +66,7 @@ function App() {
           <Route path="/cmp/manage-courses/add-test" element={<AddTest />}></Route>/cmp/quiz
           <Route path="/cmp/manage-courses/quiz" element={<Quiz />}></Route>/cmp/manage-course/course-info
           <Route path="/cmp/manage-courses/course-info" element={<CourseInfo />}></Route>
+          <Route path="/cmp/manage-courses/course-preview" element={<CoursePreview />}></Route>
         </Routes>
       </Router>
       <Footer />

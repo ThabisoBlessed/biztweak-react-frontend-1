@@ -4,7 +4,6 @@ import UserImg from "../../images/icons/user.png";
 
 export const AddCourse = () => {
   const [videoType, setVideoType] = useState("upload");
-  const [videoChecked, setVideoChecked] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {}, [videoType, navigate]);
