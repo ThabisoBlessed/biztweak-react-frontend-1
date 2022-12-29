@@ -1,10 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { CMPMenu } from "./CMPMenu";
 import UserImg from "../../images/icons/user.png";
 import { useNavigate } from "react-router-dom";
+import { IMenuListItem } from "../../model/menu-list-item.model";
 
 export const CourseInfo = () => {
+  const dropDownMenuInit: IMenuListItem[] = [
+    {
+      id: 0,
+      title: "Video",
+      link: "/cmp/manage-courses/add-video",
+      iconClass: "fa-lg fa-solid fa-video",
+      isActive: false,
+      titleClasses: "ml-3",
+    },
+    {
+      id: 1,
+      title: "Text",
+      link: "/cmp/manage-courses/add-text",
+      iconClass: "fa-lg fa-solid fa-text-slash",
+      isActive: false,
+      titleClasses: "ml-3",
+    },
+    {
+      id: 2,
+      title: "Audio",
+      link: "/cmp/manage-courses/add-audio",
+      iconClass: "fa-lg fa-solid fa-audio-description",
+      isActive: false,
+      titleClasses: "ml-3",
+    },
+    {
+      id: 3,
+      title: "Quiz",
+      link: "/cmp/manage-courses/add-audio",
+      iconClass: "fa-lg fa-solid fa-question",
+      isActive: false,
+      titleClasses: "ml-6",
+    },
+    {
+      id: 4,
+      title: "Assignment",
+      link: "/cmp/manage-courses/add-assignment",
+      iconClass: "fa-lg fa-solid fa-file-alt",
+      isActive: false,
+      titleClasses: "ml-4",
+    },
+  ];
   const navigate = useNavigate();
+  const [dropdown, setDropdown] = useState(dropDownMenuInit);
 
   const onEditCourse = () => {
     navigate("/cmp/manage-courses/edit-course");
@@ -13,6 +57,8 @@ export const CourseInfo = () => {
   const onPreviewCourse = () => {
     navigate("/cmp/manage-courses/course-preview");
   };
+
+  const handleDropdownItemClick = (menu: IMenuListItem) => {};
 
   return (
     <div className="w-full">
@@ -66,31 +112,22 @@ export const CourseInfo = () => {
                       Add
                     </button>
                     <ul className="dropdown-menu">
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          <i className="fa fa-video"></i> Video
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          <i className="fa fa-text-slash"></i> Text
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          <i className="fa fa-audio-description"></i> Audio
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          <i className="fa fa-question"></i> Quiz
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          <i className="fa fa-file-alt"></i> Assignment
-                        </a>
-                      </li>
+                      {dropdown.map((menu: IMenuListItem, index: number) => {
+                        return (
+                          <li
+                            className={`w-full cursor-pointer`}
+                            key={`dropdown_menu_${index}`}
+                            onClick={() => handleDropdownItemClick(menu)}
+                          >
+                            <div className="m-2" id={`${index}`}>
+                              <i className={`${menu.iconClass}`}></i>
+                              <span className={`${menu.titleClasses}`}>
+                                {menu.title}
+                              </span>
+                            </div>
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
                   <button
