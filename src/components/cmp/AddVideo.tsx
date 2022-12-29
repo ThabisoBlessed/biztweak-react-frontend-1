@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CMPMenu } from "./CMPMenu";
-import CourseVideo from "../../images/vido.mp4";
+import CourseVideo from "../../images/video.mp4";
 
 export const AddVideo = () => {
   const [videoType, setVideoType] = useState("upload");
@@ -147,9 +147,14 @@ export const AddVideo = () => {
                   </div>
                 </div>
 
-                {/* <div className="form-group row align-items-center my-3 py-4">
-                  <audio src={CourseAudio} controls={true}></audio>
-                </div> */}
+                <div className="form-group row align-items-center my-3">
+                  <video
+                    src={CourseVideo}
+                    controls={true}
+                    className="img-fluid h-[450px] mt-2"
+                  ></video>
+                </div>
+
                 <div className="form-group d-flex justify-content-between my-5">
                   {/* <button className="btn hover:bg-[#16f0fb] w-[150px] h-[50px] hover:text-white bg-[#00c2cb] mt-2 text-[white]">
                     Save &amp; View
