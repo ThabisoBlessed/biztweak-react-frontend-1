@@ -1,48 +1,45 @@
-import React, { useEffect, useState } from "react";
-import { ITestAnswer } from "../../model/test-answer.model";
+import React, { useState } from "react";
 
-export const Answer = () => {
-  const initAnswers: ITestAnswer[] = [];
-  const [answers, setAnswers] = useState(initAnswers);
+const Input = () => {
+  return (
+    <div className="col-12">
+      <div className="answers">
+        <div className="d-flex align-items-center mb-2 answer">
+          <input type="text" className="form-control" placeholder="Answer 1" />
+          <div className="form-check w-[100%] ms-2">
+            <label className="form-check-label">
+              <input
+                type="radio"
+                className="form-check-input"
+                name="answer"
+                autoComplete="off"
+              />
+              Correct Answer
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-  useEffect(() => {
-    setAnswers([{ id: 0, value: "" }]);
-  });
+export const Answer = (props: any) => {
+  const init: JSX.Element[] = [<Input key={0} />];
+  const [inputList, setInputList] = useState(init);
+
+  const onAddBtnClick = (event: any) => {
+    setInputList(inputList.concat(<Input key={inputList.length} />));
+  };
 
   return (
-    <div className="form-group my-3">
-      {answers.map((answer: ITestAnswer, index: number) => {
-        return (
-          <div key={index} id={index.toString()}>
-            <div className="answers">
-              <div className="d-flex align-items-center mb-2 answer">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Answer 1"
-                />
-                <div className="form-check w-[100%] ms-2">
-                  <label className="form-check-label">
-                    <input
-                      type="radio"
-                      className="form-check-input"
-                      name="answer"
-                      autoComplete="off"
-                    />
-                    Correct Answer
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      })}
-
+    <div>
+      {inputList}
       <div className="col-12">
         <button
           className="btn bg-[#6c757d] hover:bg-[#a1b0bc] text-white w-[150px]"
           type="button"
           id="add-answer"
+          onClick={onAddBtnClick}
         >
           Add Answer
         </button>
