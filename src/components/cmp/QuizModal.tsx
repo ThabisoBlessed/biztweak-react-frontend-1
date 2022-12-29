@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { IQuestion } from "../../model/mapped-assessment-question.model";
 import { ITestAnswer } from "../../model/test-answer.model";
 
 export const QuizModal = (props: any) => {
-  const navigate = useNavigate();
   const initAnswers: ITestAnswer[] = [
     { id: 0, value: "Question 1", correctAnswer: false },
     { id: 1, value: "Question 2", correctAnswer: true },
   ];
   const [answers, setAnswers] = useState(initAnswers);
-
-  useEffect(() => {}, [navigate]);
-
-  const onSave = () => {
-    navigate("/business/manage-business/company-profile");
-  };
 
   return (
     <div>
