@@ -8,7 +8,6 @@ import { CMPMenu } from "./CMPMenu";
 import { AddCourse } from "./AddCourse";
 
 export const Dashboard = () => {
-  useEffect(() => {}, []);
 
   return (
     <div className="w-full">

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { IQuiz } from "../../model/quiz.model";
 import { CMPMenu } from "./CMPMenu";
 import { QuizModal } from "./QuizModal";
 
 export const Quiz = () => {
+    const navigate = useNavigate();
   const quizes: IQuiz[] = [
     {
       status: "Added",
@@ -12,6 +14,12 @@ export const Quiz = () => {
     },
   ];
   const [quiz, setQuiz] = useState(quizes);
+
+  const onEdit = () => {
+    navigate("/cmp/manage-course/course-info");
+  };
+
+  const onDelete = () => {};
 
   return (
     <div className="w-full">
@@ -39,7 +47,7 @@ export const Quiz = () => {
                           <td>{quiz.status}</td>
                           <td>{quiz.question}</td>
                           <td>
-                            <a className="btn text-dark btn-link" href="#">
+                            <a className="btn text-dark btn-link" href="#" onClick={onEdit}>
                               <i className="fa fa-edit fa-lg"></i>
                             </a>
                             <a
@@ -50,7 +58,7 @@ export const Quiz = () => {
                             >
                               <i className="fa fa-search fa-lg"></i>
                             </a>
-                            <a className="btn text-dark btn-link" href="#">
+                            <a className="btn text-dark btn-link" href="#" onClick={onDelete}>
                               <i className="fa fa-trash fa-lg"></i>
                             </a>
                           </td>
