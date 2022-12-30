@@ -1,6 +1,5 @@
 import React from "react";
 import { LMSMenu } from "./LMSMenu";
-import CourseImg from "../../images/course.png";
 import AvatarImg from "../../images/avatar.png";
 import CourseVideo from "../../images/video.mp4";
 import { useNavigate } from "react-router-dom";

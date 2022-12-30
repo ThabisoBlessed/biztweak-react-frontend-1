@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import EntreprenursImg from "../../images/icons/entreprenuers.png";
 import ConsultantsImg from "../../images/icons/consultants.png";
 import MentorImg from "../../images/icons/mentor.png";
 import CoachesImg from "../../images/icons/mic.png";
 import { AdminMenu } from "./AdminMenu";
+import CourseImg from "../../images/course.png";
+import AvatarImg from "../../images/avatar.png";
+import CourseVideo from "../../images/video.mp4";
 
 export const Dashboard = () => {
+  const initUsers: any[] = [
+    { name: "Jazmyn", email: "@jaz.designer", lastSeen: "8 hours ago" },
+  ];
+  const [users, setUsers] = useState(initUsers);
 
   return (
     <div className="w-full">
@@ -53,8 +60,100 @@ export const Dashboard = () => {
               </div>
             </div>
 
-            <div className="m-3">
+            <div className="row m-2">
+              <div className="col-lg-4">
+                <div className="card h-100 shadow">
+                  <div className="card-header bg-white border-0 d-flex justify-content-between">
+                    <h5 className="mb-0 text-dark">Users</h5>
+                    <a href="#">See all</a>
+                  </div>
+                  <div className="card-body border-0">
+                    <div
+                      className="overflow-y-scroll h-[200px]"
+                      id="users"
+                    >
+                      <div className="d-flex mb-2 cursor-pointer">
+                        <div>
+                          <img
+                            src={AvatarImg}
+                            className="rounded-circle h-[40px]"
+                            alt=""
+                          />
+                        </div>
+                        <div className="ms-3">
+                          <h6 className="mb-0 font-medium text-1xl">
+                            <span className="text-dark">Jazmyn</span>
+                            <span className="text-muted">@jaz.designer</span>
+                          </h6>
+                          <p>8hour ago</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button className="btn text-white bg-[#00c2cb] hover:bg-[#16f0fb] rounded-md w-full">
+                      Send email
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4">
+                <div className="card h-100 shadow">
+                  <div className="card-header bg-white border-0">
+                    <h5 className="mb-0 text-dark">Actions</h5>
+                  </div>
+                  <div className="card-body border-0">
+                    <div className="bg-light rounded-3 p-3">
+                      <div className="row">
+                        <div className="col-6 text-center text-dark p-2">
+                          <img
+                            src="../images/icons/clock.png"
+                            width="50px"
+                            alt=""
+                          />
+                          <p className="my-2">Early stage</p>
+                        </div>
+                        <div className="col-6 text-center text-dark p-2">
+                          <img
+                            src="../images/icons/pot.png"
+                            width="50px"
+                            alt=""
+                          />
+                          <p className="my-2">Start up</p>
+                        </div>
+                        <div className="col-6 text-center text-dark p-2">
+                          <img
+                            src="../images/icons/bulb.png"
+                            width="50px"
+                            alt=""
+                          />
+                          <p className="my-2">Idea concept</p>
+                        </div>
+                        <div className="col-6 text-center text-dark p-2">
+                          <img
+                            src="../images/icons/dashboard.png"
+                            width="50px"
+                            alt=""
+                          />
+                          <p className="my-2">Accelerate</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4">
+                <div className="card h-100 shadow">
+                  <div className="card-header bg-white border-0">
+                    <h5 className="mb-0 text-dark">Concept chart</h5>
+                  </div>
+                  <div className="card-body border-0">
+                    {/* <canvas id="myChart3" width="672" height="514" style="display: block; box-sizing: border-box; height: 257px; width: 336px;"></canvas> */}
+                  </div>
+                </div>
+              </div>
             </div>
+
+            <div className="m-3"></div>
           </div>
         </div>
       </div>
