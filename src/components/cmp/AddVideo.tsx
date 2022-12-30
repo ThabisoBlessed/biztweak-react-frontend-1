@@ -7,7 +7,9 @@ export const AddVideo = () => {
   const [videoType, setVideoType] = useState("upload");
   const navigate = useNavigate();
 
-  useEffect(() => {}, [videoType, navigate]);
+  useEffect(() => {
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+  }, [videoType, navigate]);
 
   const choosevideoType = (type: string) => {
     setVideoType(type);

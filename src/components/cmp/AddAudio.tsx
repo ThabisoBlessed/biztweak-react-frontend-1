@@ -7,7 +7,9 @@ export const AddAudio = () => {
   const [audioType, setAudioType] = useState("upload");
   const navigate = useNavigate();
 
-  useEffect(() => {}, [audioType, navigate]);
+  useEffect(() => {
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+  }, [audioType, navigate]);
 
   const chooseAudioType = (type: string) => {
     setAudioType(type);
