@@ -32,6 +32,7 @@ import { AddText } from "./components/cmp/AddText";
 import { AddAudio } from "./components/cmp/AddAudio";
 import { AddQuiz } from "./components/cmp/AddQuiz";
 import { AddAssignment } from "./components/cmp/AddAssignment";
+import { Admin } from "./components/admin/Admin";
 
 function App() {
   return (
@@ -77,6 +78,9 @@ function App() {
           <Route path="/cmp/manage-courses/add-audio" element={<AddAudio />}></Route>
           <Route path="/cmp/manage-courses/add-quiz" element={<AddQuiz />}></Route>
           <Route path="/cmp/manage-courses/add-assignment" element={<AddAssignment />}></Route>
+
+          <Route path="/admin/*" element={<Admin />}></Route>
+          <Route path="/admin/incubator-dashboard" element={<Course />}></Route>
         </Routes>
       </Router>
       <Footer />

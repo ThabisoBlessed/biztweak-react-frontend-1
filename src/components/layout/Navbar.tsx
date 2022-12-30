@@ -30,6 +30,14 @@ export const Navbar = () => {
       isActive: false,
       titleClasses: "nav-item me-2 hover:text-[#00c2cb]",
     },
+    {
+      id: 2,
+      title: "Admin",
+      link: "/admin",
+      iconClass: "",
+      isActive: false,
+      titleClasses: "nav-item me-2 hover:text-[#00c2cb]",
+    },
   ];
   const [menu, setMenu] = useState(menuList);
   const navigate = useNavigate();
