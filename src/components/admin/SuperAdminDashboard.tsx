@@ -13,6 +13,7 @@ import ConsultantsImg from "../../images/icons/consultants.png";
 import MentorImg from "../../images/icons/mentor.png";
 import CoachesImg from "../../images/icons/mic.png";
 import CompanyImg from "../../images/company.png";
+import { Entrepreneurs } from "./Entrepreneurs";
 
 export const SuperAdminDashboard = () => {
   const initUsers: any[] = [
@@ -71,7 +72,7 @@ export const SuperAdminDashboard = () => {
           <div className="container-fluid">
             <div className="card shadow m-3">
               <div className="card-header bg-white border-0">
-                <h5 className="mb-0 text-dark">Overview</h5>
+                <h5 className="mb-0 text-2xl font-medium text-dark">Overview</h5>
               </div>
               <div className="card-body border-0">
                 <div className="row justify-content-between">
@@ -135,89 +136,8 @@ export const SuperAdminDashboard = () => {
               </div>
             </div>
 
-            <div className="row m-1">
-              <div className="col-lg-4">
-                <div className="card h-100 shadow">
-                  <div className="card-header bg-white border-0 d-flex justify-content-between">
-                    <h5 className="mb-0 text-dark">Entrepreneurs</h5>
-                    <button onClick={onGoToUsers}>See all</button>
-                  </div>
-                  <div className="card-body border-0">
-                    <div className="overflow-y-scroll h-[200px]" id="users">
-                      {users.map((user: any, index: number) => {
-                        return (
-                          <div
-                            className="d-flex mb-3 cursor-pointer"
-                            key={`action_menu_${index}`}
-                          >
-                            <div>
-                              <img
-                                src={AvatarImg}
-                                className="rounded-circle h-[40px]"
-                                alt=""
-                              />
-                            </div>
-                            <div className="ms-3">
-                              <h6 className="mb-0 font-medium text-1xl">
-                                <span className="text-dark">{user.name}</span>
-                                <span className="text-muted">{user.email}</span>
-                              </h6>
-                              <p>{user.lastSeen}</p>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-
-                    <button className="btn text-white bg-[#00c2cb] hover:bg-[#16f0fb] rounded-md w-full">
-                      Send email
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4">
-                <div className="card h-100 shadow">
-                  <div className="card-header bg-white border-0">
-                    <h5 className="mb-0 text-dark">Actions</h5>
-                  </div>
-                  <div className="card-body border-0">
-                    <div className="bg-light rounded-3 p-3">
-                      <div className="row">
-                        {actions.map((action: any, index: number) => {
-                          return (
-                            <div
-                              className="col-6 text-center text-dark p-2"
-                              key={`action_menu_${index}`}
-                            >
-                              <img
-                                src={action.src}
-                                className="mx-auto"
-                                width="50px"
-                                alt=""
-                              />
-                              <p className="my-2">{action.title}</p>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4">
-                <div className="card h-100 shadow">
-                  <div className="card-header bg-white border-0">
-                    <h5 className="mb-0 text-dark">Concept chart</h5>
-                  </div>
-                  <div className="card-body border-0">
-                    <PieChart data={data} width={"100%"} height={"200px"} />
-                  </div>
-                </div>
-              </div>
-            </div>
-
             <div className="m-4">
-              <Mentors />
+              <Entrepreneurs />
             </div>
           </div>
         </div>

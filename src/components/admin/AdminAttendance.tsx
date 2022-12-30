@@ -14,7 +14,7 @@ export const AdminAttendance = () => {
               <div className="col-lg-12">
                 <div className="card shadow mt-3">
                   <div className="card-header bg-white border-0">
-                    <h5 className="mb-0 text-dark">Attendance</h5>
+                    <h5 className="mb-0 text-2xl font-medium text-dark">Attendance</h5>
                   </div>
                   <div className="card-body border-0">
                     <div className="row align-items-center mb-3">

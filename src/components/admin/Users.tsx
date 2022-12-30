@@ -22,7 +22,7 @@ export const Users = () => {
             <div className="row mt-3">
               <div className="card shadow">
                 <div className="card-header bg-white border-0 d-flex justify-content-between">
-                  <h5 className="mb-0 text-dark">Registered Users</h5>
+                  <h5 className="mb-0 text-2xl font-medium text-dark">Registered Users</h5>
                   <button className="btn btn-main">
                     <i className="fa fa-download"></i> Export (CSV)
                   </button>

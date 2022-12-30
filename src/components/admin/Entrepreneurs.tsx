@@ -1,24 +1,27 @@
 import React, { useState } from "react";
-import "./Mentors.css";
+import "./Entrepreneurs.css";
 
-export const Mentors = () => {
-  const initMentors: any[] = [
+export const Entrepreneurs = () => {
+  const initEntrepreneurs: any[] = [
     {
       id: 1,
       name: "Guide App",
-      bizCode: "Johannesburg, South Africa",
-      manageBizCode: "Other",
+      location: "Johannesburg, South Africa",
+      turnover: 56000,
+      score: "67%",
+      courseProgress: "79%",
+      coursePoint: "50%"
     },
   ];
-  const [mentors, setMentors] = useState(initMentors);
+  const [entreprenuers, setEntreprenuers] = useState(initEntrepreneurs);
 
   return (
     <div className="row mt-3">
       <div className="card shadow">
         <div className="card-header bg-white border-0 d-flex justify-content-between">
-          <h5 className="mb-0 text-2xl font-medium text-dark">Mentors</h5>
+          <h5 className="mb-0 text-2xl font-medium text-dark">Entrepreneurs</h5>
           <form action="#">
-            <div className="row g-3">
+            <div className="row col-12">
               <div className="col-6">
                 <select name="" className="form-select">
                   <option value="">Industry</option>
@@ -26,7 +29,12 @@ export const Mentors = () => {
               </div>
               <div className="col-6">
                 <select name="" className="form-select">
-                  <option value="">Experience</option>
+                  <option value="">Stage</option>
+                </select>
+              </div>
+              <div className="col-6">
+                <select name="" className="form-select">
+                  <option value="">Employee</option>
                 </select>
               </div>
             </div>
@@ -36,38 +44,31 @@ export const Mentors = () => {
           <table className="table table-borderless table-striped">
             <thead>
               <tr className="text-sm text-muted">
-                <th>No</th>
                 <th>Biz Name</th>
-                <th>Biz Code</th>
-                <th>Manage Biz Code</th>
+                <th>Location</th>
+                <th>Turnover</th>
+                <th>Score</th>
+                <th>Course Progress</th>
+                <th>Course Point</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              {mentors.map((mentor: any, index: number) => {
+              {entreprenuers.map((entrepreneur: any, index: number) => {
                 return (
                   <tr key={index}>
-                    <td>{mentor.id}</td>
                     <td>
                       <span className="badge bg-white text-dark">
-                        {mentor.name}
+                        {entrepreneur.name}
                       </span>
                     </td>
-                    <td>{mentor.bizCode}</td>
+                    <td>{entrepreneur.location}</td>
+                    <td>{entrepreneur.turnover}</td>
+                    <td>{entrepreneur.score}</td>
+                    <td>{entrepreneur.courseProgress}</td>
+                    <td>{entrepreneur.coursePoint}</td>
                     <td>
-                      <div className="form-check form-switch form-switch-md">
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          id="flexSwitchCheckDefault"
-                        />
-                      </div>
-                    </td>
-                    <td>{mentor.manageBizCode}</td>
-                    <td>
-                      <a href="#" className="text-[#00c2cb]">
-                        View profile
-                      </a>
+                      <a href="#" className="text-[#00c2cb]">View Report</a>
                     </td>
                   </tr>
                 );

@@ -70,7 +70,7 @@ export const IncubatorDashboard = () => {
           <div className="container-fluid">
             <div className="card shadow m-3">
               <div className="card-header bg-white border-0">
-                <h5 className="mb-0 text-dark">Overview</h5>
+                <h5 className="mb-0 text-2xl font-medium text-dark">Overview</h5>
               </div>
               <div className="card-body border-0">
                 <div className="row">
@@ -110,7 +110,7 @@ export const IncubatorDashboard = () => {
               <div className="col-lg-4">
                 <div className="card h-100 shadow">
                   <div className="card-header bg-white border-0 d-flex justify-content-between">
-                    <h5 className="mb-0 text-dark">Users</h5>
+                    <h5 className="mb-0 text-2xl font-medium text-dark">Users</h5>
                     <button onClick={onGoToUsers}>See all</button>
                   </div>
                   <div className="card-body border-0">
@@ -149,7 +149,7 @@ export const IncubatorDashboard = () => {
               <div className="col-lg-4">
                 <div className="card h-100 shadow">
                   <div className="card-header bg-white border-0">
-                    <h5 className="mb-0 text-dark">Actions</h5>
+                    <h5 className="mb-0 text-2xl font-medium text-dark">Actions</h5>
                   </div>
                   <div className="card-body border-0">
                     <div className="bg-light rounded-3 p-3">
@@ -178,7 +178,7 @@ export const IncubatorDashboard = () => {
               <div className="col-lg-4">
                 <div className="card h-100 shadow">
                   <div className="card-header bg-white border-0">
-                    <h5 className="mb-0 text-dark">Concept chart</h5>
+                    <h5 className="mb-0 text-2xl font-medium text-dark">Concept chart</h5>
                   </div>
                   <div className="card-body border-0">
                   <PieChart data={data} width={"100%"} height={"200px"} />

@@ -15,7 +15,7 @@ export const InstructorProfile = () => {
           <div className="container-fluid">
             <div className="card shadow mt-3">
               <div className="card-header bg-white border-0">
-                <h5 className="mb-0 text-dark">Instructor Profile</h5>
+                <h5 className="mb-0 text-2xl font-medium text-dark">Instructor Profile</h5>
               </div>
               <div className="card-body border-0">
                 <div className="row">

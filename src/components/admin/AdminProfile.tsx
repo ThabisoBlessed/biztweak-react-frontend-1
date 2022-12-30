@@ -16,7 +16,7 @@ export const AdminProfile = () => {
               <div className="col-lg-12">
                 <div className="card shadow mt-3">
                   <div className="card-header bg-white border-0">
-                    <h5 className="mb-0 text-dark">Profile Settings</h5>
+                    <h5 className="mb-0 text-2xl font-medium text-dark">Profile Settings</h5>
                   </div>
                   <div className="card-body border-0">
                     <div className="col-12 bg-light">

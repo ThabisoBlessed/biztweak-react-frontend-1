@@ -14,7 +14,7 @@ export const CourseProgress = () => {
             <div className="row mt-3">
               <div className="card shadow">
                 <div className="card-header bg-white border-0 d-flex justify-content-between">
-                  <h5 className="mb-0 text-dark">Course Progress</h5>
+                  <h5 className="mb-0 text-2xl font-medium text-dark">Course Progress</h5>
                 </div>
                 <div className="card-body border-0">
                   <table className="table">

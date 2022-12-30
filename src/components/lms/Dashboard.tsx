@@ -40,7 +40,7 @@ export const Dashboard = () => {
 
             <div className="card shadow m-3">
               <div className="card-header bg-white border-0">
-                <h5 className="mb-0 text-dark">Overview</h5>
+                <h5 className="mb-0 text-2xl font-medium text-dark">Overview</h5>
               </div>
               <div className="card-body border-0">
                 <div className="row">

@@ -26,7 +26,7 @@ export const Courses = () => {
           <div className="row mt-3">
             <div className="card bg-transparent border-0 mb-3">
               <div className="card-header bg-transparent border-0">
-                <h5 className="mb-0 text-dark">Courses</h5>
+                <h5 className="mb-0 text-2xl font-medium text-dark">Courses</h5>
               </div>
             </div>
             <div className="col-lg-3 col-md-4 mb-3">
