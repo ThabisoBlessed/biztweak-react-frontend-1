@@ -10,6 +10,7 @@ import ClockImg from "../../images/icons/clock.png";
 import BulbImg from "../../images/icons/bulb.png";
 import DashboardImg from "../../images/icons/dashboard.png";
 import { PieChart } from "../shared/charts/PieChart";
+import { Mentors } from "./Mentors";
 
 export const Dashboard = () => {
   const initUsers: any[] = [
@@ -99,7 +100,7 @@ export const Dashboard = () => {
               </div>
             </div>
 
-            <div className="row m-2">
+            <div className="row m-1">
               <div className="col-lg-4">
                 <div className="card h-100 shadow">
                   <div className="card-header bg-white border-0 d-flex justify-content-between">
@@ -179,7 +180,10 @@ export const Dashboard = () => {
                 </div>
               </div>
             </div>
-            <div className="m-3"></div>
+            
+            <div className="m-4">
+              <Mentors />
+            </div>
           </div>
         </div>
       </div>
