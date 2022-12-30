@@ -10,12 +10,33 @@ import {
   removeLocalStorageValue,
 } from "../../config";
 import { IUser } from "../../model/user.model";
+import { IMenuListItem } from "../../model/menu-list-item.model";
 
 export const Navbar = () => {
+  const menuList: IMenuListItem[] = [
+    {
+      id: 0,
+      title: "LMS",
+      link: "/lms",
+      iconClass: "",
+      isActive: false,
+      titleClasses: "nav-item me-2 hover:text-[#00c2cb]",
+    },
+    {
+      id: 1,
+      title: "CMP",
+      link: "/cmp",
+      iconClass: "",
+      isActive: false,
+      titleClasses: "nav-item me-2 hover:text-[#00c2cb]",
+    },
+  ];
+  const [menu, setMenu] = useState(menuList);
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(isLoggedIn());
   const [userEmail, setUserEmail] = useState("");
   const [userName, setUserName] = useState("");
+  const [clickedMenuItem, setClickedMenuItem] = useState({} as IMenuListItem);
 
   useEffect(() => {
     console.log("Logged in: ", loggedIn);
@@ -35,7 +56,7 @@ export const Navbar = () => {
 
   const onEditProfile = () => {
     localStorage.setItem(
-      LOCALSTORAGE_KEYS.selectedMenu,
+      LOCALSTORAGE_KEYS.selectedNavMenu,
       JSON.stringify({
         id: 5,
         title: "Profile",
@@ -48,15 +69,32 @@ export const Navbar = () => {
     navigate("/lms/profile");
   };
 
-  const onClearSelectedMenukNav = () => {
-    localStorage.removeItem(LOCALSTORAGE_KEYS.selectedMenu);
+  const onClearSelectedNavMenukNav = () => {
+    localStorage.removeItem(LOCALSTORAGE_KEYS.selectedNavMenu);
+  };
+
+  /**
+   * Handles menu item click
+   * @param menuItem
+   */
+  const handleMenuItemClick = (menuItem: IMenuListItem) => {
+    localStorage.removeItem(LOCALSTORAGE_KEYS.selectedNavMenu);
+    localStorage.setItem(
+      LOCALSTORAGE_KEYS.selectedNavMenu,
+      JSON.stringify(menuItem)
+    );
+    const selected = localStorage.getItem(LOCALSTORAGE_KEYS.selectedNavMenu);
+    if (selected) {
+      setClickedMenuItem(JSON.parse(selected));
+    }
+    // navigate(menuItem.link)
   };
 
   return (
     <div
       className="border-b"
       data-testid="navbar"
-      onClick={onClearSelectedMenukNav}
+      onClick={onClearSelectedNavMenukNav}
     >
       {loggedIn ? (
         <nav className="navbar navbar-expand-md border-bottom navbar-light text-dark bg-white">
@@ -96,16 +134,24 @@ export const Navbar = () => {
                     <option value="">English</option>
                   </select>
                 </li>
-                <li className="nav-item me-2 hover:text-[#00c2cb]" id="lms">
-                  <Link to="/lms" className="hover:text-[#00c2cb]">
-                    LMS
-                  </Link>
-                </li>
-                <li className="nav-item me-2 hover:text-[#00c2cb]" id="cms">
-                  <Link to="/cmp" className="hover:text-[#00c2cb]">
-                    CMP
-                  </Link>
-                </li>
+                {menu.map((menu: IMenuListItem, index: number) => {
+                  return (
+                    <li
+                      className={`hover:text-[#16f0fb] mr-2 ${
+                        menu.id === clickedMenuItem.id
+                          ? "bg-[#00c2cb] text-white"
+                          : null
+                      } rounded-lg cursor-pointer`}
+                      id="lms"
+                      key={`nav_menu_${index}`}
+                      onClick={() => handleMenuItemClick(menu)}
+                    >
+                      <Link to={menu.link} className="hover:text-[#00c2cb]">
+                        &nbsp;{menu.title}&nbsp;
+                      </Link>
+                    </li>
+                  );
+                })}
                 <li className="nav-item me-2 hover:text-[#00c2cb]" id="home">
                   <Link to="/" className="hover:text-[#00c2cb]">
                     <i className="fa-lg fa-solid fa-house"></i>
