@@ -9,6 +9,7 @@ import PotImg from "../../images/icons/pot.png";
 import ClockImg from "../../images/icons/clock.png";
 import BulbImg from "../../images/icons/bulb.png";
 import DashboardImg from "../../images/icons/dashboard.png";
+import { PieChart } from "../shared/charts/PieChart";
 
 export const Dashboard = () => {
   const initUsers: any[] = [
@@ -42,6 +43,15 @@ export const Dashboard = () => {
   ];
   const [users, setUsers] = useState(initUsers);
   const [actions, setActions] = useState(innitActions);
+
+  const data = [
+    ["Elements", "Priority Elements"],
+    ["Work", 11],
+    ["Eat", 2],
+    ["Commute", 2],
+    ["Watch TV", 2],
+    ["Sleep", 7],
+  ];
 
   return (
     <div className="w-full">
@@ -164,7 +174,7 @@ export const Dashboard = () => {
                     <h5 className="mb-0 text-dark">Concept chart</h5>
                   </div>
                   <div className="card-body border-0">
-                    {/* <canvas id="myChart3" width="672" height="514" style="display: block; box-sizing: border-box; height: 257px; width: 336px;"></canvas> */}
+                  <PieChart data={data} width={"100%"} height={"200px"} />
                   </div>
                 </div>
               </div>

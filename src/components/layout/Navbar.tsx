@@ -145,7 +145,7 @@ export const Navbar = () => {
                 {menu.map((menu: IMenuListItem, index: number) => {
                   return (
                     <li
-                      className={`hover:text-[#16f0fb] mr-2 ${
+                      className={`hover:text-white mr-2 ${
                         menu.id === clickedMenuItem.id
                           ? "bg-[#00c2cb] text-white"
                           : null
