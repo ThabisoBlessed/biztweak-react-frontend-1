@@ -70,6 +70,14 @@ export const AdminMenu = () => {
       isActive: false,
       titleClasses: "ml-3",
     },
+    {
+      id: 8,
+      title: "Add New User",
+      link: "/admin/add-user",
+      iconClass: "fa-lg fa-solid fa-user",
+      isActive: false,
+      titleClasses: "ml-3",
+    },
   ];
   const [menu, setMenu] = useState(menuList);
   const [clickedMenuItem, setClickedMenuItem] = useState({} as IMenuListItem);

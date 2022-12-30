@@ -40,6 +40,7 @@ import { AdminProfile } from "./components/admin/AdminProfile";
 import { AdminAttendance } from "./components/admin/AdminAttendance";
 import { IncubatorDashboard } from "./components/admin/IncubatorDashboard";
 import { SuperAdminDashboard } from "./components/admin/SuperAdminDashboard";
+import { AddNewUser } from "./components/shared/AddNewUser";
 
 function App() {
   return (
@@ -97,6 +98,7 @@ function App() {
           <Route path="/admin/application" element={<Calendar />}></Route>
           <Route path="/admin/attendance" element={<AdminAttendance />}></Route>
           <Route path="/admin/super-user-dashboard" element={<SuperAdminDashboard />}></Route>
+          <Route path="/admin/add-user" element={<AddNewUser />}></Route>
         </Routes>
       </Router>
       <Footer />

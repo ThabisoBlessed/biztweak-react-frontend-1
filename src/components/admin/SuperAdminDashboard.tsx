@@ -4,8 +4,6 @@ import PotImg from "../../images/icons/pot.png";
 import ClockImg from "../../images/icons/clock.png";
 import BulbImg from "../../images/icons/bulb.png";
 import DashboardImg from "../../images/icons/dashboard.png";
-import { PieChart } from "../shared/charts/PieChart";
-import { Mentors } from "./Mentors";
 import { useNavigate } from "react-router-dom";
 import { AdminMenu } from "./AdminMenu";
 import EntreprenursImg from "../../images/icons/entreprenuers.png";
@@ -58,8 +56,8 @@ export const SuperAdminDashboard = () => {
     ["Sleep", 7],
   ];
 
-  const onGoToUsers = () => {
-    navigate("/admin/dashboard/users");
+  const onAddNewUser = () => {
+    navigate("/admin/dashboard/add-user");
   };
 
   return (
