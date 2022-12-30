@@ -77,6 +77,9 @@ export const Navbar = () => {
     navigate("/lms/profile");
   };
 
+  /**
+   * Resets all selected menus
+   */
   const onClearSelectedNavMenukNav = () => {
     localStorage.removeItem(LOCALSTORAGE_KEYS.selectedNavMenu);
     localStorage.removeItem(LOCALSTORAGE_KEYS.selectedAdminMenu);

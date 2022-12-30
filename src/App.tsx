@@ -21,7 +21,6 @@ import { Course } from "./components/lms/Course";
 import { InstructorProfile } from "./components/lms/InstructorProfile";
 import { PlayCourse } from "./components/lms/PlayCourse";
 import { Calendar } from "./components/shared/Calendar";
-import { Profile } from "./components/lms/Profile";
 import { CMP } from "./components/cmp/CMP";
 import { AddTest } from "./components/cmp/AddTest";
 import { Quiz } from "./components/cmp/Quiz";
@@ -36,6 +35,8 @@ import { Admin } from "./components/admin/Admin";
 import { Users } from "./components/admin/Users";
 import { AdminCalendar } from "./components/admin/AdminCalendar";
 import { LMSCalendar } from "./components/lms/LMSCalendar";
+import { Profile } from "./components/lms/Profile";
+import { AdminProfile } from "./components/admin/AdminProfile";
 
 function App() {
   return (
@@ -85,7 +86,7 @@ function App() {
           <Route path="/admin/*" element={<Admin />}></Route>
           <Route path="/admin/incubator-dashboard" element={<Course />}></Route>
           <Route path="/admin/dashboard/users" element={<Users />}></Route>
-          <Route path="/admin/admin-user" element={<Calendar />}></Route>
+          <Route path="/admin/admin-user" element={<AdminProfile />}></Route>
           <Route path="/admin/statistics" element={<Calendar />}></Route>
           <Route path="/admin/calendar" element={<AdminCalendar />}></Route>
           <Route path="/admin/submission" element={<Calendar />}></Route>
