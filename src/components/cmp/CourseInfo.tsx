@@ -33,7 +33,7 @@ export const CourseInfo = () => {
     {
       id: 3,
       title: "Quiz",
-      link: "/cmp/manage-courses/add-audio",
+      link: "/cmp/manage-courses/add-quiz",
       iconClass: "fa-lg fa-solid fa-question",
       isActive: false,
       titleClasses: "ml-6",
