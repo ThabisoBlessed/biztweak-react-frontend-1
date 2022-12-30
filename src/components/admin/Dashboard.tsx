@@ -1,18 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import EntreprenursImg from "../../images/icons/entreprenuers.png";
 import ConsultantsImg from "../../images/icons/consultants.png";
 import MentorImg from "../../images/icons/mentor.png";
 import CoachesImg from "../../images/icons/mic.png";
 import { AdminMenu } from "./AdminMenu";
-import CourseImg from "../../images/course.png";
 import AvatarImg from "../../images/avatar.png";
-import CourseVideo from "../../images/video.mp4";
+import PotImg from "../../images/icons/pot.png";
+import ClockImg from "../../images/icons/clock.png";
+import BulbImg from "../../images/icons/bulb.png";
+import DashboardImg from "../../images/icons/dashboard.png";
 
 export const Dashboard = () => {
   const initUsers: any[] = [
-    { name: "Jazmyn", email: "@jaz.designer", lastSeen: "8 hours ago" },
+    { id: 0, name: "Jazmyn", email: "@jaz.designer", lastSeen: "8 hours ago" },
+    { id: 1, name: "Jane", email: "@jane.designer", lastSeen: "10 hours ago" },
+    { id: 2, name: "Mpho", email: "@mpho.developer", lastSeen: "8 hours ago" },
+  ];
+  const innitActions: any[] = [
+    { id: 0, title: "Early stage", src: ClockImg },
+    { id: 1, title: "Start up", src: PotImg },
+    { id: 2, title: "Idea concept", src: BulbImg },
+    { id: 3, title: "Accelerate", src: DashboardImg },
   ];
   const [users, setUsers] = useState(initUsers);
+  const [actions, setActions] = useState(innitActions);
 
   return (
     <div className="w-full">
@@ -68,10 +79,7 @@ export const Dashboard = () => {
                     <a href="#">See all</a>
                   </div>
                   <div className="card-body border-0">
-                    <div
-                      className="overflow-y-scroll h-[200px]"
-                      id="users"
-                    >
+                    <div className="overflow-y-scroll h-[200px]" id="users">
                       <div className="d-flex mb-2 cursor-pointer">
                         <div>
                           <img
@@ -104,38 +112,22 @@ export const Dashboard = () => {
                   <div className="card-body border-0">
                     <div className="bg-light rounded-3 p-3">
                       <div className="row">
-                        <div className="col-6 text-center text-dark p-2">
-                          <img
-                            src="../images/icons/clock.png"
-                            width="50px"
-                            alt=""
-                          />
-                          <p className="my-2">Early stage</p>
-                        </div>
-                        <div className="col-6 text-center text-dark p-2">
-                          <img
-                            src="../images/icons/pot.png"
-                            width="50px"
-                            alt=""
-                          />
-                          <p className="my-2">Start up</p>
-                        </div>
-                        <div className="col-6 text-center text-dark p-2">
-                          <img
-                            src="../images/icons/bulb.png"
-                            width="50px"
-                            alt=""
-                          />
-                          <p className="my-2">Idea concept</p>
-                        </div>
-                        <div className="col-6 text-center text-dark p-2">
-                          <img
-                            src="../images/icons/dashboard.png"
-                            width="50px"
-                            alt=""
-                          />
-                          <p className="my-2">Accelerate</p>
-                        </div>
+                        {actions.map((action: any, index: number) => {
+                          return (
+                            <div
+                              className="col-6 text-center text-dark p-2"
+                              key={`action_menu_${index}`}
+                            >
+                              <img
+                                src={action.src}
+                                className="mx-auto"
+                                width="50px"
+                                alt=""
+                              />
+                              <p className="my-2">{action.title}</p>
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
