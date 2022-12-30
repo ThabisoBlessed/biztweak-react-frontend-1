@@ -41,7 +41,7 @@ export const AdminMenu = () => {
     {
       id: 4,
       title: "Submission",
-      link: "/admin/manage-courses/quiz",
+      link: "/admin/submission",
       iconClass: "fa-lg fa-solid fa-file-alt",
       isActive: false,
       titleClasses: "ml-3",
@@ -49,8 +49,16 @@ export const AdminMenu = () => {
     {
       id: 5,
       title: "Application",
-      link: "/admin/manage-courses/quiz",
+      link: "/admin/application",
       iconClass: "fa-lg fa-solid fa-edit",
+      isActive: false,
+      titleClasses: "ml-3",
+    },
+    {
+      id: 6,
+      title: "Attendance",
+      link: "/admin/attendance",
+      iconClass: "fa-lg fa-solid fa-file-waveform",
       isActive: false,
       titleClasses: "ml-3",
     },

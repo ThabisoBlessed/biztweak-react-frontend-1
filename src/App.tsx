@@ -37,6 +37,7 @@ import { AdminCalendar } from "./components/admin/AdminCalendar";
 import { LMSCalendar } from "./components/lms/LMSCalendar";
 import { Profile } from "./components/lms/Profile";
 import { AdminProfile } from "./components/admin/AdminProfile";
+import { AdminAttendance } from "./components/admin/AdminAttendance";
 
 function App() {
   return (
@@ -91,6 +92,7 @@ function App() {
           <Route path="/admin/calendar" element={<AdminCalendar />}></Route>
           <Route path="/admin/submission" element={<Calendar />}></Route>
           <Route path="/admin/application" element={<Calendar />}></Route>
+          <Route path="/admin/attendance" element={<AdminAttendance />}></Route>
         </Routes>
       </Router>
       <Footer />
