@@ -13,7 +13,7 @@ import { PieChart } from "../shared/charts/PieChart";
 import { Mentors } from "./Mentors";
 import { useNavigate } from "react-router-dom";
 
-export const Dashboard = () => {
+export const IncubatorDashboard = () => {
   const initUsers: any[] = [
     {
       id: 0,

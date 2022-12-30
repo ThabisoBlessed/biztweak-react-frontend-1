@@ -38,6 +38,7 @@ import { LMSCalendar } from "./components/lms/LMSCalendar";
 import { Profile } from "./components/lms/Profile";
 import { AdminProfile } from "./components/admin/AdminProfile";
 import { AdminAttendance } from "./components/admin/AdminAttendance";
+import { IncubatorDashboard } from "./components/admin/IncubatorDashboard";
 
 function App() {
   return (
@@ -85,6 +86,7 @@ function App() {
           <Route path="/cmp/manage-courses/add-assignment" element={<AddAssignment />}></Route>
 
           <Route path="/admin/*" element={<Admin />}></Route>
+          <Route path="/admin/incubator-dashboard" element={<IncubatorDashboard />}></Route>
           <Route path="/admin/incubator-dashboard" element={<Course />}></Route>
           <Route path="/admin/dashboard/users" element={<Users />}></Route>
           <Route path="/admin/admin-user" element={<AdminProfile />}></Route>
