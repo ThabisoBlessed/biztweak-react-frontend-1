@@ -21,18 +21,18 @@ export const Entrepreneurs = () => {
         <div className="card-header bg-white border-0 d-flex justify-content-between">
           <h5 className="mb-0 text-2xl font-medium text-dark">Entrepreneurs</h5>
           <form action="#">
-            <div className="row col-12">
-              <div className="col-6">
+            <div className="row">
+              <div className="col-4">
                 <select name="" className="form-select">
                   <option value="">Industry</option>
                 </select>
               </div>
-              <div className="col-6">
+              <div className="col-4">
                 <select name="" className="form-select">
                   <option value="">Stage</option>
                 </select>
               </div>
-              <div className="col-6">
+              <div className="col-4">
                 <select name="" className="form-select">
                   <option value="">Employee</option>
                 </select>
