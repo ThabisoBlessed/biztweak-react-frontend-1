@@ -1,8 +1,7 @@
 import React from "react";
-import { LMSMenu } from "./LMSMenu";
-import { CalendarItem } from "./CalendarItem";
-import { DatePicker } from "./DatePicker";
+import { LMSMenu } from "../lms/LMSMenu";
 import { CalendarFull } from "./CalendarFull";
+import { DatePicker } from "./DatePicker";
 
 export const Calendar = () => {
   return (

@@ -20,7 +20,7 @@ import { Messages } from "./components/lms/Messages";
 import { Course } from "./components/lms/Course";
 import { InstructorProfile } from "./components/lms/InstructorProfile";
 import { PlayCourse } from "./components/lms/PlayCourse";
-import { Calendar } from "./components/lms/Calendar";
+import { Calendar } from "./components/shared/Calendar";
 import { Profile } from "./components/lms/Profile";
 import { CMP } from "./components/cmp/CMP";
 import { AddTest } from "./components/cmp/AddTest";
@@ -83,6 +83,7 @@ function App() {
           <Route path="/admin/*" element={<Admin />}></Route>
           <Route path="/admin/incubator-dashboard" element={<Course />}></Route>
           <Route path="/admin/dashboard/users" element={<Users />}></Route>
+          <Route path="/admin/calendar" element={<Calendar />}></Route>
         </Routes>
       </Router>
       <Footer />
