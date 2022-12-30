@@ -34,6 +34,8 @@ import { AddQuiz } from "./components/cmp/AddQuiz";
 import { AddAssignment } from "./components/cmp/AddAssignment";
 import { Admin } from "./components/admin/Admin";
 import { Users } from "./components/admin/Users";
+import { AdminCalendar } from "./components/admin/AdminCalendar";
+import { LMSCalendar } from "./components/lms/LMSCalendar";
 
 function App() {
   return (
@@ -63,7 +65,7 @@ function App() {
           <Route path="/lms/course-progress" element={<CourseProgress />}></Route>
           <Route path="/lms/dashboard" element={<Dashboard />}></Route>
           <Route path="/lms/messages" element={<Messages />}></Route>
-          <Route path="/lms/calendar" element={<Calendar />}></Route>
+          <Route path="/lms/calendar" element={<LMSCalendar />}></Route>
           <Route path="/lms/profile" element={<Profile />}></Route>
           <Route path="/lms/instructor-profile" element={<InstructorProfile />}></Route>
 
@@ -85,7 +87,7 @@ function App() {
           <Route path="/admin/dashboard/users" element={<Users />}></Route>
           <Route path="/admin/admin-user" element={<Calendar />}></Route>
           <Route path="/admin/statistics" element={<Calendar />}></Route>
-          <Route path="/admin/calendar" element={<Calendar />}></Route>
+          <Route path="/admin/calendar" element={<AdminCalendar />}></Route>
           <Route path="/admin/submission" element={<Calendar />}></Route>
           <Route path="/admin/application" element={<Calendar />}></Route>
         </Routes>

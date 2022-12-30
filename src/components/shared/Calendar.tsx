@@ -1,14 +1,16 @@
 import React from "react";
+import { AdminMenu } from "../admin/AdminMenu";
 import { LMSMenu } from "../lms/LMSMenu";
 import { CalendarFull } from "./CalendarFull";
 import { DatePicker } from "./DatePicker";
 
-export const Calendar = () => {
+export const Calendar = (props: any) => {
   return (
     <div className="w-full">
       <div className="row">
         <div className="col-md-2 min-h-[100vh]">
-          <LMSMenu />
+          {props.menu === 'lms' ? (<LMSMenu />) : null}
+          {props.menu === 'admin' ? (<AdminMenu />) : null}
         </div>
         <div className="col-md-10 text-left bg-light border-start">
           <div className="container-fluid">

@@ -79,6 +79,8 @@ export const Navbar = () => {
 
   const onClearSelectedNavMenukNav = () => {
     localStorage.removeItem(LOCALSTORAGE_KEYS.selectedNavMenu);
+    localStorage.removeItem(LOCALSTORAGE_KEYS.selectedAdminMenu);
+    localStorage.removeItem(LOCALSTORAGE_KEYS.selectedMenu);
   };
 
   /**
