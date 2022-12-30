@@ -33,6 +33,7 @@ import { AddAudio } from "./components/cmp/AddAudio";
 import { AddQuiz } from "./components/cmp/AddQuiz";
 import { AddAssignment } from "./components/cmp/AddAssignment";
 import { Admin } from "./components/admin/Admin";
+import { Users } from "./components/admin/Users";
 
 function App() {
   return (
@@ -81,6 +82,7 @@ function App() {
 
           <Route path="/admin/*" element={<Admin />}></Route>
           <Route path="/admin/incubator-dashboard" element={<Course />}></Route>
+          <Route path="/admin/dashboard/users" element={<Users />}></Route>
         </Routes>
       </Router>
       <Footer />

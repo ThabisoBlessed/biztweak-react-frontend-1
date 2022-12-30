@@ -11,6 +11,7 @@ import BulbImg from "../../images/icons/bulb.png";
 import DashboardImg from "../../images/icons/dashboard.png";
 import { PieChart } from "../shared/charts/PieChart";
 import { Mentors } from "./Mentors";
+import { useNavigate } from "react-router-dom";
 
 export const Dashboard = () => {
   const initUsers: any[] = [
@@ -44,6 +45,7 @@ export const Dashboard = () => {
   ];
   const [users, setUsers] = useState(initUsers);
   const [actions, setActions] = useState(innitActions);
+  const navigate = useNavigate();
 
   const data = [
     ["Elements", "Priority Elements"],
@@ -53,6 +55,10 @@ export const Dashboard = () => {
     ["Watch TV", 2],
     ["Sleep", 7],
   ];
+
+  const onGoToUsers = () => {
+    navigate("/admin/dashboard/users");
+  }
 
   return (
     <div className="w-full">
@@ -105,7 +111,7 @@ export const Dashboard = () => {
                 <div className="card h-100 shadow">
                   <div className="card-header bg-white border-0 d-flex justify-content-between">
                     <h5 className="mb-0 text-dark">Users</h5>
-                    <a href="#">See all</a>
+                    <button onClick={onGoToUsers}>See all</button>
                   </div>
                   <div className="card-body border-0">
                     <div className="overflow-y-scroll h-[200px]" id="users">
