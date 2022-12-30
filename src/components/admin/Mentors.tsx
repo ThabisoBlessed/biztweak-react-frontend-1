@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Mentors.css";
 
 export const Mentors = () => {
+  const initMentors: any[] = [
+    {
+      id: 1,
+      name: "Guide App",
+      bizCode: "Johannesburg, South Africa",
+      manageBizCode: "Other",
+    },
+  ];
+  const [mentors, setMentors] = useState(initMentors);
+
   return (
     <div className="row mt-3">
       <div className="card shadow">
@@ -34,28 +44,34 @@ export const Mentors = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>
-                  <span className="badge bg-white text-dark">Guide App</span>
-                </td>
-                <td>Johannesburg, South Africa</td>
-                <td>
-                  <div className="form-check form-switch form-switch-md">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      id="flexSwitchCheckDefault"
-                    />
-                  </div>
-                </td>
-                <td>Other</td>
-                <td>
-                  <a href="#" className="text-[#00c2cb]">
-                    View profile
-                  </a>
-                </td>
-              </tr>
+              {mentors.map((mentor: any, index: number) => {
+                return (
+                  <tr key={index}>
+                    <td>{mentor.id}</td>
+                    <td>
+                      <span className="badge bg-white text-dark">
+                        {mentor.name}
+                      </span>
+                    </td>
+                    <td>{mentor.bizCode}</td>
+                    <td>
+                      <div className="form-check form-switch form-switch-md">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          id="flexSwitchCheckDefault"
+                        />
+                      </div>
+                    </td>
+                    <td>{mentor.manageBizCode}</td>
+                    <td>
+                      <a href="#" className="text-[#00c2cb]">
+                        View profile
+                      </a>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
