@@ -12,9 +12,27 @@ import DashboardImg from "../../images/icons/dashboard.png";
 
 export const Dashboard = () => {
   const initUsers: any[] = [
-    { id: 0, name: "Jazmyn", email: "@jaz.designer", lastSeen: "8 hours ago" },
-    { id: 1, name: "Jane", email: "@jane.designer", lastSeen: "10 hours ago" },
-    { id: 2, name: "Mpho", email: "@mpho.developer", lastSeen: "8 hours ago" },
+    {
+      id: 0,
+      name: "Jazmyn",
+      email: "@jaz.designer",
+      lastSeen: "8 hours ago",
+      src: AvatarImg,
+    },
+    {
+      id: 1,
+      name: "Jane",
+      email: "@jane.designer",
+      lastSeen: "10 hours ago",
+      src: AvatarImg,
+    },
+    {
+      id: 2,
+      name: "Mpho",
+      email: "@mpho.developer",
+      lastSeen: "8 hours ago",
+      src: AvatarImg,
+    },
   ];
   const innitActions: any[] = [
     { id: 0, title: "Early stage", src: ClockImg },
@@ -80,22 +98,29 @@ export const Dashboard = () => {
                   </div>
                   <div className="card-body border-0">
                     <div className="overflow-y-scroll h-[200px]" id="users">
-                      <div className="d-flex mb-2 cursor-pointer">
-                        <div>
-                          <img
-                            src={AvatarImg}
-                            className="rounded-circle h-[40px]"
-                            alt=""
-                          />
-                        </div>
-                        <div className="ms-3">
-                          <h6 className="mb-0 font-medium text-1xl">
-                            <span className="text-dark">Jazmyn</span>
-                            <span className="text-muted">@jaz.designer</span>
-                          </h6>
-                          <p>8hour ago</p>
-                        </div>
-                      </div>
+                      {users.map((user: any, index: number) => {
+                        return (
+                          <div
+                            className="d-flex mb-3 cursor-pointer"
+                            key={`action_menu_${index}`}
+                          >
+                            <div>
+                              <img
+                                src={AvatarImg}
+                                className="rounded-circle h-[40px]"
+                                alt=""
+                              />
+                            </div>
+                            <div className="ms-3">
+                              <h6 className="mb-0 font-medium text-1xl">
+                                <span className="text-dark">{user.name}</span>
+                                <span className="text-muted">{user.email}</span>
+                              </h6>
+                              <p>{user.lastSeen}</p>
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
 
                     <button className="btn text-white bg-[#00c2cb] hover:bg-[#16f0fb] rounded-md w-full">
@@ -144,7 +169,6 @@ export const Dashboard = () => {
                 </div>
               </div>
             </div>
-
             <div className="m-3"></div>
           </div>
         </div>
