@@ -8,7 +8,7 @@ export const AdminMenu = () => {
   const menuList: IMenuListItem[] = [
     {
       id: 0,
-      title: "Dashboard",
+      title: "Incubator Dash",
       link: "/admin/dashboard",
       iconClass: "fa-lg fa-solid fa-home",
       isActive: false,
@@ -59,6 +59,14 @@ export const AdminMenu = () => {
       title: "Attendance",
       link: "/admin/attendance",
       iconClass: "fa-lg fa-solid fa-file-waveform",
+      isActive: false,
+      titleClasses: "ml-3",
+    },
+    {
+      id: 7,
+      title: "SuperAdmin Dash",
+      link: "/admin/super-user-dashboard",
+      iconClass: "fa-lg fa-solid fa-home",
       isActive: false,
       titleClasses: "ml-3",
     },
