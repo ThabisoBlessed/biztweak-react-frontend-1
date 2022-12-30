@@ -25,7 +25,7 @@ export const AdminMenu = () => {
     {
       id: 2,
       title: "Statistics",
-      link: "/cmp/statistics",
+      link: "/admin/statistics",
       iconClass: "fa-lg fas fa-chart-bar",
       isActive: false,
       titleClasses: "ml-4",
@@ -33,7 +33,7 @@ export const AdminMenu = () => {
     {
       id: 3,
       title: "Calendar",
-      link: "/lms/calendar",
+      link: "/admin/calendar",
       iconClass: "fa-lg fas fa-calendar-alt",
       isActive: false,
       titleClasses: "ml-3",
@@ -41,7 +41,7 @@ export const AdminMenu = () => {
     {
       id: 4,
       title: "Submission",
-      link: "/cmp/manage-courses/quiz",
+      link: "/admin/manage-courses/quiz",
       iconClass: "fa-lg fa-solid fa-file-alt",
       isActive: false,
       titleClasses: "ml-3",
@@ -49,7 +49,7 @@ export const AdminMenu = () => {
     {
       id: 5,
       title: "Application",
-      link: "/cmp/manage-courses/quiz",
+      link: "/admin/manage-courses/quiz",
       iconClass: "fa-lg fa-solid fa-edit",
       isActive: false,
       titleClasses: "ml-3",
@@ -59,7 +59,7 @@ export const AdminMenu = () => {
   const [clickedMenuItem, setClickedMenuItem] = useState({} as IMenuListItem);
 
   useEffect(() => {
-    const selected = localStorage.getItem(LOCALSTORAGE_KEYS.selectedMenu);
+    const selected = localStorage.getItem(LOCALSTORAGE_KEYS.selectedAdminMenu);
     console.log(selected);
     if (selected) {
       setClickedMenuItem(JSON.parse(selected));
@@ -74,12 +74,12 @@ export const AdminMenu = () => {
    * @param menuItem
    */
   const handleMenuItemClick = (menuItem: IMenuListItem) => {
-    localStorage.removeItem(LOCALSTORAGE_KEYS.selectedMenu);
+    localStorage.removeItem(LOCALSTORAGE_KEYS.selectedAdminMenu);
     localStorage.setItem(
-      LOCALSTORAGE_KEYS.selectedMenu,
+      LOCALSTORAGE_KEYS.selectedAdminMenu,
       JSON.stringify(menuItem)
     );
-    const selected = localStorage.getItem(LOCALSTORAGE_KEYS.selectedMenu);
+    const selected = localStorage.getItem(LOCALSTORAGE_KEYS.selectedAdminMenu);
     if (selected) {
       setClickedMenuItem(JSON.parse(selected));
     }

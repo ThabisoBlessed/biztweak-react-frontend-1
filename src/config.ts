@@ -8,6 +8,7 @@ export const LOCALSTORAGE_KEYS = {
   assessmentQuestions: "assessment_questions",
   selectedMenu: "selected_menu",
   selectedNavMenu: "selected_nav_menu",
+  selectedAdminMenu: "selected_admin_menu",
   selectedCourseTypeMenu: "selected_course_type_menu"
 };
 

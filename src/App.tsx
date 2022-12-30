@@ -83,7 +83,11 @@ function App() {
           <Route path="/admin/*" element={<Admin />}></Route>
           <Route path="/admin/incubator-dashboard" element={<Course />}></Route>
           <Route path="/admin/dashboard/users" element={<Users />}></Route>
+          <Route path="/admin/admin-user" element={<Calendar />}></Route>
+          <Route path="/admin/statistics" element={<Calendar />}></Route>
           <Route path="/admin/calendar" element={<Calendar />}></Route>
+          <Route path="/admin/submission" element={<Calendar />}></Route>
+          <Route path="/admin/application" element={<Calendar />}></Route>
         </Routes>
       </Router>
       <Footer />
