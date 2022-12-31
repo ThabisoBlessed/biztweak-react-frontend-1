@@ -10,16 +10,10 @@ import { PieChart } from "../shared/charts/PieChart";
 import { Mentors } from "./Mentors";
 import { UsersCard } from "./UsersCard";
 import { ActionsCard } from "./ActionsCard";
+import { ChartCard } from "./ChartCard";
 
 export const IncubatorDashboard = () => {
-  const data = [
-    ["Elements", "Priority Elements"],
-    ["Work", 11],
-    ["Eat", 2],
-    ["Commute", 2],
-    ["Watch TV", 2],
-    ["Sleep", 7],
-  ];
+
   return (
     <div className="w-full">
       <div className="row">
@@ -65,7 +59,6 @@ export const IncubatorDashboard = () => {
                 </div>
               </div>
             </div>
-
             <div className="row m-1">
               <div className="col-lg-4">
               <UsersCard />
@@ -74,17 +67,9 @@ export const IncubatorDashboard = () => {
                <ActionsCard />
               </div>
               <div className="col-lg-4">
-                <div className="card h-100 shadow">
-                  <div className="card-header bg-white border-0">
-                    <h5 className="mb-0 text-2xl font-medium text-dark">Concept chart</h5>
-                  </div>
-                  <div className="card-body border-0">
-                  <PieChart data={data} width={"100%"} height={"200px"} />
-                  </div>
-                </div>
+                <ChartCard />
               </div>
             </div>
-            
             <div className="m-4">
               <Mentors />
             </div>

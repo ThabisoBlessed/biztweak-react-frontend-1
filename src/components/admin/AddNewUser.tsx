@@ -1,6 +1,7 @@
 import React from "react";
 import { ActionsCard } from "./ActionsCard";
 import { AdminMenu } from "./AdminMenu";
+import { ChartCard } from "./ChartCard";
 import { UsersCard } from "./UsersCard";
 
 export const AddNewUser = () => {
@@ -174,7 +175,7 @@ export const AddNewUser = () => {
                       <h5 className="mb-0 text-dark">Rating</h5>
                     </div>
                     <div className="card-body border-0">
-                      {/* <canvas id="myChart3" width="672" height="514" style="display: block; box-sizing: border-box; height: 257px; width: 336px;"></canvas> */}
+                      <ChartCard />
                     </div>
                   </div>
                 </div>
