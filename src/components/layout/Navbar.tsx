@@ -159,7 +159,11 @@ export const Navbar = () => {
                       key={`nav_menu_${index}`}
                       onClick={() => handleMenuItemClick(menu)}
                     >
-                      <Link to={menu.link} className="hover:text-[#00c2cb]">
+                      <Link to={menu.link} className={` ${
+                        menu.id === clickedMenuItem.id
+                          ? "hover:text-white"
+                          : "hover:text-[#00c2cb]"
+                      }`}>
                         &nbsp;{menu.title}&nbsp;
                       </Link>
                     </li>
