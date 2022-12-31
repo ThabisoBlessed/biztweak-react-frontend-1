@@ -40,7 +40,7 @@ import { AdminProfile } from "./components/admin/AdminProfile";
 import { AdminAttendance } from "./components/admin/AdminAttendance";
 import { IncubatorDashboard } from "./components/admin/IncubatorDashboard";
 import { SuperAdminDashboard } from "./components/admin/SuperAdminDashboard";
-import { AddNewUser } from "./components/shared/AddNewUser";
+import { AddNewUser } from "./components/admin/AddNewUser";
 
 function App() {
   return (
