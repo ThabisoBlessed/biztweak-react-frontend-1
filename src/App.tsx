@@ -36,11 +36,12 @@ import { Users } from "./components/admin/Users";
 import { AdminCalendar } from "./components/admin/AdminCalendar";
 import { LMSCalendar } from "./components/lms/LMSCalendar";
 import { Profile } from "./components/lms/Profile";
-import { AdminProfile } from "./components/admin/AdminProfile";
 import { AdminAttendance } from "./components/admin/AdminAttendance";
 import { IncubatorDashboard } from "./components/admin/IncubatorDashboard";
 import { SuperAdminDashboard } from "./components/admin/SuperAdminDashboard";
 import { AddNewUser } from "./components/admin/AddNewUser";
+import { CMPAdminProfile } from "./components/cmp/CMPAdminProfile";
+import { AdminProfile } from "./components/admin/AdminProfile";
 
 function App() {
   return (
@@ -77,6 +78,7 @@ function App() {
           <Route path="/cmp*" element={<CMP />}></Route>
           <Route path="/cmp/manage-courses/product-overview" element={<CMP />}></Route>
           <Route path="/cmp/manage-courses" element={<CMP />}></Route>
+          <Route path="/cmp/admin-user" element={<CMPAdminProfile />}></Route>
           <Route path="/cmp/manage-courses/add-test" element={<AddTest />}></Route>
           <Route path="/cmp/manage-courses/quiz" element={<Quiz />}></Route>
           <Route path="/cmp/manage-courses/course-info" element={<CourseInfo />}></Route>

@@ -170,14 +170,7 @@ export const AddNewUser = () => {
                  <ActionsCard />
                 </div>
                 <div className="col-12">
-                  <div className="card h-100 shadow">
-                    <div className="card-header bg-white border-0">
-                      <h5 className="mb-0 text-dark">Rating</h5>
-                    </div>
-                    <div className="card-body border-0">
                       <ChartCard />
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
