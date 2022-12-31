@@ -22,10 +22,16 @@ export const AddNewUser = () => {
                   <div className="card-body border-0">
                     <div className="row">
                       <div className="col-12">
-                        <a href="#" className="btn btn-main-outline">
+                        <a
+                          href="#"
+                          className="btn mr-2 border-[#00c2cb] text-[#00c2cb] hover:bg-[#00c2cb] hover:text-white"
+                        >
                           <i className="fa fa-plus"></i>
                         </a>
-                        <a href="#" className="btn btn-main-outline">
+                        <a
+                          href="#"
+                          className="btn mr-2 border-[#00c2cb] text-[#00c2cb] hover:bg-[#00c2cb] hover:text-white"
+                        >
                           <i className="fa fa-edit"></i>
                         </a>
                         <a href="#" className="btn btn-outline-danger">
@@ -34,14 +40,14 @@ export const AddNewUser = () => {
                       </div>
                     </div>
                     <form action="#" className="mt-4">
-                      <div className="form-group">
+                      <div className="form-group mt-2">
                         <div className="d-flex justify-content-between">
                           <label className="text-dark">
-                            Name{" "}
+                            Name&nbsp;
                             <i
                               className="fa fa-info-circle text-muted"
                               data-bs-toggle="tooltip"
-                              title=""
+                              title="Name is required"
                               data-bs-original-title="Name is required."
                               aria-label="Name is required."
                             ></i>
@@ -49,16 +55,16 @@ export const AddNewUser = () => {
                         </div>
                         <input type="text" className="form-control core" />
                       </div>
-                      <div className="form-group">
+                      <div className="form-group mt-2">
                         <div className="d-flex justify-content-between">
                           <label className="text-dark">
-                            Industry{" "}
+                            Industry&nbsp;
                             <i
                               className="fa fa-info-circle text-muted"
                               data-bs-toggle="tooltip"
-                              title=""
-                              data-bs-original-title="Name is required."
-                              aria-label="Name is required."
+                              title="Industry is required"
+                              data-bs-original-title="Industry is required."
+                              aria-label="Industry is required."
                             ></i>
                           </label>
                         </div>
@@ -69,31 +75,31 @@ export const AddNewUser = () => {
                           <option value="">Technology</option>
                         </select>
                       </div>
-                      <div className="form-group">
+                      <div className="form-group mt-2">
                         <div className="d-flex justify-content-between">
                           <label className="text-dark">
-                            Location{" "}
+                            Location&nbsp;
                             <i
                               className="fa fa-info-circle text-muted"
                               data-bs-toggle="tooltip"
-                              title=""
-                              data-bs-original-title="Name is required."
-                              aria-label="Name is required."
+                              title="Location is required"
+                              data-bs-original-title="Location is required."
+                              aria-label="Location is required."
                             ></i>
                           </label>
                         </div>
                         <input type="text" className="form-control core" />
                       </div>
-                      <div className="form-group">
+                      <div className="form-group mt-2">
                         <div className="d-flex justify-content-between">
                           <label className="text-dark">
-                            Type{" "}
+                            Type&nbsp;
                             <i
                               className="fa fa-info-circle text-muted"
                               data-bs-toggle="tooltip"
-                              title=""
-                              data-bs-original-title="Name is required."
-                              aria-label="Name is required."
+                              title="Type is required"
+                              data-bs-original-title="Type is required."
+                              aria-label="Type is required."
                             ></i>
                           </label>
                         </div>
@@ -104,31 +110,31 @@ export const AddNewUser = () => {
                           <option value="">Post-revenue</option>
                         </select>
                       </div>
-                      <div className="form-group">
+                      <div className="form-group mt-2">
                         <div className="d-flex justify-content-between">
                           <label className="text-dark">
-                            Job Experience (Past jobs){" "}
+                            Job Experience (Past jobs)&nbsp;
                             <i
                               className="fa fa-info-circle text-muted"
                               data-bs-toggle="tooltip"
-                              title=""
-                              data-bs-original-title="Name is required."
-                              aria-label="Name is required."
+                              title="Job Experience (Past jobs) is required"
+                              data-bs-original-title="Job Experience (Past jobs) is required."
+                              aria-label="Job Experience (Past jobs) is required."
                             ></i>
                           </label>
                         </div>
                         <input type="text" className="form-control core" />
                       </div>
-                      <div className="form-group">
+                      <div className="form-group mt-2">
                         <div className="d-flex justify-content-between">
                           <label className="text-dark">
-                            Years of Experience{" "}
+                            Years of Experience&nbsp;
                             <i
                               className="fa fa-info-circle text-muted"
                               data-bs-toggle="tooltip"
-                              title=""
-                              data-bs-original-title="Name is required."
-                              aria-label="Name is required."
+                              title="Years of Experience is required"
+                              data-bs-original-title="Years of Experience is required."
+                              aria-label="Years of Experience is required."
                             ></i>
                           </label>
                         </div>
@@ -140,22 +146,22 @@ export const AddNewUser = () => {
                           <option value="">15-20</option>
                         </select>
                       </div>
-                      <div className="form-group">
+                      <div className="form-group mt-2">
                         <div className="d-flex justify-content-between">
                           <label className="text-dark">
-                            Qualification{" "}
+                            Qualification&nbsp;
                             <i
                               className="fa fa-info-circle text-muted"
                               data-bs-toggle="tooltip"
-                              title=""
-                              data-bs-original-title="Name is required."
-                              aria-label="Name is required."
+                              title="Qualification is required"
+                              data-bs-original-title="Qualification is required."
+                              aria-label="Qualification is required."
                             ></i>
                           </label>
                         </div>
                         <input type="text" className="form-control core" />
                       </div>
-                      <button className="btn btn-main btn-wide px-5">
+                      <button className="btn hover:bg-[#16f0fb] mt-2 bg-[#00c2cb] text-white btn-wide px-5">
                         Submit
                       </button>
                     </form>
@@ -164,13 +170,13 @@ export const AddNewUser = () => {
               </div>
               <div className="col-lg-4">
                 <div className="col-12 my-3">
-                 <UsersCard />
+                  <UsersCard />
                 </div>
                 <div className="col-12 mb-3">
-                 <ActionsCard />
+                  <ActionsCard />
                 </div>
                 <div className="col-12">
-                      <ChartCard />
+                  <ChartCard />
                 </div>
               </div>
             </div>
