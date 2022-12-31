@@ -4,7 +4,6 @@ import ConsultantsImg from "../../images/icons/consultants.png";
 import MentorImg from "../../images/icons/mentor.png";
 import CoachesImg from "../../images/icons/mic.png";
 import { AdminMenu } from "./AdminMenu";
-import AvatarImg from "../../images/avatar.png";
 import PotImg from "../../images/icons/pot.png";
 import ClockImg from "../../images/icons/clock.png";
 import BulbImg from "../../images/icons/bulb.png";
@@ -12,40 +11,16 @@ import DashboardImg from "../../images/icons/dashboard.png";
 import { PieChart } from "../shared/charts/PieChart";
 import { Mentors } from "./Mentors";
 import { useNavigate } from "react-router-dom";
+import { UsersCard } from "./UsersCard";
 
 export const IncubatorDashboard = () => {
-  const initUsers: any[] = [
-    {
-      id: 0,
-      name: "Jazmyn",
-      email: "@jaz.designer",
-      lastSeen: "8 hours ago",
-      src: AvatarImg,
-    },
-    {
-      id: 1,
-      name: "Jane",
-      email: "@jane.designer",
-      lastSeen: "10 hours ago",
-      src: AvatarImg,
-    },
-    {
-      id: 2,
-      name: "Mpho",
-      email: "@mpho.developer",
-      lastSeen: "8 hours ago",
-      src: AvatarImg,
-    },
-  ];
   const innitActions: any[] = [
     { id: 0, title: "Early stage", src: ClockImg },
     { id: 1, title: "Start up", src: PotImg },
     { id: 2, title: "Idea concept", src: BulbImg },
     { id: 3, title: "Accelerate", src: DashboardImg },
   ];
-  const [users, setUsers] = useState(initUsers);
   const [actions, setActions] = useState(innitActions);
-  const navigate = useNavigate();
 
   const data = [
     ["Elements", "Priority Elements"],
@@ -56,9 +31,6 @@ export const IncubatorDashboard = () => {
     ["Sleep", 7],
   ];
 
-  const onGoToUsers = () => {
-    navigate("/admin/dashboard/users");
-  }
 
   return (
     <div className="w-full">
@@ -108,43 +80,7 @@ export const IncubatorDashboard = () => {
 
             <div className="row m-1">
               <div className="col-lg-4">
-                <div className="card h-100 shadow">
-                  <div className="card-header bg-white border-0 d-flex justify-content-between">
-                    <h5 className="mb-0 text-2xl font-medium text-dark">Users</h5>
-                    <button onClick={onGoToUsers}>See all</button>
-                  </div>
-                  <div className="card-body border-0">
-                    <div className="overflow-y-scroll h-[200px]" id="users">
-                      {users.map((user: any, index: number) => {
-                        return (
-                          <div
-                            className="d-flex mb-3 cursor-pointer"
-                            key={`action_menu_${index}`}
-                          >
-                            <div>
-                              <img
-                                src={AvatarImg}
-                                className="rounded-circle h-[40px]"
-                                alt=""
-                              />
-                            </div>
-                            <div className="ms-3">
-                              <h6 className="mb-0 font-medium text-1xl">
-                                <span className="text-dark">{user.name}</span>
-                                <span className="text-muted">{user.email}</span>
-                              </h6>
-                              <p>{user.lastSeen}</p>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-
-                    <button className="btn text-white bg-[#00c2cb] hover:bg-[#16f0fb] rounded-md w-full">
-                      Send email
-                    </button>
-                  </div>
-                </div>
+              <UsersCard />
               </div>
               <div className="col-lg-4">
                 <div className="card h-100 shadow">
