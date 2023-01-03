@@ -1,14 +1,15 @@
 import React from "react";
-import CourseImg from "../../images/course.png";
 import AvatarImg from "../../images/avatar.png";
-import { AdminMenu } from "./AdminMenu";
+import { AdminMenu } from "../admin/AdminMenu";
+import { CMPMenu } from "../cmp/CMPMenu";
 
-export const UserProfile = () => {
+export const UserProfile = (props: any) => {
   return (
     <div className="w-full">
       <div className="row">
         <div className="col-md-2 min-h-[100vh]">
-          <AdminMenu />
+          {props.menu === "cmp" ? <CMPMenu /> : null}
+          {props.menu === "admin" ? <AdminMenu /> : null}
         </div>
         <div className="col-md-10 text-left bg-light border-start">
           <div className="container-fluid">
@@ -16,7 +17,9 @@ export const UserProfile = () => {
               <div className="col-lg-12">
                 <div className="card shadow mt-3">
                   <div className="card-header bg-white border-0">
-                    <h5 className="mb-0 text-2xl font-medium text-dark">Profile Settings</h5>
+                    <h5 className="mb-0 text-2xl font-medium text-dark">
+                      Profile Settings
+                    </h5>
                   </div>
                   <div className="card-body border-0">
                     <div className="col-12 bg-light">
@@ -62,8 +65,8 @@ export const UserProfile = () => {
                                 <div className="form-group mt-2">
                                   <div className="d-flex justify-content-between">
                                     <label className="text-dark">
-                                      Display name
-                                      &nbsp;<i
+                                      Display name &nbsp;
+                                      <i
                                         className="fa fa-info-circle text-muted"
                                         data-bs-toggle="tooltip"
                                         title="Name is required"
@@ -80,8 +83,8 @@ export const UserProfile = () => {
                                 <div className="form-group mt-2">
                                   <div className="d-flex justify-content-between">
                                     <label className="text-dark">
-                                      Email
-                                      &nbsp;<i
+                                      Email &nbsp;
+                                      <i
                                         className="fa fa-info-circle text-muted"
                                         data-bs-toggle="tooltip"
                                         title="Email is required."
@@ -98,8 +101,8 @@ export const UserProfile = () => {
                                 <div className="form-group mt-2">
                                   <div className="d-flex justify-content-between">
                                     <label className="text-dark">
-                                      Location
-                                      &nbsp;<i
+                                      Location &nbsp;
+                                      <i
                                         className="fa fa-info-circle text-muted"
                                         data-bs-toggle="tooltip"
                                         title="Location is required"
@@ -116,8 +119,8 @@ export const UserProfile = () => {
                                 <div className="form-group mt-2">
                                   <div className="d-flex justify-content-between">
                                     <label className="text-dark">
-                                      Bio
-                                      &nbsp;<i
+                                      Bio &nbsp;
+                                      <i
                                         className="fa fa-info-circle text-muted"
                                         data-bs-toggle="tooltip"
                                         title="Bio is required"
@@ -131,7 +134,9 @@ export const UserProfile = () => {
                                     className="form-control core"
                                   />
                                 </div>
-                                <h5 className="text-dark mt-2 fw-bold">Logins</h5>
+                                <h5 className="text-dark mt-2 fw-bold">
+                                  Logins
+                                </h5>
                                 <div className="form-group mt-2">
                                   <div className="d-flex justify-content-between">
                                     <label className="text-dark">
@@ -225,7 +230,9 @@ export const UserProfile = () => {
                                   </div>
                                 </div>
                                 <div className="form-group mt-2">
-                                  <button className="btn btn-main w-[150px] text-white bg-[#00c2cb] hover:bg-[#16f0fb]">Save</button>
+                                  <button className="btn btn-main w-[150px] text-white bg-[#00c2cb] hover:bg-[#16f0fb]">
+                                    Save
+                                  </button>
                                 </div>
                               </form>
                             </div>

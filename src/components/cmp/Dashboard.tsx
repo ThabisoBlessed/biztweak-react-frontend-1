@@ -17,7 +17,7 @@ export const Dashboard = () => {
         </div>
         <div className="col-md-10 text-left bg-light border-start">
           <div className="container-fluid">
-            <div className="card shadow m-3">
+            <div className="card shadow mt-3">
               <div className="card-header bg-white border-0">
                 <h5 className="mb-0 text-2xl font-medium text-dark">Overview</h5>
               </div>
@@ -55,7 +55,7 @@ export const Dashboard = () => {
               </div>
             </div>
 
-            <div className="m-3">
+            <div className="mt-2">
               <AddCourse />
             </div>
           </div>

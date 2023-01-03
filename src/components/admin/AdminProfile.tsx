@@ -1,10 +1,10 @@
 import React from 'react'
-import { UserProfile } from './UserProfile'
+import { UserProfile } from '../shared/UserProfile'
 
 export const AdminProfile = () => {
   return (
     <div>
-        <UserProfile />
+        <UserProfile menu={"admin"} />
     </div>
   )
 }
