@@ -68,7 +68,7 @@ export const SuperAdminDashboard = () => {
         </div>
         <div className="col-md-10 col-sm-12 text-left bg-light border-start">
           <div className="container-fluid">
-            <div className="card shadow mt-2">
+            <div className="card shadow mt-3">
               <div className="card-header bg-white border-0">
                 <h5 className="mb-0 text-2xl font-medium text-dark">Overview</h5>
               </div>

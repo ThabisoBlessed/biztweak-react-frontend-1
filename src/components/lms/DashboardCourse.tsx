@@ -35,14 +35,14 @@ export const DashboardCourse = (props: any) => {
             className="col-lg-3 col-md-4 mb-3 mb-lg-0"
           >
             <div className="card">
-              <div className="card-body text-dark">
+              <div className="card-body">
                 <img
                   src={CourseImg}
                   className="img-fluid card-img-top"
                   alt=""
                 ></img>
-                <h5 className="my-2">{course.title}</h5>
-                <p className="my-2">
+                <h5 className="my-2 text-dark">{course.title}</h5>
+                <p className="my-2 text-dark">
                   <img
                     src={AvatarImg}
                     className="rounded-circle"
@@ -52,7 +52,7 @@ export const DashboardCourse = (props: any) => {
                   {course.provider}
                 </p>
                 <div className="d-flex justify-content-between align-items-center">
-                  <div className="w-100 me-3">
+                  <div className="w-100 me-3 text-dark">
                     {course.lessons} Lessons
                     <div className="progress">
                       <div
@@ -66,7 +66,7 @@ export const DashboardCourse = (props: any) => {
                     </div>
                   </div>
                   <div>
-                    <button className="btn btn-main bg-[#00c2cb] text-[white]" onClick={onStartCourse}>Continue</button>
+                    <button className="btn text-[white] hover:bg-[#16f0fb] bg-[#00c2cb]" onClick={onStartCourse}>Continue</button>
                   </div>
                 </div>
               </div>

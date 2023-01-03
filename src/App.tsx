@@ -76,9 +76,9 @@ function App() {
           <Route path="/lms/instructor-profile" element={<InstructorProfile />}></Route>
 
           <Route path="/cmp*" element={<CMP />}></Route>
-          <Route path="/cmp/manage-courses/product-overview" element={<CMP />}></Route>
           <Route path="/cmp/manage-courses" element={<CMP />}></Route>
-          <Route path="/cmp/admin-user" element={<CMPAdminProfile />}></Route>
+          <Route path="/cmp/manage-courses/product-overview" element={<CMP />}></Route>
+          <Route path="/cmp/manage-courses/admin-user" element={<CMPAdminProfile />}></Route>
           <Route path="/cmp/manage-courses/add-test" element={<AddTest />}></Route>
           <Route path="/cmp/manage-courses/quiz" element={<Quiz />}></Route>
           <Route path="/cmp/manage-courses/course-info" element={<CourseInfo />}></Route>

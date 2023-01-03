@@ -18,7 +18,7 @@ export const CMPMenu = () => {
     {
       id: 1,
       title: "Admin User",
-      link: "/cmp/admin-user",
+      link: "/cmp/manage-courses/admin-user",
       iconClass: "fa-lg fa-solid fa-user",
       isActive: false,
       titleClasses: "ml-3",
@@ -26,7 +26,7 @@ export const CMPMenu = () => {
     {
       id: 2,
       title: "Statistics",
-      link: "/cmp/statistics",
+      link: "/cmp/manage-courses/statistics",
       iconClass: "fa-lg fas fa-chart-bar",
       isActive: false,
       titleClasses: "ml-3",

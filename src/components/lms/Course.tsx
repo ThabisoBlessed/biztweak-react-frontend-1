@@ -57,7 +57,7 @@ export const Course = () => {
                   graphic designers, programmers and printers with the aim of
                   occupying the spaces of a website, an advertising product or .
                 </p>
-                <button className="btn hover:bg-[#16f0fb]  hover:text-white bg-[#00c2cb] text-[white]" onClick={onStartCourse}>Start Course</button>
+                <button className="btn hover:bg-[#16f0fb] bg-[#00c2cb] text-[white]" onClick={onStartCourse}>Start Course</button>
               </div>
               <div className="order-0 mb-3 mb-md-0 order-md-1 col-md-4 bg-light">
                 <div className="accordion" id="accordionExample">

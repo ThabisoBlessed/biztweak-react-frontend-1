@@ -53,7 +53,7 @@ export const Courses = () => {
                       </div>
                     </div>
                     <div className="w-100 text-end">
-                      <button className="btn btn-main hover:bg-[#16f0fb]  hover:text-white bg-[#00c2cb] mt-2 text-[white]" onClick={onStartCourse}>Start Course</button>
+                      <button className="btn btn-main hover:bg-[#16f0fb] bg-[#00c2cb] mt-2 text-[white]" onClick={onStartCourse}>Start Course</button>
                     </div>
                   </div>
                 </div>
