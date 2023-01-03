@@ -22,7 +22,7 @@ export const IncubatorDashboard = () => {
         </div>
         <div className="col-md-10 text-left bg-light border-start">
           <div className="container-fluid">
-            <div className="card shadow m-3">
+            <div className="card shadow mt-2">
               <div className="card-header bg-white border-0">
                 <h5 className="mb-0 text-2xl font-medium text-dark">Overview</h5>
               </div>
@@ -59,7 +59,7 @@ export const IncubatorDashboard = () => {
                 </div>
               </div>
             </div>
-            <div className="row m-1">
+            <div className="row mt-2">
               <div className="col-lg-4">
               <UsersCard />
               </div>
@@ -70,7 +70,7 @@ export const IncubatorDashboard = () => {
                 <ChartCard />
               </div>
             </div>
-            <div className="m-4">
+            <div className="mt-2 mb-2">
               <Mentors />
             </div>
           </div>

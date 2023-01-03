@@ -60,7 +60,7 @@ export const AdminMenu = () => {
       link: "/admin/attendance",
       iconClass: "fa-lg fa-solid fa-file-waveform",
       isActive: false,
-      titleClasses: "ml-3",
+      titleClasses: "ml-4",
     },
     {
       id: 7,
@@ -68,7 +68,7 @@ export const AdminMenu = () => {
       link: "/admin/super-user-dashboard",
       iconClass: "fa-lg fa-solid fa-home",
       isActive: false,
-      titleClasses: "ml-3",
+      titleClasses: "ml-2",
     },
     {
       id: 8,

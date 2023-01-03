@@ -83,7 +83,7 @@ export const PlayCourse = () => {
                           key={`play_course_top_menu_${index}`}
                           className={`${menu.titleClasses} ${
                             menu.id === clickedMenuItem.id
-                              ? "w-[150px] text-white bg-[#00c2cb] hover:bg-[#16f0fb]"
+                              ? "text-white bg-[#00c2cb] hover:bg-[#16f0fb]"
                               : null
                           }`}
                           id={`play_course_top_menu_${index}`}

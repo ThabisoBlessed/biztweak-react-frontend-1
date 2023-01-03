@@ -54,7 +54,7 @@ export const UserProfile = () => {
                                       <i className="fa fa-plus"></i> Upload new
                                       picture
                                     </button>
-                                    <button className="btn  hover:bg-black hover:text-white border-black">
+                                    <button className="btn mt-1 hover:bg-black hover:text-white border-black">
                                       Remove
                                     </button>
                                   </div>

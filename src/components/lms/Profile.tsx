@@ -1,6 +1,5 @@
 import React from "react";
 import { LMSMenu } from "./LMSMenu";
-import CourseImg from "../../images/course.png";
 import AvatarImg from "../../images/avatar.png";
 
 export const Profile = () => {
@@ -12,7 +11,7 @@ export const Profile = () => {
         </div>
         <div className="col-md-10 text-left bg-light border-start">
           <div className="container-fluid">
-            <div className="row">
+            <div className="row mb-2">
               <div className="col-lg-12">
                 <div className="card shadow mt-3">
                   <div className="card-header bg-white border-0">

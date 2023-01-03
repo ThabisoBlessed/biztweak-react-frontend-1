@@ -29,7 +29,7 @@ export const CMPMenu = () => {
       link: "/cmp/statistics",
       iconClass: "fa-lg fas fa-chart-bar",
       isActive: false,
-      titleClasses: "ml-4",
+      titleClasses: "ml-3",
     },
     {
       id: 3,
