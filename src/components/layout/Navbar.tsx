@@ -5,9 +5,11 @@ import UserPlaceholderImg from "../../images/user-placeholder.png";
 import { useNavigate } from "react-router-dom";
 import * as constants from "../../constants";
 import {
+  getLocalStorageValue,
   isLoggedIn,
   LOCALSTORAGE_KEYS,
   removeLocalStorageValue,
+  setLocalStorageValue,
 } from "../../config";
 import { IUser } from "../../model/user.model";
 import { IMenuListItem } from "../../model/menu-list-item.model";
@@ -48,7 +50,7 @@ export const Navbar = () => {
 
   useEffect(() => {
     console.log("Logged in: ", loggedIn);
-    const user = localStorage.getItem(LOCALSTORAGE_KEYS.user);
+    const user = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
     if (user) {
       const userResult: IUser = JSON.parse(JSON.parse(user));
       setUserEmail(userResult.email);
@@ -91,7 +93,6 @@ export const Navbar = () => {
    * @param menuItem
    */
   const handleMenuItemClick = (menuItem: IMenuListItem) => {
-    localStorage.removeItem(LOCALSTORAGE_KEYS.selectedNavMenu);
     localStorage.setItem(
       LOCALSTORAGE_KEYS.selectedNavMenu,
       JSON.stringify(menuItem)
@@ -100,7 +101,16 @@ export const Navbar = () => {
     if (selected) {
       setClickedMenuItem(JSON.parse(selected));
     }
-    // navigate(menuItem.link)
+
+    // // Force app to navigate to previous screen when back button is clicked
+    // const prevMenu = localStorage.getItem(LOCALSTORAGE_KEYS.selectedMenuPrev);
+    // if (prevMenu) {
+    //   window.history.pushState(null, "", document.URL);
+    //   window.addEventListener("popstate", function (event) {
+    //     console.log("its navigating");
+    //     navigate(prevMenu);
+    //   });
+    // }
   };
 
   return (

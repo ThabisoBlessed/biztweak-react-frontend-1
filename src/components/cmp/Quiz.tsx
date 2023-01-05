@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IQuiz } from "../../model/quiz.model";
 import { CMPMenu } from "./CMPMenu";
@@ -14,6 +14,13 @@ export const Quiz = () => {
     },
   ];
   const [quiz, setQuiz] = useState(quizes);
+
+  useEffect(() => {
+    window.history.pushState(null, "", document.URL);
+    window.addEventListener("popstate", function (event) {
+      navigate(-1);
+    });
+  });
 
   const onEdit = () => {
     navigate("/cmp/manage-courses/course-info");

@@ -53,6 +53,7 @@ export const QuizModal = (props: any) => {
                             name="answer"
                             autoComplete="off"
                             checked={answer.correctAnswer}
+                            onChange={() => {}}
                           />
                           &nbsp;{answer.value}
                         </label>
