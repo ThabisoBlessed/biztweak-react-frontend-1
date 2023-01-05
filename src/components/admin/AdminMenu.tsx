@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LOCALSTORAGE_KEYS } from "../../config";
+import { getLocalStorageValue, LOCALSTORAGE_KEYS, removeLocalStorageValue, setLocalStorageValue } from "../../config";
 import { IMenuListItem } from "../../model/menu-list-item.model";
 
 export const AdminMenu = () => {
@@ -83,7 +83,7 @@ export const AdminMenu = () => {
   const [clickedMenuItem, setClickedMenuItem] = useState({} as IMenuListItem);
 
   useEffect(() => {
-    const selected = localStorage.getItem(LOCALSTORAGE_KEYS.selectedAdminMenu);
+    const selected = getLocalStorageValue(LOCALSTORAGE_KEYS.selectedAdminMenu);
     console.log(selected);
     if (selected) {
       setClickedMenuItem(JSON.parse(selected));
@@ -98,12 +98,12 @@ export const AdminMenu = () => {
    * @param menuItem
    */
   const handleMenuItemClick = (menuItem: IMenuListItem) => {
-    localStorage.removeItem(LOCALSTORAGE_KEYS.selectedAdminMenu);
-    localStorage.setItem(
+    removeLocalStorageValue(LOCALSTORAGE_KEYS.selectedAdminMenu);
+    setLocalStorageValue(
       LOCALSTORAGE_KEYS.selectedAdminMenu,
       JSON.stringify(menuItem)
     );
-    const selected = localStorage.getItem(LOCALSTORAGE_KEYS.selectedAdminMenu);
+    const selected = getLocalStorageValue(LOCALSTORAGE_KEYS.selectedAdminMenu);
     if (selected) {
       setClickedMenuItem(JSON.parse(selected));
     }

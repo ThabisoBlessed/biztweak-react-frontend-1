@@ -6,8 +6,26 @@ import MentorImg from "../../images/icons/mentor.png";
 import CoachesImg from "../../images/icons/mic.png";
 import { CMPMenu } from "./CMPMenu";
 import { AddCourse } from "./AddCourse";
+import { getLocalStorageValue, LOCALSTORAGE_KEYS, removeLocalStorageValue, setLocalStorageValue } from "../../config";
 
 export const Dashboard = () => {
+  const menu = {
+    id: 0,
+    title: "Dashboard",
+    link: "/cmp/manage-courses/product-overview",
+    iconClass: "fa-lg fa-solid fa-home",
+    isActive: false,
+    titleClasses: "ml-3",
+  };
+
+  useEffect(() => {
+    window.addEventListener('hashchange', function() {
+      console.log("clicked");
+      
+  }, false);
+  }, []);
+
+  
 
   return (
     <div className="w-full">

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { LOCALSTORAGE_KEYS } from "../../config";
+import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
 import { IMenuListItem } from "../../model/menu-list-item.model";
 import "./CMP.css";
+
 
 export const CMPMenu = () => {
   const navigate = useNavigate();
@@ -38,20 +39,20 @@ export const CMPMenu = () => {
       iconClass: "fa-lg fa-solid fa-bars",
       isActive: false,
       titleClasses: "ml-3",
-    }
+    },
   ];
   const [menu, setMenu] = useState(menuList);
   const [clickedMenuItem, setClickedMenuItem] = useState({} as IMenuListItem);
 
   useEffect(() => {
-    const selected = localStorage.getItem(LOCALSTORAGE_KEYS.selectedMenu);
+    const selected = getLocalStorageValue(LOCALSTORAGE_KEYS.selectedMenu);
     console.log(selected);
     if (selected) {
       setClickedMenuItem(JSON.parse(selected));
     } else {
       setClickedMenuItem(menuList[0]);
     }
-    navigate(clickedMenuItem.link);
+    // navigate(clickedMenuItem.link);
   }, []);
 
   /**
@@ -68,7 +69,7 @@ export const CMPMenu = () => {
     if (selected) {
       setClickedMenuItem(JSON.parse(selected));
     }
-    navigate(menuItem.link)
+    navigate(menuItem.link);
   };
 
   return (
@@ -85,16 +86,16 @@ export const CMPMenu = () => {
               key={`lms_menu_${index}`}
               onClick={() => handleMenuItemClick(menu)}
             >
-              <div className="m-2" id={`${index}`}>
-                <i
-                  className={`${menu.iconClass} ${
-                    menu.id === clickedMenuItem.id ? "text-white" : null
-                  }`}
-                ></i>
-                <span className={`${menu.titleClasses}`}>
-                  {menu.title}
-                </span>
-              </div>
+              <Link to={menu.link}>
+                <div className="m-2" id={`${index}`}>
+                  <i
+                    className={`${menu.iconClass} ${
+                      menu.id === clickedMenuItem.id ? "text-white" : null
+                    }`}
+                  ></i>
+                  <span className={`${menu.titleClasses}`}>{menu.title}</span>
+                </div>
+              </Link>
             </li>
           );
         })}
