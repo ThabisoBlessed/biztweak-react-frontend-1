@@ -4,7 +4,6 @@ import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
 import { IMenuListItem } from "../../model/menu-list-item.model";
 import "./CMP.css";
 
-
 export const CMPMenu = () => {
   const navigate = useNavigate();
   const menuList: IMenuListItem[] = [
@@ -46,13 +45,32 @@ export const CMPMenu = () => {
 
   useEffect(() => {
     const selected = getLocalStorageValue(LOCALSTORAGE_KEYS.selectedMenu);
-    console.log(selected);
+    const pathName = window.location.href;
     if (selected) {
-      setClickedMenuItem(JSON.parse(selected));
+      const selectedObject: IMenuListItem = JSON.parse(selected);
+      if (selectedObject.link !== `/${pathName.split("/#/")[1]}`) {
+        const selectedMenuItem = menuList.find(
+          (m) => m.link === `/${pathName.split("/#/")[1]}`
+        );
+        if (selectedMenuItem) {
+          setClickedMenuItem(selectedMenuItem);
+        }
+      } else {
+        setClickedMenuItem(selectedObject);
+        console.log(clickedMenuItem);
+      }
     } else {
       setClickedMenuItem(menuList[0]);
     }
-    
+
+    const selectedMenuItem = menuList.find(
+      (m) => m.link === `/${pathName.split("/#/")[1]}`
+    );
+    if (selectedMenuItem) {
+      setClickedMenuItem(selectedMenuItem);
+      console.log(clickedMenuItem);
+    }
+
     //  // Force app to change selected menu when back button is clicked
     //  const prevMenu = localStorage.getItem(LOCALSTORAGE_KEYS.selectedMenuPrev);
     //  if (prevMenu) {
