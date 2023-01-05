@@ -102,15 +102,15 @@ export const Navbar = () => {
       setClickedMenuItem(JSON.parse(selected));
     }
 
-    // Force app to navigate to previous screen when back button is clicked
-    const prevMenu = localStorage.getItem(LOCALSTORAGE_KEYS.selectedMenuPrev);
-    if (prevMenu) {
-      window.history.pushState(null, "", document.URL);
-      window.addEventListener("popstate", function (event) {
-        console.log("its navigating");
-        navigate(prevMenu);
-      });
-    }
+    // // Force app to navigate to previous screen when back button is clicked
+    // const prevMenu = localStorage.getItem(LOCALSTORAGE_KEYS.selectedMenuPrev);
+    // if (prevMenu) {
+    //   window.history.pushState(null, "", document.URL);
+    //   window.addEventListener("popstate", function (event) {
+    //     console.log("its navigating");
+    //     navigate(prevMenu);
+    //   });
+    // }
   };
 
   return (

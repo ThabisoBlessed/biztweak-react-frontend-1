@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react'
-import { LOCALSTORAGE_KEYS } from '../../config';
+import { useNavigate } from 'react-router-dom';
 import { UserProfile } from '../shared/UserProfile'
 
 export const CMPAdminProfile = () => {
+  const navigate = useNavigate();
+  
   useEffect(() => {
-    localStorage.setItem(
-      LOCALSTORAGE_KEYS.selectedMenuPrev,
-      "/cmp/manage-courses/admin-user"
-    );
-  });
+    window.history.pushState(null, "", document.URL);
+    window.addEventListener("popstate", function (event) {
+      navigate(-1);
+    });
+  }, []);
 
   return (
     <div>

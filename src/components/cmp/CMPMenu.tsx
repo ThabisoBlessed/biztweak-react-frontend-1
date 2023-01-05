@@ -52,7 +52,16 @@ export const CMPMenu = () => {
     } else {
       setClickedMenuItem(menuList[0]);
     }
-    // navigate(clickedMenuItem.link);
+    
+    //  // Force app to change selected menu when back button is clicked
+    //  const prevMenu = localStorage.getItem(LOCALSTORAGE_KEYS.selectedMenuPrev);
+    //  if (prevMenu) {
+    //    window.history.pushState(null, "", document.URL);
+    //    window.addEventListener("popstate", function (event) {
+    //      console.log("its navigating");
+    //      navigate(prevMenu);
+    //    });
+    //  }
   }, []);
 
   /**

@@ -6,7 +6,8 @@ import MentorImg from "../../images/icons/mentor.png";
 import CoachesImg from "../../images/icons/mic.png";
 import { CMPMenu } from "./CMPMenu";
 import { AddCourse } from "./AddCourse";
-import { getLocalStorageValue, LOCALSTORAGE_KEYS, removeLocalStorageValue, setLocalStorageValue } from "../../config";
+import { useNavigate } from "react-router-dom";
+import { useState } from "preact/hooks";
 
 export const Dashboard = () => {
   const menu = {
@@ -17,15 +18,15 @@ export const Dashboard = () => {
     isActive: false,
     titleClasses: "ml-3",
   };
+  const navigate = useNavigate();
 
   useEffect(() => {
-    window.addEventListener('hashchange', function() {
-      console.log("clicked");
-      
-  }, false);
-  }, []);
-
-  
+    window.history.pushState(null, "", document.URL);
+    window.addEventListener("popstate", function (event) {
+      console.log("hello");
+      navigate(-1);
+    });
+  });
 
   return (
     <div className="w-full">
@@ -37,7 +38,9 @@ export const Dashboard = () => {
           <div className="container-fluid">
             <div className="card shadow mt-3">
               <div className="card-header bg-white border-0">
-                <h5 className="mb-0 text-2xl font-medium text-dark">Overview</h5>
+                <h5 className="mb-0 text-2xl font-medium text-dark">
+                  Overview
+                </h5>
               </div>
               <div className="card-body border-0">
                 <div className="row">
