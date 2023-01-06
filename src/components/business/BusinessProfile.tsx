@@ -6,6 +6,14 @@ import { BusinessMenu } from "./BusinessMenu";
 export const BusinessProfile = () => {
   const navigate = useNavigate();
 
+  const [companyName, setCompanyName] = useState("");
+  const [companyLogo, setCompanyLogo] = useState("");
+  const [companyLocation, setCompanyLocation] = useState("");
+  const [numberOfEmployees, setNumberOfEmployees] = useState(0);
+  const [annualTurnover, setAnnualTurnover] = useState(0);
+  const [monthlyTurnover, setMonthlyTurnover] = useState(0);
+  const [productsOrServices, setProductsOrServices] = useState("");
+  
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
 
