@@ -44,6 +44,22 @@ export const CMPMenu = () => {
   const [clickedMenuItem, setClickedMenuItem] = useState({} as IMenuListItem);
 
   useEffect(() => {
+    getSelectedMenu();
+    //  // Force app to change selected menu when back button is clicked
+    //  const prevMenu = localStorage.getItem(LOCALSTORAGE_KEYS.selectedMenuPrev);
+    //  if (prevMenu) {
+    //    window.history.pushState(null, "", document.URL);
+    //    window.addEventListener("popstate", function (event) {
+    //      console.log("its navigating");
+    //      navigate(prevMenu);
+    //    });
+    //  }
+  }, []);
+
+  /**
+   * Sets default selected menu
+   */
+  const getSelectedMenu = () => {
     const selected = getLocalStorageValue(LOCALSTORAGE_KEYS.selectedMenu);
     const pathName = window.location.href;
     if (selected) {
@@ -70,17 +86,7 @@ export const CMPMenu = () => {
       setClickedMenuItem(selectedMenuItem);
       console.log(clickedMenuItem);
     }
-
-    //  // Force app to change selected menu when back button is clicked
-    //  const prevMenu = localStorage.getItem(LOCALSTORAGE_KEYS.selectedMenuPrev);
-    //  if (prevMenu) {
-    //    window.history.pushState(null, "", document.URL);
-    //    window.addEventListener("popstate", function (event) {
-    //      console.log("its navigating");
-    //      navigate(prevMenu);
-    //    });
-    //  }
-  }, []);
+  };
 
   /**
    * Handles menu item click
