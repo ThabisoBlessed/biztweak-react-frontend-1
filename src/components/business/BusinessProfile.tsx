@@ -8,6 +8,9 @@ export const BusinessProfile = () => {
 
   const [companyName, setCompanyName] = useState("");
   const [companyLogo, setCompanyLogo] = useState("");
+  const [companyRegistration, setCompanyRegistration] = useState("");
+  const [companyRegistrationNumber, setCompanyRegistrationNumber] = useState("");
+  const [companyRegistrationDate, setCompanyRegistrationDate] = useState("");
   const [companyLocation, setCompanyLocation] = useState("");
   const [numberOfEmployees, setNumberOfEmployees] = useState(0);
   const [annualTurnover, setAnnualTurnover] = useState(0);
@@ -21,7 +24,9 @@ export const BusinessProfile = () => {
   }, [navigate]);
 
   const onSave = () => {
-    navigate("/business/manage-business/business-health-report");
+   // navigate("/business/manage-business/business-health-report");
+    console.log(companyName);
+    
   };
 
   const onBack = () => {
@@ -60,6 +65,9 @@ export const BusinessProfile = () => {
                     name="name"
                     type="text"
                     className="form-control"
+                    id= "companyName"
+                    onChange={e=> setCompanyName( e.target.value)}
+            
                   />
                 </div>
               </div>
@@ -81,7 +89,7 @@ export const BusinessProfile = () => {
                     <input
                       name="registered"
                       type="radio"
-                      onChange={() => {}}
+                      onChange={e=> setCompanyLogo( e.target.value)}
                       value="1"
                       className="radio"
                     />
@@ -92,7 +100,7 @@ export const BusinessProfile = () => {
                       name="registered"
                       type="radio"
                       value="0"
-                      onChange={() => {}}
+                      onChange={e=> setCompanyRegistration( e.target.value)}
                       className="radio"
                     />
                   </label>
@@ -110,6 +118,8 @@ export const BusinessProfile = () => {
                       name="reg_number"
                       type="text"
                       className="form-control"
+                      onChange={e=> setCompanyRegistrationNumber( e.target.value)}
+
                     />
                   </div>
                 </div>
@@ -124,6 +134,7 @@ export const BusinessProfile = () => {
                       name="reg_date"
                       type="date"
                       className="form-control"
+                      onChange={e=> setCompanyRegistrationDate( e.target.value)}
                     />
                   </div>
                 </div>
@@ -140,6 +151,7 @@ export const BusinessProfile = () => {
                     type="text"
                     className="form-control pac-target-input"
                     autoComplete="off"
+                    onChange={e=> setCompanyLocation( e.target.value)}
                   />
                 </div>
               </div>
@@ -154,6 +166,7 @@ export const BusinessProfile = () => {
                     name="num_employees"
                     type="number"
                     className="form-control"
+                   onChange={e=> setNumberOfEmployees(e.target.valueAsNumber )}
                   />
                 </div>
               </div>
@@ -168,6 +181,8 @@ export const BusinessProfile = () => {
                     name="annual_turnover"
                     type="number"
                     className="form-control"
+                    onChange={e=> setAnnualTurnover(e.target.valueAsNumber)}
+
                   />
                 </div>
               </div>
@@ -182,6 +197,8 @@ export const BusinessProfile = () => {
                     name="6mo_turnover"
                     type="number"
                     className="form-control"
+                    onChange={e=> setMonthlyTurnover( e.target.valueAsNumber)}
+
                   />
                 </div>
               </div>
@@ -195,6 +212,7 @@ export const BusinessProfile = () => {
                     placeholder="What products or services is your company offering?"
                     name="offering"
                     className="form-control"
+                    onChange={e=> setProductsOrServices( e.target.value)}
                   ></textarea>
                 </div>
               </div>
