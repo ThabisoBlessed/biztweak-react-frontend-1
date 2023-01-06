@@ -16,14 +16,6 @@ export const CMP = () => {
     window.addEventListener("popstate", function (event) {
       navigate(-1);
     });
-    // const menuCount = getLocalStorageValue(LOCALSTORAGE_KEYS.menuCount);
-    // if (menuCount) {
-    //   const total = 0;
-    //   localStorage.setItem(
-    //     LOCALSTORAGE_KEYS.menuCount,
-    //     String(total)
-    //   );
-    // }
   });
 
   return (

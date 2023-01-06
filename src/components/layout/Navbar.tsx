@@ -56,27 +56,32 @@ export const Navbar = () => {
       setUserEmail(userResult.email);
       setUserName(userResult.fullname);
     }
+    
+    setSelectedMenu();
   }, [loggedIn]);
+
+  /**
+   * Set seleted menu
+   */
+  const setSelectedMenu = () => {
+    const pathName = window.location.href;
+    const cleanedPath = `/${pathName.split("/#/")[1]}`;
+    const selected = cleanedPath.split("/")[1];
+
+    const menuListItem = menuList.find(m => m.link === cleanedPath);
+    if (menuListItem) {
+      localStorage.setItem(
+        LOCALSTORAGE_KEYS.selectedNavMenu,
+        JSON.stringify(menuListItem)
+      );
+      setClickedMenuItem(menuListItem);
+    }
+  }
 
   const onLogout = () => {
     removeLocalStorageValue(LOCALSTORAGE_KEYS.accessToken);
     removeLocalStorageValue(LOCALSTORAGE_KEYS.user);
     window.location.reload();
-  };
-
-  const onEditProfile = () => {
-    localStorage.setItem(
-      LOCALSTORAGE_KEYS.selectedNavMenu,
-      JSON.stringify({
-        id: 5,
-        title: "Profile",
-        link: "/lms/profile",
-        iconClass: "fa-lg fas fa-user",
-        isActive: false,
-        titleClasses: "ml-3",
-      })
-    );
-    navigate("/lms/profile");
   };
 
   /**

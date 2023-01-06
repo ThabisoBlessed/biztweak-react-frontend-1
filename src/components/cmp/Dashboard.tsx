@@ -7,7 +7,6 @@ import CoachesImg from "../../images/icons/mic.png";
 import { CMPMenu } from "./CMPMenu";
 import { AddCourse } from "./AddCourse";
 import { useNavigate } from "react-router-dom";
-import { useState } from "preact/hooks";
 
 export const Dashboard = () => {
   const menu = {
