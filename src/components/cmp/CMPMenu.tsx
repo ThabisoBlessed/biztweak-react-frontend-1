@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
 import { IMenuListItem } from "../../model/menu-list-item.model";
 import "./CMP.css";
 
@@ -10,7 +9,7 @@ export const CMPMenu = () => {
     {
       id: 0,
       title: "Dashboard",
-      link: "/cmp/manage-courses/product-overview",
+      link: "/cmp",
       iconClass: "fa-lg fa-solid fa-home",
       isActive: false,
       titleClasses: "ml-3",
@@ -42,6 +41,7 @@ export const CMPMenu = () => {
   ];
   const [menu, setMenu] = useState(menuList);
   const [clickedMenuItem, setClickedMenuItem] = useState({} as IMenuListItem);
+  const [selectedPath, setSelectedPath] = useState("");
 
   useEffect(() => {
     getSelectedMenu();
@@ -60,32 +60,9 @@ export const CMPMenu = () => {
    * Sets default selected menu
    */
   const getSelectedMenu = () => {
-    const selected = getLocalStorageValue(LOCALSTORAGE_KEYS.selectedMenu);
     const pathName = window.location.href;
-    if (selected) {
-      const selectedObject: IMenuListItem = JSON.parse(selected);
-      if (selectedObject.link !== `/${pathName.split("/#/")[1]}`) {
-        const selectedMenuItem = menuList.find(
-          (m) => m.link === `/${pathName.split("/#/")[1]}`
-        );
-        if (selectedMenuItem) {
-          setClickedMenuItem(selectedMenuItem);
-        }
-      } else {
-        setClickedMenuItem(selectedObject);
-        console.log(clickedMenuItem);
-      }
-    } else {
-      setClickedMenuItem(menuList[0]);
-    }
-
-    const selectedMenuItem = menuList.find(
-      (m) => m.link === `/${pathName.split("/#/")[1]}`
-    );
-    if (selectedMenuItem) {
-      setClickedMenuItem(selectedMenuItem);
-      console.log(clickedMenuItem);
-    }
+    const cleanedPath = `/${pathName.split("/#/")[1]}`;
+    setSelectedPath(cleanedPath);
   };
 
   /**
@@ -93,15 +70,7 @@ export const CMPMenu = () => {
    * @param menuItem
    */
   const handleMenuItemClick = (menuItem: IMenuListItem) => {
-    localStorage.removeItem(LOCALSTORAGE_KEYS.selectedMenu);
-    localStorage.setItem(
-      LOCALSTORAGE_KEYS.selectedMenu,
-      JSON.stringify(menuItem)
-    );
-    const selected = localStorage.getItem(LOCALSTORAGE_KEYS.selectedMenu);
-    if (selected) {
-      setClickedMenuItem(JSON.parse(selected));
-    }
+    setSelectedPath(menuItem.link);
     navigate(menuItem.link);
   };
 
@@ -112,7 +81,7 @@ export const CMPMenu = () => {
           return (
             <li
               className={`hover:bg-[#16f0fb]  hover:text-white w-full ${
-                menu.id === clickedMenuItem.id
+                menu.link.toLocaleLowerCase() === selectedPath
                   ? "bg-[#00c2cb] text-white"
                   : null
               } rounded-lg cursor-pointer`}
@@ -123,7 +92,7 @@ export const CMPMenu = () => {
                 <div className="m-2" id={`${index}`}>
                   <i
                     className={`${menu.iconClass} ${
-                      menu.id === clickedMenuItem.id ? "text-white" : null
+                      menu.link.toLocaleLowerCase() === selectedPath ? "text-white" : null
                     }`}
                   ></i>
                   <span className={`${menu.titleClasses}`}>{menu.title}</span>

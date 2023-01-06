@@ -2,11 +2,6 @@ import React, { useEffect } from "react";
 import { Dashboard } from "./Dashboard";
 import "./CMP.css";
 import { useNavigate } from "react-router-dom";
-import {
-  getLocalStorageValue,
-  LOCALSTORAGE_KEYS,
-  setLocalStorageValue,
-} from "../../config";
 
 export const CMP = () => {
   const navigate = useNavigate();

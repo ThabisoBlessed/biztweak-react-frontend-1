@@ -3,27 +3,25 @@ import { Link } from "react-router-dom";
 import LogoImg from "../../images/logo.png";
 import UserPlaceholderImg from "../../images/user-placeholder.png";
 import { useNavigate } from "react-router-dom";
-import * as constants from "../../constants";
 import {
   getLocalStorageValue,
   isLoggedIn,
   LOCALSTORAGE_KEYS,
   removeLocalStorageValue,
-  setLocalStorageValue,
 } from "../../config";
 import { IUser } from "../../model/user.model";
 import { IMenuListItem } from "../../model/menu-list-item.model";
 
 export const Navbar = () => {
   const menuList: IMenuListItem[] = [
-    {
-      id: 0,
-      title: "LMS",
-      link: "/lms",
-      iconClass: "",
-      isActive: false,
-      titleClasses: "nav-item me-2 hover:text-[#00c2cb]",
-    },
+    // {
+    //   id: 0,
+    //   title: "LMS",
+    //   link: "/lms",
+    //   iconClass: "",
+    //   isActive: false,
+    //   titleClasses: "nav-item me-2 hover:text-[#00c2cb]",
+    // },
     {
       id: 1,
       title: "CMP",
@@ -32,14 +30,14 @@ export const Navbar = () => {
       isActive: false,
       titleClasses: "nav-item me-2 hover:text-[#00c2cb]",
     },
-    {
-      id: 2,
-      title: "Admin",
-      link: "/admin",
-      iconClass: "",
-      isActive: false,
-      titleClasses: "nav-item me-2 hover:text-[#00c2cb]",
-    },
+    // {
+    //   id: 2,
+    //   title: "Admin",
+    //   link: "/admin",
+    //   iconClass: "",
+    //   isActive: false,
+    //   titleClasses: "nav-item me-2 hover:text-[#00c2cb]",
+    // },
   ];
   const [menu, setMenu] = useState(menuList);
   const navigate = useNavigate();
@@ -47,6 +45,7 @@ export const Navbar = () => {
   const [userEmail, setUserEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [clickedMenuItem, setClickedMenuItem] = useState({} as IMenuListItem);
+  const [clickedMenuName, setClickedMenuName] = useState("");
 
   useEffect(() => {
     console.log("Logged in: ", loggedIn);
@@ -68,14 +67,15 @@ export const Navbar = () => {
     const cleanedPath = `/${pathName.split("/#/")[1]}`;
     const selected = cleanedPath.split("/")[1];
 
-    const menuListItem = menuList.find(m => m.link === cleanedPath);
-    if (menuListItem) {
-      localStorage.setItem(
-        LOCALSTORAGE_KEYS.selectedNavMenu,
-        JSON.stringify(menuListItem)
-      );
-      setClickedMenuItem(menuListItem);
-    }
+    setClickedMenuName(selected);
+    // const menuListItem = menuList.find(m => m.link === cleanedPath);
+    // if (menuListItem) {
+    //   localStorage.setItem(
+    //     LOCALSTORAGE_KEYS.selectedNavMenu,
+    //     JSON.stringify(menuListItem)
+    //   );
+    //   setClickedMenuItem(menuListItem);
+    // }
   }
 
   const onLogout = () => {
@@ -106,16 +106,6 @@ export const Navbar = () => {
     if (selected) {
       setClickedMenuItem(JSON.parse(selected));
     }
-
-    // // Force app to navigate to previous screen when back button is clicked
-    // const prevMenu = localStorage.getItem(LOCALSTORAGE_KEYS.selectedMenuPrev);
-    // if (prevMenu) {
-    //   window.history.pushState(null, "", document.URL);
-    //   window.addEventListener("popstate", function (event) {
-    //     console.log("its navigating");
-    //     navigate(prevMenu);
-    //   });
-    // }
   };
 
   return (
@@ -123,7 +113,7 @@ export const Navbar = () => {
       {loggedIn ? (
         <nav
           data-testid="navbar"
-          onClick={onClearSelectedNavMenukNav}
+          // onClick={onClearSelectedNavMenukNav}
           className="navbar navbar-expand-md border-b navbar-light text-dark m-0 bg-white"
         >
           <Link to="/auth/edit-profile">
@@ -165,7 +155,7 @@ export const Navbar = () => {
                 return (
                   <li
                     className={`hover:text-white mr-2 ${
-                      menu.id === clickedMenuItem.id
+                      menu.link.toLowerCase().includes(clickedMenuName)
                         ? "bg-[#00c2cb] text-white"
                         : null
                     } rounded-lg cursor-pointer`}

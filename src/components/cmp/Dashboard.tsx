@@ -12,7 +12,7 @@ export const Dashboard = () => {
   const menu = {
     id: 0,
     title: "Dashboard",
-    link: "/cmp/manage-courses/product-overview",
+    link: "/cmp",
     iconClass: "fa-lg fa-solid fa-home",
     isActive: false,
     titleClasses: "ml-3",
@@ -20,11 +20,11 @@ export const Dashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    window.history.pushState(null, "", document.URL);
-    window.addEventListener("popstate", function (event) {
-      console.log("hello");
-      navigate(-1);
-    });
+    // window.history.pushState(null, "", document.URL);
+    // window.addEventListener("popstate", function (event) {
+    //   console.log("hello");
+    //   navigate(-1);
+    // });
   });
 
   return (
