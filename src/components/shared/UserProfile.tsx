@@ -2,6 +2,7 @@ import React from "react";
 import AvatarImg from "../../images/avatar.png";
 import { AdminMenu } from "../admin/AdminMenu";
 import { CMPMenu } from "../cmp/CMPMenu";
+import { LMSMenu } from "../lms/LMSMenu";
 
 export const UserProfile = (props: any) => {
   return (
@@ -10,6 +11,7 @@ export const UserProfile = (props: any) => {
         <div className="col-md-2 min-h-[100vh]">
           {props.menu === "cmp" ? <CMPMenu /> : null}
           {props.menu === "admin" ? <AdminMenu /> : null}
+          {props.menu === "lms" ? <LMSMenu /> : null}
         </div>
         <div className="col-md-10 text-left bg-light border-start">
           <div className="container-fluid">
