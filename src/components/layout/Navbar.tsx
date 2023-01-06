@@ -44,7 +44,6 @@ export const Navbar = () => {
   const [loggedIn, setLoggedIn] = useState(isLoggedIn());
   const [userEmail, setUserEmail] = useState("");
   const [userName, setUserName] = useState("");
-  const [clickedMenuItem, setClickedMenuItem] = useState({} as IMenuListItem);
   const [clickedMenuName, setClickedMenuName] = useState("");
 
   useEffect(() => {
@@ -67,15 +66,10 @@ export const Navbar = () => {
     const cleanedPath = `/${pathName.split("/#/")[1]}`;
     const selected = cleanedPath.split("/")[1];
 
-    setClickedMenuName(selected);
-    // const menuListItem = menuList.find(m => m.link === cleanedPath);
-    // if (menuListItem) {
-    //   localStorage.setItem(
-    //     LOCALSTORAGE_KEYS.selectedNavMenu,
-    //     JSON.stringify(menuListItem)
-    //   );
-    //   setClickedMenuItem(menuListItem);
-    // }
+    if (selected !== "") {
+      console.log("top menu set");
+      setClickedMenuName(selected);
+    }
   }
 
   const onLogout = () => {
@@ -85,27 +79,14 @@ export const Navbar = () => {
   };
 
   /**
-   * Resets all selected menus
-   */
-  const onClearSelectedNavMenukNav = () => {
-    localStorage.removeItem(LOCALSTORAGE_KEYS.selectedNavMenu);
-    localStorage.removeItem(LOCALSTORAGE_KEYS.selectedAdminMenu);
-    localStorage.removeItem(LOCALSTORAGE_KEYS.selectedMenu);
-  };
-
-  /**
    * Handles menu item click
    * @param menuItem
    */
   const handleMenuItemClick = (menuItem: IMenuListItem) => {
-    localStorage.setItem(
-      LOCALSTORAGE_KEYS.selectedNavMenu,
-      JSON.stringify(menuItem)
-    );
-    const selected = localStorage.getItem(LOCALSTORAGE_KEYS.selectedNavMenu);
-    if (selected) {
-      setClickedMenuItem(JSON.parse(selected));
-    }
+    const pathName = window.location.href;
+    const cleanedPath = `/${pathName.split("/#/")[1]}`;
+    const selected = cleanedPath.split("/")[1];
+    setClickedMenuName(selected)
   };
 
   return (
@@ -116,7 +97,7 @@ export const Navbar = () => {
           // onClick={onClearSelectedNavMenukNav}
           className="navbar navbar-expand-md border-b navbar-light text-dark m-0 bg-white"
         >
-          <Link to="/auth/edit-profile">
+          <Link to="/">
             <div className="navbar-brand">
               <img src={LogoImg} height={160} width={160} alt="logo" />
             </div>
@@ -166,7 +147,7 @@ export const Navbar = () => {
                     <Link
                       to={menu.link}
                       className={` ${
-                        menu.id === clickedMenuItem.id
+                        menu.link.toLowerCase().includes(clickedMenuName)
                           ? "hover:text-white"
                           : "hover:text-[#00c2cb]"
                       }`}
