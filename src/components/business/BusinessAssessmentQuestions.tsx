@@ -91,7 +91,9 @@ export const BusinessAssessmentQuestions = () => {
   /**
    * Save updated questions
    */
-  const onSave = async() => {
+  const onSave = async(e: any) => {
+    e.preventDefault();
+    
     console.log(JSON.stringify(questionList));
     const updated = await updateAssessmentQuestions(JSON.stringify(questionList));
     console.log(updated);

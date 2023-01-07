@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../config";
 import { loading } from "../../constants";
 import { addCompany } from "../../services/business/company.service";
+import { convertToBase64 } from "../util/file-util";
 import { BusinessMenu } from "./BusinessMenu";
 
 export const BusinessProfile = () => {
@@ -21,17 +22,19 @@ export const BusinessProfile = () => {
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
-
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-
-    console.log(registered);
   }, [navigate]);
 
   /**
    * Add new company
    */
-  const onSave = async () => {
+  const onSave = async (e: any) => {
+    e.preventDefault();
     setIsLoading(true);
+
+    const file = e.target.files[0];
+    const base64 = await convertToBase64(file);
+
     const company = {
       name: name,
       logo: logo,
@@ -46,13 +49,19 @@ export const BusinessProfile = () => {
     };
     console.log(company);
 
-    const response = await addCompany(company);
-    console.log(response);
-    if (response.status) {
-      navigate("/business/manage-business/assessment");
-    }
+    // const response = await addCompany(company);
+    // console.log(response);
+    // if (response.status) {
+    //   navigate("/business/manage-business/assessment");
+    // }
 
     setIsLoading(false);
+  };
+
+  const handleLogoFile = async (e: any) => {
+    const file = e.target.files[0];
+    const base64: any = await convertToBase64(file);
+    setLogo(base64);
   };
 
   const onBack = () => {
@@ -106,7 +115,7 @@ export const BusinessProfile = () => {
                     accept="image/*"
                     type="file"
                     className="form-control"
-                    onChange={(e) => setLogo(e.target.value)}
+                    onChange={(e) => handleLogoFile(e)}
                   />
                 </div>
               </div>

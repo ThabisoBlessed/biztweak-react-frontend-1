@@ -21,7 +21,7 @@ export const addCompany = async (company: any): Promise<any> => {
       },
     };
 
-    return await axios.post(constants.baseUrl + `/companies`, {}, config);
+    return await axios.post(constants.baseUrl + `/companies`, {company}, config);
   } catch (error: any) {
     return error;
   }
