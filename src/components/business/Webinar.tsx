@@ -1,14 +1,20 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Webinar = () => {
+  const navigate = useNavigate();
+  
+  const getCourses = () => {
+    navigate("/lms");
+  }
+
   return (
     <div className="mt-4 col-12 text-center text-dark">
       <button
         className="btn btn-sm text-white bg-[#00c2cb] btn-info p-3"
-        data-bs-toggle="modal"
-        data-bs-target="#plans-modal"
+        onClick={getCourses}
       >
-        <h3>Get Free Courses</h3>
+        <h3>Get Courses</h3>
       </button>
 
       <div className="row justify-content-center mt-2 align-items-center bg-[#f1feff]">
