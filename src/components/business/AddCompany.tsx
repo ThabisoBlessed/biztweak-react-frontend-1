@@ -1,6 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getLocalStorageValue, isLoggedIn, LOCALSTORAGE_KEYS } from "../../config";
+import {
+  getLocalStorageValue,
+  isLoggedIn,
+  LOCALSTORAGE_KEYS,
+} from "../../config";
 import { BusinessMenu } from "./BusinessMenu";
 import { AddCompanyModal } from "./AddCompanyModal";
 
@@ -110,6 +114,16 @@ export const AddCompany = () => {
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
+    const isNewUserMode = getLocalStorageValue(
+      LOCALSTORAGE_KEYS.newUserMode
+    )?.replace(/['"\\]+/g, "");
+
+    if (isNewUserMode === "true") {
+      let element: HTMLElement = document.getElementsByClassName(
+        "add-company-modal"
+      )[0] as HTMLElement;
+      element.click();
+    }
   }, [navigate]);
 
   return (
@@ -133,7 +147,7 @@ export const AddCompany = () => {
                 type="button"
                 data-bs-toggle="modal"
                 data-bs-target="#addCompany"
-                className="btn btn-outline-info dotted-border col-12 mb-2 btn-lg hover:text-white hover:bg-[#16f0fb]"
+                className="btn btn-outline-info add-company-modal dotted-border col-12 mb-2 btn-lg hover:text-white hover:bg-[#16f0fb]"
               >
                 <i className="fa fa-plus"></i> Add Company
               </button>

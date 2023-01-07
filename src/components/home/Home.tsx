@@ -11,7 +11,7 @@ export const Home = () => {
   
   const handleClick = (event: any) => {
     setLocalStorageValue(LOCALSTORAGE_KEYS.newUserMode, "true");
-    navigate("/business/manage-business/assessment");
+    navigate("/business");
   };
 
   return (

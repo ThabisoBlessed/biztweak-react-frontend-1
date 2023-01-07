@@ -138,105 +138,117 @@ export const BusinessAssessmentQuestions = () => {
 
   return (
     <div>
-      <div className="accordion" id="assessment-accordion">
-        {mappedQuestions.map((question: any, index: number) => {
-          return (
-            <div
-              className="accordion-item bg-[#f1feff]"
-              key={`${String(question.category).toLowerCase()}_${index}`}
-              id={`${String(question.category).toLowerCase()}_${index}`}
-            >
-              <h2 className="accordion-header" id="heading62">
-                <button
-                  className="accordion-button collapsed text-dark"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target={`#collapse${index}_assessment`}
-                  aria-expanded="false"
-                  aria-controls={`collapse${index}_assessment`}
+      {isLoading ? (
+        <h1></h1>
+      ) : (
+        <div>
+          <div className="accordion" id="assessment-accordion">
+            {mappedQuestions.map((question: any, index: number) => {
+              return (
+                <div
+                  className="accordion-item bg-[#f1feff]"
+                  key={`${String(question.category).toLowerCase()}_${index}`}
+                  id={`${String(question.category).toLowerCase()}_${index}`}
                 >
-                  {question.category}
-                </button>
-              </h2>
-              <div
-                id={`collapse${index}_assessment`}
-                className="accordion-collapse collapse show"
-                aria-labelledby="heading62"
-                data-bs-parent="#assessment-accordion"
-              >
-                <div className="accordion-body bg-[white]">
-                  {question.questions.map((subQuestion: any, index: number) => {
-                    return (
-                      <div
-                        className="question mb-3"
-                        key={`${String(subQuestion.label)
-                          .toLowerCase()
-                          .replace(/[^a-zA-Z0-9 ]/g, "")}`}
-                        id={`${String(subQuestion.label)
-                          .toLowerCase()
-                          .replace(/[^a-zA-Z0-9 ]/g, "")}`}
-                      >
-                        <p className="mb-1">{subQuestion.label}</p>
-                        <label
-                          htmlFor={`${String(subQuestion.label)
-                            .toLowerCase()
-                            .replace(/[^a-zA-Z0-9 ]/g, "")}_yes`}
-                        >
-                          Yes
-                        </label>
-                        <input
-                          name={`${String(subQuestion.label)
-                            .toLowerCase()
-                            .replace(/[^a-zA-Z0-9 ]/g, "")}`}
-                          type="radio"
-                          value="1"
-                          id={`${String(subQuestion.label)
-                            .toLowerCase()
-                            .replace(/[^a-zA-Z0-9 ]/g, "")}_yes`}
-                          className="m-2"
-                          onChange={() => questionChecked(subQuestion, "yes")}
-                        />
-                        <label
-                          htmlFor={`${String(subQuestion.label)
-                            .toLowerCase()
-                            .replace(/[^a-zA-Z0-9 ]/g, "")}_no`}
-                        >
-                          No
-                        </label>
-                        <input
-                          name={`${String(subQuestion.label)
-                            .toLowerCase()
-                            .replace(/[^a-zA-Z0-9 ]/g, "")}`}
-                          type="radio"
-                          value="0"
-                          id={`${String(subQuestion.label)
-                            .toLowerCase()
-                            .replace(/[^a-zA-Z0-9 ]/g, "")}_no`}
-                          className="m-2"
-                          onChange={() => questionChecked(subQuestion, "no")}
-                        />
-                      </div>
-                    );
-                  })}
+                  <h2 className="accordion-header" id="heading62">
+                    <button
+                      className="accordion-button collapsed text-dark"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target={`#collapse${index}_assessment`}
+                      aria-expanded="false"
+                      aria-controls={`collapse${index}_assessment`}
+                    >
+                      {question.category}
+                    </button>
+                  </h2>
+                  <div
+                    id={`collapse${index}_assessment`}
+                    className="accordion-collapse collapse show"
+                    aria-labelledby="heading62"
+                    data-bs-parent="#assessment-accordion"
+                  >
+                    <div className="accordion-body bg-[white]">
+                      {question.questions.map(
+                        (subQuestion: any, index: number) => {
+                          return (
+                            <div
+                              className="question mb-3"
+                              key={`${String(subQuestion.label)
+                                .toLowerCase()
+                                .replace(/[^a-zA-Z0-9 ]/g, "")}`}
+                              id={`${String(subQuestion.label)
+                                .toLowerCase()
+                                .replace(/[^a-zA-Z0-9 ]/g, "")}`}
+                            >
+                              <p className="mb-1">{subQuestion.label}</p>
+                              <label
+                                htmlFor={`${String(subQuestion.label)
+                                  .toLowerCase()
+                                  .replace(/[^a-zA-Z0-9 ]/g, "")}_yes`}
+                              >
+                                Yes
+                              </label>
+                              <input
+                                name={`${String(subQuestion.label)
+                                  .toLowerCase()
+                                  .replace(/[^a-zA-Z0-9 ]/g, "")}`}
+                                type="radio"
+                                value="1"
+                                id={`${String(subQuestion.label)
+                                  .toLowerCase()
+                                  .replace(/[^a-zA-Z0-9 ]/g, "")}_yes`}
+                                className="m-2"
+                                onChange={() =>
+                                  questionChecked(subQuestion, "yes")
+                                }
+                              />
+                              <label
+                                htmlFor={`${String(subQuestion.label)
+                                  .toLowerCase()
+                                  .replace(/[^a-zA-Z0-9 ]/g, "")}_no`}
+                              >
+                                No
+                              </label>
+                              <input
+                                name={`${String(subQuestion.label)
+                                  .toLowerCase()
+                                  .replace(/[^a-zA-Z0-9 ]/g, "")}`}
+                                type="radio"
+                                value="0"
+                                id={`${String(subQuestion.label)
+                                  .toLowerCase()
+                                  .replace(/[^a-zA-Z0-9 ]/g, "")}_no`}
+                                className="m-2"
+                                onChange={() =>
+                                  questionChecked(subQuestion, "no")
+                                }
+                              />
+                            </div>
+                          );
+                        }
+                      )}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+              );
+            })}
+          </div>
 
-      <div className="text-end mt-3">
-        <button
-          type="button"
-          className="btn text-white bg-[#00c2cb] hover:bg-[#16f0fb] btn-info btn-lg p-3 w-[100px]"
-          data-bs-toggle="modal"
-          data-bs-target="#completeCompanyProfile"
-          onClick={onSave}
-          disabled={!canSave}
-        >
-          Save
-        </button>
-      </div>
+          <div className="text-end mt-3">
+            <button
+              type="button"
+              className="btn text-white bg-[#00c2cb] hover:bg-[#16f0fb] btn-info btn-lg p-3 w-[100px]"
+              data-bs-toggle="modal"
+              data-bs-target="#completeCompanyProfile"
+              onClick={onSave}
+              disabled={!canSave}
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
