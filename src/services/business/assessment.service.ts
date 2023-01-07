@@ -44,10 +44,10 @@ export const updateAssessmentQuestions = async (answers: string): Promise<any> =
  * Updates an assessment question
  * 
  * @param {string} answer 
- * @param {string} id 
+ * @param {number} id 
  * @returns {any} result
  */
- export const updateAssessmentQuestion = async (id: string, answer: any): Promise<any> => {
+ export const updateAssessmentQuestion = async (id: number, answer: any): Promise<any> => {
   try {
     let config = {
       headers: {

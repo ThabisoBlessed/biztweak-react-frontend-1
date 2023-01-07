@@ -1,14 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { isLoggedIn } from "../../config";
+import {
+  getLocalStorageValue,
+  isLoggedIn,
+  LOCALSTORAGE_KEYS,
+} from "../../config";
 import { loading } from "../../constants";
+import { Assessment } from "../../model/assessment.model";
+import { IMappedAssessmentQuestion } from "../../model/mapped-assessment-question.model";
+import { updateAssessmentQuestion } from "../../services/business/assessment.service";
+import { addCompany } from "../../services/business/company.service";
 import { convertToBase64 } from "../util/file-util";
 import { BusinessMenu } from "./BusinessMenu";
 
 export const BusinessProfile = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const [businessIndustryAndPhase, setBusinessIndustryAndPhase] = useState({ businessIndustry: "", businessPhase: "" });
+  const [businessIndustryAndPhase, setBusinessIndustryAndPhase] = useState({
+    businessIndustry: "",
+    businessPhase: "",
+  });
   const [selecteBusinessIndustryAndPhase] = useState(
     state || { businessIndustryAndPhase }
   );
@@ -23,13 +34,12 @@ export const BusinessProfile = () => {
   const [annualTurnover, setAnnualTurnover] = useState(0);
   const [monthlyTurnover, setMonthlyTurnover] = useState(0);
   const [productsOrServices, setProductsOrServices] = useState("");
-  
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
-
-    console.log(JSON.parse(selecteBusinessIndustryAndPhase.businessIndustryAndPhase));
-
+    console.log(
+      JSON.parse(selecteBusinessIndustryAndPhase.businessIndustryAndPhase)
+    );
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [navigate]);
 
@@ -40,7 +50,9 @@ export const BusinessProfile = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    const industryAndPhase = JSON.parse(selecteBusinessIndustryAndPhase.businessIndustryAndPhase);
+    const industryAndPhase = JSON.parse(
+      selecteBusinessIndustryAndPhase.businessIndustryAndPhase
+    );
 
     // Logo
     const file = e.target.files[0];
@@ -58,15 +70,39 @@ export const BusinessProfile = () => {
       monthlyTurnover: monthlyTurnover,
       productsOrServices: productsOrServices,
       phase: industryAndPhase.businessPhase,
-      industry: industryAndPhase.businessIndustry
+      industry: industryAndPhase.businessIndustry,
     };
     console.log(company);
 
-    // const response = await addCompany(company);
-    // console.log(response);
-    // if (response.status) {
-    //   navigate("/business/manage-business/assessment");
-    // }
+    const response = await addCompany(company);
+    console.log(response);
+    if (response.status) {
+      const isNewUserMode = getLocalStorageValue(
+        LOCALSTORAGE_KEYS.newUserMode
+      )?.replace(/['"\\]+/g, "");
+
+      if (isNewUserMode === "true") {
+        // If no existing company
+        const assessmentQuestions = getLocalStorageValue(
+          LOCALSTORAGE_KEYS.assessmentQuestions
+        );
+        if (assessmentQuestions) {
+          const questions: IMappedAssessmentQuestion[] =
+            JSON.parse(assessmentQuestions);
+
+          questions.forEach((answer) => {
+            for (let index = 0; index < answer.questions.length; index++) {
+              const question = answer.questions[index];
+              question.date = new Date().toString();
+              const response = updateAssessmentQuestion(answer.id, question);
+              console.log(`questionId: ${question.id}: `, question.id);
+            }
+          });
+        }
+      } else {
+        navigate("/business/manage-business/assessment");
+      }
+    }
 
     setIsLoading(false);
   };

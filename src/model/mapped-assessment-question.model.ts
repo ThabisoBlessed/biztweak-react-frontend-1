@@ -8,4 +8,6 @@ export interface IQuestion {
   id: number;
   label: string;
   answer: string;
+  date: string;
+  category: string;
 }
