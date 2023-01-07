@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { BusinessAssessment } from "./BusinessAssessment";
 import { isLoggedIn } from "../../config";
 import { useLocation, useNavigate } from "react-router-dom";
-import { IBusinessIndustryAndPhase } from "../../model/business-industry-and-phase.model";
 
 export const Assessment = () => {
   const navigate = useNavigate();
@@ -16,10 +15,15 @@ export const Assessment = () => {
   const [selecteBusinessIndustryAndPhase] = useState(
     state || { businessIndustryAndPhase }
   );
+  const [businessInfo, setBusinessInfo] = useState(JSON.parse(selecteBusinessIndustryAndPhase.businessIndustryAndPhase));
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
-    console.log(selecteBusinessIndustryAndPhase);
+    console.log(JSON.parse(selecteBusinessIndustryAndPhase.businessIndustryAndPhase));
+    // setBusinessIndustryAndPhase({
+    //   businessIndustry: "",
+    //   businessPhase: "",
+    // });
     // if (
     //   selecteBusinessIndustryAndPhase &&
     //   selecteBusinessIndustryAndPhase.businessIndustry &&
@@ -41,11 +45,11 @@ export const Assessment = () => {
     <div>
       <div className="row w-full m-0 p-0">
         <div className="col-md-3 border-end">
-          <BusinessMenu businessIndustryAndPhase={businessIndustryAndPhase} />
+          <BusinessMenu businessIndustryAndPhase={businessInfo} />
         </div>
         <div className="col-md-9 bg-white">
           <BusinessAssessment
-            businessIndustryAndPhase={businessIndustryAndPhase}
+            businessIndustryAndPhase={businessInfo}
           />
         </div>
       </div>

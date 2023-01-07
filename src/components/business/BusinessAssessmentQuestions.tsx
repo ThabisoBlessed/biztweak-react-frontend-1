@@ -109,7 +109,7 @@ export const BusinessAssessmentQuestions = () => {
 
     if (isNewUserMode == "true") {
       navigate("/business/manage-business/business-profile", {
-        state: JSON.stringify(mappedQuestions),
+        state: { mappedQuestions },
       });
     } else {
       e.preventDefault();
