@@ -108,7 +108,7 @@ export const BusinessAssessmentQuestions = () => {
     )?.replace(/['"\\]+/g, "");
 
     if (isNewUserMode == "true") {
-      navigate("/business/manage-business/business-profile", {
+      navigate("/business", {
         state: { mappedQuestions },
       });
     } else {

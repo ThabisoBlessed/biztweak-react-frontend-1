@@ -91,13 +91,13 @@ export const BusinessProfile = () => {
                 <strong>
                   <i className="fa fa-check"></i> SUCCESS!
                 </strong>
-                Company Assessment Completed.
+                &nbsp;Company Assessment Completed.
               </div>
               <div className="alert alert-info mt-4">
                 <strong>
                   <i className="fa fa-info-circle"></i> Next Step!
                 </strong>
-                Complete your Company Profile.
+                &nbsp;Complete your Company Profile.
               </div>
               <h4 className="mt-3">Complete Company Profile</h4>
               <div className="row my-4">
