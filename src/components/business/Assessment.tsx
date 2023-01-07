@@ -9,14 +9,22 @@ import { IBusinessIndustryAndPhase } from "../../model/business-industry-and-pha
 export const Assessment = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const [businessIndustryAndPhase, setBusinessIndustryAndPhase] = useState({ businessIndustry: "", businessPhase: "" });
+  const [businessIndustryAndPhase, setBusinessIndustryAndPhase] = useState({
+    businessIndustry: "",
+    businessPhase: "",
+  });
   const [selecteBusinessIndustryAndPhase] = useState(
     state || { businessIndustryAndPhase }
   );
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
-    // if (selecteBusinessIndustryAndPhase) {
+    console.log(selecteBusinessIndustryAndPhase);
+    // if (
+    //   selecteBusinessIndustryAndPhase &&
+    //   selecteBusinessIndustryAndPhase.businessIndustry &&
+    //   selecteBusinessIndustryAndPhase.businessPhase
+    // ) {
     //   const parsed = JSON.parse(
     //     selecteBusinessIndustryAndPhase.businessIndustryAndPhase
     //   );

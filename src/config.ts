@@ -10,7 +10,8 @@ export const LOCALSTORAGE_KEYS = {
   menuCount: "menu_count",
   selectedNavMenu: "selected_nav_menu",
   selectedAdminMenu: "selected_admin_menu",
-  selectedCourseTypeMenu: "selected_course_type_menu"
+  selectedCourseTypeMenu: "selected_course_type_menu",
+  newUserMode: "new_user_mode"
 };
 
 export const BUSINESS_KEYS = {

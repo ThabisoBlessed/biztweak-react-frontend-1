@@ -4,11 +4,13 @@ import { PrimaryButton } from "../shared/PrimaryButton";
 import "./Home.css";
 import { Newsletter } from "../Newsletter/Newsletter";
 import { useNavigate } from "react-router-dom";
+import { LOCALSTORAGE_KEYS, setLocalStorageValue } from "../../config";
 
 export const Home = () => {
   const navigate = useNavigate();
   
   const handleClick = (event: any) => {
+    setLocalStorageValue(LOCALSTORAGE_KEYS.newUserMode, "true");
     navigate("/business/manage-business/assessment");
   };
 

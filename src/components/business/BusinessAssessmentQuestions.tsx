@@ -1,21 +1,28 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
 import { Assessment } from "../../model/assessment.model";
 import {
   IMappedAssessmentQuestion,
   IQuestion,
 } from "../../model/mapped-assessment-question.model";
-import { getAssessmentQuestions } from "../../services/business/assessment.service";
+import {
+  getAssessmentQuestions,
+  updateAssessmentQuestions,
+} from "../../services/business/assessment.service";
 
 export const BusinessAssessmentQuestions = () => {
+  const navigate = useNavigate();
   const questions: Assessment[] = [];
   const [questionList, setQuestionList] = useState(questions);
   const mappedQuestionList: IMappedAssessmentQuestion[] = [];
   const [mappedQuestions, setMappedQuestions] = useState(mappedQuestionList);
   const [canSave, setCanSave] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (questionList.length === 0) {
-      assessmentQuestions();
+      listAssessmentQuestions();
     }
 
     if (questionList.length > 0) {
@@ -62,16 +69,18 @@ export const BusinessAssessmentQuestions = () => {
   /**
    * Gets assessment question list
    */
-  const assessmentQuestions = async () => {
+  const listAssessmentQuestions = async () => {
+    setIsLoading(true);
     const assessmentQuestions = await getAssessmentQuestions();
     setQuestionList(assessmentQuestions.data.package.data);
+    setIsLoading(false);
   };
 
   /**
    * Updates questions with checked answers
-   * 
-   * @param question 
-   * @param answer 
+   *
+   * @param question
+   * @param answer
    */
   const questionChecked = (question: IQuestion, answer: string) => {
     for (let index = 0; index < questionList.length; index++) {
@@ -91,27 +100,41 @@ export const BusinessAssessmentQuestions = () => {
   /**
    * Save updated questions
    */
-  const onSave = async(e: any) => {
-    // e.preventDefault();
-    
-    // console.log(JSON.stringify(questionList));
-    // const updated = await updateAssessmentQuestions(JSON.stringify(questionList));
-    // console.log(updated);
+  const onSave = async (e: any) => {
+    setIsLoading(true);
+
+    const isNewUserMode = getLocalStorageValue(
+      LOCALSTORAGE_KEYS.newUserMode
+    )?.replace(/['"\\]+/g, "");
+
+    if (isNewUserMode == "true") {
+      navigate("/business/manage-business/business-profile", {
+        state: JSON.stringify(mappedQuestions),
+      });
+    } else {
+      e.preventDefault();
+      console.log(JSON.stringify(questionList));
+      const updated = await updateAssessmentQuestions(
+        JSON.stringify(questionList)
+      );
+      console.log(updated);
+    }
+    setIsLoading(false);
   };
 
   /**
    * Checks whether all questions are answered
-   * 
+   *
    */
   const allQuestionsAnswered = () => {
-    const answered = questionList.filter(q => q.answer === "yes|no");
+    const answered = questionList.filter((q) => q.answer === "yes|no");
     console.log(answered.length);
     if (answered.length > 0) {
       setCanSave(false);
     } else {
       setCanSave(true);
     }
-  }
+  };
 
   return (
     <div>

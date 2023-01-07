@@ -11,7 +11,7 @@ export const CompleteCompanyProfileModal = (props: any) => {
   }, [navigate]);
 
   const onSave = () => {
-    navigate("/business/manage-business/company-profile");
+    navigate("/business/manage-business/business-profile");
   };
 
   return (
