@@ -6,32 +6,31 @@ import { BusinessMenu } from "./BusinessMenu";
 export const BusinessProfile = () => {
   const navigate = useNavigate();
 
-  const [companyName, setCompanyName] = useState("");
-  const [companyLogo, setCompanyLogo] = useState("");
-  const [companyRegistration, setCompanyRegistration] = useState("");
-  const [companyRegistrationNumber, setCompanyRegistrationNumber] = useState("");
-  const [companyRegistrationDate, setCompanyRegistrationDate] = useState("");
-  const [companyLocation, setCompanyLocation] = useState("");
+  const [name, setName] = useState("");
+  const [logo, setLogo] = useState("");
+  const [registrationNumber, setRegistrationNumber] = useState("");
+  const [registered, setRegistered] = useState("");
+  const [registrationDate, setRegistrationDate] = useState("");
+  const [location, setLocation] = useState("");
   const [numberOfEmployees, setNumberOfEmployees] = useState(0);
   const [annualTurnover, setAnnualTurnover] = useState(0);
   const [monthlyTurnover, setMonthlyTurnover] = useState(0);
   const [productsOrServices, setProductsOrServices] = useState("");
-  
+
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
 
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [navigate]);
 
   const onSave = () => {
-   // navigate("/business/manage-business/business-health-report");
-    console.log(companyName);
-    
+    const company = {};
+    navigate("/business/manage-business/assessment");
   };
 
   const onBack = () => {
-    navigate("/business/assessment");
-  }
+    navigate("/business/manage-business/add-company");
+  };
 
   return (
     <div>
@@ -65,9 +64,8 @@ export const BusinessProfile = () => {
                     name="name"
                     type="text"
                     className="form-control"
-                    id= "companyName"
-                    onChange={e=> setCompanyName( e.target.value)}
-            
+                    id="companyName"
+                    onChange={(e) => setName(e.target.value)}
                   />
                 </div>
               </div>
@@ -89,7 +87,7 @@ export const BusinessProfile = () => {
                     <input
                       name="registered"
                       type="radio"
-                      onChange={e=> setCompanyLogo( e.target.value)}
+                      onChange={(e) => setRegistered(e.target.value)}
                       value="1"
                       className="radio"
                     />
@@ -100,7 +98,7 @@ export const BusinessProfile = () => {
                       name="registered"
                       type="radio"
                       value="0"
-                      onChange={e=> setCompanyRegistration( e.target.value)}
+                      onChange={(e) => setRegistered(e.target.value)}
                       className="radio"
                     />
                   </label>
@@ -118,8 +116,7 @@ export const BusinessProfile = () => {
                       name="reg_number"
                       type="text"
                       className="form-control"
-                      onChange={e=> setCompanyRegistrationNumber( e.target.value)}
-
+                      onChange={(e) => setRegistrationNumber(e.target.value)}
                     />
                   </div>
                 </div>
@@ -134,7 +131,7 @@ export const BusinessProfile = () => {
                       name="reg_date"
                       type="date"
                       className="form-control"
-                      onChange={e=> setCompanyRegistrationDate( e.target.value)}
+                      onChange={(e) => setRegistrationDate(e.target.value)}
                     />
                   </div>
                 </div>
@@ -151,7 +148,7 @@ export const BusinessProfile = () => {
                     type="text"
                     className="form-control pac-target-input"
                     autoComplete="off"
-                    onChange={e=> setCompanyLocation( e.target.value)}
+                    onChange={(e) => setLocation(e.target.value)}
                   />
                 </div>
               </div>
@@ -166,7 +163,9 @@ export const BusinessProfile = () => {
                     name="num_employees"
                     type="number"
                     className="form-control"
-                   onChange={e=> setNumberOfEmployees(e.target.valueAsNumber )}
+                    onChange={(e) =>
+                      setNumberOfEmployees(e.target.valueAsNumber)
+                    }
                   />
                 </div>
               </div>
@@ -181,8 +180,7 @@ export const BusinessProfile = () => {
                     name="annual_turnover"
                     type="number"
                     className="form-control"
-                    onChange={e=> setAnnualTurnover(e.target.valueAsNumber)}
-
+                    onChange={(e) => setAnnualTurnover(e.target.valueAsNumber)}
                   />
                 </div>
               </div>
@@ -197,8 +195,7 @@ export const BusinessProfile = () => {
                     name="6mo_turnover"
                     type="number"
                     className="form-control"
-                    onChange={e=> setMonthlyTurnover( e.target.valueAsNumber)}
-
+                    onChange={(e) => setMonthlyTurnover(e.target.valueAsNumber)}
                   />
                 </div>
               </div>
@@ -212,16 +209,22 @@ export const BusinessProfile = () => {
                     placeholder="What products or services is your company offering?"
                     name="offering"
                     className="form-control"
-                    onChange={e=> setProductsOrServices( e.target.value)}
+                    onChange={(e) => setProductsOrServices(e.target.value)}
                   ></textarea>
                 </div>
               </div>
               <div className="row my-4">
                 <div className="col-12 text-end">
-                  <button className="btn btn-outline-info mr-2 btn-lg mt-2 p-3 w-[100px] hover:text-white hover:bg-[#16f0fb]" onClick={onBack}>
+                  <button
+                    className="btn btn-outline-info mr-2 btn-lg mt-2 p-3 w-[100px] hover:text-white hover:bg-[#16f0fb]"
+                    onClick={onBack}
+                  >
                     Back
                   </button>
-                  <button className="btn bg-[#00c2cb] btn-info btn-lg mt-2 p-3 w-[100px] text-white hover:text-white hover:bg-[#16f0fb]" onClick={onSave}>
+                  <button
+                    className="btn bg-[#00c2cb] btn-info btn-lg mt-2 p-3 w-[100px] text-white hover:text-white hover:bg-[#16f0fb]"
+                    onClick={onSave}
+                  >
                     Save
                   </button>
                 </div>

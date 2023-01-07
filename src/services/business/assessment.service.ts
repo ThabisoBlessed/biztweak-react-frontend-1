@@ -1,6 +1,6 @@
 import axios from "axios";
-import { LOCALSTORAGE_KEYS } from "../config";
-import * as constants from "../constants";
+import { LOCALSTORAGE_KEYS } from "../../config";
+import * as constants from "../../constants";
 
 /**
  * Gets a list of assessement questions

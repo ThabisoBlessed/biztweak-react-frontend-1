@@ -4,7 +4,7 @@ import {
   IMappedAssessmentQuestion,
   IQuestion,
 } from "../../model/mapped-assessment-question.model";
-import { getAssessmentQuestions, updateAssessmentQuestions } from "../../services/assessment";
+import { getAssessmentQuestions, updateAssessmentQuestions } from "../../services/business/assessment.service";
 
 export const BusinessAssessmentQuestions = () => {
   const questions: Assessment[] = [];
