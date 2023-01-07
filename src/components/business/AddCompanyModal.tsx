@@ -1,9 +1,7 @@
 import { e } from "@fullcalendar/core/internal-common";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
 import { IBusinessIndustryAndPhase } from "../../model/business-industry-and-phase.model";
-import { updateAssessmentQuestions } from "../../services/business/assessment.service";
 
 export const AddCompanyModal = (props: any) => {
   const [businessPhase, setBusinessPhase] = useState(props.bizPhases[0]);

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../config";
 import { loading } from "../../constants";
-import { addCompany } from "../../services/business/company.service";
 import { convertToBase64 } from "../util/file-util";
 import { BusinessMenu } from "./BusinessMenu";
 
@@ -24,9 +23,13 @@ export const BusinessProfile = () => {
   const [annualTurnover, setAnnualTurnover] = useState(0);
   const [monthlyTurnover, setMonthlyTurnover] = useState(0);
   const [productsOrServices, setProductsOrServices] = useState("");
+  
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
+
+    console.log(JSON.parse(selecteBusinessIndustryAndPhase.businessIndustryAndPhase));
+
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [navigate]);
 
@@ -99,7 +102,7 @@ export const BusinessProfile = () => {
                 </strong>
                 &nbsp;Complete your Company Profile.
               </div>
-              <h4 className="mt-3">Complete Company Profile</h4>
+              <h4 className="mt-3 text-2xl">Complete Company Profile</h4>
               <div className="row my-4">
                 <div className="col-md-4">
                   <label>Company Name</label>
@@ -269,12 +272,12 @@ export const BusinessProfile = () => {
               </div>
               <div className="row my-4">
                 <div className="col-12 text-end">
-                  <button
+                  {/* <button
                     className="btn btn-outline-info mr-2 btn-lg mt-2 p-3 w-[100px] hover:text-white hover:bg-[#16f0fb]"
                     onClick={onBack}
                   >
                     Back
-                  </button>
+                  </button> */}
                   <button
                     className="btn bg-[#00c2cb] btn-info btn-lg mt-2 p-3 w-[100px] text-white hover:text-white hover:bg-[#16f0fb]"
                     onClick={onSave}
