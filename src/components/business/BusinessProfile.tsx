@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../config";
 import { loading } from "../../constants";
 import { addCompany } from "../../services/business/company.service";
@@ -8,6 +8,11 @@ import { BusinessMenu } from "./BusinessMenu";
 
 export const BusinessProfile = () => {
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const [businessIndustryAndPhase, setBusinessIndustryAndPhase] = useState({ businessIndustry: "", businessPhase: "" });
+  const [selecteBusinessIndustryAndPhase] = useState(
+    state || { businessIndustryAndPhase }
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState("");
   const [logo, setLogo] = useState("");
@@ -32,12 +37,15 @@ export const BusinessProfile = () => {
     e.preventDefault();
     setIsLoading(true);
 
+    const industryAndPhase = JSON.parse(selecteBusinessIndustryAndPhase.businessIndustryAndPhase);
+
+    // Logo
     const file = e.target.files[0];
     const base64 = await convertToBase64(file);
 
     const company = {
       name: name,
-      logo: logo,
+      logo: base64,
       registrationDate: registrationDate,
       registrationNumber: registrationNumber,
       registered: registered,
@@ -46,6 +54,8 @@ export const BusinessProfile = () => {
       annualTurnover: annualTurnover,
       monthlyTurnover: monthlyTurnover,
       productsOrServices: productsOrServices,
+      phase: industryAndPhase.businessPhase,
+      industry: industryAndPhase.businessIndustry
     };
     console.log(company);
 

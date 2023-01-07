@@ -4,7 +4,7 @@ import {
   IMappedAssessmentQuestion,
   IQuestion,
 } from "../../model/mapped-assessment-question.model";
-import { getAssessmentQuestions, updateAssessmentQuestions } from "../../services/business/assessment.service";
+import { getAssessmentQuestions } from "../../services/business/assessment.service";
 
 export const BusinessAssessmentQuestions = () => {
   const questions: Assessment[] = [];
@@ -92,11 +92,11 @@ export const BusinessAssessmentQuestions = () => {
    * Save updated questions
    */
   const onSave = async(e: any) => {
-    e.preventDefault();
+    // e.preventDefault();
     
-    console.log(JSON.stringify(questionList));
-    const updated = await updateAssessmentQuestions(JSON.stringify(questionList));
-    console.log(updated);
+    // console.log(JSON.stringify(questionList));
+    // const updated = await updateAssessmentQuestions(JSON.stringify(questionList));
+    // console.log(updated);
   };
 
   /**

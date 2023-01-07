@@ -32,7 +32,7 @@ export const AddCompanyModal = (props: any) => {
       businessIndustryAndPhaseModel
     );
 
-    navigate("/business/manage-business/company-profile", {
+    navigate("/business/manage-business/assessment", {
       state: { businessIndustryAndPhase },
     });
   };

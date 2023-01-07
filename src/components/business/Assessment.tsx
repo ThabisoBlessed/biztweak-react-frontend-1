@@ -16,18 +16,18 @@ export const Assessment = () => {
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
-    if (selecteBusinessIndustryAndPhase) {
-      const parsed = JSON.parse(
-        selecteBusinessIndustryAndPhase.businessIndustryAndPhase
-      );
+    // if (selecteBusinessIndustryAndPhase) {
+    //   const parsed = JSON.parse(
+    //     selecteBusinessIndustryAndPhase.businessIndustryAndPhase
+    //   );
 
-      businessIndustryAndPhase.businessIndustry = parsed.businessIndustry;
-      businessIndustryAndPhase.businessPhase = parsed.businessPhase;
-      setBusinessIndustryAndPhase(businessIndustryAndPhase);
-    } else {
-      navigate("/business/manage-business/add-company");
-    }
-  }, [navigate, selecteBusinessIndustryAndPhase]);
+    //   businessIndustryAndPhase.businessIndustry = parsed.businessIndustry;
+    //   businessIndustryAndPhase.businessPhase = parsed.businessPhase;
+    //   setBusinessIndustryAndPhase(businessIndustryAndPhase);
+    // } else {
+    //   navigate("/business/manage-business/add-company");
+    // }
+  }, [navigate]);
 
   return (
     <div>
