@@ -5,22 +5,7 @@ import { IBusinessMenuBusinessModel } from "../../model/business-menu-business-m
 import { listCompaniesForLoggedInUser } from "../../services/business/company.service";
 
 export const BusinessMenu = (props: any) => {
-  const businesses: IBusinessMenuBusinessModel[] = [
-    {
-      id: "asdfasd",
-      name: "New Company",
-      businessIndustry: "Admin/Business Support",
-      businessPhase: "I have products/services but I have poor sales",
-      assessmentComplete: true,
-    },
-    {
-      id: "asdfasdsfawe",
-      name: "Old Company",
-      businessIndustry: "Admin/Business Support",
-      businessPhase: "I have products/services but I have poor sales",
-      assessmentComplete: true,
-    },
-  ];
+  const businesses: IBusinessMenuBusinessModel[] = [];
   const navigate = useNavigate();
   const [activeBusinesses, setActiveBusinesses] = useState(businesses);
 
@@ -31,6 +16,8 @@ export const BusinessMenu = (props: any) => {
 
   const listCompanies = async () => {
     const businesses = await listCompaniesForLoggedInUser();
+    console.log(businesses.data.package.data);
+    setActiveBusinesses(businesses.data.package.data);
     console.log(businesses)
   }
 
@@ -67,7 +54,7 @@ export const BusinessMenu = (props: any) => {
 
       {activeBusinesses.length > 0 ? (
         <ul className="list-group mt-3">
-          {businesses.map(
+          {activeBusinesses.map(
             (business: IBusinessMenuBusinessModel, index: number) => {
               return (
                 <li className="top-buffer" key={index} id={index.toString()}>
@@ -102,16 +89,16 @@ export const BusinessMenu = (props: any) => {
                         <div className="small text-start">
                           <p className="d-flex m-2">
                             <i className="fa fa-info me-3"></i>{" "}
-                            {business.businessPhase}
+                            {business.phase}
                           </p>
 
                           <p className="m-2">
                             <i className="fa fa-industry me-3"></i>{" "}
-                            {business.businessIndustry}
+                            {business.industry}
                           </p>
                         </div>
                         <div className="top-buffer">
-                          {business.assessmentComplete ? (
+                          {business.assessments ? (
                             <button
                               className="btn profile-menu-action-btn mt-2 mb-2 text-white bg-[#00c2cb] hover:bg-[#16f0fb]"
                               onClick={() => onViewBizReport(business)}
