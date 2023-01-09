@@ -58,7 +58,7 @@ export const BusinessProfile = () => {
       const company = {
         name: name,
         logo: logo,
-        registration_date: registrationDate,
+        registration_date: registrationDate || new Date().toString(),
         registration_number: registrationNumber,
         registered: registered === "false" ? false : true,
         location: location,
@@ -75,43 +75,43 @@ export const BusinessProfile = () => {
       const response = await addCompany(company);
       console.log(response);
 
-      if (response.status) {
-        const isNewUserMode = getLocalStorageValue(
-          LOCALSTORAGE_KEYS.newUserMode
-        )?.replace(/['"\\]+/g, "");
+      // if (response.status) {
+      //   const isNewUserMode = getLocalStorageValue(
+      //     LOCALSTORAGE_KEYS.newUserMode
+      //   )?.replace(/['"\\]+/g, "");
 
-        if (isNewUserMode == "true") {
-          // If no existing company
-          const assessmentQuestions = getLocalStorageValue(
-            LOCALSTORAGE_KEYS.assessmentQuestions
-          );
+      //   if (isNewUserMode == "true") {
+      //     // If no existing company
+      //     const assessmentQuestions = getLocalStorageValue(
+      //       LOCALSTORAGE_KEYS.assessmentQuestions
+      //     );
 
-          if (assessmentQuestions) {
-            const questions: IMappedAssessmentQuestion[] =
-              JSON.parse(assessmentQuestions);
+      //     if (assessmentQuestions) {
+      //       const questions: IMappedAssessmentQuestion[] =
+      //         JSON.parse(assessmentQuestions);
 
-            // for (let index = 0; index < questions.length; index++) {
-            //   const question = questions[index];
-            //   for (let index = 0; index < question.questions.length; index++) {
-            //     const answer = question.questions[index];
-            //     answer.date = new Date().toString();
-            //     const response = updateAssessmentQuestion(answer.id, {
-            //       category: answer.category,
-            //       label: answer.label,
-            //       answer: answer.answer,
-            //     });
-            //     console.log(response);
-            //     console.log(`questionId: ${question.id}: `, question.id);
-            //   }
-            // }
-          }
+      //       for (let index = 0; index < questions.length; index++) {
+      //         const question = questions[index];
+      //         for (let index = 0; index < question.questions.length; index++) {
+      //           const answer = question.questions[index];
+      //           answer.date = new Date().toString();
+      //           const response = updateAssessmentQuestion(answer.id, {
+      //             category: answer.category,
+      //             label: answer.label,
+      //             answer: answer.answer,
+      //           });
+      //           console.log(response);
+      //           console.log(`questionId: ${question.id}: `, question.id);
+      //         }
+      //       }
+      //     }
 
-          setLocalStorageValue(LOCALSTORAGE_KEYS.newUserMode, "false");
+      //     setLocalStorageValue(LOCALSTORAGE_KEYS.newUserMode, "false");
 
-        } else {
-          navigate("/business/manage-business/assessment");
-        }
-      }
+      //   } else {
+      //     navigate("/business/manage-business/assessment");
+      //   }
+      // }
     }
 
     setIsLoading(false);
