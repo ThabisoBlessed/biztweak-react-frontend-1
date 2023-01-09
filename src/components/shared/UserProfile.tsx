@@ -1,13 +1,12 @@
 import { useEffect } from "preact/hooks";
 import React, { useState } from "react";
-import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
 import AvatarImg from "../../images/avatar.png";
-import { IUser } from "../../model/user.model";
 import { AdminMenu } from "../admin/AdminMenu";
 import { CMPMenu } from "../cmp/CMPMenu";
 import { LMSMenu } from "../lms/LMSMenu";
 
 export const UserProfile = (props: any) => {
+  const [user, setUser] = useState(props.user);
 
   return (
     <div className="w-full">
@@ -71,7 +70,7 @@ export const UserProfile = (props: any) => {
                                 <div className="form-group mt-2">
                                   <div className="d-flex justify-content-between">
                                     <label className="text-dark">
-                                      Display name &nbsp;
+                                      {user.fullName} &nbsp;
                                       <i
                                         className="fa fa-info-circle text-muted"
                                         data-bs-toggle="tooltip"
@@ -102,6 +101,7 @@ export const UserProfile = (props: any) => {
                                   <input
                                     type="text"
                                     className="form-control core"
+                                    value={user.email}
                                   />
                                 </div>
                                 <div className="form-group mt-2">
