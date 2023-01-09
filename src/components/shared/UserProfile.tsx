@@ -1,10 +1,14 @@
-import React from "react";
+import { useEffect } from "preact/hooks";
+import React, { useState } from "react";
+import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
 import AvatarImg from "../../images/avatar.png";
+import { IUser } from "../../model/user.model";
 import { AdminMenu } from "../admin/AdminMenu";
 import { CMPMenu } from "../cmp/CMPMenu";
 import { LMSMenu } from "../lms/LMSMenu";
 
 export const UserProfile = (props: any) => {
+
   return (
     <div className="w-full">
       <div className="row">

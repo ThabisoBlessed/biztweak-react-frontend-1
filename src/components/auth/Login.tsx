@@ -50,7 +50,7 @@ export const Login = () => {
         LOCALSTORAGE_KEYS.accessToken,
         JSON.stringify(loginResult.data.package.data.token)
       );
-      setLocalStorageValue(LOCALSTORAGE_KEYS.user, JSON.stringify(loginResult.data.package.data.user));
+      setLocalStorageValue(LOCALSTORAGE_KEYS.user, loginResult.data.package.data.user);
       window.location.reload();
     } else {
       console.log(loginResult.data.message);

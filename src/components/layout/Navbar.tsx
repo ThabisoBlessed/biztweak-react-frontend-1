@@ -14,24 +14,32 @@ import { IMenuListItem } from "../../model/menu-list-item.model";
 
 export const Navbar = () => {
   const menuList: IMenuListItem[] = [
-    // {
-    //   id: 0,
-    //   title: "LMS",
-    //   link: "/lms",
-    //   iconClass: "",
-    //   isActive: false,
-    //   titleClasses: "nav-item me-2 hover:text-[#00c2cb]",
-    // },
+    {
+      id: 0,
+      title: "BIZ",
+      link: "/business",
+      iconClass: "",
+      isActive: false,
+      titleClasses: "nav-item me-2 hover:text-[#00c2cb]",
+    },
     {
       id: 1,
-      title: "CMP",
-      link: "/cmp",
+      title: "LMS",
+      link: "/lms",
       iconClass: "",
       isActive: false,
       titleClasses: "nav-item me-2 hover:text-[#00c2cb]",
     },
     // {
     //   id: 2,
+    //   title: "CMP",
+    //   link: "/cmp",
+    //   iconClass: "",
+    //   isActive: false,
+    //   titleClasses: "nav-item me-2 hover:text-[#00c2cb]",
+    // },
+    // {
+    //   id: 3,
     //   title: "Admin",
     //   link: "/admin",
     //   iconClass: "",
@@ -50,7 +58,7 @@ export const Navbar = () => {
     console.log("Logged in: ", loggedIn);
     const user = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
     if (user) {
-      const userResult: IUser = JSON.parse(JSON.parse(user));
+      const userResult: IUser = JSON.parse(user);
       setUserEmail(userResult.email);
       setUserName(userResult.fullname);
     }
