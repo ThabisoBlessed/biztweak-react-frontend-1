@@ -90,19 +90,20 @@ export const BusinessProfile = () => {
             const questions: IMappedAssessmentQuestion[] =
               JSON.parse(assessmentQuestions);
 
-            questions.forEach((answer) => {
-              for (let index = 0; index < answer.questions.length; index++) {
-                const question = answer.questions[index];
-                question.date = new Date().toString();
-                const response = updateAssessmentQuestion(answer.id, {
-                  category: question.category,
-                  label: question.label,
-                  answer: question.answer,
-                });
-                console.log(response);
-                console.log(`questionId: ${question.id}: `, question.id);
-              }
-            });
+            // for (let index = 0; index < questions.length; index++) {
+            //   const question = questions[index];
+            //   for (let index = 0; index < question.questions.length; index++) {
+            //     const answer = question.questions[index];
+            //     answer.date = new Date().toString();
+            //     const response = updateAssessmentQuestion(answer.id, {
+            //       category: answer.category,
+            //       label: answer.label,
+            //       answer: answer.answer,
+            //     });
+            //     console.log(response);
+            //     console.log(`questionId: ${question.id}: `, question.id);
+            //   }
+            // }
           }
 
           setLocalStorageValue(LOCALSTORAGE_KEYS.newUserMode, "false");
