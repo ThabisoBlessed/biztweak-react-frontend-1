@@ -4,6 +4,7 @@ import {
   getLocalStorageValue,
   isLoggedIn,
   LOCALSTORAGE_KEYS,
+  setLocalStorageValue,
 } from "../../config";
 import { loading } from "../../constants";
 import { Assessment } from "../../model/assessment.model";
@@ -54,21 +55,17 @@ export const BusinessProfile = () => {
       selecteBusinessIndustryAndPhase.businessIndustryAndPhase
     );
 
-    // Logo
-    const file = e.target.files[0];
-    const base64 = await convertToBase64(file);
-
     const company = {
       name: name,
-      logo: base64,
-      registrationDate: registrationDate,
-      registrationNumber: registrationNumber,
-      registered: registered,
+      logo: logo,
+      registration_date: registrationDate,
+      registration_number: registrationNumber,
+      registered: registered === "false" ? false : true,
       location: location,
-      numberOfEmployees: numberOfEmployees,
-      annualTurnover: annualTurnover,
-      monthlyTurnover: monthlyTurnover,
-      productsOrServices: productsOrServices,
+      employees: numberOfEmployees,
+      annual_turnover: annualTurnover,
+      monthly_turnover: monthlyTurnover,
+      products_or_services: productsOrServices,
       phase: industryAndPhase.businessPhase,
       industry: industryAndPhase.businessIndustry,
     };
@@ -86,6 +83,7 @@ export const BusinessProfile = () => {
         const assessmentQuestions = getLocalStorageValue(
           LOCALSTORAGE_KEYS.assessmentQuestions
         );
+        
         if (assessmentQuestions) {
           const questions: IMappedAssessmentQuestion[] =
             JSON.parse(assessmentQuestions);
@@ -99,6 +97,8 @@ export const BusinessProfile = () => {
             }
           });
         }
+
+        setLocalStorageValue(LOCALSTORAGE_KEYS.newUserMode, "false");
       } else {
         navigate("/business/manage-business/assessment");
       }
