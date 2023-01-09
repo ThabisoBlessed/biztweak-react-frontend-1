@@ -5,9 +5,11 @@ import { IUser } from "../../model/user.model";
 import { getCurrentUser } from "../../services/lms/user.service";
 
 export const Profile = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({} as IUser);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    if (!user) {
+    if (user) {
       getProfile();
     }
   });
@@ -18,9 +20,15 @@ export const Profile = () => {
       const userResult: IUser = JSON.parse(user);
       const profile = await getCurrentUser(userResult.id);
       setUser(profile.data.package.data);
-      console.log(user);
+      setIsLoading(false);
     }
+    setIsLoading(false);
+
   };
 
-  return <div>{!user ? <h1 className="text-4xl font-bold text-black">Loading Profile...</h1> : <UserProfile menu={"lms"} user={user} />}</div>;
+  return (
+    <div>
+      <UserProfile menu={"lms"} user={user} isLoading={isLoading} />
+    </div>
+  );
 };
