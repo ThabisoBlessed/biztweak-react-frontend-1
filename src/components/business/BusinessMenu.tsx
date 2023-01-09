@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../config";
 import { IBusinessMenuBusinessModel } from "../../model/business-menu-business-model";
+import { listCompaniesForLoggedInUser } from "../../services/business/company.service";
 
 export const BusinessMenu = (props: any) => {
   const businesses: IBusinessMenuBusinessModel[] = [
@@ -25,7 +26,13 @@ export const BusinessMenu = (props: any) => {
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
+    listCompanies();
   }, [navigate]);
+
+  const listCompanies = async () => {
+    const businesses = await listCompaniesForLoggedInUser();
+    console.log(businesses)
+  }
 
   const onCompleteAssessment = (business: IBusinessMenuBusinessModel) => {
     const businessIndustryAndPhase = JSON.stringify(business);
