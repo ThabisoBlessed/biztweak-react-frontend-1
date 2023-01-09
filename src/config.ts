@@ -11,7 +11,9 @@ export const LOCALSTORAGE_KEYS = {
   selectedNavMenu: "selected_nav_menu",
   selectedAdminMenu: "selected_admin_menu",
   selectedCourseTypeMenu: "selected_course_type_menu",
-  newUserMode: "new_user_mode"
+  newUserMode: "new_user_mode",
+  businessIndustry: "business_industry",
+  businessPhase: "business_phase",
 };
 
 export const BUSINESS_KEYS = {

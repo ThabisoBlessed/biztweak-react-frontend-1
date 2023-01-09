@@ -1,6 +1,7 @@
 import { e } from "@fullcalendar/core/internal-common";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { LOCALSTORAGE_KEYS, setLocalStorageValue } from "../../config";
 import { IBusinessIndustryAndPhase } from "../../model/business-industry-and-phase.model";
 
 export const AddCompanyModal = (props: any) => {
@@ -33,7 +34,9 @@ export const AddCompanyModal = (props: any) => {
       businessIndustryAndPhaseModel
     );
 
-    navigate("/business/manage-business/business-profile", {
+    setLocalStorageValue(LOCALSTORAGE_KEYS.businessIndustry, JSON.stringify(businessIndustryAndPhaseModel.businessIndustry));
+    setLocalStorageValue(LOCALSTORAGE_KEYS.businessPhase, JSON.stringify(businessIndustryAndPhaseModel.businessPhase));
+    navigate("/business/manage-business/assessment", {
       state: { businessIndustryAndPhase },
     });
   };

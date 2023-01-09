@@ -13,6 +13,7 @@ import { updateAssessmentQuestion } from "../../services/business/assessment.ser
 import { addCompany } from "../../services/business/company.service";
 import { convertToBase64 } from "../util/file-util";
 import { BusinessMenu } from "./BusinessMenu";
+import { IBusinessIndustryAndPhase } from "../../model/business-industry-and-phase.model";
 
 export const BusinessProfile = () => {
   const navigate = useNavigate();
@@ -21,9 +22,6 @@ export const BusinessProfile = () => {
     businessIndustry: "",
     businessPhase: "",
   });
-  const [selecteBusinessIndustryAndPhase] = useState(
-    state || { businessIndustryAndPhase }
-  );
   const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState("");
   const [logo, setLogo] = useState("");
@@ -38,9 +36,11 @@ export const BusinessProfile = () => {
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
-    console.log(
-      JSON.parse(selecteBusinessIndustryAndPhase.businessIndustryAndPhase)
-    );
+    const isNewUserMode = getLocalStorageValue(
+      LOCALSTORAGE_KEYS.newUserMode
+    )?.replace(/['"\\]+/g, "");
+
+    console.log(isNewUserMode);
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [navigate]);
 
@@ -51,56 +51,65 @@ export const BusinessProfile = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    const industryAndPhase = JSON.parse(
-      selecteBusinessIndustryAndPhase.businessIndustryAndPhase
-    );
+    const industry = getLocalStorageValue(LOCALSTORAGE_KEYS.businessIndustry);
+    const phase = getLocalStorageValue(LOCALSTORAGE_KEYS.businessPhase);
 
-    const company = {
-      name: name,
-      logo: logo,
-      registration_date: registrationDate,
-      registration_number: registrationNumber,
-      registered: registered === "false" ? false : true,
-      location: location,
-      employees: numberOfEmployees,
-      annual_turnover: annualTurnover,
-      monthly_turnover: monthlyTurnover,
-      products_or_services: productsOrServices,
-      phase: industryAndPhase.businessPhase,
-      industry: industryAndPhase.businessIndustry,
-    };
-    console.log(company);
+    if (industry && phase) {
+      const company = {
+        name: name,
+        logo: logo,
+        registration_date: registrationDate,
+        registration_number: registrationNumber,
+        registered: registered === "false" ? false : true,
+        location: location,
+        employees: numberOfEmployees,
+        annual_turnover: annualTurnover,
+        monthly_turnover: monthlyTurnover,
+        products_or_services: productsOrServices,
+        phase: JSON.parse(phase).replace(/['"\\]+/g, ''),
+        industry: JSON.parse(industry).replace(/['"\\]+/g, '')
+      };
 
-    const response = await addCompany(company);
-    console.log(response);
-    if (response.status) {
-      const isNewUserMode = getLocalStorageValue(
-        LOCALSTORAGE_KEYS.newUserMode
-      )?.replace(/['"\\]+/g, "");
+      console.log(company);
 
-      if (isNewUserMode === "true") {
-        // If no existing company
-        const assessmentQuestions = getLocalStorageValue(
-          LOCALSTORAGE_KEYS.assessmentQuestions
-        );
-        
-        if (assessmentQuestions) {
-          const questions: IMappedAssessmentQuestion[] =
-            JSON.parse(assessmentQuestions);
+      const response = await addCompany(company);
+      console.log(response);
 
-          questions.forEach((answer) => {
-            for (let index = 0; index < answer.questions.length; index++) {
-              const question = answer.questions[index];
-              question.date = new Date().toString();
-              const response = updateAssessmentQuestion(answer.id, question);
-              console.log(`questionId: ${question.id}: `, question.id);
-            }
-          });
+      if (response.status) {
+        const isNewUserMode = getLocalStorageValue(
+          LOCALSTORAGE_KEYS.newUserMode
+        )?.replace(/['"\\]+/g, "");
+
+        if (isNewUserMode == "true") {
+          // If no existing company
+          const assessmentQuestions = getLocalStorageValue(
+            LOCALSTORAGE_KEYS.assessmentQuestions
+          );
+
+          if (assessmentQuestions) {
+            const questions: IMappedAssessmentQuestion[] =
+              JSON.parse(assessmentQuestions);
+
+            questions.forEach((answer) => {
+              for (let index = 0; index < answer.questions.length; index++) {
+                const question = answer.questions[index];
+                question.date = new Date().toString();
+                const response = updateAssessmentQuestion(answer.id, {
+                  category: question.category,
+                  label: question.label,
+                  answer: question.answer,
+                });
+                console.log(response);
+                console.log(`questionId: ${question.id}: `, question.id);
+              }
+            });
+          }
+
+          setLocalStorageValue(LOCALSTORAGE_KEYS.newUserMode, "false");
+
+        } else {
+          navigate("/business/manage-business/assessment");
         }
-
-        setLocalStorageValue(LOCALSTORAGE_KEYS.newUserMode, "false");
-      } else {
-        navigate("/business/manage-business/assessment");
       }
     }
 

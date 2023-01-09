@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
+import { getLocalStorageValue, LOCALSTORAGE_KEYS, setLocalStorageValue } from "../../config";
 import { Assessment } from "../../model/assessment.model";
 import {
   IMappedAssessmentQuestion,
@@ -21,6 +21,8 @@ export const BusinessAssessmentQuestions = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+
     if (questionList.length === 0) {
       listAssessmentQuestions();
     }
@@ -107,17 +109,20 @@ export const BusinessAssessmentQuestions = () => {
       LOCALSTORAGE_KEYS.newUserMode
     )?.replace(/['"\\]+/g, "");
 
+    console.log(isNewUserMode == "true");
+
     if (isNewUserMode == "true") {
-      navigate("/business", {
+      setLocalStorageValue(LOCALSTORAGE_KEYS.assessmentQuestions, mappedQuestions);
+      navigate("/business/manage-business/business-profile", {
         state: { mappedQuestions },
       });
     } else {
       e.preventDefault();
-      console.log(JSON.stringify(questionList));
-      const updated = await updateAssessmentQuestions(
-        JSON.stringify(questionList)
-      );
-      console.log(updated);
+      // console.log(JSON.stringify(questionList));
+      // const updated = await updateAssessmentQuestions(
+      //   JSON.stringify(questionList)
+      // );
+      // console.log(updated);
     }
     setIsLoading(false);
   };
@@ -239,8 +244,8 @@ export const BusinessAssessmentQuestions = () => {
             <button
               type="button"
               className="btn text-white bg-[#00c2cb] hover:bg-[#16f0fb] btn-info btn-lg p-3 w-[100px]"
-              data-bs-toggle="modal"
-              data-bs-target="#completeCompanyProfile"
+              // data-bs-toggle="modal"
+              // data-bs-target="#completeCompanyProfile"
               onClick={onSave}
               disabled={!canSave}
             >
