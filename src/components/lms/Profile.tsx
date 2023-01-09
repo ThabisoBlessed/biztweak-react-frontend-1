@@ -15,20 +15,20 @@ export const Profile = () => {
   });
 
   const getProfile = async () => {
-    const user = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
-    if (user) {
-      const userResult: IUser = JSON.parse(user);
+    const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
+    if (storageUser) {
+      const userResult: IUser = JSON.parse(storageUser);
       const profile = await getCurrentUser(userResult.id);
       setUser(profile.data.package.data);
       setIsLoading(false);
     }
-    setIsLoading(false);
-
   };
 
   return (
     <div>
-      <UserProfile menu={"lms"} user={user} isLoading={isLoading} />
+      {isLoading ? <div className="text-center text-4xl h-[100vh]">Loading...</div> : (
+        <UserProfile menu={"lms"} user={user} isLoading={isLoading} />
+      )}
     </div>
   );
 };

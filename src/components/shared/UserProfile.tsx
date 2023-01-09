@@ -9,7 +9,6 @@ import { CMPMenu } from "../cmp/CMPMenu";
 import { LMSMenu } from "../lms/LMSMenu";
 
 export const UserProfile = (props: any) => {
-  const [user, setUser] = useState(props.user);
 
   return (
     <div className="w-full">
