@@ -9,29 +9,33 @@ import jsPDF from "jspdf";
 import * as htmlToImage from "html-to-image";
 import { useLocation, useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../config";
-import { IBusinessMenuBusinessModel } from "../../model/business-menu-business-model";
 
 export const ReportSummary = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [selectedBusiness] = useState(state || {});
   const [business, setBusiness] = useState(selectedBusiness.business);
+  const initData: (string | number)[][] = [["Elements", "Priority Elements"]];
+  const [data, setData] = useState(initData);
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
-    console.log(business);
-    console.log(JSON.parse(business.report.scores));
+    getReports();
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [navigate]);
 
-  const data = [
-    ["Elements", "Priority Elements"],
-    ["Work", 11],
-    ["Eat", 2],
-    ["Commute", 2],
-    ["Watch TV", 2],
-    ["Sleep", 7],
-  ];
+  const getReports = () => {
+    const reports = JSON.parse(business.report.scores);
+    const allData = data;
+    for (let index = 0; index < reports.length; index++) {
+      const report = reports[index];
+      const set = [report.category, report.percentage ];
+      allData.push(set);
+    }
+    setData(allData);
+
+    console.log(data);
+  }
 
   const options = {
     title: "My Daily Activities",
@@ -90,7 +94,7 @@ export const ReportSummary = () => {
               >
                 <h6>Sales Score</h6>
                 <div id="doughnutChart" className="card-body m-0 p-0">
-                  <PieChart data={data} width={"100%"} height={"300px"} />
+                  {!data ? null : <PieChart data={data} width={"100%"} height={"300px"} />}
                 </div>
               </div>
 
