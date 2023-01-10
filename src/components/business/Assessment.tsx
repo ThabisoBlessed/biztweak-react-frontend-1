@@ -4,22 +4,34 @@ import { useEffect, useState } from "react";
 import { BusinessAssessment } from "./BusinessAssessment";
 import { isLoggedIn } from "../../config";
 import { useLocation, useNavigate } from "react-router-dom";
+import { IBusinessMenuBusinessModel } from "../../model/business-menu-business-model";
 
 export const Assessment = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
+
+  // Update existing company
+  const [selectedBusiness] = useState(
+    state || {} as IBusinessMenuBusinessModel
+  );
+  const [business, setBusiness] = useState(selectedBusiness.business);
+
+  // Update new company
   const [businessIndustryAndPhase, setBusinessIndustryAndPhase] = useState({
     businessIndustry: "",
     businessPhase: "",
   });
   const [selecteBusinessIndustryAndPhase] = useState(
     state || { businessIndustryAndPhase }
-  );
-  const [businessInfo, setBusinessInfo] = useState(JSON.parse(selecteBusinessIndustryAndPhase.businessIndustryAndPhase));
+  ); 
+  const [businessInfo, setBusinessInfo] = useState(!business ? JSON.parse(selecteBusinessIndustryAndPhase.businessIndustryAndPhase) : {
+    businessIndustry: business.industry,
+    businessPhase: business.phase,
+  });
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
-    console.log(JSON.parse(selecteBusinessIndustryAndPhase.businessIndustryAndPhase));
+    console.log(businessInfo);
     // setBusinessIndustryAndPhase({
     //   businessIndustry: "",
     //   businessPhase: "",
@@ -44,14 +56,14 @@ export const Assessment = () => {
   return (
     <div>
       <div className="row w-full m-0 p-0">
-        <div className="col-md-3 border-end">
+        {/* <div className="col-md-3 border-end">
           <BusinessMenu businessIndustryAndPhase={businessInfo} />
         </div>
         <div className="col-md-9 bg-white">
           <BusinessAssessment
             businessIndustryAndPhase={businessInfo}
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );

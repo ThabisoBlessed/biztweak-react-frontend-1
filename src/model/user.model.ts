@@ -9,7 +9,7 @@ export interface IUser {
     work_experience: string,
     work_experience2: string,
     location: string,
-    role: UserRole
+    role: string;
     registered: string;
     photo: string;
     market_newsletter: any;

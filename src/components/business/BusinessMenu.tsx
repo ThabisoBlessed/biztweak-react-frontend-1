@@ -22,13 +22,11 @@ export const BusinessMenu = (props: any) => {
   }
 
   const onCompleteAssessment = (business: IBusinessMenuBusinessModel) => {
-    const businessIndustryAndPhase = JSON.stringify(business);
-    navigate("/business/manage-business/assessment", { state: { businessIndustryAndPhase } });
+    navigate("/business/manage-business/assessment", { state: { business } });
   };
 
   const onViewBizReport = (business: IBusinessMenuBusinessModel) => {
-    const selecteBusiness = JSON.stringify(business);
-    navigate("/business/manage-business/report-summary", { state: { selecteBusiness } });
+    navigate("/business/manage-business/report-summary", { state: { business } });
   };
 
   const onAddCompany = () => {
