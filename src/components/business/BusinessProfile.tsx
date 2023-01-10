@@ -30,11 +30,13 @@ export const BusinessProfile = () => {
   const [monthlyTurnover, setMonthlyTurnover] = useState(0);
   const [productsOrServices, setProductsOrServices] = useState("");
   const mappedQuestionList: IMappedAssessmentQuestion[] = [];
-  const [mappedQuestions, setMappedQuestions] = useState(mappedQuestionList);
+  const [questions] = useState(state || mappedQuestionList);
+  const [questionAndAnswer, setQuestionAndAnswer] = useState(questions.questionList);
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    console.log(questionAndAnswer);
   }, [navigate]);
 
   /**

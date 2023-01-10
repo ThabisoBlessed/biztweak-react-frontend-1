@@ -34,7 +34,6 @@ export const BusinessAssessmentQuestions = (props: any) => {
   const [business, setBusiness] = useState(selectedBusiness.business);
 
   useEffect(() => {
-    console.log(business);
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 
     if (questionList.length === 0) {
@@ -120,20 +119,17 @@ export const BusinessAssessmentQuestions = (props: any) => {
     e.preventDefault();
     setIsLoading(true);
 
-    const isNewUserMode = getLocalStorageValue(
-      LOCALSTORAGE_KEYS.newUserMode
-    )?.replace(/['"\\]+/g, "");
-
     if (!business) {
-      setLocalStorageValue(
-        LOCALSTORAGE_KEYS.assessmentQuestions,
-        mappedQuestions
-      );
       navigate("/business/manage-business/business-profile", {
-        state: { mappedQuestions },
+        state: { questionList },
       });
     } else {
       const update = await addAssessmentQuestions(JSON.stringify(mappedQuestions), business.id);
+      // Successful call return data, failed call returns response
+      const success = update.data;
+      if (success) {
+        navigate("/business/manage-business/business-health-report");
+      }
     }
     setIsLoading(false);
   };

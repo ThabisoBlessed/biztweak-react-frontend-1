@@ -16,9 +16,7 @@ export const BusinessMenu = (props: any) => {
 
   const listCompanies = async () => {
     const businesses = await listCompaniesForLoggedInUser();
-    console.log(businesses.data.package.data);
     setActiveBusinesses(businesses.data.package.data);
-    console.log(businesses)
   }
 
   const onCompleteAssessment = (business: IBusinessMenuBusinessModel) => {

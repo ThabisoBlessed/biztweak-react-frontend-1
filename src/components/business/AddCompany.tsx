@@ -4,6 +4,7 @@ import {
   getLocalStorageValue,
   isLoggedIn,
   LOCALSTORAGE_KEYS,
+  setLocalStorageValue,
 } from "../../config";
 import { BusinessMenu } from "./BusinessMenu";
 import { AddCompanyModal } from "./AddCompanyModal";
@@ -113,8 +114,10 @@ export const AddCompany = () => {
   const [industries, setIndustries] = useState(industryList);
 
   useEffect(() => {
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
     if (!isLoggedIn()) navigate("/auth/login");
+
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    
     const isNewUserMode = getLocalStorageValue(
       LOCALSTORAGE_KEYS.newUserMode
     )?.replace(/['"\\]+/g, "");
@@ -124,6 +127,7 @@ export const AddCompany = () => {
         "add-company-modal"
       )[0] as HTMLElement;
       element.click();
+      setLocalStorageValue(LOCALSTORAGE_KEYS.newUserMode, "false");
     }
   }, [navigate]);
 
