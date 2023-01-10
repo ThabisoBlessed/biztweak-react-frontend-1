@@ -28,8 +28,15 @@ export const UserProfile = (props: any) => {
   const [isSaving, setIsSaving] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
+  const [passwordSuccessMessage, setPasswordSuccessMessage] = useState("");
 
-  const onUpdatePassword = async () => {
+  const onUpdatePassword = async (e: any) => {
+    e.preventDefault();
+    setIsSaving(true);
+    setPasswordErrorMessage("");
+    setPasswordSuccessMessage("");
+    setIsLoading(false);
+
     if (password === "" || confirmPassword === "" || old_password === "") {
       setPasswordErrorMessage("All password fields are required");
     } else if (confirmPassword !== password) {
@@ -37,10 +44,26 @@ export const UserProfile = (props: any) => {
     } else {
       const update = await updatePassword(old_password, password, id);
       console.log(update);
+      // Successful call return data, failed call returns response
+      const success = update.data;
+      const fail = update.response;
+
+      if (success) {
+        setPasswordSuccessMessage(update.data.message);
+      } else {
+
+        console.log(fail.data.message);
+        setPasswordErrorMessage(fail.data.message);
+        console.log(passwordErrorMessage);
+      }
     }
+    setIsSaving(false);
   };
 
-  const onUpdateProfile = () => {};
+  const onUpdateProfile = () => {
+    setPasswordErrorMessage("");
+    setPasswordSuccessMessage("");
+  };
 
   return (
     <div className="w-full">
@@ -255,7 +278,9 @@ export const UserProfile = (props: any) => {
                                       type="password"
                                       className="form-control core"
                                       autoComplete="false"
-                                      value={!password ? "" : password}
+                                      value={
+                                        !confirmPassword ? "" : confirmPassword
+                                      }
                                       id="confirmPassword"
                                       onChange={(e) =>
                                         setConfirmPassword(e.target.value)
@@ -274,6 +299,18 @@ export const UserProfile = (props: any) => {
                                       <span>Update Password</span>
                                     )}
                                   </button>
+
+                                  {passwordSuccessMessage.length === 0 ? null : (
+                                    <p className="text-success m-2">
+                                      {passwordSuccessMessage}
+                                    </p>
+                                  )}
+
+                                  {passwordErrorMessage.length === 0 ? null : (
+                                    <p className="text-danger m-2">
+                                      {passwordErrorMessage}
+                                    </p>
+                                  )}
                                 </div>
                                 <h5 className="text-dark fw-bold">
                                   Notifications
@@ -313,11 +350,13 @@ export const UserProfile = (props: any) => {
                                   </button>
                                 </div>
 
-                                {errorMessage.length > 0 ? null : (
-                                  <small className="text-center text-danger">
-                                    {errorMessage}
-                                  </small>
-                                )}
+                                <div className="form-group mt-2">
+                                  {errorMessage.length === 0 ? null : (
+                                    <p className="text-center text-danger">
+                                      {errorMessage}
+                                    </p>
+                                  )}
+                                </div>
                               </form>
                             </div>
                           </div>

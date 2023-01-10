@@ -103,6 +103,7 @@ export const BusinessAssessmentQuestions = () => {
    * Save updated questions
    */
   const onSave = async (e: any) => {
+    e.preventDefault();
     setIsLoading(true);
 
     const isNewUserMode = getLocalStorageValue(
@@ -117,7 +118,6 @@ export const BusinessAssessmentQuestions = () => {
         state: { mappedQuestions },
       });
     } else {
-      e.preventDefault();
       // console.log(JSON.stringify(questionList));
       // const updated = await updateAssessmentQuestions(
       //   JSON.stringify(questionList)

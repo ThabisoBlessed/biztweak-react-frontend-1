@@ -113,6 +113,7 @@ export const AddCompany = () => {
   const [industries, setIndustries] = useState(industryList);
 
   useEffect(() => {
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
     if (!isLoggedIn()) navigate("/auth/login");
     const isNewUserMode = getLocalStorageValue(
       LOCALSTORAGE_KEYS.newUserMode

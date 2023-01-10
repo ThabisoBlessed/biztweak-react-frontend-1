@@ -118,7 +118,7 @@ export const updatePassword = async (
       },
     };
 
-    return await axios.post(
+    return await axios.put(
       constants.baseUrl + `/users/${userId}/password`,
       {
         password: newPassword,
