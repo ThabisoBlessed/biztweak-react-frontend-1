@@ -15,13 +15,11 @@ export const ReportSummary = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [selectedBusiness] = useState(state || {});
-  // const [selectedBusinessValue, setSelectedBusinessValue] = useState(
-  //   JSON.parse(selectedBusiness.selecteBusiness) as IBusinessMenuBusinessModel
-  // );
+  const [business, setBusiness] = useState(selectedBusiness.business);
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
-    // console.log(selectedBusinessValue);
+    console.log(business);
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [navigate]);
 

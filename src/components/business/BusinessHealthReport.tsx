@@ -1,14 +1,18 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../config";
 import { BusinessMenu } from "./BusinessMenu";
 
 export const BusinessHealthReport = () => {
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const [selectedBusiness] = useState(state || {});
+  const [business, setBusiness] = useState(selectedBusiness.business);
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    console.log(business);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [navigate]);
 
   const onViewBizReport = () => {
@@ -47,7 +51,10 @@ export const BusinessHealthReport = () => {
               in graphical way and understand easily, moreover you will also get
               recommendations from our system based on the assessment.
             </p>
-            <button className="btn w-[150px] text-white bg-[#00c2cb] hover:bg-[#16f0fb]" onClick={onViewBizReport}>
+            <button
+              className="btn w-[150px] text-white bg-[#00c2cb] hover:bg-[#16f0fb]"
+              onClick={onViewBizReport}
+            >
               <i className="fa fa-file-alt"></i> View Biz Report
             </button>
           </div>
