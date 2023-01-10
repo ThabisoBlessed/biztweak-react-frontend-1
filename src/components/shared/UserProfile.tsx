@@ -1,14 +1,13 @@
 import { useEffect } from "preact/hooks";
 import React, { useState } from "react";
-import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
 import AvatarImg from "../../images/avatar.png";
 import { IUser } from "../../model/user.model";
-import { getCurrentUser } from "../../services/lms/user.service";
 import { AdminMenu } from "../admin/AdminMenu";
 import { CMPMenu } from "../cmp/CMPMenu";
 import { LMSMenu } from "../lms/LMSMenu";
 
 export const UserProfile = (props: any) => {
+  const [user, setUser] = useState(props.user);
 
   return (
     <div className="w-full">
@@ -86,6 +85,8 @@ export const UserProfile = (props: any) => {
                                     <input
                                       type="text"
                                       className="form-control core"
+                                      value={!user.fullname ? "": user.fullname}
+                                      onChange={() => {}}
                                     />
                                   </div>
                                   <div className="form-group mt-2">
@@ -104,7 +105,7 @@ export const UserProfile = (props: any) => {
                                     <input
                                       type="text"
                                       className="form-control core"
-                                      value={props.user.email}
+                                      value={!user.email ? "": user.email}
                                       onChange={() => {}}
                                     />
                                   </div>
@@ -124,6 +125,8 @@ export const UserProfile = (props: any) => {
                                     <input
                                       type="text"
                                       className="form-control core"
+                                      value={!user.location ? "": user.location}
+                                      onChange={() => {}}
                                     />
                                   </div>
                                   <div className="form-group mt-2">
@@ -142,6 +145,8 @@ export const UserProfile = (props: any) => {
                                     <textarea
                                       rows={4}
                                       className="form-control core"
+                                      value={!user.bio ? "": user.bio}
+                                      onChange={() => {}}
                                     />
                                   </div>
                                   <h5 className="text-dark mt-2 fw-bold">

@@ -5,11 +5,11 @@ import { IUser } from "../../model/user.model";
 import { getCurrentUser } from "../../services/lms/user.service";
 
 export const Profile = () => {
-  const [user, setUser] = useState({} as IUser);
+  const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (user) {
+    if (!user) {
       getProfile();
     }
   });
@@ -21,6 +21,8 @@ export const Profile = () => {
       const profile = await getCurrentUser(userResult.id);
       setUser(profile.data.package.data);
       setIsLoading(false);
+
+      console.log(profile);
     }
   };
 
