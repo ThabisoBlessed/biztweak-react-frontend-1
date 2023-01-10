@@ -20,6 +20,7 @@ export const ReportSummary = () => {
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
     console.log(business);
+    console.log(JSON.parse(business.report.scores));
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [navigate]);
 

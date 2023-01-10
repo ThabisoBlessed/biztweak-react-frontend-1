@@ -17,7 +17,7 @@ export const BusinessMenu = (props: any) => {
   const listCompanies = async () => {
     const businesses = await listCompaniesForLoggedInUser();
     setActiveBusinesses(businesses.data.package.data);
-    console.log(businesses.data.package.data);
+    // console.log(businesses.data.package.data);
 
   }
 
