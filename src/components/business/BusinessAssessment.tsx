@@ -21,7 +21,7 @@ export const BusinessAssessment = (props: any): JSX.Element => {
       <div className="row justify-content-center m-3">
         <div className="alert alert-info mt-4">
           <strong>
-            <i className="fa fa-info-circle"></i> Next Step!
+            <i className="fa fa-info-circle"></i> Next Step!&nbsp;
           </strong>
           Complete your Company Assessment.
         </div>

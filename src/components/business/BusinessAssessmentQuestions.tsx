@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { getLocalStorageValue, LOCALSTORAGE_KEYS, setLocalStorageValue } from "../../config";
+import {
+  getLocalStorageValue,
+  LOCALSTORAGE_KEYS,
+  setLocalStorageValue,
+} from "../../config";
 import { Assessment } from "../../model/assessment.model";
 import { IBusinessMenuBusinessModel } from "../../model/business-menu-business-model";
 import {
@@ -9,6 +13,7 @@ import {
 } from "../../model/mapped-assessment-question.model";
 import {
   getAssessmentQuestions,
+  updateAssessmentQuestion,
   updateAssessmentQuestions,
 } from "../../services/business/assessment.service";
 
@@ -29,10 +34,9 @@ export const BusinessAssessmentQuestions = (props: any) => {
   );
   const [business, setBusiness] = useState(selectedBusiness.business);
 
-
   useEffect(() => {
     console.log(business);
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 
     if (questionList.length === 0) {
       listAssessmentQuestions();
@@ -122,13 +126,31 @@ export const BusinessAssessmentQuestions = (props: any) => {
     )?.replace(/['"\\]+/g, "");
 
     if (isNewUserMode == "true" && !business) {
-      setLocalStorageValue(LOCALSTORAGE_KEYS.assessmentQuestions, mappedQuestions);
+      setLocalStorageValue(
+        LOCALSTORAGE_KEYS.assessmentQuestions,
+        mappedQuestions
+      );
       navigate("/business/manage-business/business-profile", {
         state: { mappedQuestions },
       });
     } else {
-      const update = await updateAssessmentQuestions(JSON.stringify(mappedQuestions), business.id);
-      console.log(update)
+      // if (mappedQuestions) {
+      //   for (let index = 0; index < mappedQuestions.length; index++) {
+      //     const question = mappedQuestions[index];
+      //     for (let index = 0; index < question.questions.length; index++) {
+      //       const answer = question.questions[index];
+      //       answer.date = new Date().toString();
+      //       const response = updateAssessmentQuestion(question.id, {
+      //         category: question.category,
+      //         label: answer.label,
+      //         answer: answer.answer,
+      //       });
+      //       console.log(`questionId: ${question.id}: `, question.id);
+      //     }
+      //   }
+      // }
+      // const update = await updateAssessmentQuestions(JSON.stringify(mappedQuestions), business.id);
+      // console.log(update)
     }
     setIsLoading(false);
   };
