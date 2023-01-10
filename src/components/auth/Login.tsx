@@ -42,8 +42,9 @@ export const Login = () => {
 
     const loginResult = await userLogin(user);
 
-    if (loginResult.data.status) {
-      setIsLoading(false);
+    console.log(loginResult.response.data);
+
+    if (loginResult.response.data.status) {
       removeLocalStorageValue(LOCALSTORAGE_KEYS.accessToken);
       removeLocalStorageValue(LOCALSTORAGE_KEYS.user);
       setLocalStorageValue(
@@ -51,10 +52,10 @@ export const Login = () => {
         JSON.stringify(loginResult.data.package.data.token)
       );
       setLocalStorageValue(LOCALSTORAGE_KEYS.user, loginResult.data.package.data.user);
+      setIsLoading(false);
       window.location.reload();
     } else {
-      console.log(loginResult.data.message);
-      setErrorMessage(loginResult.data.message);
+      setErrorMessage(loginResult.response.data.message);
       setIsLoading(false);
     }
   };
