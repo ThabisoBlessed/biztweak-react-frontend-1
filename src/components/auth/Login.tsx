@@ -42,9 +42,10 @@ export const Login = () => {
 
     const loginResult = await userLogin(user);
 
-    console.log(loginResult.response.data);
+    // Successful call return data, failed call returns response
+    const success = loginResult.data;
 
-    if (loginResult.response.data.status) {
+    if (success) {
       removeLocalStorageValue(LOCALSTORAGE_KEYS.accessToken);
       removeLocalStorageValue(LOCALSTORAGE_KEYS.user);
       setLocalStorageValue(
