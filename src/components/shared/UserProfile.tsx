@@ -91,6 +91,8 @@ export const UserProfile = (props: any) => {
 
     const update = await updateProfile(userProfile);
 
+    console.log(update);
+
     // Successful call returns "data", failed call returns "response"
     const success = update.data;
     const fail = update.response;
@@ -110,6 +112,10 @@ export const UserProfile = (props: any) => {
     const file = e.target.files[0];
     const base64: any = await convertToBase64(file);
     setPhoto(base64);
+  };
+
+  const onRemovePhoto = () => {
+    setPhoto("");
   };
 
   return (
@@ -174,9 +180,12 @@ export const UserProfile = (props: any) => {
                                         />
                                       </div>
                                       <div className="col-md-4">
-                                      <button className="btn hover:bg-black hover:text-white border-black">
-                                      Remove
-                                    </button>
+                                        <button
+                                          className="btn hover:bg-black hover:text-white border-black"
+                                          onClick={onRemovePhoto}
+                                        >
+                                          Remove
+                                        </button>
                                       </div>
                                     </div>
                                   </div>
@@ -398,7 +407,10 @@ export const UserProfile = (props: any) => {
                                   </div>
                                 </div>
                                 <div className="form-group mt-2">
-                                  <button className="btn mb-3 btn-main w-[150px] text-white bg-[#00c2cb] hover:bg-[#16f0fb]">
+                                  <button
+                                    className="btn mb-3 btn-main w-[150px] text-white bg-[#00c2cb] hover:bg-[#16f0fb]"
+                                    onClick={onUpdateProfile}
+                                  >
                                     {isSaving ? (
                                       <span>Saving...</span>
                                     ) : (
@@ -409,8 +421,16 @@ export const UserProfile = (props: any) => {
 
                                 <div className="form-group mt-2">
                                   {errorMessage.length === 0 ? null : (
-                                    <p className="text-center text-danger">
+                                    <p className="m-2 text-danger">
                                       {errorMessage}
+                                    </p>
+                                  )}
+                                </div>
+
+                                <div className="form-group mt-2">
+                                  {successMessage.length === 0 ? null : (
+                                    <p className="m-2 text-success">
+                                      {successMessage}
                                     </p>
                                   )}
                                 </div>
