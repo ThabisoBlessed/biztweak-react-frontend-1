@@ -12,9 +12,8 @@ import {
   IQuestion,
 } from "../../model/mapped-assessment-question.model";
 import {
+  addAssessmentQuestions,
   getAssessmentQuestions,
-  updateAssessmentQuestion,
-  updateAssessmentQuestions,
 } from "../../services/business/assessment.service";
 
 export const BusinessAssessmentQuestions = (props: any) => {
@@ -125,7 +124,7 @@ export const BusinessAssessmentQuestions = (props: any) => {
       LOCALSTORAGE_KEYS.newUserMode
     )?.replace(/['"\\]+/g, "");
 
-    if (isNewUserMode == "true" && !business) {
+    if (!business) {
       setLocalStorageValue(
         LOCALSTORAGE_KEYS.assessmentQuestions,
         mappedQuestions
@@ -134,23 +133,7 @@ export const BusinessAssessmentQuestions = (props: any) => {
         state: { mappedQuestions },
       });
     } else {
-      // if (mappedQuestions) {
-      //   for (let index = 0; index < mappedQuestions.length; index++) {
-      //     const question = mappedQuestions[index];
-      //     for (let index = 0; index < question.questions.length; index++) {
-      //       const answer = question.questions[index];
-      //       answer.date = new Date().toString();
-      //       const response = updateAssessmentQuestion(question.id, {
-      //         category: question.category,
-      //         label: answer.label,
-      //         answer: answer.answer,
-      //       });
-      //       console.log(`questionId: ${question.id}: `, question.id);
-      //     }
-      //   }
-      // }
-      // const update = await updateAssessmentQuestions(JSON.stringify(mappedQuestions), business.id);
-      // console.log(update)
+      const update = await addAssessmentQuestions(JSON.stringify(mappedQuestions), business.id);
     }
     setIsLoading(false);
   };
@@ -161,7 +144,6 @@ export const BusinessAssessmentQuestions = (props: any) => {
    */
   const allQuestionsAnswered = () => {
     const answered = questionList.filter((q) => q.answer === "yes|no");
-    console.log(answered.length);
     if (answered.length > 0) {
       setCanSave(false);
     } else {

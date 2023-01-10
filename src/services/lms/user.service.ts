@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
+import { LOCALSTORAGE_KEYS } from "../../config";
 import * as constants from "../../constants";
 import { IUser } from "../../model/user.model";
 
