@@ -12,4 +12,6 @@ export interface IUser {
     role: UserRole
     registered: string;
     photo: string;
+    market_newsletter: any;
+    product_updates_and_community_announcements: any;
 }

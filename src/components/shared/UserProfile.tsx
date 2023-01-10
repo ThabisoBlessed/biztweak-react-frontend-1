@@ -33,6 +33,13 @@ export const UserProfile = (props: any) => {
   const [successMessage, setSuccessMessage] = useState("");
   const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
   const [passwordSuccessMessage, setPasswordSuccessMessage] = useState("");
+  const [marketNewsletter, setMarketNewsletter] = useState(
+    props.user.market_newsletter || ""
+  );
+  const [
+    productUpdatesAndCommunityAnnouncements,
+    setProductUpdatesAndCommunityAnnouncements,
+  ] = useState(props.user.product_updates_and_community_announcements || "");
 
   /**
    * Updates current user password
@@ -87,11 +94,12 @@ export const UserProfile = (props: any) => {
       role: role,
       registered: registered,
       photo: photo,
+      market_newsletter: marketNewsletter === "true" ? true : false,
+      product_updates_and_community_announcements:
+        productUpdatesAndCommunityAnnouncements === "true" ? true : false,
     };
 
     const update = await updateProfile(userProfile);
-
-    console.log(update);
 
     // Successful call returns "data", failed call returns "response"
     const success = update.data;
@@ -106,6 +114,18 @@ export const UserProfile = (props: any) => {
     }
 
     setIsSaving(false);
+  };
+
+  const checkMarketNewsletterValue = (e: any) => {
+    var value = e.target.value;
+    const result = value === "true" ? "false" : "true";
+    setMarketNewsletter(result);
+  };
+
+  const checkProductUpdatesAndCommunityAnnouncementsValue = (e: any) => {
+    var value = e.target.value;
+    const result = value === "true" ? "false" : "true";
+    setProductUpdatesAndCommunityAnnouncements(result);
   };
 
   const handlePhotoFile = async (e: any) => {
@@ -391,6 +411,17 @@ export const UserProfile = (props: any) => {
                                       <input
                                         className="form-check-input"
                                         type="checkbox"
+                                        value={
+                                          productUpdatesAndCommunityAnnouncements ===
+                                          ""
+                                            ? "false"
+                                            : "true"
+                                        }
+                                        onChange={(e) =>
+                                          checkProductUpdatesAndCommunityAnnouncementsValue(
+                                            e
+                                          )
+                                        }
                                       />
                                     </div>
                                   </div>
@@ -402,6 +433,14 @@ export const UserProfile = (props: any) => {
                                       <input
                                         className="form-check-input"
                                         type="checkbox"
+                                        value={
+                                          marketNewsletter === "true"
+                                            ? "true"
+                                            : "false"
+                                        }
+                                        onChange={(e) =>
+                                          checkMarketNewsletterValue(e)
+                                        }
                                       />
                                     </div>
                                   </div>
