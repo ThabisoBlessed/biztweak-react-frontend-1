@@ -51,11 +51,11 @@ export const BusinessMenu = (props: any) => {
       </div>
 
       {activeBusinesses.length > 0 ? (
-        <ul className="list-group mt-3">
+        <ul className="list-group mt-3 overflow-y-scroll h-[600px]">
           {activeBusinesses.map(
             (business: IBusinessMenuBusinessModel, index: number) => {
               return (
-                <li className="top-buffer" key={index} id={index.toString()}>
+                <li className="top-buffer mt-2" key={index} id={index.toString()}>
                   <div className="accordion-item">
                     <h2 className="accordion-header" id="heading37">
                       <button
