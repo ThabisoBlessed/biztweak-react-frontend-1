@@ -7,6 +7,7 @@ import {
 } from "../../config";
 import { loading } from "../../constants";
 import { IMappedAssessmentQuestion } from "../../model/mapped-assessment-question.model";
+import { addAssessmentQuestions } from "../../services/business/assessment.service";
 import { addCompany } from "../../services/business/company.service";
 import { convertToBase64 } from "../util/file-util";
 import { BusinessMenu } from "./BusinessMenu";
@@ -35,8 +36,8 @@ export const BusinessProfile = () => {
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     console.log(questionAndAnswer);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [navigate]);
 
   /**
@@ -66,9 +67,10 @@ export const BusinessProfile = () => {
       };
 
       const response = await addCompany(company);
+      console.log(response);
       if (response.status) {
-        // const update = await addAssessmentQuestions(JSON.stringify(mappedQuestions), business.id);
-
+        const update = await addAssessmentQuestions(JSON.stringify(questionAndAnswer), response.data.package.data.id);
+        console.log(update);
         navigate("/business/manage-business/assessment");
       }
     }

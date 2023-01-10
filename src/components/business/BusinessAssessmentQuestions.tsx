@@ -124,7 +124,7 @@ export const BusinessAssessmentQuestions = (props: any) => {
         state: { questionList },
       });
     } else {
-      const update = await addAssessmentQuestions(JSON.stringify(mappedQuestions), business.id);
+      const update = await addAssessmentQuestions(JSON.stringify(questionList), business.id);
       // Successful call return data, failed call returns response
       const success = update.data;
       if (success) {
