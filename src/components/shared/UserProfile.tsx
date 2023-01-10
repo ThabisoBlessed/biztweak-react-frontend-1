@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AvatarImg from "../../images/avatar.png";
+import { updatePassword } from "../../services/lms/user.service";
 import { AdminMenu } from "../admin/AdminMenu";
 import { CMPMenu } from "../cmp/CMPMenu";
 import { LMSMenu } from "../lms/LMSMenu";
@@ -22,7 +23,24 @@ export const UserProfile = (props: any) => {
   const [bio, setBio] = useState(props.user.bio);
   const [old_password, setOldPassword] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
+
+  const onUpdatePassword = async () => {
+    if (password === "" || confirmPassword === "" || old_password === "") {
+      setPasswordErrorMessage("All password fields are required");
+    } else if (confirmPassword !== password) {
+      setPasswordErrorMessage("Passwords do not match");
+    } else {
+      const update = await updatePassword(old_password, password, id);
+      console.log(update);
+    }
+  };
+
+  const onUpdateProfile = () => {};
 
   return (
     <div className="w-full">
@@ -188,6 +206,7 @@ export const UserProfile = (props: any) => {
                                     type="password"
                                     className="form-control core"
                                     autoComplete="false"
+                                    id="oldPassword"
                                     value={!old_password ? "" : old_password}
                                     onChange={(e) =>
                                       setOldPassword(e.target.value)
@@ -212,6 +231,11 @@ export const UserProfile = (props: any) => {
                                       type="password"
                                       className="form-control core"
                                       autoComplete="false"
+                                      id="newPassword"
+                                      value={!password ? "" : password}
+                                      onChange={(e) =>
+                                        setPassword(e.target.value)
+                                      }
                                     />
                                   </div>
                                   <div className="form-group mt-2 col-lg-6">
@@ -232,15 +256,23 @@ export const UserProfile = (props: any) => {
                                       className="form-control core"
                                       autoComplete="false"
                                       value={!password ? "" : password}
+                                      id="confirmPassword"
                                       onChange={(e) =>
-                                        setPassword(e.target.value)
+                                        setConfirmPassword(e.target.value)
                                       }
                                     />
                                   </div>
                                 </div>
                                 <div className="form-group mt-2">
-                                  <button className="btn mb-2 hover:bg-black hover:text-white border-black">
-                                    Update Password
+                                  <button
+                                    className="btn mb-2 hover:bg-black hover:text-white border-black"
+                                    onClick={onUpdatePassword}
+                                  >
+                                    {isSaving ? (
+                                      <span>Saving...</span>
+                                    ) : (
+                                      <span>Update Password</span>
+                                    )}
                                   </button>
                                 </div>
                                 <h5 className="text-dark fw-bold">
@@ -272,14 +304,20 @@ export const UserProfile = (props: any) => {
                                   </div>
                                 </div>
                                 <div className="form-group mt-2">
-                                  <button className="btn btn-main w-[150px] text-white bg-[#00c2cb] hover:bg-[#16f0fb]">
-                                    {isLoading ? (
-                                      <span>Loading...</span>
+                                  <button className="btn mb-3 btn-main w-[150px] text-white bg-[#00c2cb] hover:bg-[#16f0fb]">
+                                    {isSaving ? (
+                                      <span>Saving...</span>
                                     ) : (
                                       <span>Save</span>
                                     )}
                                   </button>
                                 </div>
+
+                                {errorMessage.length > 0 ? null : (
+                                  <small className="text-center text-danger">
+                                    {errorMessage}
+                                  </small>
+                                )}
                               </form>
                             </div>
                           </div>
