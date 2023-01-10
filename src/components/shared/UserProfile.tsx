@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import AvatarImg from "../../images/avatar.png";
-import { updatePassword } from "../../services/lms/user.service";
+import { IUser } from "../../model/user.model";
+import { updatePassword, updateProfile } from "../../services/lms/user.service";
 import { AdminMenu } from "../admin/AdminMenu";
 import { CMPMenu } from "../cmp/CMPMenu";
 import { LMSMenu } from "../lms/LMSMenu";
+import { convertToBase64 } from "../util/file-util";
 
 export const UserProfile = (props: any) => {
   const [education, setEducation] = useState(props.user.education);
@@ -12,6 +14,7 @@ export const UserProfile = (props: any) => {
   const [id, setId] = useState(props.user.id);
   const [location, setLocation] = useState(props.user.location);
   const [phone, setPhone] = useState(props.user.phone);
+  const [photo, setPhoto] = useState("");
   const [registered, setRegistered] = useState(props.user.registered);
   const [role, setRole] = useState(props.user.role);
   const [work_experience, setWorkExperience] = useState(
@@ -27,9 +30,14 @@ export const UserProfile = (props: any) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
   const [passwordSuccessMessage, setPasswordSuccessMessage] = useState("");
 
+  /**
+   * Updates current user password
+   * @param e
+   */
   const onUpdatePassword = async (e: any) => {
     e.preventDefault();
     setIsSaving(true);
@@ -43,26 +51,65 @@ export const UserProfile = (props: any) => {
       setPasswordErrorMessage("Passwords do not match");
     } else {
       const update = await updatePassword(old_password, password, id);
-      console.log(update);
-      // Successful call return data, failed call returns response
+
+      // Successful call returns "data", failed call returns "response"
       const success = update.data;
       const fail = update.response;
 
       if (success) {
-        setPasswordSuccessMessage(update.data.message);
+        setSuccessMessage(update.data.message);
       } else {
-
-        console.log(fail.data.message);
-        setPasswordErrorMessage(fail.data.message);
-        console.log(passwordErrorMessage);
+        setErrorMessage(fail.data.message);
       }
     }
     setIsSaving(false);
   };
 
-  const onUpdateProfile = () => {
+  /**
+   * Update current user profile
+   */
+  const onUpdateProfile = async (e: any) => {
+    e.preventDefault();
+    setIsSaving(true);
     setPasswordErrorMessage("");
     setPasswordSuccessMessage("");
+    setIsLoading(false);
+
+    const userProfile: IUser = {
+      id: id,
+      fullname: fullname,
+      email: email,
+      phone: phone,
+      education: education,
+      work_experience: work_experience,
+      work_experience2: work_experience2,
+      location: location,
+      role: role,
+      registered: registered,
+      photo: photo,
+    };
+
+    const update = await updateProfile(userProfile);
+
+    // Successful call returns "data", failed call returns "response"
+    const success = update.data;
+    const fail = update.response;
+
+    if (success) {
+      setSuccessMessage(update.data.message);
+    } else {
+      console.log(fail.data.message);
+      setPasswordErrorMessage(fail.data.message);
+      console.log(passwordErrorMessage);
+    }
+
+    setIsSaving(false);
+  };
+
+  const handlePhotoFile = async (e: any) => {
+    const file = e.target.files[0];
+    const base64: any = await convertToBase64(file);
+    setPhoto(base64);
   };
 
   return (
@@ -116,13 +163,22 @@ export const UserProfile = (props: any) => {
                                         alt=""
                                       />
                                     </div>
-                                    <button className="mx-3 btn hover:bg-[#16f0fb]  hover:text-white bg-[#00c2cb] mt-2 text-[white]">
-                                      <i className="fa fa-plus"></i> Upload new
-                                      picture
-                                    </button>
-                                    <button className="btn mt-1 hover:bg-black hover:text-white border-black">
+                                    <div className="ml-3 row my-4">
+                                      <div className="col-md-8">
+                                        <input
+                                          name="image"
+                                          accept="image/*"
+                                          type="file"
+                                          className="form-control"
+                                          onChange={(e) => handlePhotoFile(e)}
+                                        />
+                                      </div>
+                                      <div className="col-md-4">
+                                      <button className="btn hover:bg-black hover:text-white border-black">
                                       Remove
                                     </button>
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
                                 <div className="form-group mt-2">
@@ -300,7 +356,8 @@ export const UserProfile = (props: any) => {
                                     )}
                                   </button>
 
-                                  {passwordSuccessMessage.length === 0 ? null : (
+                                  {passwordSuccessMessage.length ===
+                                  0 ? null : (
                                     <p className="text-success m-2">
                                       {passwordSuccessMessage}
                                     </p>

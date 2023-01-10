@@ -1,6 +1,7 @@
 import axios from "axios";
 import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
 import * as constants from "../../constants";
+import { IUser } from "../../model/user.model";
 
 /**
  * Creates a new user
@@ -96,7 +97,7 @@ export const getCurrentUser = async (userId: number): Promise<any> => {
 };
 
 /**
- * Gets the logged in user
+ * Updates the password for logged in user
  * @param {string} oldPassword
  * @param {string} newPassword
  * @returns {any} user
@@ -126,6 +127,31 @@ export const updatePassword = async (
       },
       config
     );
+  } catch (error: any) {
+    return error;
+  }
+};
+
+/**
+ * Updates the password for logged in user
+ * @param {string} oldPassword
+ * @param {string} newPassword
+ * @returns {IUser} user
+ */
+export const updateProfile = async (profile: IUser): Promise<any> => {
+  try {
+    let config = {
+      headers: {
+        Authorization:
+          "Bearer " +
+          String(localStorage.getItem(LOCALSTORAGE_KEYS.accessToken)).replace(
+            /['"\\]+/g,
+            ""
+          ),
+      },
+    };
+
+    return await axios.put(constants.baseUrl + `/users/${profile.id}`, profile, config);
   } catch (error: any) {
     return error;
   }
