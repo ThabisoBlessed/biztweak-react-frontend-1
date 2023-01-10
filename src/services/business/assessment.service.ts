@@ -34,7 +34,7 @@ export const updateAssessmentQuestions = async (answers: string, companyId: stri
       }
     }
 
-    return await axios.post(constants.baseUrl + `/companies/${companyId}`, {answers}, config);
+    return await axios.put(constants.baseUrl + `/companies/${companyId}`, {answers}, config);
   } catch (error: any) {
     return error;
   }

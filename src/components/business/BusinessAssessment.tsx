@@ -7,6 +7,7 @@ import { CompleteCompanyProfileModal } from "./CompleteCompanyProfileModal";
 export const BusinessAssessment = (props: any): JSX.Element => {
   const [businessPhase, setBusinessPhase] = useState();
   const [businessIndustry, setBusinessIndustry] = useState();
+  const [business, setBusiness] = useState(props.business);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -54,7 +55,7 @@ export const BusinessAssessment = (props: any): JSX.Element => {
           </div>
         </div>
 
-        <BusinessAssessmentQuestions />
+        <BusinessAssessmentQuestions business={business} />
 
         <CompleteCompanyProfileModal businessIndustry={businessIndustry} />
       </div>

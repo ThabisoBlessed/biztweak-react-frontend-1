@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getLocalStorageValue, LOCALSTORAGE_KEYS, setLocalStorageValue } from "../../config";
 import { Assessment } from "../../model/assessment.model";
+import { IBusinessMenuBusinessModel } from "../../model/business-menu-business-model";
 import {
   IMappedAssessmentQuestion,
   IQuestion,
@@ -11,7 +12,7 @@ import {
   updateAssessmentQuestions,
 } from "../../services/business/assessment.service";
 
-export const BusinessAssessmentQuestions = () => {
+export const BusinessAssessmentQuestions = (props: any) => {
   const navigate = useNavigate();
   const questions: Assessment[] = [];
   const [questionList, setQuestionList] = useState(questions);
@@ -19,8 +20,18 @@ export const BusinessAssessmentQuestions = () => {
   const [mappedQuestions, setMappedQuestions] = useState(mappedQuestionList);
   const [canSave, setCanSave] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const { state } = useLocation();
+
+  // Update existing company
+  // If "business" exists then we have an existing company
+  const [selectedBusiness] = useState(
+    state || ({} as IBusinessMenuBusinessModel)
+  );
+  const [business, setBusiness] = useState(selectedBusiness.business);
+
 
   useEffect(() => {
+    console.log(business);
     window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
 
     if (questionList.length === 0) {
@@ -110,19 +121,14 @@ export const BusinessAssessmentQuestions = () => {
       LOCALSTORAGE_KEYS.newUserMode
     )?.replace(/['"\\]+/g, "");
 
-    console.log(isNewUserMode == "true");
-
-    if (isNewUserMode == "true") {
+    if (isNewUserMode == "true" && !business) {
       setLocalStorageValue(LOCALSTORAGE_KEYS.assessmentQuestions, mappedQuestions);
       navigate("/business/manage-business/business-profile", {
         state: { mappedQuestions },
       });
     } else {
-      // console.log(JSON.stringify(questionList));
-      // const updated = await updateAssessmentQuestions(
-      //   JSON.stringify(questionList)
-      // );
-      // console.log(updated);
+      const update = await updateAssessmentQuestions(JSON.stringify(mappedQuestions), business.id);
+      console.log(update)
     }
     setIsLoading(false);
   };
