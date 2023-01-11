@@ -54,8 +54,6 @@ export const Webinar = () => {
             className="form-control"
             id="name"
             placeholder="Name"
-            onChange={() => {}}
-            value="Jane"
           />
           <label htmlFor="name" className="form-label">
             Name
@@ -67,8 +65,6 @@ export const Webinar = () => {
             name="email"
             className="form-control"
             id="email"
-            value="jane@gmail.com"
-            onChange={() => {}}
             placeholder="Email"
           />
           <label htmlFor="email" className="form-label">
