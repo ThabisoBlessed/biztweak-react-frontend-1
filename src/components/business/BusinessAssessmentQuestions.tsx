@@ -125,6 +125,8 @@ export const BusinessAssessmentQuestions = (props: any) => {
       const success = update.data;
 
       if (success) {
+        setBusiness(update.data.package.data);
+        console.log(business);
         navigate("/business/manage-business/business-health-report", {
           state: { questionList, business },
         });

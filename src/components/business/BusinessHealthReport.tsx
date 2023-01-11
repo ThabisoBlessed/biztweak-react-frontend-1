@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../config";
+import { getCompany } from "../../services/business/company.service";
 import { BusinessMenu } from "./BusinessMenu";
 
 export const BusinessHealthReport = () => {
@@ -12,11 +13,27 @@ export const BusinessHealthReport = () => {
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
     console.log(business);
+    getBusiness();
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [navigate]);
 
+  const getBusiness = async () => {
+    const updatedBusiness = await getCompany(business.id);
+
+     // Successful call return "data", failed call returns "response"
+     const success = updatedBusiness.data;
+
+     if (success) {
+       setBusiness(updatedBusiness.data.package.data);
+       console.log("updated business: ", business);
+       navigate("/business/manage-business/business-health-report", {
+         state: { business },
+       });
+     }
+  }
+
   const onViewBizReport = () => {
-    navigate("/business/manage-business/report-summary");
+    navigate("/business/manage-business/report-summary", { state: { business } });
   };
 
   return (

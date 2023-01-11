@@ -67,12 +67,10 @@ export const BusinessProfile = () => {
       };
 
       const response = await addCompany(company);
-      console.log(response);
       if (response.status) {
         const assessment = await addAssessmentQuestions(JSON.stringify(questionAndAnswer), response.data.package.data.id);
-        console.log(assessment);
-        const business = response.data.package.data;
-        navigate("/business/manage-business/assessment", { state: { business }});
+        const business = assessment.data.package.data;
+        navigate("/business/manage-business/report-summary", { state: { business }});
       }
     }
 
@@ -150,9 +148,10 @@ export const BusinessProfile = () => {
                     <input
                       name="registered"
                       type="radio"
-                      onClick={(e) => setRegistered("true")}
+                      onChange={(e) => setRegistered("true")}
                       value="1"
                       className="radio"
+                      checked={registered === "true"}
                     />
                   </label>
                   <label>
@@ -163,6 +162,7 @@ export const BusinessProfile = () => {
                       value="0"
                       onChange={(e) => setRegistered("false")}
                       className="radio"
+                      checked={registered === "false"}
                     />
                   </label>
                 </div>

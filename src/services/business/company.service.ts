@@ -63,3 +63,27 @@ export const addCompany = async (company: any): Promise<any> => {
     return error;
   }
 };
+
+/**
+ * Gets a company by ID
+ *
+ * @returns {any} company
+ */
+ export const getCompany = async (id: number): Promise<any> => {
+  try {
+    let config = {
+      headers: {
+        Authorization:
+          "Bearer " +
+          String(localStorage.getItem(LOCALSTORAGE_KEYS.accessToken)).replace(
+            /['"\\]+/g,
+            ""
+          ),
+      },
+    };
+
+    return await axios.get(constants.baseUrl + `/companies/${id}`, config);
+  } catch (error: any) {
+    return error;
+  }
+};
