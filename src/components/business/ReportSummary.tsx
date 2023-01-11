@@ -15,12 +15,14 @@ export const ReportSummary = () => {
   const { state } = useLocation();
   const [selectedBusiness] = useState(state || {});
   const [business, setBusiness] = useState(selectedBusiness.business);
-  const initData: (string | number)[][] = [["Elements", "Priority Elements"]];
+  const initData: (string | number)[][] = [["Elements", "Priority Elements Percentages"]];
   const [data, setData] = useState(initData);
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
-    getReports();
+    if (data.length === 1) {
+      getReports();
+    }
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [navigate]);
 
@@ -30,7 +32,9 @@ export const ReportSummary = () => {
     for (let index = 0; index < reports.length; index++) {
       const report = reports[index];
       const set = [report.category, report.percentage ];
-      allData.push(set);
+      if (!allData.includes(set)) {
+        allData.push(set);
+      }
     }
     setData(allData);
 
@@ -75,7 +79,7 @@ export const ReportSummary = () => {
           <div className="card shadow-lg p-1 mb-5 bg-white rounded">
             <div className="card-body">
               <h2 className="mt-3 text-3xl text-dark">
-                Company's Report Summary
+                {business.name}'s Report Summary
                 <button
                   className="btn btn-sm text-white bg-[#00c2cb] btn-info p-3 float-end"
                   onClick={onDownloadReport}

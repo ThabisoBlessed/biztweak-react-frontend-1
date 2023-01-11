@@ -120,10 +120,14 @@ export const BusinessAssessmentQuestions = (props: any) => {
       });
     } else {
       const update = await addAssessmentQuestions(JSON.stringify(questionList), business.id);
-      // Successful call return data, failed call returns response
+
+      // Successful call return "data", failed call returns "response"
       const success = update.data;
+
       if (success) {
-        navigate("/business/manage-business/business-health-report");
+        navigate("/business/manage-business/business-health-report", {
+          state: { questionList, business },
+        });
       }
     }
     setIsLoading(false);
