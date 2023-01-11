@@ -35,7 +35,7 @@ export const ReportSummary = () => {
       const reports =
         JSON.parse(business.report.scores) || business.report.scores;
       const allData = data;
-      
+
       for (let index = 0; index < reports.length; index++) {
         const report = reports[index];
         const set = [report.category, report.percentage];
@@ -44,6 +44,7 @@ export const ReportSummary = () => {
         }
       }
       setData(allData);
+      console.log(data);
     }
   };
 
@@ -82,7 +83,7 @@ export const ReportSummary = () => {
           <BusinessMenu />
         </div>
         <div className="col-md-9 bg-white">
-          <div className="card shadow-lg p-1 mb-5 bg-white rounded">
+          <div className="card shadow-lg mt-2 p-1 mb-5 bg-white rounded">
             <div className="card-body">
               <h2 className="mt-3 text-3xl text-dark">
                 {business.name}'s Report Summary

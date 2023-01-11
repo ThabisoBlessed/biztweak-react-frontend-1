@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { isLoggedIn } from "../../config";
+import { isLoggedIn, LOCALSTORAGE_KEYS, setLocalStorageValue } from "../../config";
 import { IBusinessMenuBusinessModel } from "../../model/business-menu-business-model";
 import { listCompaniesForLoggedInUser } from "../../services/business/company.service";
 
@@ -33,6 +33,7 @@ export const BusinessMenu = (props: any) => {
   const onAddCompany = () => {
     const addCompanyModal = document.getElementById('addCompanyModal');
     if (!addCompanyModal) {
+      setLocalStorageValue(LOCALSTORAGE_KEYS.newUserMode, "true");
       navigate("/business");
     }
   }
