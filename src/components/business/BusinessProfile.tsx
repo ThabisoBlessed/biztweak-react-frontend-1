@@ -9,7 +9,7 @@ import { loading } from "../../constants";
 import { IBusinessMenuBusinessModel } from "../../model/business-menu-business-model";
 import { IMappedAssessmentQuestion } from "../../model/mapped-assessment-question.model";
 import { addAssessmentQuestions } from "../../services/business/assessment.service";
-import { addCompany } from "../../services/business/company.service";
+import { addCompany, getCompany } from "../../services/business/company.service";
 import { convertToBase64 } from "../util/file-util";
 import { BusinessMenu } from "./BusinessMenu";
 
@@ -69,8 +69,12 @@ export const BusinessProfile = () => {
       const response = await addCompany(company);
       if (response.status) {
         const assessment = await addAssessmentQuestions(JSON.stringify(questionAndAnswer), response.data.package.data.id);
-        const business = assessment.data.package.data;
-        navigate("/business/manage-business/report-summary", { state: { business }});
+        const success = assessment.data;
+        if (success) {
+          const updated = await getCompany(response.data.package.data.id);
+          const business = updated.data.package.data
+          navigate("/business/manage-business/report-summary", { state: { business }});
+        }
       }
     }
 

@@ -20,14 +20,14 @@ export const ReportSummary = () => {
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
-    if (data.length === 1) {
+    if (business && data.length === 1) {
       getReports();
     }
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [navigate]);
 
   const getReports = () => {
-    const reports = JSON.parse(business.report.scores);
+    const reports = business.report.scores;
     const allData = data;
     for (let index = 0; index < reports.length; index++) {
       const report = reports[index];
