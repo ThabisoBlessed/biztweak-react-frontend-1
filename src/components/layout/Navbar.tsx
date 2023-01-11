@@ -30,14 +30,14 @@ export const Navbar = () => {
       isActive: false,
       titleClasses: "nav-item me-2 hover:text-[#00c2cb]",
     },
-    // {
-    //   id: 2,
-    //   title: "CMP",
-    //   link: "/cmp",
-    //   iconClass: "",
-    //   isActive: false,
-    //   titleClasses: "nav-item me-2 hover:text-[#00c2cb]",
-    // },
+    {
+      id: 2,
+      title: "CMP",
+      link: "/cmp",
+      iconClass: "",
+      isActive: false,
+      titleClasses: "nav-item me-2 hover:text-[#00c2cb]",
+    },
     // {
     //   id: 3,
     //   title: "Admin",

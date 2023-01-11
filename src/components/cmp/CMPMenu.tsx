@@ -40,7 +40,6 @@ export const CMPMenu = () => {
     },
   ];
   const [menu, setMenu] = useState(menuList);
-  const [clickedMenuItem, setClickedMenuItem] = useState({} as IMenuListItem);
   const [selectedPath, setSelectedPath] = useState("");
 
   useEffect(() => {
