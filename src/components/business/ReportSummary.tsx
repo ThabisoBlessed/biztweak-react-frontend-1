@@ -15,7 +15,9 @@ export const ReportSummary = () => {
   const { state } = useLocation();
   const [selectedBusiness] = useState(state || {});
   const [business, setBusiness] = useState(selectedBusiness.business);
-  const initData: (string | number)[][] = [["Elements", "Priority Elements Percentages"]];
+  const initData: (string | number)[][] = [
+    ["Elements", "Priority Elements Percentages"],
+  ];
   const [data, setData] = useState(initData);
 
   useEffect(() => {
@@ -26,20 +28,24 @@ export const ReportSummary = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [navigate]);
 
+  // Set charts data
   const getReports = () => {
-    const reports = business.report.scores;
-    const allData = data;
-    for (let index = 0; index < reports.length; index++) {
-      const report = reports[index];
-      const set = [report.category, report.percentage ];
-      if (!allData.includes(set)) {
-        allData.push(set);
+    console.log(business);
+    if (business.report) {
+      const reports =
+        JSON.parse(business.report.scores) || business.report.scores;
+      const allData = data;
+      
+      for (let index = 0; index < reports.length; index++) {
+        const report = reports[index];
+        const set = [report.category, report.percentage];
+        if (!allData.includes(set)) {
+          allData.push(set);
+        }
       }
+      setData(allData);
     }
-    setData(allData);
-
-    console.log(data);
-  }
+  };
 
   const options = {
     title: "My Daily Activities",
@@ -88,8 +94,8 @@ export const ReportSummary = () => {
                 </button>
               </h2>
               <p className="d-flex mt-4 text-dark">
-                <i className="fa fa-info m-0"></i>&nbsp;We are generating revenue,
-                we would like to grow through investment
+                <i className="fa fa-info m-0"></i>&nbsp;We are generating
+                revenue, we would like to grow through investment
               </p>
 
               <div
@@ -98,7 +104,9 @@ export const ReportSummary = () => {
               >
                 <h6>Sales Score</h6>
                 <div id="doughnutChart" className="card-body m-0 p-0">
-                  {!data ? null : <PieChart data={data} width={"100%"} height={"300px"} />}
+                  {!data ? null : (
+                    <PieChart data={data} width={"100%"} height={"300px"} />
+                  )}
                 </div>
               </div>
 
