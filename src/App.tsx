@@ -87,8 +87,8 @@ function App() {
           <Route path="/cmp/manage-courses/add-quiz" element={<AddQuiz />}></Route>
           <Route path="/cmp/manage-courses/add-assignment" element={<AddAssignment />}></Route>
 
-          <Route path="/admin/*" element={<Admin />}></Route>
-          <Route path="/admin/incubator-dashboard" element={<IncubatorDashboard />}></Route>
+          <Route path="/admin/*" element={<IncubatorDashboard />}></Route>
+          {/* <Route path="/admin/incubator-dashboard" element={<IncubatorDashboard />}></Route> */}
           <Route path="/admin/incubator-dashboard" element={<Course />}></Route>
           <Route path="/admin/dashboard/users" element={<Users />}></Route>
           <Route path="/admin/admin-user" element={<AdminProfile />}></Route>

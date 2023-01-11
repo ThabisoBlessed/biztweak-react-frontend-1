@@ -9,7 +9,7 @@ export const AdminMenu = () => {
     {
       id: 0,
       title: "Incubator Dash",
-      link: "/admin/dashboard",
+      link: "/admin",
       iconClass: "fa-lg fa-solid fa-home",
       isActive: false,
       titleClasses: "ml-3",
@@ -80,34 +80,28 @@ export const AdminMenu = () => {
     },
   ];
   const [menu, setMenu] = useState(menuList);
-  const [clickedMenuItem, setClickedMenuItem] = useState({} as IMenuListItem);
+  const [selectedPath, setSelectedPath] = useState("");
 
   useEffect(() => {
-    const selected = getLocalStorageValue(LOCALSTORAGE_KEYS.selectedAdminMenu);
-    console.log(selected);
-    if (selected) {
-      setClickedMenuItem(JSON.parse(selected));
-    } else {
-      setClickedMenuItem(menuList[0]);
-    }
-    navigate(clickedMenuItem.link);
+    getSelectedMenu();
   }, []);
+
+  /**
+   * Sets default selected menu
+   */
+   const getSelectedMenu = () => {
+    const pathName = window.location.href;
+    const cleanedPath = `/${pathName.split("/#/")[1]}`;
+    setSelectedPath(cleanedPath);
+  };
 
   /**
    * Handles menu item click
    * @param menuItem
    */
   const handleMenuItemClick = (menuItem: IMenuListItem) => {
-    removeLocalStorageValue(LOCALSTORAGE_KEYS.selectedAdminMenu);
-    setLocalStorageValue(
-      LOCALSTORAGE_KEYS.selectedAdminMenu,
-      JSON.stringify(menuItem)
-    );
-    const selected = getLocalStorageValue(LOCALSTORAGE_KEYS.selectedAdminMenu);
-    if (selected) {
-      setClickedMenuItem(JSON.parse(selected));
-    }
-    navigate(menuItem.link)
+    setSelectedPath(menuItem.link);
+    navigate(menuItem.link);
   };
 
   return (
@@ -117,7 +111,7 @@ export const AdminMenu = () => {
           return (
             <li
               className={`hover:bg-[#16f0fb]  hover:text-white w-full ${
-                menu.id === clickedMenuItem.id
+                menu.link.toLocaleLowerCase() === selectedPath
                   ? "bg-[#00c2cb] text-white"
                   : null
               } rounded-lg cursor-pointer`}
@@ -127,7 +121,7 @@ export const AdminMenu = () => {
               <div className="m-2" id={`${index}`}>
                 <i
                   className={`${menu.iconClass} ${
-                    menu.id === clickedMenuItem.id ? "text-white" : null
+                    menu.link.toLocaleLowerCase() === selectedPath ? "text-white" : null
                   }`}
                 ></i>
                 <span className={`${menu.titleClasses}`}>
