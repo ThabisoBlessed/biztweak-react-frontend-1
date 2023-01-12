@@ -97,7 +97,7 @@ function App() {
           <Route path="/admin/submission" element={<Calendar />}></Route>
           <Route path="/admin/application" element={<Calendar />}></Route>
           <Route path="/admin/attendance" element={<AdminAttendance />}></Route>
-          <Route path="/admin/super-user-dashboard" element={<SuperAdminDashboard />}></Route>
+          <Route path="/admin/user-dashboard" element={<SuperAdminDashboard />}></Route>
           <Route path="/admin/add-user" element={<AddNewUser />}></Route>
         </Routes>
       </Router>

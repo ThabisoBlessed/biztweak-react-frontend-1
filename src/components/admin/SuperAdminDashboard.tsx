@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AvatarImg from "../../images/avatar.png";
 import PotImg from "../../images/icons/pot.png";
 import ClockImg from "../../images/icons/clock.png";
@@ -12,31 +12,13 @@ import MentorImg from "../../images/icons/mentor.png";
 import CoachesImg from "../../images/icons/mic.png";
 import CompanyImg from "../../images/company.png";
 import { Entrepreneurs } from "./Entrepreneurs";
+import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
+import { IUser } from "../../model/user.model";
+import { getCurrentUser } from "../../services/lms/user.service";
+import { getAllUsers } from "../../services/admin/admin.service";
 
 export const SuperAdminDashboard = () => {
-  const initUsers: any[] = [
-    {
-      id: 0,
-      name: "Jazmyn",
-      email: "@jaz.designer",
-      lastSeen: "8 hours ago",
-      src: AvatarImg,
-    },
-    {
-      id: 1,
-      name: "Jane",
-      email: "@jane.designer",
-      lastSeen: "10 hours ago",
-      src: AvatarImg,
-    },
-    {
-      id: 2,
-      name: "Mpho",
-      email: "@mpho.developer",
-      lastSeen: "8 hours ago",
-      src: AvatarImg,
-    },
-  ];
+  const initUsers: IUser[] = [];
   const innitActions: any[] = [
     { id: 0, title: "Early stage", src: ClockImg },
     { id: 1, title: "Start up", src: PotImg },
@@ -45,6 +27,8 @@ export const SuperAdminDashboard = () => {
   ];
   const [users, setUsers] = useState(initUsers);
   const [actions, setActions] = useState(innitActions);
+  const [user, setUser] = useState({} as IUser);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   const data = [
@@ -56,8 +40,42 @@ export const SuperAdminDashboard = () => {
     ["Sleep", 7],
   ];
 
+  useEffect(() => {
+    if (user && !user.email) {
+      getProfile();
+    }
+
+    if (users.length === 0) {
+      getUsers();
+    }
+  });
+
   const onAddNewUser = () => {
     navigate("/admin/dashboard/add-user");
+  };
+
+  const getProfile = async () => {
+    const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
+    if (storageUser) {
+      const userResult: IUser = JSON.parse(storageUser);
+      const profile = await getCurrentUser(userResult.id);
+      const userProfile = profile.data.package.data;
+      setUser(userProfile);
+      setIsLoading(false);
+    }
+  };
+
+  const getUsers = async () => {
+    const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
+    if (storageUser) {
+      const users = await getAllUsers();
+      const userProfiles = users.data.package.data;
+      setUsers(userProfiles);
+      setIsLoading(false);
+
+      console.log(user);
+      console.log(userProfiles);
+    }
   };
 
   return (
@@ -67,77 +85,82 @@ export const SuperAdminDashboard = () => {
           <AdminMenu />
         </div>
         <div className="col-md-10 col-sm-12 text-left bg-light border-start">
-          <div className="container-fluid">
-            <div className="card shadow mt-3">
-              <div className="card-header bg-white border-0">
-                <h5 className="mb-0 text-2xl font-medium text-dark">Overview</h5>
-              </div>
-              <div className="card-body border-0">
-                <div className="row justify-content-between">
-                  <div className="mb-3 mb-md-0 col-md-4 col-sm-6">
-                    <div className="col-12 px-lg-4">
-                      <div className="text-dark d-flex">
-                        <div className="me-3">
-                          <img
-                            src={CompanyImg}
-                            width="60px"
-                            className="rounded-circle"
-                            alt=""
-                          />
-                        </div>
-                        <div>
-                          <h6 className="mb-0">
-                            Total life change{" "}
-                            <span className="badge bg-success">#6</span>
-                          </h6>
-                          <p className="text-muted small">
-                            Email: kgowetisetso4@gmail.com <br></br>
-                            Phone: 090037****
-                          </p>
-                          <button className="me-3 btn btn-main-outline">
-                            Message
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+        {isLoading || !user ? <div className="text-center text-4xl h-[100vh]">Loading...</div> : (
+           <div className="container-fluid">
+           <div className="card shadow mt-3">
+             <div className="card-header bg-white border-0">
+               <h5 className="mb-0 text-2xl font-medium text-dark">
+                 Overview
+               </h5>
+             </div>
+             <div className="card-body border-0">
+               <div className="row justify-content-between">
+                 <div className="mb-3 mb-md-0 col-md-4 col-sm-6">
+                   <div className="col-12 px-lg-4">
+                     <div className="text-dark d-flex">
+                       <div className="me-3">
+                         <img
+                           src={CompanyImg}
+                           width="60px"
+                           className="rounded-circle"
+                           alt=""
+                         />
+                       </div>
+                       <div>
+                         <h6 className="mb-0">
+                           Total life change{" "}
+                           <span className="badge bg-success">#6</span>
+                         </h6>
+                         <p className="text-muted small">
+                           Email: {user.email} <br></br>
+                           Phone:{user.phone}
+                         </p>
+                         <button className="me-3 btn btn-main-outline">
+                           Message
+                         </button>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
 
-                  <div className="col-md-2 col-sm-6 mb-3 mb-lg-0">
-                    <div className="col-12 bg-1 p-4 rounded-2 text-dark bg-[#b5e4ca40]">
-                      <img src={EntreprenursImg} width="40px" alt=""></img>
-                      <p className="small my-2">Entrepreneurs</p>
-                      <h1 className="m-0 fw-bold">10</h1>
-                    </div>
-                  </div>
-                  <div className="col-md-2 col-sm-6 mb-3 mb-lg-0">
-                    <div className="col-12 bg-2 p-4 rounded-2 text-dark bg-[#d8e5eb]">
-                      <img src={ConsultantsImg} width="40px" alt=""></img>
-                      <p className="small my-2">Consultants</p>
-                      <h1 className="m-0 fw-bold">4</h1>
-                    </div>
-                  </div>
-                  <div className="col-md-2 col-sm-6 mb-3 mb-lg-0">
-                    <div className="col-12 bg-3 p-4 rounded-2 text-dark bg-[#dfdbec]">
-                      <img src={MentorImg} width="40px" alt=""></img>
-                      <p className="small my-2">Mentors</p>
-                      <h1 className="m-0 fw-bold">2</h1>
-                    </div>
-                  </div>
-                  <div className="col-md-2 col-sm-6 mb-3 mb-lg-0">
-                    <div className="col-12 bg-4 p-4 rounded-2 text-dark bg-[#fff65a40]">
-                      <img src={CoachesImg} width="40px" alt=""></img>
-                      <p className="small my-2">Coaches</p>
-                      <h1 className="m-0 fw-bold">5</h1>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                 <div className="col-md-2 col-sm-6 mb-3 mb-lg-0">
+                   <div className="col-12 bg-1 p-4 rounded-2 text-dark bg-[#b5e4ca40]">
+                     <img src={EntreprenursImg} width="40px" alt=""></img>
+                     <p className="small my-2">Entrepreneurs</p>
+                     <h1 className="m-0 fw-bold">10</h1>
+                   </div>
+                 </div>
+                 <div className="col-md-2 col-sm-6 mb-3 mb-lg-0">
+                   <div className="col-12 bg-2 p-4 rounded-2 text-dark bg-[#d8e5eb]">
+                     <img src={ConsultantsImg} width="40px" alt=""></img>
+                     <p className="small my-2">Consultants</p>
+                     <h1 className="m-0 fw-bold">4</h1>
+                   </div>
+                 </div>
+                 <div className="col-md-2 col-sm-6 mb-3 mb-lg-0">
+                   <div className="col-12 bg-3 p-4 rounded-2 text-dark bg-[#dfdbec]">
+                     <img src={MentorImg} width="40px" alt=""></img>
+                     <p className="small my-2">Mentors</p>
+                     <h1 className="m-0 fw-bold">2</h1>
+                   </div>
+                 </div>
+                 <div className="col-md-2 col-sm-6 mb-3 mb-lg-0">
+                   <div className="col-12 bg-4 p-4 rounded-2 text-dark bg-[#fff65a40]">
+                     <img src={CoachesImg} width="40px" alt=""></img>
+                     <p className="small my-2">Coaches</p>
+                     <h1 className="m-0 fw-bold">5</h1>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
 
-            <div className="mb-2 mt-2">
-              <Entrepreneurs />
-            </div>
-          </div>
+           <div className="mb-2 mt-2">
+             <Entrepreneurs />
+           </div>
+         </div>
+      )}
+         
         </div>
       </div>
     </div>
