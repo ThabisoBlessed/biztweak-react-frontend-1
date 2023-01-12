@@ -115,8 +115,9 @@ export const BusinessAssessmentQuestions = (props: any) => {
     setIsLoading(true);
 
     if (!business) {
+      const businessIndustryAndPhase = props.businessIndustryAndPhase;
       navigate("/business/manage-business/business-profile", {
-        state: { questionList },
+        state: { questionList, businessIndustryAndPhase },
       });
     } else {
       const update = await addAssessmentQuestions(JSON.stringify(questionList), business.id);

@@ -16,7 +16,7 @@ export const Assessment = () => {
     state || ({} as IBusinessMenuBusinessModel)
   );
   const [business, setBusiness] = useState(selectedBusiness.business);
-
+  
   // Update new company
   // If "business" exists then we use the defaults
   const [businessIndustryAndPhase, setBusinessIndustryAndPhase] = useState({
@@ -28,7 +28,7 @@ export const Assessment = () => {
   );
   const [businessInfo, setBusinessInfo] = useState(
     !business
-      ? JSON.parse(selecteBusinessIndustryAndPhase.businessIndustryAndPhase)
+      ? selecteBusinessIndustryAndPhase.businessIndustryAndPhase
       : {
           businessIndustry: business.industry,
           businessPhase: business.phase,

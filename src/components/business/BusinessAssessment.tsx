@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../config";
+import { IBusinessIndustryAndPhase } from "../../model/business-industry-and-phase.model";
 import { BusinessAssessmentQuestions } from "./BusinessAssessmentQuestions";
 import { CompleteCompanyProfileModal } from "./CompleteCompanyProfileModal";
 
 export const BusinessAssessment = (props: any): JSX.Element => {
+  const navigate = useNavigate();
+  const { state } = useLocation();
   const [businessPhase, setBusinessPhase] = useState();
   const [businessIndustry, setBusinessIndustry] = useState();
   const [business, setBusiness] = useState(props.business);
-  const navigate = useNavigate();
+  const [businessIndustryAndPhaseState] = useState(state || {} as IBusinessIndustryAndPhase);
+  const [businessIndustryAndPhase, setBusinessIndustryAndPhase] = useState(businessIndustryAndPhaseState.businessIndustryAndPhase);
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
-    setBusinessIndustry(props.businessIndustryAndPhase.businessIndustry);
-    setBusinessPhase(props.businessIndustryAndPhase.businessPhase);
+
+    setBusinessIndustry(businessIndustryAndPhase.businessIndustry);
+    setBusinessPhase(businessIndustryAndPhase.businessPhase);
+
+    console.log(businessPhase);
+    console.log(businessIndustry);
+    console.log(businessIndustryAndPhase);
   }, [navigate]);
 
   return (
@@ -55,7 +64,7 @@ export const BusinessAssessment = (props: any): JSX.Element => {
           </div>
         </div>
 
-        <BusinessAssessmentQuestions business={business} />
+        <BusinessAssessmentQuestions business={business} businessIndustryAndPhase={businessIndustryAndPhase} />
 
         <CompleteCompanyProfileModal businessIndustry={businessIndustry} />
       </div>

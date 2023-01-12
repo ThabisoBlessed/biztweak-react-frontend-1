@@ -6,6 +6,7 @@ import {
   LOCALSTORAGE_KEYS,
 } from "../../config";
 import { loading } from "../../constants";
+import { IBusinessIndustryAndPhase } from "../../model/business-industry-and-phase.model";
 import { IBusinessMenuBusinessModel } from "../../model/business-menu-business-model";
 import { IMappedAssessmentQuestion } from "../../model/mapped-assessment-question.model";
 import { addAssessmentQuestions } from "../../services/business/assessment.service";
@@ -16,10 +17,8 @@ import { BusinessMenu } from "./BusinessMenu";
 export const BusinessProfile = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const [businessIndustryAndPhase, setBusinessIndustryAndPhase] = useState({
-    businessIndustry: "",
-    businessPhase: "",
-  });
+  const [businessIndustryAndPhaseState] = useState(state || {} as IBusinessIndustryAndPhase);
+  const [businessIndustryAndPhase, setBusinessIndustryAndPhase] = useState(businessIndustryAndPhaseState.businessIndustryAndPhase);
   const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState("");
   const [logo, setLogo] = useState("");
@@ -47,10 +46,7 @@ export const BusinessProfile = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    const industry = getLocalStorageValue(LOCALSTORAGE_KEYS.businessIndustry);
-    const phase = getLocalStorageValue(LOCALSTORAGE_KEYS.businessPhase);
-
-    if (industry && phase) {
+    if (businessIndustryAndPhase) {
       const company = {
         id: 0,
         name: name,
@@ -63,8 +59,8 @@ export const BusinessProfile = () => {
         annual_turnover: annualTurnover,
         monthly_turnover: monthlyTurnover,
         products_or_services: productsOrServices,
-        phase: JSON.parse(phase).replace(/['"\\]+/g, ''),
-        industry: JSON.parse(industry).replace(/['"\\]+/g, '')
+        phase: businessIndustryAndPhase.businessPhase,
+        industry: businessIndustryAndPhase.businessIndustry,
       };
 
       const response = await addCompany(company);

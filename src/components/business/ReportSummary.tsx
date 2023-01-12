@@ -77,7 +77,7 @@ export const ReportSummary = () => {
           <BusinessMenu />
         </div>
         <div className="col-md-9 bg-white">
-          <div className="card shadow-lg p-1 mb-5 bg-white rounded">
+          <div className="card mt-2 shadow-lg p-1 mb-5 bg-white rounded">
             <div className="card-body">
               <h2 className="mt-3 text-3xl text-dark">
                 {business.name}'s Report Summary

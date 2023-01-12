@@ -4,9 +4,6 @@ import ConsultantsImg from "../../images/icons/consultants.png";
 import MentorImg from "../../images/icons/mentor.png";
 import CoachesImg from "../../images/icons/mic.png";
 import { AdminMenu } from "./AdminMenu";
-
-
-import { PieChart } from "../shared/charts/PieChart";
 import { Mentors } from "./Mentors";
 import { UsersCard } from "./UsersCard";
 import { ActionsCard } from "./ActionsCard";
