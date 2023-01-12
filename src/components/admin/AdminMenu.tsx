@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getLocalStorageValue, LOCALSTORAGE_KEYS, removeLocalStorageValue, setLocalStorageValue } from "../../config";
 import { IMenuListItem } from "../../model/menu-list-item.model";
 
 export const AdminMenu = () => {
