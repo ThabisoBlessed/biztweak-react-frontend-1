@@ -61,7 +61,7 @@ export const IncubatorDashboard = () => {
             </div>
             <div className="row mt-2">
               <div className="col-lg-4">
-              <UsersCard />
+              <UsersCard mode={"incubator"} />
               </div>
               <div className="col-lg-4">
                <ActionsCard />

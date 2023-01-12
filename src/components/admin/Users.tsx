@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AdminMenu } from "./AdminMenu";
 
-export const Users = () => {
+export const Users = (props: any) => {
   const initUsers: any[] = [
     { id: 1, name: "Muhammad Aqib", email: "aqib@aqib.com", userType: "-" },
   ];
@@ -9,6 +9,8 @@ export const Users = () => {
 
   useEffect(() => {
     window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+
+    console.log(props.mode);
   })
 
   return (

@@ -134,7 +134,8 @@ export const UserProfile = (props: any) => {
     setPhoto(base64);
   };
 
-  const onRemovePhoto = () => {
+  const onRemovePhoto = (e: any) => {
+    e.preventDefault();
     setPhoto("");
   };
 
@@ -202,7 +203,7 @@ export const UserProfile = (props: any) => {
                                       <div className="col-md-4">
                                         <button
                                           className="btn hover:bg-black hover:text-white border-black"
-                                          onClick={onRemovePhoto}
+                                          onClick={(e) => onRemovePhoto(e)}
                                         >
                                           Remove
                                         </button>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AvatarImg from "../../images/avatar.png";
 
-export const UsersCard = () => {
+export const UsersCard = (props: any) => {
   const navigate = useNavigate();
   const initUsers: any[] = [
     {
@@ -28,9 +28,13 @@ export const UsersCard = () => {
     },
   ];
   const [users, setUsers] = useState(initUsers);
+  const [userMode, setUserMode] = useState("");
 
   const onGoToUsers = () => {
-    navigate("/admin/dashboard/users");
+    const mode = props.mode;
+    setUserMode(mode);
+    console.log(userMode);
+    navigate("/admin/users", { state: { mode } });
   };
 
   return (

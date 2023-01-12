@@ -52,6 +52,7 @@ export const BusinessProfile = () => {
 
     if (industry && phase) {
       const company = {
+        id: 0,
         name: name,
         logo: logo,
         registration_date: registrationDate || new Date().toString(),
@@ -67,7 +68,7 @@ export const BusinessProfile = () => {
       };
 
       const response = await addCompany(company);
-      if (response.status) {
+      if (response.status && response.data.package.data && response.data.package.data.id) {
         const assessment = await addAssessmentQuestions(JSON.stringify(questionAndAnswer), response.data.package.data.id);
         const success = assessment.data;
         if (success) {
@@ -75,9 +76,10 @@ export const BusinessProfile = () => {
           const business = updated.data.package.data
           navigate("/business/manage-business/report-summary", { state: { business }});
         }
+      } else {
+        navigate("/business");
       }
     }
-
     setIsLoading(false);
   };
 
