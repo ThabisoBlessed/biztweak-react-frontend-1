@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { AdminMenu } from "./AdminMenu";
 
-export const Users = (props: any) => {
+export const Users = () => {
+  const { state } = useLocation();
   const initUsers: any[] = [
     { id: 1, name: "Muhammad Aqib", email: "aqib@aqib.com", userType: "-" },
   ];
   const [users, setUsers] = useState(initUsers);
+  const [userMode] = useState(state || {});
+  const [selectedUserMode, setSelectedUserMode] = useState(userMode);
 
   useEffect(() => {
     window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
 
-    console.log(props.mode);
+    console.log(selectedUserMode);
   })
 
   return (

@@ -74,7 +74,6 @@ export const BusinessProfile = () => {
         const success = assessment.data;
         console.log("create new company assessment response: ", assessment.data);
         if (success) {
-          // const updated = await getCompany(response.data.package.data.id);
           const business = assessment.data.package.data
           navigate("/business/manage-business/report-summary", { state: { business }});
         }

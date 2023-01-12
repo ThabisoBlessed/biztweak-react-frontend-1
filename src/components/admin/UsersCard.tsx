@@ -28,13 +28,11 @@ export const UsersCard = (props: any) => {
     },
   ];
   const [users, setUsers] = useState(initUsers);
-  const [userMode, setUserMode] = useState("");
+  const [userMode, setUserMode] = useState(props.mode);
 
   const onGoToUsers = () => {
-    const mode = props.mode;
-    setUserMode(mode);
     console.log(userMode);
-    navigate("/admin/users", { state: { mode } });
+    navigate("/admin/users", { state: { userMode } });
   };
 
   return (
