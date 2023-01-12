@@ -13,11 +13,10 @@ import { isLoggedIn } from "../../config";
 export const ReportSummary = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const [selectedBusiness] = useState(state || {});
-  const [business, setBusiness] = useState(selectedBusiness.business);
-  const initData: (string | number)[][] = [
-    ["Elements", "Priority Elements Percentages"],
-  ];
+  const [selectedState] = useState(state || {});
+  const [business, setBusiness] = useState(selectedState.business);
+  const [isNewCompany, setIsNewCompany] = useState(selectedState.isNewCompany);
+  const initData: (string | number)[][] = [["Elements", "Priority Elements Percentages"]];
   const [data, setData] = useState(initData);
 
   useEffect(() => {
@@ -30,22 +29,18 @@ export const ReportSummary = () => {
 
   // Set charts data
   const getReports = () => {
+    const reports = isNewCompany ? business.report.scores : JSON.parse(business.report.scores);
     console.log(business);
-    if (business && business.report) {
-      const reports = business.report.scores;
-      const allData = data;
-
-      for (let index = 0; index < reports.length; index++) {
-        const report = reports[index];
-        const set = [report.category, report.percentage];
-        if (!allData.includes(set)) {
-          allData.push(set);
-        }
+    const allData = data;
+    for (let index = 0; index < reports.length; index++) {
+      const report = reports[index];
+      const set = [report.category, report.percentage ];
+      if (!allData.includes(set)) {
+        allData.push(set);
       }
-      setData(allData);
-      console.log(data);
     }
-  };
+    setData(allData);
+  }
 
   const options = {
     title: "My Daily Activities",
@@ -82,7 +77,7 @@ export const ReportSummary = () => {
           <BusinessMenu />
         </div>
         <div className="col-md-9 bg-white">
-          <div className="card shadow-lg mt-2 p-1 mb-5 bg-white rounded">
+          <div className="card shadow-lg p-1 mb-5 bg-white rounded">
             <div className="card-body">
               <h2 className="mt-3 text-3xl text-dark">
                 {business.name}'s Report Summary
@@ -94,8 +89,8 @@ export const ReportSummary = () => {
                 </button>
               </h2>
               <p className="d-flex mt-4 text-dark">
-                <i className="fa fa-info m-0"></i>&nbsp;We are generating
-                revenue, we would like to grow through investment
+                <i className="fa fa-info m-0"></i>&nbsp;We are generating revenue,
+                we would like to grow through investment
               </p>
 
               <div
@@ -104,9 +99,7 @@ export const ReportSummary = () => {
               >
                 <h6>Sales Score</h6>
                 <div id="doughnutChart" className="card-body m-0 p-0">
-                  {!data ? null : (
-                    <PieChart data={data} width={"100%"} height={"300px"} />
-                  )}
+                  {!data ? null : <PieChart data={data} width={"100%"} height={"300px"} />}
                 </div>
               </div>
 

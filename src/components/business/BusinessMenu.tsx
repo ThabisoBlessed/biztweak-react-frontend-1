@@ -26,7 +26,8 @@ export const BusinessMenu = (props: any) => {
   };
 
   const onViewBizReport = (business: IBusinessMenuBusinessModel) => {
-    navigate("/business/manage-business/report-summary", { state: { business } });
+    const isNewCompany = false;
+    navigate("/business/manage-business/report-summary", { state: { business, isNewCompany } });
     window.location.reload();
   };
 

@@ -72,10 +72,11 @@ export const BusinessProfile = () => {
       if (response.status && response.data.package.data && response.data.package.data.id) {
         const assessment = await addAssessmentQuestions(JSON.stringify(questionAndAnswer), response.data.package.data.id);
         const success = assessment.data;
+        const isNewCompany = true;
         console.log("create new company assessment response: ", assessment.data);
         if (success) {
           const business = assessment.data.package.data
-          navigate("/business/manage-business/report-summary", { state: { business }});
+          navigate("/business/manage-business/report-summary", { state: { business, isNewCompany }});
         }
       } else {
         navigate("/business");
