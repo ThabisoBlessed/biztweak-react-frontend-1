@@ -1,19 +1,10 @@
 import React, { useState } from "react";
+import { ICompany } from "../../model/company.model";
+import { IUser } from "../../model/user.model";
 import "./Entrepreneurs.css";
 
-export const Entrepreneurs = () => {
-  const initEntrepreneurs: any[] = [
-    {
-      id: 1,
-      name: "Guide App",
-      location: "Johannesburg, South Africa",
-      turnover: 56000,
-      score: "67%",
-      courseProgress: "79%",
-      coursePoint: "50%",
-    },
-  ];
-  const [entreprenuers, setEntreprenuers] = useState(initEntrepreneurs);
+export const Entrepreneurs = (props: any) => {
+  const [companies, setCompanies] = useState(props.companies);
 
   return (
     <div className="card shadow">
@@ -53,19 +44,19 @@ export const Entrepreneurs = () => {
             </tr>
           </thead>
           <tbody>
-            {entreprenuers.map((entrepreneur: any, index: number) => {
+            {companies.map((company: ICompany, index: number) => {
               return (
                 <tr key={index}>
                   <td>
                     <span className="badge bg-white text-dark">
-                      {entrepreneur.name}
+                      Guide App
                     </span>
                   </td>
-                  <td>{entrepreneur.location}</td>
-                  <td>{entrepreneur.turnover}</td>
-                  <td>{entrepreneur.score}</td>
-                  <td>{entrepreneur.courseProgress}</td>
-                  <td>{entrepreneur.coursePoint}</td>
+                  <td>{company.location}</td>
+                  <td>{company.annual_turnover}</td>
+                  <td>0%</td>
+                  <td>0%</td>
+                  <td>0%</td>
                   <td>
                     <a href="#" className="text-[#00c2cb]">
                       View Report

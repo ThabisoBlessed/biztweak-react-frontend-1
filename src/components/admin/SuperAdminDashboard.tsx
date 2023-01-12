@@ -18,14 +18,13 @@ import { getCurrentUser } from "../../services/lms/user.service";
 import { getAllUsers } from "../../services/admin/admin.service";
 
 export const SuperAdminDashboard = () => {
-  const initUsers: IUser[] = [];
   const innitActions: any[] = [
     { id: 0, title: "Early stage", src: ClockImg },
     { id: 1, title: "Start up", src: PotImg },
     { id: 2, title: "Idea concept", src: BulbImg },
     { id: 3, title: "Accelerate", src: DashboardImg },
   ];
-  const [users, setUsers] = useState(initUsers);
+  const [companies, setCompanies] = useState([]);
   const [actions, setActions] = useState(innitActions);
   const [user, setUser] = useState({} as IUser);
   const [isLoading, setIsLoading] = useState(true);
@@ -45,8 +44,8 @@ export const SuperAdminDashboard = () => {
       getProfile();
     }
 
-    if (users.length === 0) {
-      getUsers();
+    if (companies.length === 0) {
+      getCompanies();
     }
   });
 
@@ -65,16 +64,16 @@ export const SuperAdminDashboard = () => {
     }
   };
 
-  const getUsers = async () => {
+  const getCompanies = async () => {
     const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
     if (storageUser) {
-      const users = await getAllUsers();
-      const userProfiles = users.data.package.data;
-      setUsers(userProfiles);
+      const companiesResult = await getAllUsers();
+      const companies = companiesResult.data.package.data;
+      setCompanies(companies);
       setIsLoading(false);
 
-      console.log(user);
-      console.log(userProfiles);
+      console.log(companies);
+      console.log(companiesResult);
     }
   };
 
@@ -108,7 +107,7 @@ export const SuperAdminDashboard = () => {
                        </div>
                        <div>
                          <h6 className="mb-0">
-                           Total life change{" "}
+                           Total life change
                            <span className="badge bg-success">#6</span>
                          </h6>
                          <p className="text-muted small">
@@ -127,7 +126,7 @@ export const SuperAdminDashboard = () => {
                    <div className="col-12 bg-1 p-4 rounded-2 text-dark bg-[#b5e4ca40]">
                      <img src={EntreprenursImg} width="40px" alt=""></img>
                      <p className="small my-2">Entrepreneurs</p>
-                     <h1 className="m-0 fw-bold">10</h1>
+                     <h1 className="m-0 fw-bold">{companies.length}</h1>
                    </div>
                  </div>
                  <div className="col-md-2 col-sm-6 mb-3 mb-lg-0">
@@ -156,7 +155,7 @@ export const SuperAdminDashboard = () => {
            </div>
 
            <div className="mb-2 mt-2">
-             <Entrepreneurs />
+             <Entrepreneurs companies={companies} />
            </div>
          </div>
       )}
