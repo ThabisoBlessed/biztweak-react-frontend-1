@@ -31,9 +31,8 @@ export const ReportSummary = () => {
   // Set charts data
   const getReports = () => {
     console.log(business);
-    if (business.report) {
-      const reports =
-        JSON.parse(business.report.scores) || business.report.scores;
+    if (business && business.report) {
+      const reports = business.report.scores;
       const allData = data;
 
       for (let index = 0; index < reports.length; index++) {

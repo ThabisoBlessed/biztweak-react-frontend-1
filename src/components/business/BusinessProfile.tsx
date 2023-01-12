@@ -68,12 +68,14 @@ export const BusinessProfile = () => {
       };
 
       const response = await addCompany(company);
+      console.log("create new company response: ", response.data);
       if (response.status && response.data.package.data && response.data.package.data.id) {
         const assessment = await addAssessmentQuestions(JSON.stringify(questionAndAnswer), response.data.package.data.id);
         const success = assessment.data;
+        console.log("create new company assessment response: ", assessment.data);
         if (success) {
-          const updated = await getCompany(response.data.package.data.id);
-          const business = updated.data.package.data
+          // const updated = await getCompany(response.data.package.data.id);
+          const business = assessment.data.package.data
           navigate("/business/manage-business/report-summary", { state: { business }});
         }
       } else {
