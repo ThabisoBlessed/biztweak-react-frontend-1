@@ -30,7 +30,7 @@ export const Entrepreneurs = (props: any) => {
           </div>
         </form>
       </div>
-      <div className="card-body border-0">
+      <div className="card-body border-0 overflow-y-scroll h-[400px]">
         <table className="table table-borderless table-striped">
           <thead>
             <tr className="text-sm text-muted">
