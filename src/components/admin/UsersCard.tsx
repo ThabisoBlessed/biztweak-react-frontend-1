@@ -27,11 +27,12 @@ export const UsersCard = (props: any) => {
       src: AvatarImg,
     },
   ];
-  const [users, setUsers] = useState(initUsers);
+  const [users, setUsers] = useState(props.users);
   const [userMode, setUserMode] = useState(props.mode);
 
   const onGoToUsers = () => {
     console.log(userMode);
+    console.log(users);
     navigate("/admin/users", { state: { userMode } });
   };
 

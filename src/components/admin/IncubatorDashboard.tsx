@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import EntreprenursImg from "../../images/icons/entreprenuers.png";
 import ConsultantsImg from "../../images/icons/consultants.png";
 import MentorImg from "../../images/icons/mentor.png";
@@ -8,8 +8,31 @@ import { Mentors } from "./Mentors";
 import { UsersCard } from "./UsersCard";
 import { ActionsCard } from "./ActionsCard";
 import { ChartCard } from "./ChartCard";
+import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
+import { getAllUsers } from "../../services/admin/admin.service";
 
 export const IncubatorDashboard = () => {
+  const [users, setUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (users.length === 0) {
+      getusers();
+    }
+  });
+
+  const getusers = async () => {
+    const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
+    if (storageUser) {
+      const usersResult = await getAllUsers();
+      const users = usersResult.data.package.data;
+      setUsers(users);
+      setIsLoading(false);
+
+      console.log(users);
+      console.log(usersResult);
+    }
+  };
 
   return (
     <div className="w-full">
@@ -58,7 +81,7 @@ export const IncubatorDashboard = () => {
             </div>
             <div className="row mt-2">
               <div className="col-lg-4">
-              <UsersCard mode={"incubator"} />
+              <UsersCard mode={"incubator"} users={users} />
               </div>
               <div className="col-lg-4">
                <ActionsCard />
