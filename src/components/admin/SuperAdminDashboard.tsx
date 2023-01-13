@@ -16,6 +16,7 @@ import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
 import { IUser } from "../../model/user.model";
 import { getCurrentUser } from "../../services/lms/user.service";
 import { getAllUsers } from "../../services/admin/admin.service";
+import { getAllCompanies } from "../../services/business/company.service";
 
 export const SuperAdminDashboard = () => {
   const innitActions: any[] = [
@@ -67,7 +68,7 @@ export const SuperAdminDashboard = () => {
   const getCompanies = async () => {
     const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
     if (storageUser) {
-      const companiesResult = await getAllUsers();
+      const companiesResult = await getAllCompanies();
       const companies = companiesResult.data.package.data;
       setCompanies(companies);
       setIsLoading(false);

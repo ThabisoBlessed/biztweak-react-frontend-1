@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./CMP.css";
 import EntreprenursImg from "../../images/icons/entreprenuers.png";
 import ConsultantsImg from "../../images/icons/consultants.png";
@@ -7,25 +7,63 @@ import CoachesImg from "../../images/icons/mic.png";
 import { CMPMenu } from "./CMPMenu";
 import { AddCourse } from "./AddCourse";
 import { useNavigate } from "react-router-dom";
+import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
+import { IUser } from "../../model/user.model";
+import { getAllUsers } from "../../services/admin/admin.service";
+import { getCurrentUser } from "../../services/lms/user.service";
 
 export const Dashboard = () => {
-  const menu = {
-    id: 0,
-    title: "Dashboard",
-    link: "/cmp",
-    iconClass: "fa-lg fa-solid fa-home",
-    isActive: false,
-    titleClasses: "ml-3",
-  };
+  const [companies, setCompanies] = useState([]);
+  const [user, setUser] = useState({} as IUser);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
+  const data = [
+    ["Elements", "Priority Elements"],
+    ["Work", 11],
+    ["Eat", 2],
+    ["Commute", 2],
+    ["Watch TV", 2],
+    ["Sleep", 7],
+  ];
+
   useEffect(() => {
-    // window.history.pushState(null, "", document.URL);
-    // window.addEventListener("popstate", function (event) {
-    //   console.log("hello");
-    //   navigate(-1);
-    // });
+    if (user && !user.email) {
+      getProfile();
+    }
+
+    if (companies.length === 0) {
+      getCompanies();
+    }
   });
+
+  const onAddNewUser = () => {
+    navigate("/admin/dashboard/add-user");
+  };
+
+  const getProfile = async () => {
+    const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
+    if (storageUser) {
+      const userResult: IUser = JSON.parse(storageUser);
+      const profile = await getCurrentUser(userResult.id);
+      const userProfile = profile.data.package.data;
+      setUser(userProfile);
+      setIsLoading(false);
+    }
+  };
+  
+  const getCompanies = async () => {
+    const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
+    if (storageUser) {
+      const companiesResult = await getAllUsers();
+      const companies = companiesResult.data.package.data;
+      setCompanies(companies);
+      setIsLoading(false);
+
+      console.log(companies);
+      console.log(companiesResult);
+    }
+  };
 
   return (
     <div className="w-full">
@@ -47,7 +85,7 @@ export const Dashboard = () => {
                     <div className="col-12 bg-1 p-4 rounded-2 text-dark bg-[#b5e4ca40]">
                       <img src={EntreprenursImg} width="40px" alt=""></img>
                       <p className="small my-2">Entrepreneurs</p>
-                      <h1 className="m-0 fw-bold">10</h1>
+                      <h1 className="m-0 fw-bold">{companies.length}</h1>
                     </div>
                   </div>
                   <div className="col-lg-3 col-sm-6 mb-3 mb-lg-0">

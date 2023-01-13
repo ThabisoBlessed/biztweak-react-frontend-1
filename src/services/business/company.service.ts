@@ -93,7 +93,7 @@ export const addCompany = async (company: any): Promise<any> => {
  *
  * @returns {any} company
  */
- export const getAllCompanies = async (id: number): Promise<any> => {
+ export const getAllCompanies = async (): Promise<any> => {
   try {
     let config = {
       headers: {
