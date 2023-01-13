@@ -1,20 +1,75 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { loading } from "../../constants";
 import UserImg from "../../images/icons/user.png";
+import { ICourse } from "../../model/course.model";
+import { addCourse } from "../../services/cmp/course.service";
 
 export const AddCourse = () => {
   const [videoType, setVideoType] = useState("upload");
   const navigate = useNavigate();
-
-  useEffect(() => {}, [videoType, navigate]);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
+  const [introVideo, setIntroVideo] = useState({} as File);
+  const [startDatetime, setStartDatetime] = useState("");
+  const [expiryDatetime, setExpiryDatetime] = useState("");
+  const bizPhaseList: any[] = [
+    {
+      id: 0,
+      name: "Ideation",
+      value: "ideation",
+    },
+    {
+      id: 1,
+      name: "Start-Up",
+      value: "start_up",
+    },
+    {
+      id: 2,
+      name: "Early Stage",
+      value: "early_stage",
+    },
+  ];
+  const [businessPhases, setBusinessPhases] = useState(bizPhaseList);
+  const [businessPhase, setBusinessPhase] = useState(bizPhaseList[0]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const chooseVideoType = (type: string) => {
     setVideoType(type);
   };
 
-  const onSaveAndContinue = () => {
-    navigate("/cmp/manage-courses/add-test");
-  }
+  const handleBizPhaseItemClick = (event: any) => {
+    console.log();
+    setBusinessPhase(event.target.value);
+  };
+
+  const handleVideo = (e: any) => {
+    const file = e.target.files[0];
+    setIntroVideo(file);
+  };
+
+  const onSaveAndContinue = async (e: any) => {
+    e.preventDefault();
+    setIsLoading(false);
+
+    const courseModel = {} as ICourse;
+    courseModel.title = title;
+    courseModel.description = description;
+    courseModel.category = category;
+    courseModel.intro_video = introVideo;
+    courseModel.start_datetime = startDatetime;
+    courseModel.expiry_datetime = expiryDatetime;
+    courseModel.business_phase = businessPhase;
+    courseModel.score = 0;
+
+    const courseResult = await addCourse(courseModel);
+    const success = courseResult.data;
+    if (success) {
+      const course = courseResult.data.package.data;
+      navigate("/cmp/manage-courses/add-test", { state: { course } });
+    }
+  };
 
   return (
     <div>
@@ -28,7 +83,11 @@ export const AddCourse = () => {
               <label>Course Name</label>
             </div>
             <div className="col-md-6">
-              <input type="text" className="form-control" />
+              <input
+                type="text"
+                className="form-control"
+                onChange={(e) => setTitle(e.target.value)}
+              />
             </div>
           </div>
           <div className="form-group row align-items-center my-3">
@@ -36,13 +95,21 @@ export const AddCourse = () => {
               <label>Category</label>
             </div>
             <div className="col-md-6">
-              <input type="text" className="form-control" />
+              <input
+                type="text"
+                className="form-control"
+                onChange={(e) => setCategory(e.target.value)}
+              />
             </div>
           </div>
           <div className="form-group row align-items-center my-3">
             <label>Description</label>
             <div className="col-md-8">
-              <textarea rows={8} className="form-control"></textarea>
+              <textarea
+                rows={8}
+                className="form-control"
+                onChange={(e) => setDescription(e.target.value)}
+              ></textarea>
             </div>
           </div>
           <hr></hr>
@@ -81,7 +148,11 @@ export const AddCourse = () => {
               </div>
               <div className="mt-2">
                 {videoType === "upload" ? (
-                  <input type="file" className="video-input form-control" />
+                  <input
+                    type="file"
+                    className="video-input form-control"
+                    onChange={(e) => handleVideo(e)}
+                  />
                 ) : (
                   <div>
                     <input
@@ -126,6 +197,7 @@ export const AddCourse = () => {
                 <input
                   type="date"
                   className="form-control d-inline-block ms-2"
+                  onChange={(e) => setStartDatetime(e.target.value)}
                 />
                 <span className="mx-3">at</span>
                 <input type="text" className="form-control d-inline-block" />
@@ -135,6 +207,7 @@ export const AddCourse = () => {
                 <input
                   type="date"
                   className="form-control d-inline-block ms-2"
+                  onChange={(e) => setExpiryDatetime(e.target.value)}
                 />
                 <div className="mx-3">at</div>
                 <input type="text" className="form-control d-inline-block" />
@@ -146,16 +219,32 @@ export const AddCourse = () => {
               <label>Business Phase</label>
             </div>
             <div className="col-md-6">
-              <select name="phase" id="phase" className="form-select">
-                <option value="">Select</option>
-                <option value="">Ideation</option>
-                <option value="">Start-up</option>
-                <option value="">Early stage</option>
+              <select
+                className="form-select"
+                id="industry"
+                name="industry"
+                value={businessPhase.value}
+                onChange={handleBizPhaseItemClick}
+              >
+                {businessPhases.map((phase: any, index: number) => {
+                  return (
+                    <option key={index} value={phase.value}>
+                      {phase.name}
+                    </option>
+                  );
+                })}
               </select>
             </div>
           </div>
-          <button onClick={onSaveAndContinue} className="btn btn-lg hover:bg-[#16f0fb] hover:text-white bg-[#00c2cb] mt-2 text-[white]">
-            Save &amp; Continue
+          <button
+            onClick={(e) => onSaveAndContinue(e)}
+            className="btn btn-lg mb-3 hover:bg-[#16f0fb] w-[150px] hover:text-white bg-[#00c2cb] mt-2 text-[white]"
+          >
+            {isLoading ? (
+              <span className="capitalize">Saving...</span>
+            ) : (
+              <span>Save &amp; Continue</span>
+            )}
           </button>
         </div>
         <div className="col-md-4">

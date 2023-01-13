@@ -8,7 +8,6 @@ export const Entrepreneurs = (props: any) => {
   const [companies, setCompanies] = useState(props.companies);
   const navigate = useNavigate();
 
-
   const onViewReport = (business: ICompany) => {
     const isNewCompany = false;
     navigate("/business/manage-business/report-summary", { state: { business, isNewCompany }});
