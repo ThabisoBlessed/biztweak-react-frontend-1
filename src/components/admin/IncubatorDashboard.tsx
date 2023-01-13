@@ -18,6 +18,7 @@ export const IncubatorDashboard = () => {
   useEffect(() => {
     if (users.length === 0) {
       getusers();
+      setIsLoading(false);
     }
   });
 
@@ -25,12 +26,9 @@ export const IncubatorDashboard = () => {
     const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
     if (storageUser) {
       const usersResult = await getAllUsers();
-      const users = usersResult.data.package.data;
-      setUsers(users);
-      setIsLoading(false);
-
-      console.log(users);
-      console.log(usersResult);
+      const usersBody = usersResult.data.package.data;
+      setUsers(usersBody);
+      console.log(usersBody);
     }
   };
 
@@ -81,7 +79,7 @@ export const IncubatorDashboard = () => {
             </div>
             <div className="row mt-2">
               <div className="col-lg-4">
-              <UsersCard mode={"incubator"} users={users} />
+                {!isLoading ? <UsersCard mode={"incubator"} users={users} /> : null}
               </div>
               <div className="col-lg-4">
                <ActionsCard />

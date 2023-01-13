@@ -64,7 +64,7 @@ export const AdminMenu = () => {
     {
       id: 7,
       title: "SuperAdmin Dash",
-      link: "/admin/user-dashboard",
+      link: "/admin/super-admin-dashboard",
       iconClass: "fa-lg fa-solid fa-home",
       isActive: false,
       titleClasses: "ml-2",
