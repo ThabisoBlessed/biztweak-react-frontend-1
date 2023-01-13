@@ -10,14 +10,17 @@ import { ActionsCard } from "./ActionsCard";
 import { ChartCard } from "./ChartCard";
 import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
 import { getAllUsers } from "../../services/admin/admin.service";
+import { getAllCompanies } from "../../services/business/company.service";
 
 export const IncubatorDashboard = () => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
     if (users.length === 0) {
       getusers();
+      getCompanies();
       setIsLoading(false);
     }
   });
@@ -29,6 +32,17 @@ export const IncubatorDashboard = () => {
       const usersBody = usersResult.data.package.data;
       setUsers(usersBody);
       console.log(usersBody);
+    }
+  };
+
+  const getCompanies = async () => {
+    const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
+    if (storageUser) {
+      const companiesResult = await getAllCompanies();
+      const companiesBody = companiesResult.data.package.data;
+      setCompanies(companiesBody);
+
+      console.log(companies);
     }
   };
 
@@ -50,7 +64,7 @@ export const IncubatorDashboard = () => {
                     <div className="col-12 bg-1 p-4 rounded-2 text-dark bg-[#b5e4ca40]">
                       <img src={EntreprenursImg} width="40px" alt=""></img>
                       <p className="small my-2">Entrepreneurs</p>
-                      <h1 className="m-0 fw-bold">10</h1>
+                      <h1 className="m-0 fw-bold">{companies.length}</h1>
                     </div>
                   </div>
                   <div className="col-lg-3 col-sm-6 mb-3 mb-lg-0">
@@ -79,7 +93,7 @@ export const IncubatorDashboard = () => {
             </div>
             <div className="row mt-2">
               <div className="col-lg-4">
-                {!isLoading ? <UsersCard mode={"incubator"} users={users} /> : null}
+                {users.length > 0 ? <UsersCard mode={"incubator"} users={users} /> : null}
               </div>
               <div className="col-lg-4">
                <ActionsCard />
