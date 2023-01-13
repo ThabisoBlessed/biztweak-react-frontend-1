@@ -1,10 +1,18 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ICompany } from "../../model/company.model";
 import { IUser } from "../../model/user.model";
 import "./Entrepreneurs.css";
 
 export const Entrepreneurs = (props: any) => {
   const [companies, setCompanies] = useState(props.companies);
+  const navigate = useNavigate();
+
+
+  const onViewReport = (business: ICompany) => {
+    const isNewCompany = false;
+    navigate("/business/manage-business/report-summary", { state: { business, isNewCompany }});
+  }
 
   return (
     <div className="card shadow">
@@ -58,9 +66,9 @@ export const Entrepreneurs = (props: any) => {
                   <td>0%</td>
                   <td>0%</td>
                   <td>
-                    <a href="#" className="text-[#00c2cb]">
+                    <button className="text-[#00c2cb]" onClick={() => onViewReport(company)}>
                       View Report
-                    </a>
+                    </button>
                   </td>
                 </tr>
               );
