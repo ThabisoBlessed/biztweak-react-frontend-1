@@ -4,8 +4,8 @@ import { ITestAnswer } from "../../model/test-answer.model";
 
 export const QuizModal = (props: any) => {
   const initAnswers: ITestAnswer[] = [
-    { id: 0, value: "Question 1", correctAnswer: false },
-    { id: 1, value: "Question 2", correctAnswer: true },
+    { id: 0, title: "Question 1", correctAnswer: false },
+    { id: 1, title: "Question 2", correctAnswer: true },
   ];
   const [answers, setAnswers] = useState(initAnswers);
 
@@ -55,7 +55,7 @@ export const QuizModal = (props: any) => {
                             checked={answer.correctAnswer}
                             onChange={() => {}}
                           />
-                          &nbsp;{answer.value}
+                          &nbsp;{answer.title}
                         </label>
                         <br></br>
                       </div>

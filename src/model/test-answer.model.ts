@@ -1,5 +1,5 @@
 export interface ITestAnswer {
     id: number;
-    value: string;
+    title: string;
     correctAnswer: boolean;
 }

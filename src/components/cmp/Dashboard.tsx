@@ -46,12 +46,14 @@ export const Dashboard = () => {
     if (storageUser) {
       const userResult: IUser = JSON.parse(storageUser);
       const profile = await getCurrentUser(userResult.id);
-      const userProfile = profile.data.package.data;
-      setUser(userProfile);
+      if (profile.data) {
+        const userProfile = profile.data.package.data;
+        setUser(userProfile);
+      }
       setIsLoading(false);
     }
   };
-  
+
   const getCompanies = async () => {
     const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
     if (storageUser) {
@@ -59,7 +61,6 @@ export const Dashboard = () => {
       const companies = companiesResult.data.package.data;
       setCompanies(companies);
       setIsLoading(false);
-
       console.log(companies);
       console.log(companiesResult);
     }
