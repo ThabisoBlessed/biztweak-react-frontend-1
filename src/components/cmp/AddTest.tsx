@@ -13,6 +13,7 @@ export const AddTest = () => {
   const { state } = useLocation();
   const [selectedCourse] = useState(state || ({} as ICourse));
   const [course, setCourse] = useState(selectedCourse.course);
+  const [textEditorText, setTextEditorText] = useState("");
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -37,7 +38,7 @@ export const AddTest = () => {
                 </button> */}
 
             <div className="form-group row align-items-center my-3">
-              <div className="col-md-12 bg-white">
+              <div className="col-md-6 col-lg-6 bg-white">
                 <TextEditor />
               </div>
             </div>

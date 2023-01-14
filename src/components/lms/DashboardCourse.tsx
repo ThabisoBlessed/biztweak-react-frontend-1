@@ -9,7 +9,6 @@ import { getAllcourses } from "../../services/cmp/course.service";
 
 export const DashboardCourse = (props: any) => {
   const navigate = useNavigate();
-  const initCourses: ICourse[] = [];
   const [courses, setCourses] = useState(props.courses);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -53,7 +52,7 @@ export const DashboardCourse = (props: any) => {
                   </p>
                   <div className="d-flex justify-content-between align-items-center">
                     <div className="w-100 me-3 text-dark">
-                      8 Lessons
+                      {courses.length} Lessons
                       <div className="progress">
                         <div
                           className="progress-bar bg-warning w-[75%]"

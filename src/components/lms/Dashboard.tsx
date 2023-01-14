@@ -65,7 +65,7 @@ export const Dashboard = () => {
                   <div className="col-lg-3 col-sm-6 mb-3 mb-lg-0">
                     <div className="col-12 bg-1 p-4 rounded-2 text-dark bg-[#b5e4ca40]">
                       <img src={FileImg} width="40px" alt=""></img>
-                      <p className="small my-2">Total Course</p>
+                      <p className="small my-2">Total Courses</p>
                       <h1 className="m-0 fw-bold">{courses.length}</h1>
                     </div>
                   </div>

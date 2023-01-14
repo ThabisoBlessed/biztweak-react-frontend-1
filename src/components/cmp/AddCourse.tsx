@@ -36,6 +36,8 @@ export const AddCourse = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [logo, setLogo] = useState({} as File);
 
+  const [selectedImage, setSelectedImage] = useState("");
+
   const chooseVideoType = (type: string) => {
     setVideoType(type);
   };
@@ -52,6 +54,7 @@ export const AddCourse = () => {
 
   const handleLogoFile = async (e: any) => {
     const file = e.target.files[0];
+    setSelectedImage(URL.createObjectURL(file))
     setLogo(file);
   };
 
@@ -275,8 +278,8 @@ export const AddCourse = () => {
             <div>Overview card</div>
             <label className="rounded-3 bg-[#dfdbec] px-5 py-4 text-center">
               <img
-                src={UserImg}
-                alt=""
+                src={selectedImage.length > 0 ? selectedImage : UserImg}
+                alt="courseLogo"
                 className="mx-auto"
                 height={60}
                 width={60}
