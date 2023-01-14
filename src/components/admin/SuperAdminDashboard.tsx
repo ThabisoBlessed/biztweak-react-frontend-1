@@ -50,6 +50,10 @@ export const SuperAdminDashboard = () => {
       getCompanies();
       setIsLoading(false);
     }
+
+    if (users.length === 0) {
+      getusers();
+    }
   }, [companies]);
 
   const onAddNewUser = () => {
@@ -82,8 +86,6 @@ export const SuperAdminDashboard = () => {
       const companiesResult = await getAllCompanies();
       const companiesBody = companiesResult.data.package.data;
       setCompanies(companiesBody);
-
-      console.log(companies);
     }
   };
 
@@ -167,9 +169,7 @@ export const SuperAdminDashboard = () => {
               </div>
 
               <div className="mb-2 mt-2">
-                {companies.length > 0 ? (
-                  <Entrepreneurs companies={companies} />
-                ) : null}
+                <Entrepreneurs companies={companies} />
               </div>
             </div>
           )}

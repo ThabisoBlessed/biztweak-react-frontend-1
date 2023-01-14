@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import CourseAvatar from "../../images/avatar.png";
 
-export const PlayCourseText = () => {
+export const PlayCourseText = (props: any) => {
   const navigate = useNavigate();
 
   const onClickInstructor = () => {
@@ -30,7 +30,7 @@ export const PlayCourseText = () => {
               </div>
             </div>
             <div className="title d-flex justify-content-between align-items-center">
-              <h4 className="fw-600 text-dark">Market intelligence</h4>
+              <h4 className="fw-600 text-dark text-2xl">Market intelligence</h4>
               <div className="text-muted">
                 <i className="fa fa-eye text-dark"></i> 2.3K
               </div>

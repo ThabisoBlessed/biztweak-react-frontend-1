@@ -3,7 +3,7 @@ import AvatarImg from "../../images/avatar.png";
 import CourseVideo from "../../images/video.mp4";
 import { useNavigate } from "react-router-dom";
 
-export const PlayCourseVideo = () => {
+export const PlayCourseVideo = (props: any) => {
   const navigate = useNavigate();
 
   const onClickInstructor = () => {
@@ -21,8 +21,8 @@ export const PlayCourseVideo = () => {
               className="img-fluid h-[400px] mt-2"
             ></video>
           </div>
-          <div className="title d-flex justify-content-between align-items-center">
-            <h4 className="fw-600 text-dark">Market intelligence</h4>
+          <div className="title d-flex justify-content-between mt-3 align-items-center">
+            <h4 className="fw-600 text-dark text-2xl">{props.course.title}</h4>
             <div className="text-muted">
               <i className="fa fa-eye text-dark"></i> 2.3K
             </div>
@@ -33,29 +33,20 @@ export const PlayCourseVideo = () => {
           >
             <img src={AvatarImg} className="h-[40px] w-[40px]" alt="" />
             <div className="ms-2">
-              <h6 className="mb-0 text-dark">Kitani Studio</h6>
+              <h6 className="mb-0 text-dark">{props.course.user.fullname}</h6>
               <p className="mb-0">BizTweak</p>
             </div>
           </div>
           <h5 className="text-dark fw-600">About Course</h5>
-          <p>
-            The Lorem ipum filling text is used by graphic designers,
-            programmers and printers with the aim of occupying the spaces of a
-            website, an advertising product or.he Lorem ipum filling text is
-            used by graphic designers, programmers and printers with the aim of
-            occupying the spaces of a website, an advertising product or. he
-            Lorem ipum filling text is used by graphic designers, programmers
-            and printers with the aim of occupying the spaces of a website, an
-            advertising product or .
-          </p>
-          <h5 className="text-dark fw-600">Related to this Course</h5>
-          <div className="flex">
+          <p>{props.course.description}</p>
+          <h5 className="text-dark fw-600 mt-3 mb-1">Related to this Course</h5>
+          <div className="flex mb-3">
             <div className="mt-3">
               <small className="text-dark">Ex_Files_Figma_EssT.zip</small>
               <br></br>
               <small className="text-muted">(308.76MB)</small>
             </div>
-            <button className="btn mt-2 ml-2 text-white bg-[#00c2cb] hover:bg-[#16f0fb]">
+            <button className="btn mt-2 ml-2 mb-2 text-white bg-[#00c2cb] hover:bg-[#16f0fb]">
               Download
             </button>
           </div>

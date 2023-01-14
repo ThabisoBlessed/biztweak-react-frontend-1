@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CourseAudio from "../../images/audio.mp3";
 import CourseAvatar from "../../images/avatar.png";
 
-export const PlayCourseAudio = () => {
+export const PlayCourseAudio = (props: any) => {
   const navigate = useNavigate();
 
   const onClickInstructor = () => {
@@ -19,7 +19,7 @@ export const PlayCourseAudio = () => {
               <audio controls={true} src={CourseAudio}></audio>
             </div>
             <div className="title d-flex justify-content-between align-items-center">
-              <h4 className="fw-600 text-dark">Market intelligence</h4>
+              <h4 className="fw-600 text-dark text-2xl">{props.course.title}</h4>
               <div className="text-muted">
                 <i className="fa fa-eye text-dark"></i> 2.3K
               </div>
@@ -27,22 +27,13 @@ export const PlayCourseAudio = () => {
             <div className="d-flex my-3 cursor-pointer" onClick={onClickInstructor}>
               <img src={CourseAvatar} className="h-[40px] w-[40px]" alt="" />
               <div className="ms-2">
-                <h6 className="mb-0 text-dark">Kitani Studio</h6>
+                <h6 className="mb-0 text-dark">{props.course.user.fullname}</h6>
                 <p className="mb-0">BizTweak</p>
               </div>
             </div>
             <h5 className="text-dark fw-600 mb-2">About Course</h5>
-            <p>
-              The Lorem ipum filling text is used by graphic designers,
-              programmers and printers with the aim of occupying the spaces of a
-              website, an advertising product or.he Lorem ipum filling text is
-              used by graphic designers, programmers and printers with the aim
-              of occupying the spaces of a website, an advertising product or.
-              he Lorem ipum filling text is used by graphic designers,
-              programmers and printers with the aim of occupying the spaces of a
-              website, an advertising product or .
-            </p>
-            <h5 className="text-dark fw-600 mb-2">Related to this Course</h5>
+            <p>{props.course.description}</p>
+            <h5 className="text-dark fw-600 mb-2 mt-3">Related to this Course</h5>
             <div className="d-flex">
               <div className="me-4">
                 <small className="text-dark">Ex_Files_Figma_EssT.zip</small>

@@ -16,10 +16,10 @@ export const Quiz = () => {
   const [quiz, setQuiz] = useState(quizes);
 
   useEffect(() => {
-    window.history.pushState(null, "", document.URL);
-    window.addEventListener("popstate", function (event) {
-      navigate(-1);
-    });
+    // window.history.pushState(null, "", document.URL);
+    // window.addEventListener("popstate", function (event) {
+    //   navigate(-1);
+    // });
   });
 
   const onEdit = () => {

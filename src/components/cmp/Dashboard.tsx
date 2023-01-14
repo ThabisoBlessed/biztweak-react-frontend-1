@@ -9,13 +9,14 @@ import { AddCourse } from "./AddCourse";
 import { useNavigate } from "react-router-dom";
 import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
 import { IUser } from "../../model/user.model";
-import { getAllUsers } from "../../services/admin/admin.service";
 import { getCurrentUser } from "../../services/lms/user.service";
+import { getAllCompanies } from "../../services/business/company.service";
 
 export const Dashboard = () => {
   const [companies, setCompanies] = useState([]);
   const [user, setUser] = useState({} as IUser);
   const [isLoading, setIsLoading] = useState(true);
+  const [isInitLoad, setIsInitLoad] = useState(true);
   const navigate = useNavigate();
 
   const data = [
@@ -32,8 +33,9 @@ export const Dashboard = () => {
       getProfile();
     }
 
-    if (companies.length === 0) {
+    if (companies.length === 0 && isInitLoad) {
       getCompanies();
+      setIsInitLoad(false);
     }
   });
 
@@ -57,7 +59,7 @@ export const Dashboard = () => {
   const getCompanies = async () => {
     const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
     if (storageUser) {
-      const companiesResult = await getAllUsers();
+      const companiesResult = await getAllCompanies();
       const companies = companiesResult.data.package.data;
       setCompanies(companies);
       setIsLoading(false);

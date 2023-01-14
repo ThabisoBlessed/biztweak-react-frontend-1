@@ -103,9 +103,9 @@ export const PlayCourse = () => {
                 </div>
               </div>
             </div>
-            {selectedTopMenu === "video" ? <PlayCourseVideo /> : null}
-            {selectedTopMenu === "audio" ? <PlayCourseAudio /> : null}
-            {selectedTopMenu === "text" ? <PlayCourseText /> : null}
+            {selectedTopMenu === "video" ? <PlayCourseVideo course={course} /> : null}
+            {selectedTopMenu === "audio" ? <PlayCourseAudio course={course} /> : null}
+            {selectedTopMenu === "text" ? <PlayCourseText course={course} /> : null}
           </div>
         </div>
       </div>

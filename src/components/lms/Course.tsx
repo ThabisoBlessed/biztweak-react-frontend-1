@@ -42,7 +42,7 @@ export const Course = () => {
                   ></video>
                 </div>
                 <div className="title d-flex justify-content-between align-items-center mt-2">
-                  <h4 className="fw-600 text-dark">Market intelligence</h4>
+                  <h4 className="fw-600 text-dark">{course.title}</h4>
                   <div className="text-muted">
                     <i className="fa fa-eye text-dark"></i> 2.3K
                   </div>
