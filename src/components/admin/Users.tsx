@@ -1,21 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
+import { IUser } from "../../model/user.model";
+import { getAllUsers } from "../../services/admin/admin.service";
 import { AdminMenu } from "./AdminMenu";
 
 export const Users = () => {
-  const { state } = useLocation();
-  const initUsers: any[] = [
-    { id: 1, name: "Muhammad Aqib", email: "aqib@aqib.com", userType: "-" },
-  ];
-  const [users, setUsers] = useState(initUsers);
-  const [userMode] = useState(state || {});
-  const [selectedUserMode, setSelectedUserMode] = useState(userMode);
+  const [users, setUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
 
-    console.log(selectedUserMode);
-  })
+    if (users.length === 0) {
+      getusers();
+    }
+  });
+
+  const getusers = async () => {
+    setIsLoading(true);
+    const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
+    if (storageUser) {
+      const usersResult = await getAllUsers();
+      const usersBody = usersResult.data.package.data;
+      setUsers(usersBody);
+      console.log(usersBody);
+    }
+    setIsLoading(false);
+  };
 
   return (
     <div className="w-full">
@@ -45,13 +57,13 @@ export const Users = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {users.map((user: any, index: number) => {
+                      {users.map((user: IUser, index: number) => {
                         return (
                           <tr key={index}>
                             <td>{user.id}</td>
-                            <td>{user.name}</td>
+                            <td>{user.fullname}</td>
                             <td>{user.email}</td>
-                            <td>{user.userType}</td>
+                            <td>{user.role}</td>
                             <td>
                               <a
                                 className="btn bg-[#00c2cb] text-white mr-2"
