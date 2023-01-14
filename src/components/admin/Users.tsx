@@ -1,21 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
 import { IUser } from "../../model/user.model";
 import { getAllUsers } from "../../services/admin/admin.service";
+import { getCurrentUser } from "../../services/lms/user.service";
 import { AdminMenu } from "./AdminMenu";
 
 export const Users = () => {
   const [users, setUsers] = useState([]);
+  const [currentUser, setCurrentUser] = useState({} as IUser);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+
+    if (currentUser && !currentUser.email) {
+      getProfile();
+    }
 
     if (users.length === 0) {
       getusers();
     }
   });
+
+  const getProfile = async () => {
+    const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
+    if (storageUser) {
+      const userResult: IUser = JSON.parse(storageUser);
+      const profile = await getCurrentUser(userResult.id);
+      setCurrentUser(profile.data.package.data);
+      setIsLoading(false);
+    }
+  };
 
   const getusers = async () => {
     setIsLoading(true);
@@ -29,6 +44,10 @@ export const Users = () => {
     setIsLoading(false);
   };
 
+  const onViewUser = (user: IUser) => {
+    console.log(user);
+  }
+
   return (
     <div className="w-full">
       <div className="row">
@@ -40,7 +59,9 @@ export const Users = () => {
             <div className="row mt-3">
               <div className="card shadow">
                 <div className="card-header bg-white border-0 d-flex justify-content-between">
-                  <h5 className="mb-0 text-2xl font-medium text-dark">Registered Users</h5>
+                  <h5 className="mb-0 text-2xl font-medium text-dark">
+                    Registered Users
+                  </h5>
                   <button className="btn btn-main">
                     <i className="fa fa-download"></i> Export (CSV)
                   </button>
@@ -65,18 +86,18 @@ export const Users = () => {
                             <td>{user.email}</td>
                             <td>{user.role}</td>
                             <td>
-                              <a
+                              <button
                                 className="btn bg-[#00c2cb] text-white mr-2"
-                                href="#"
+                                onClick={() => onViewUser(user)}
                               >
                                 <i className="fa fa-eye"></i>
-                              </a>
-                              <a className="btn btn-warning mr-2" href="#">
+                              </button>
+                              <button className="btn btn-warning mr-2">
                                 <i className="fa fa-edit"></i>
-                              </a>
-                              <a className="btn btn-danger" href="#">
+                              </button>
+                              <button className="btn btn-danger" disabled={user.id === currentUser.id}>
                                 <i className="fa fa-trash"></i>
-                              </a>
+                              </button>
                             </td>
                           </tr>
                         );

@@ -96,7 +96,7 @@ export const Dashboard = () => {
             </div>
 
             <div className="mt-2 overflow-y-scroll h-[400px]">
-              <DashboardCourse courses={courses} />
+              {courses.length > 0 ? <DashboardCourse courses={courses} /> : null}
             </div>
           </div>
         </div>
