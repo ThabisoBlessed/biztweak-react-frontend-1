@@ -23,7 +23,6 @@ export const Dashboard = () => {
     }
   });
   
-
   const getCourses = async () => {
     const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
     if (storageUser) {

@@ -11,16 +11,15 @@ export const AddTest = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { state } = useLocation();
-  const [selectedCourse] = useState(state || {} as ICourse);
+  const [selectedCourse] = useState(state || ({} as ICourse));
   const [course, setCourse] = useState(selectedCourse.course);
 
   useEffect(() => {
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     console.log(course);
   }, [isLoading]);
 
-  const onAddAnswer = () => {
-  };
+  const onAddAnswer = () => {};
 
   return (
     <div className="w-full">
@@ -30,26 +29,26 @@ export const AddTest = () => {
         </div>
         <div className="col-md-10 text-left bg-light border-start">
           <div className="container-fluid">
-                {/* <button
+            {/* <button
                   type="button"
                   className="btn btn-wide bg-[#6c757d] hover:bg-[#a1b0bc] text-white w-[150px]"
                 >
                   <i className="fa fa-plus"></i> Add Test
                 </button> */}
-                
-                <div className="form-group row align-items-center my-3">
-                  <div className="col-md-12 bg-white">
-                    <TextEditor />
-                  </div>
-                </div>
 
-                <Answer />
+            <div className="form-group row align-items-center my-3">
+              <div className="col-md-12 bg-white">
+                <TextEditor />
+              </div>
+            </div>
 
-                <div className="form-group d-flex justify-content-between my-5">
-                  <button className="btn btn-main btn-wide bg-[#6c757d] hover:bg-[#a1b0bc] text-white w-[150px]">
-                    Submit Question
-                  </button>
-                </div>
+            <Answer />
+
+            <div className="form-group d-flex justify-content-between my-5">
+              <button className="btn btn-main btn-wide bg-[#6c757d] hover:bg-[#a1b0bc] text-white w-[150px]">
+                Submit Question
+              </button>
+            </div>
           </div>
         </div>
       </div>
