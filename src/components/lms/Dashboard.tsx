@@ -6,37 +6,37 @@ import ClockImg from "../../images/icons/clock.png";
 import CheckImg from "../../images/icons/check.png";
 import CoinsImg from "../../images/icons/coins.png";
 import { DashboardCourse } from "./DashboardCourse";
+import { ICourse } from "../../model/course.model";
+import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
+import { IUser } from "../../model/user.model";
+import { getAllcourses } from "../../services/cmp/course.service";
 
 export const Dashboard = () => {
-  const courses: any[] = [
-    {
-      id: "test1",
-      title: "E-Bussiness Managment course learning",
-      provider: "BizTweak",
-      lessons: "10/40",
-    },
-    {
-      id: "test2",
-      title: "E-Bussiness Managment course learning",
-      provider: "BizTweak",
-      lessons: "10/40",
-    },
-    {
-      id: "test3",
-      title: "E-Bussiness Managment course learning",
-      provider: "BizTweak",
-      lessons: "10/40",
-    },
-    {
-      id: "test4",
-      title: "E-Bussiness Managment course learning",
-      provider: "BizTweak",
-      lessons: "10/40",
-    },
-  ];
-  const [dashboardCourses, setDashboardCourses] = useState([...courses]);
+  const initCourses: ICourse[] = [];
+  const [courses, setCourses] = useState(initCourses);
+  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (courses.length === 0) {
+      getCourses();
+      setIsLoading(false);
+    }
+  });
+  
+
+  const getCourses = async () => {
+    const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
+    if (storageUser) {
+      const userResult: IUser = JSON.parse(storageUser);
+      const coursesResult = await getAllcourses();
+      if (coursesResult.data) {
+        const myCourses: ICourse[] = coursesResult.data.package.data;
+        setCourses(
+          myCourses.filter((c) => c.user.id === Number(userResult.id))
+        );
+      }
+    }
+  };
 
   return (
     <div className="w-full">
@@ -67,7 +67,7 @@ export const Dashboard = () => {
                     <div className="col-12 bg-1 p-4 rounded-2 text-dark bg-[#b5e4ca40]">
                       <img src={FileImg} width="40px" alt=""></img>
                       <p className="small my-2">Total Course</p>
-                      <h1 className="m-0 fw-bold">265</h1>
+                      <h1 className="m-0 fw-bold">{courses.length}</h1>
                     </div>
                   </div>
                   <div className="col-lg-3 col-sm-6 mb-3 mb-lg-0">
@@ -96,7 +96,7 @@ export const Dashboard = () => {
             </div>
 
             <div className="mt-2 overflow-y-scroll h-[400px]">
-              <DashboardCourse dashboardCourses={dashboardCourses} />
+              <DashboardCourse courses={courses} />
             </div>
           </div>
         </div>

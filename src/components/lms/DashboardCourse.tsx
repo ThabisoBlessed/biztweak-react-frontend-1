@@ -10,33 +10,12 @@ import { getAllcourses } from "../../services/cmp/course.service";
 export const DashboardCourse = (props: any) => {
   const navigate = useNavigate();
   const initCourses: ICourse[] = [];
-  const [courses, setCourses] = useState(initCourses);
+  const [courses, setCourses] = useState(props.courses);
   const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    if (courses.length === 0) {
-      getCourses();
-      setIsLoading(false);
-    }
-  }, [props.dashboardCourses]);
 
   const handleClick = (event: any) => {
     const index = event.currentTarget.id;
     props.handleCourseClick(index);
-  };
-
-  const getCourses = async () => {
-    const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
-    if (storageUser) {
-      const userResult: IUser = JSON.parse(storageUser);
-      const coursesResult = await getAllcourses();
-      if (coursesResult.data) {
-        const myCourses: ICourse[] = coursesResult.data.package.data;
-        setCourses(
-          myCourses.filter((c) => c.user.id === Number(userResult.id))
-        );
-      }
-    }
   };
 
   const onStartCourse = () => {
