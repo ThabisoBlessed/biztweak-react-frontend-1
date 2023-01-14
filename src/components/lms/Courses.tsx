@@ -20,8 +20,8 @@ export const Courses = () => {
     }
   });
 
-  const onStartCourse = () => {
-    navigate("/lms/course");
+  const onStartCourse = (course: ICourse) => {
+    navigate("/lms/course", { state: {course} });
   };
 
   const getCourses = async () => {
@@ -87,7 +87,7 @@ export const Courses = () => {
                             <div className="w-100 text-end">
                               <button
                                 className="btn btn-main hover:bg-[#16f0fb] bg-[#00c2cb] mt-2 text-[white]"
-                                onClick={onStartCourse}
+                                onClick={() => onStartCourse(course)}
                               >
                                 Start Course
                               </button>
