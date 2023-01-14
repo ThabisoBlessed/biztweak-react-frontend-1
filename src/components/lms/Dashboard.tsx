@@ -95,7 +95,7 @@ export const Dashboard = () => {
               </div>
             </div>
 
-            <div className="mt-2">
+            <div className="mt-2 overflow-y-scroll h-[400px]">
               <DashboardCourse dashboardCourses={dashboardCourses} />
             </div>
           </div>
