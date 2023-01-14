@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { ICourse } from "../../model/course.model";
 import { ITestAnswer } from "../../model/test-answer.model";
 import { Answer } from "./Answer";
 import { CMPMenu } from "./CMPMenu";
@@ -7,9 +9,14 @@ import { TextEditor } from "./TextEditor";
 export const AddTest = () => {
   const initAnswers: ITestAnswer[] = [];
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const [selectedCourse] = useState(state || {} as ICourse);
+  const [course, setCourse] = useState(selectedCourse.course);
 
   useEffect(() => {
     window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    console.log(course);
   }, [isLoading]);
 
   const onAddAnswer = () => {

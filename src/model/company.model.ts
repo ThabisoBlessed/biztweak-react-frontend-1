@@ -18,4 +18,5 @@ export interface ICompany {
   date: string;
   user: IUser;
   report: any;
+  score: number;
 }

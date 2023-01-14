@@ -64,20 +64,29 @@ export const AddCourse = () => {
     e.preventDefault();
     setIsLoading(false);
 
-    const courseModel = {} as ICourse;
-    courseModel.title = title;
-    courseModel.description = description;
-    courseModel.category = category;
-    courseModel.intro_video = introVideo;
-    courseModel.start_datetime = startDatetime;
-    courseModel.expiry_datetime = expiryDatetime;
-    courseModel.business_phase = businessPhase.value;
-    courseModel.score = 0;
-    courseModel.logo = logo;
+    // const courseModel = {} as ICourse;
+    // courseModel.title = title;
+    // courseModel.description = description;
+    // courseModel.category = category;
+    // courseModel.intro_video = JSON.stringify(introVideo);
+    // courseModel.start_datetime = startDatetime;
+    // courseModel.expiry_datetime = expiryDatetime;
+    // courseModel.business_phase = businessPhase;
+    // courseModel.score = 0;
+    // courseModel.logo = JSON.stringify(logo);
 
-    console.log(courseModel);
+    const data = new FormData() 
+    data.append('title', title);
+    data.append('description', description);
+    data.append('category', category);
+    data.append('start_datetime', startDatetime);
+    data.append('expiry_datetime', expiryDatetime);
+    data.append('business_phase', businessPhase);
+    data.append('score', "0");
+    data.append('logo', logo);
+    data.append('intro_video', introVideo);
 
-    const courseResult = await addCourse(courseModel);
+    const courseResult = await addCourse(data);
     const success = courseResult.data;
     if (success) {
       const course = courseResult.data.package.data;

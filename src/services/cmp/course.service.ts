@@ -9,7 +9,7 @@ import { ICourse } from "../../model/course.model";
  * @param {any} course
  * @returns {any} result
  */
-export const addCourse = async (course: ICourse): Promise<any> => {
+export const addCourse = async (course: ICourse | any): Promise<any> => {
   try {
     let config = {
       headers: {

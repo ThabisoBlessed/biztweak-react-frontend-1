@@ -169,7 +169,7 @@ export const SuperAdminDashboard = () => {
               </div>
 
               <div className="mb-2 mt-2">
-                <Entrepreneurs companies={companies} />
+                {companies.length > 0 ? <Entrepreneurs companies={companies} /> : null}
               </div>
             </div>
           )}
