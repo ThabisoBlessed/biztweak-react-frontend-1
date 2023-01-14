@@ -1,10 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { LMSMenu } from "./LMSMenu";
 import CourseImg from "../../images/course.png";
 import AvatarImg from "../../images/avatar.png";
 import "./Profile.css";
+import { IUser } from "../../model/user.model";
+import { useLocation } from "react-router-dom";
+import { ICourse } from "../../model/course.model";
+import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
+import { getAllcourses } from "../../services/cmp/course.service";
 
 export const InstructorProfile = () => {
+  const { state } = useLocation();
+  const [selectedInstructor] = useState(state || {} as IUser);
+  const [instructor, setInstructor] = useState(selectedInstructor.instructor);
+  const initCourses: ICourse[] = [];
+  const [courses, setCourses] = useState(initCourses);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    console.log(instructor);
+    if (courses.length === 0) {
+      getCourses();
+      setIsLoading(false);
+    }
+  });
+
+  const getCourses = async () => {
+    const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
+    if (storageUser) {
+      const userResult: IUser = JSON.parse(storageUser);
+      const coursesResult = await getAllcourses();
+      if (coursesResult.data) {
+        const myCourses: ICourse[] = coursesResult.data.package.data;
+        setCourses(myCourses.filter(c => c.user.id === Number(userResult.id)));
+      }
+    }
+  };
+
   return (
     <div className="w-full">
       <div className="row">
@@ -32,23 +64,12 @@ export const InstructorProfile = () => {
                       <div className="col"></div>
                     </div>
 
-                    <h4 className="my-2 fw-600 text-dark">Jason Ritchey</h4>
+                    <h4 className="my-2 fw-600 text-dark">{instructor?.fullname}</h4>
                     <p className="text-dark small">Instructor</p>
-                    <p className="small text-muted">Total Course : 27</p>
+                    <p className="small text-muted">Total Course : {courses.length}</p>
                     <div className="row justify-content-center">
                       <div className="col-md-8">
-                        <p>
-                          he Lorem ipum filling text is used by graphic
-                          designers, programmers and printers with the aim of
-                          occupying the spaces of a website, an advertising
-                          product or.he Lorem ipum filling text is used by
-                          graphic designers, programmers and printers with the
-                          aim of occupying the spaces of a website, an
-                          advertising product or. he Lorem ipum filling text is
-                          used by graphic designers, programmers and printers
-                          with the aim of occupying the spaces of a website, an
-                          advertising product or .
-                        </p>
+                        <p>{instructor?.bio}</p>
                       </div>
                     </div>
                   </div>

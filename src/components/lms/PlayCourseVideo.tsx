@@ -2,12 +2,13 @@ import React from "react";
 import AvatarImg from "../../images/avatar.png";
 import CourseVideo from "../../images/video.mp4";
 import { useNavigate } from "react-router-dom";
+import { IUser } from "../../model/user.model";
 
 export const PlayCourseVideo = (props: any) => {
   const navigate = useNavigate();
 
-  const onClickInstructor = () => {
-    navigate("/lms/instructor-profile");
+  const onClickInstructor = (instructor: IUser) => {
+    navigate("/lms/instructor-profile", { state: { instructor }});
   };
 
   return (
@@ -29,7 +30,7 @@ export const PlayCourseVideo = (props: any) => {
           </div>
           <div
             className="d-flex my-3 cursor-pointer"
-            onClick={onClickInstructor}
+            onClick={() => onClickInstructor(props.course.user)}
           >
             <img src={AvatarImg} className="h-[40px] w-[40px]" alt="" />
             <div className="ms-2">

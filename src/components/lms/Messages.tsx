@@ -113,11 +113,11 @@ export const Messages = () => {
                                   Casper
                                 </h5>
                                 <p className="mb-0">
-                                  Instructor | Course:{" "}
+                                  Instructor | Course:
                                   <span className="fw-600 text-dark">
                                     1 item
-                                  </span>{" "}
-                                  | Lifetime:{" "}
+                                  </span>
+                                  | Lifetime:
                                   <span className="fw-600 text-dark">
                                     $1,235.00
                                   </span>
@@ -162,7 +162,7 @@ export const Messages = () => {
                                         E-Business...
                                       </h6>
                                       <p className="text-muted fw-600 mb-0">
-                                        10/40 Lessons <br></br>{" "}
+                                        10/40 Lessons <br></br>
                                         <span className="text-main">
                                           Due in 2 days
                                         </span>
@@ -180,7 +180,7 @@ export const Messages = () => {
                                         E-Business...
                                       </h6>
                                       <p className="text-muted fw-600 mb-0">
-                                        10/40 Lessons <br></br>{" "}
+                                        10/40 Lessons <br></br>
                                         <span className="text-main">
                                           Due in 2 days
                                         </span>
@@ -198,7 +198,7 @@ export const Messages = () => {
                                         E-Business...
                                       </h6>
                                       <p className="text-muted fw-600 mb-0">
-                                        10/40 Lessons <br></br>{" "}
+                                        10/40 Lessons <br></br>
                                         <span className="text-main">
                                           Due in 2 days
                                         </span>
@@ -216,7 +216,7 @@ export const Messages = () => {
                                         E-Business...
                                       </h6>
                                       <p className="text-muted fw-600 mb-0">
-                                        10/40 Lessons <br></br>{" "}
+                                        10/40 Lessons <br></br>
                                         <span className="text-main">
                                           Due in 2 days
                                         </span>
@@ -234,7 +234,7 @@ export const Messages = () => {
                                         E-Business...
                                       </h6>
                                       <p className="text-muted fw-600 mb-0">
-                                        10/40 Lessons <br></br>{" "}
+                                        10/40 Lessons <br></br>
                                         <span className="text-main">
                                           Due in 2 days
                                         </span>
@@ -252,7 +252,7 @@ export const Messages = () => {
                                         E-Business...
                                       </h6>
                                       <p className="text-muted fw-600 mb-0">
-                                        10/40 Lessons <br></br>{" "}
+                                        10/40 Lessons <br></br>
                                         <span className="text-main">
                                           Due in 2 days
                                         </span>
@@ -270,7 +270,7 @@ export const Messages = () => {
                                         E-Business...
                                       </h6>
                                       <p className="text-muted fw-600 mb-0">
-                                        10/40 Lessons <br></br>{" "}
+                                        10/40 Lessons <br></br>
                                         <span className="text-main">
                                           Due in 2 days
                                         </span>
@@ -288,7 +288,7 @@ export const Messages = () => {
                                         E-Business...
                                       </h6>
                                       <p className="text-muted fw-600 mb-0">
-                                        10/40 Lessons <br></br>{" "}
+                                        10/40 Lessons <br></br>
                                         <span className="text-main">
                                           Due in 2 days
                                         </span>
@@ -335,7 +335,7 @@ export const Messages = () => {
                                 />
                                 <div>
                                   <h6 className="mb-0">
-                                    Orval{" "}
+                                    Orval
                                     <span
                                       className="ms-4"
                                       style={{ fontSize: "80%" }}
@@ -360,7 +360,7 @@ export const Messages = () => {
                                 />
                                 <div>
                                   <h6 className="mb-0">
-                                    Britney Beer{" "}
+                                    Britney Beer
                                     <span
                                       className="ms-4"
                                       style={{ fontSize: "80%" }}

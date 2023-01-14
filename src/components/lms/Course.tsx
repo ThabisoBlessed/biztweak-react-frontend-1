@@ -5,6 +5,7 @@ import CourseVideo from "../../images/video.mp4";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Course.css";
 import { ICourse } from "../../model/course.model";
+import { IUser } from "../../model/user.model";
 
 export const Course = () => {
   const navigate = useNavigate();
@@ -20,8 +21,8 @@ export const Course = () => {
     navigate("/lms/play-course", { state: { course }});
   } 
 
-  const onClickInstructor = () => {
-    navigate("/lms/instructor-profile");
+  const onClickInstructor = (instructor: IUser) => {
+    navigate("/lms/instructor-profile", { state: {instructor}});
   }
 
   return (
@@ -47,7 +48,7 @@ export const Course = () => {
                     <i className="fa fa-eye text-dark"></i> 2.3K
                   </div>
                 </div>
-                <div className="d-flex my-3 cursor-pointer" onClick={onClickInstructor}>
+                <div className="d-flex my-3 cursor-pointer" onClick={() => onClickInstructor(course.user)}>
                   <img src={AvatarImg} className="h-[40px] w-[40px]" alt="" />
                   <div className="ms-2">
                     <h6 className="mb-0 text-dark">{course.user.fullname}</h6>

@@ -89,12 +89,12 @@ export const BusinessMenu = (props: any) => {
                         <hr></hr>
                         <div className="small text-start">
                           <p className="d-flex m-2">
-                            <i className="fa fa-info me-3"></i>{" "}
+                            <i className="fa fa-info me-3"></i>
                             {business.phase}
                           </p>
 
                           <p className="m-2">
-                            <i className="fa fa-industry me-3"></i>{" "}
+                            <i className="fa fa-industry me-3"></i>
                             {business.industry}
                           </p>
                         </div>

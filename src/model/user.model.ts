@@ -14,4 +14,5 @@ export interface IUser {
     photo: File;
     market_newsletter: any;
     product_updates_and_community_announcements: any;
+    bio: string;
 }

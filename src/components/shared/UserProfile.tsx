@@ -97,6 +97,7 @@ export const UserProfile = (props: any) => {
       market_newsletter: marketNewsletter === "true" ? true : false,
       product_updates_and_community_announcements:
         productUpdatesAndCommunityAnnouncements === "true" ? true : false,
+      bio: ""
     };
 
     const update = await updateProfile(userProfile);

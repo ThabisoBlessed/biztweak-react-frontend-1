@@ -7,6 +7,7 @@ import "./Course.css";
 import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
 import { getAllcourses } from "../../services/cmp/course.service";
 import { ICourse } from "../../model/course.model";
+import { IUser } from "../../model/user.model";
 
 export const Courses = () => {
   const navigate = useNavigate();
@@ -37,8 +38,8 @@ export const Courses = () => {
     }
   };
 
-  const onClickInstructor = () => {
-    navigate("/lms/instructor-profile");
+  const onClickInstructor = (instructor: IUser) => {
+    navigate("/lms/instructor-profile", { state: { instructor }});
   };
 
   return (
@@ -73,7 +74,7 @@ export const Courses = () => {
                           <div className="d-flex justify-content-between align-items-center cursor-pointer">
                             <div
                               className="w-100 me-3 d-flex align-items-center"
-                              onClick={onClickInstructor}
+                              onClick={() => onClickInstructor(course.user)}
                             >
                               <img
                                 src={AvatarImg}
