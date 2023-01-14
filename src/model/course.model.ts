@@ -10,6 +10,6 @@ export interface ICourse {
   expiry_datetime: string;
   business_phase: string;
   score: number;
-  user?: IUser;
+  user: IUser;
   logo: any;
 }

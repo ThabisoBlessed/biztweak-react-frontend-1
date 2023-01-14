@@ -10,7 +10,8 @@ import { ICourse } from "../../model/course.model";
 
 export const Courses = () => {
   const navigate = useNavigate();
-  const [courses, setCourses] = useState([]);
+  const initCourses: ICourse[] = [];
+  const [courses, setCourses] = useState(initCourses);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -21,7 +22,7 @@ export const Courses = () => {
   });
 
   const onStartCourse = (course: ICourse) => {
-    navigate("/lms/course", { state: {course} });
+    navigate("/lms/course", { state: { course } });
   };
 
   const getCourses = async () => {
@@ -80,19 +81,19 @@ export const Courses = () => {
                                 alt=""
                               />
                               <div>
-                                <div>BizTweak</div>
-                                <div className="small">40 Lessons</div>
+                                <div>{course.user.fullname}</div>
+                                <div className="small">{courses.filter(c => c.user.id === course.user.id).length} Lessons</div>
                               </div>
                             </div>
-                            <div className="w-100 text-end">
-                              <button
-                                className="btn btn-lg mb-3 hover:bg-[#16f0fb] w-[150px] bg-[#00c2cb] mt-2 text-[white]"
-                                onClick={() => onStartCourse(course)}
-                              >
-                                Start Course
-                              </button>
-                            </div>
                           </div>
+                        </div>
+                        <div className="text-center">
+                          <button
+                            className="btn btn-lg mb-3 hover:bg-[#16f0fb] w-[150px] bg-[#00c2cb] mt-2 text-[white]"
+                            onClick={() => onStartCourse(course)}
+                          >
+                            Start Course
+                          </button>
                         </div>
                       </div>
                     </div>
