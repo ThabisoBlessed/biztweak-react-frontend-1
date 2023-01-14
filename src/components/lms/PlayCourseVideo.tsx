@@ -17,7 +17,7 @@ export const PlayCourseVideo = (props: any) => {
           <div className="video bg-2">
             <video
               controls={true}
-              src={CourseVideo}
+              src={props.course.intro_video}
               className="img-fluid h-[400px] mt-2"
             ></video>
           </div>

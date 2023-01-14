@@ -30,8 +30,6 @@ export const AddTest = () => {
         </div>
         <div className="col-md-10 text-left bg-light border-start">
           <div className="container-fluid">
-            <form className="row mt-3">
-              <div className="col-md-7">
                 {/* <button
                   type="button"
                   className="btn btn-wide bg-[#6c757d] hover:bg-[#a1b0bc] text-white w-[150px]"
@@ -52,8 +50,6 @@ export const AddTest = () => {
                     Submit Question
                   </button>
                 </div>
-              </div>
-            </form>
           </div>
         </div>
       </div>

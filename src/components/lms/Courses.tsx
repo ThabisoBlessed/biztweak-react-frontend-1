@@ -65,9 +65,9 @@ export const Courses = () => {
                       <div className="card">
                         <div className="card-body">
                           <img
-                            src={CourseImg}
-                            className="img-fluid card-img-top"
-                            alt=""
+                            src={course.logo}
+                            className="img-fluid card-img-top h-[150px]"
+                            alt="logo"
                           />
                           <h5 className="my-2">{course.title}</h5>
                           <div className="d-flex justify-content-between align-items-center cursor-pointer">

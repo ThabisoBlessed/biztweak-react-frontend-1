@@ -19,15 +19,6 @@ export const Dashboard = () => {
   const [isInitLoad, setIsInitLoad] = useState(true);
   const navigate = useNavigate();
 
-  const data = [
-    ["Elements", "Priority Elements"],
-    ["Work", 11],
-    ["Eat", 2],
-    ["Commute", 2],
-    ["Watch TV", 2],
-    ["Sleep", 7],
-  ];
-
   useEffect(() => {
     if (user && !user.email) {
       getProfile();

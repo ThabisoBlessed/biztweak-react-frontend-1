@@ -37,7 +37,7 @@ export const Course = () => {
                 <div className="video">
                   <video
                     controls={true}
-                    src={CourseVideo}
+                    src={course.intro_video}
                     className="img-fluid h-[400px]"
                   ></video>
                 </div>
