@@ -62,7 +62,7 @@ export const Courses = () => {
                   return (
                     <div className="col-lg-3 col-md-4 mb-3" key={index}>
                       <div className="card">
-                        <div className="card-body text-dark">
+                        <div className="card-body">
                           <img
                             src={CourseImg}
                             className="img-fluid card-img-top"
@@ -86,7 +86,7 @@ export const Courses = () => {
                             </div>
                             <div className="w-100 text-end">
                               <button
-                                className="btn btn-main hover:bg-[#16f0fb] bg-[#00c2cb] mt-2 text-[white]"
+                                className="btn btn-lg mb-3 hover:bg-[#16f0fb] w-[150px] bg-[#00c2cb] mt-2 text-[white]"
                                 onClick={() => onStartCourse(course)}
                               >
                                 Start Course

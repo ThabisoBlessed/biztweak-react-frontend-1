@@ -11,7 +11,7 @@ export interface IUser {
     location: string,
     role: string;
     registered: string;
-    photo: string;
+    photo: File;
     market_newsletter: any;
     product_updates_and_community_announcements: any;
 }

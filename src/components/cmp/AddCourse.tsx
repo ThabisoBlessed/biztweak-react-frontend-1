@@ -34,6 +34,7 @@ export const AddCourse = () => {
   const [businessPhases, setBusinessPhases] = useState(bizPhaseList);
   const [businessPhase, setBusinessPhase] = useState(bizPhaseList[0]);
   const [isLoading, setIsLoading] = useState(false);
+  const [logo, setLogo] = useState({} as File);
 
   const chooseVideoType = (type: string) => {
     setVideoType(type);
@@ -49,6 +50,16 @@ export const AddCourse = () => {
     setIntroVideo(file);
   };
 
+  const handleLogoFile = async (e: any) => {
+    const file = e.target.files[0];
+    setLogo(file);
+  };
+
+  const onRemovePhoto = (e: any) => {
+    e.preventDefault();
+    setLogo({} as File);
+  };
+
   const onSaveAndContinue = async (e: any) => {
     e.preventDefault();
     setIsLoading(false);
@@ -60,8 +71,11 @@ export const AddCourse = () => {
     courseModel.intro_video = introVideo;
     courseModel.start_datetime = startDatetime;
     courseModel.expiry_datetime = expiryDatetime;
-    courseModel.business_phase = businessPhase;
+    courseModel.business_phase = businessPhase.value;
     courseModel.score = 0;
+    courseModel.logo = logo;
+
+    console.log(courseModel);
 
     const courseResult = await addCourse(courseModel);
     const success = courseResult.data;
@@ -259,7 +273,7 @@ export const AddCourse = () => {
                 width={60}
               />
               <div className="mt-2 text-dark">Upload Course Image</div>
-              <input type="file" className="d-none" />
+              <input type="file" className="d-none" onChange={(e) => handleLogoFile(e)} />
             </label>
           </div>
         </div>

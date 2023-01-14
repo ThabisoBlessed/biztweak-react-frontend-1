@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { LMSMenu } from "./LMSMenu";
 import AvatarImg from "../../images/avatar.png";
 import CourseVideo from "../../images/video.mp4";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./Course.css";
+import { ICourse } from "../../model/course.model";
 
 export const Course = () => {
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const [selectedCourse] = useState(state || {} as ICourse);
+  const [course, setCourse] = useState(selectedCourse.course);
+
+  useEffect(() => {
+    console.log(course);
+  });
 
   const onStartCourse = () => {
-    navigate("/lms/play-course");
+    navigate("/lms/play-course", { state: { course }});
   } 
 
   const onClickInstructor = () => {
@@ -33,7 +41,7 @@ export const Course = () => {
                     className="img-fluid h-[400px]"
                   ></video>
                 </div>
-                <div className="title d-flex justify-content-between align-items-center">
+                <div className="title d-flex justify-content-between align-items-center mt-2">
                   <h4 className="fw-600 text-dark">Market intelligence</h4>
                   <div className="text-muted">
                     <i className="fa fa-eye text-dark"></i> 2.3K
@@ -42,22 +50,13 @@ export const Course = () => {
                 <div className="d-flex my-3 cursor-pointer" onClick={onClickInstructor}>
                   <img src={AvatarImg} className="h-[40px] w-[40px]" alt="" />
                   <div className="ms-2">
-                    <h6 className="mb-0 text-dark">Kitani Studio</h6>
+                    <h6 className="mb-0 text-dark">{course.user.fullname}</h6>
                     <p className="mb-0">BizTweak</p>
                   </div>
                 </div>
                 <h5 className="text-dark fw-600">About Course</h5>
-                <p>
-                  The Lorem ipum filling text is used by graphic designers,
-                  programmers and printers with the aim of occupying the spaces
-                  of a website, an advertising product or.he Lorem ipum filling
-                  text is used by graphic designers, programmers and printers
-                  with the aim of occupying the spaces of a website, an
-                  advertising product or. he Lorem ipum filling text is used by
-                  graphic designers, programmers and printers with the aim of
-                  occupying the spaces of a website, an advertising product or .
-                </p>
-                <button className="btn hover:bg-[#16f0fb] bg-[#00c2cb] text-[white]" onClick={onStartCourse}>Start Course</button>
+                <p className="mb-2 mt-2">{course.description}</p>
+                <button className="btn hover:bg-[#16f0fb] mb-3 bg-[#00c2cb] text-[white]" onClick={onStartCourse}>Start Course</button>
               </div>
               <div className="order-0 mb-3 mb-md-0 order-md-1 col-md-4 bg-light">
                 <div className="accordion" id="accordionExample">

@@ -6,6 +6,8 @@ import { IMenuListItem } from "../../model/menu-list-item.model";
 import { PlayCourseAudio } from "./PlayCourseAudio";
 import { PlayCourseText } from "./PlayCourseText";
 import { LOCALSTORAGE_KEYS } from "../../config";
+import { useNavigate, useLocation } from "react-router-dom";
+import { ICourse } from "../../model/course.model";
 
 export const PlayCourse = () => {
   const [selectedTopMenu, setSelectedTopMenu] = useState("video");
@@ -36,12 +38,17 @@ export const PlayCourse = () => {
     },
   ];
   const [clickedMenuItem, setClickedMenuItem] = useState(menuList[0]);
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const [selectedCourse] = useState(state || {} as ICourse);
+  const [course, setCourse] = useState(selectedCourse.course);
 
   useEffect(() => {
-    const selected = localStorage.getItem(LOCALSTORAGE_KEYS.selectedMenu);
-    if (selected) {
-      setClickedMenuItem(JSON.parse(selected));
-    } 
+    console.log(course);
+    // const selected = localStorage.getItem(LOCALSTORAGE_KEYS.selectedMenu);
+    // if (selected) {
+    //   setClickedMenuItem(JSON.parse(selected));
+    // } 
   }, []);
 
   /**

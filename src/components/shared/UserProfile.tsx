@@ -14,7 +14,7 @@ export const UserProfile = (props: any) => {
   const [id, setId] = useState(props.user.id);
   const [location, setLocation] = useState(props.user.location);
   const [phone, setPhone] = useState(props.user.phone);
-  const [photo, setPhoto] = useState("");
+  const [photo, setPhoto] = useState({} as File);
   const [registered, setRegistered] = useState(props.user.registered);
   const [role, setRole] = useState(props.user.role);
   const [work_experience, setWorkExperience] = useState(
@@ -136,7 +136,7 @@ export const UserProfile = (props: any) => {
 
   const onRemovePhoto = (e: any) => {
     e.preventDefault();
-    setPhoto("");
+    setPhoto({} as File);
   };
 
   return (
