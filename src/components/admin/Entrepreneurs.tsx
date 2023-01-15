@@ -16,7 +16,7 @@ export const Entrepreneurs = (props: any) => {
   return (
     <div className="card shadow">
       <div className="card-header bg-white border-0 d-flex justify-content-between">
-        <h5 className="mb-0 text-2xl font-medium text-dark">Entrepreneurs</h5>
+        <h5 className="mb-0 text-2xl font-medium text-dark">Companies</h5>
         <form action="#">
           <div className="row">
             <div className="col-4">

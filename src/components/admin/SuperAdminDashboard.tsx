@@ -140,7 +140,7 @@ export const SuperAdminDashboard = () => {
                       <div className="col-12 bg-1 p-4 rounded-2 text-dark bg-[#b5e4ca40]">
                         <img src={EntreprenursImg} width="40px" alt=""></img>
                         <p className="small my-2">Entrepreneurs</p>
-                        <h1 className="m-0 fw-bold">{companies.length}</h1>
+                        <h1 className="m-0 fw-bold">{users.filter((u: any) => u.role === "ENTREPRENEUR").length}</h1>
                       </div>
                     </div>
                     <div className="col-md-2 col-sm-6 mb-3 mb-lg-0">
@@ -169,7 +169,7 @@ export const SuperAdminDashboard = () => {
               </div>
 
               <div className="mb-2 mt-2">
-                {companies.length > 0 ? <Entrepreneurs companies={companies} /> : null}
+                <Entrepreneurs companies={companies} />
               </div>
             </div>
           )}

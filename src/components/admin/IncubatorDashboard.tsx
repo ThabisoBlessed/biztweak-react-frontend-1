@@ -20,9 +20,11 @@ export const IncubatorDashboard = () => {
   useEffect(() => {
     if (users.length === 0) {
       getusers();
-      getCompanies();
-      setIsLoading(false);
-    }
+    } 
+
+    // if (companies.length === 0) {
+    //   getCompanies();
+    // }
   });
 
   const getusers = async () => {
@@ -64,7 +66,7 @@ export const IncubatorDashboard = () => {
                     <div className="col-12 bg-1 p-4 rounded-2 text-dark bg-[#b5e4ca40]">
                       <img src={EntreprenursImg} width="40px" alt=""></img>
                       <p className="small my-2">Entrepreneurs</p>
-                      <h1 className="m-0 fw-bold">{companies.length}</h1>
+                      <h1 className="m-0 fw-bold">{users.filter((u: any) => u.role === "ENTREPRENEUR").length}</h1>
                     </div>
                   </div>
                   <div className="col-lg-3 col-sm-6 mb-3 mb-lg-0">

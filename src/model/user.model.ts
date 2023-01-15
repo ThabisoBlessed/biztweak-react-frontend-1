@@ -1,3 +1,4 @@
+import { ICompany } from "./company.model";
 import { UserRole } from "./enum/user-roles.enum";
 
 export interface IUser {
@@ -15,4 +16,5 @@ export interface IUser {
     market_newsletter: any;
     product_updates_and_community_announcements: any;
     bio: string;
+    companies?: ICompany[]
 }
