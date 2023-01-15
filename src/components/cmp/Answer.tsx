@@ -1,35 +1,68 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export const Answer = () => {
   const [count, setCount] = useState(1);
   const Input = () => {
     return (
-      <div className="d-flex align-items-center mb-2 answer" id={`${count}`}>
-        <input
-          type="text"
-          className="form-control"
-          placeholder={`Answer ${count}`}
-        />
-        <div className="form-check w-[100%] ms-2">
-          <label className="form-check-label">
-            <input
-              type="radio"
-              className="form-check-input"
-              name="answer"
-              autoComplete="off"
-            />
-            Correct Answer
-          </label>
+      <div>
+        <div
+          className="d-flex align-items-center mb-2 answer-container"
+          id={`${count}`}
+        >
+          <input
+            id={`answer${count}`}
+            type="text"
+            className="form-control"
+            placeholder={`Answer ${count}`}
+            onChange={(e) => handleAnswerInput(e.target.value, count)}
+          />
+          <div className="form-check w-[100%] ms-2">
+            <label className="form-check-label">
+              <input
+                type="radio"
+                className="form-check-input"
+                autoComplete="off"
+                onChange={(e) => handleCorrectAnswer(e.target.value, count)}
+              />
+              Correct Answer
+            </label>
+          </div>
         </div>
       </div>
     );
   };
   const init: JSX.Element[] = [];
   const [inputList, setInputList] = useState(init);
+  const initAnswers: any[] = [];
+  const [answers, setAnswers] = useState(initAnswers);
+
+  const handleAnswerInput = (value: string, id: number) => {
+    const storedAnswers: any[] = answers;
+    if (storedAnswers.filter(a => a.id === id).length === 0) {
+      storedAnswers.push({ id: id, answer: value, correct_answer: "" });
+    } else {
+      const existing = storedAnswers.find(a => a.id === id);
+      existing.answer = value;
+      console.log(existing);
+      // for (let index = 0; index < storedAnswers.length; index++) {
+      //   const element = storedAnswers[index];
+      //   // if (element.id === id) {
+      //   //   storedAnswers.push({ id: element.id, answer: value, correct_answer: element.correct_answer });
+      //   // }
+      // }
+    }
+    setAnswers(storedAnswers);
+    console.log(storedAnswers);
+  };
+
+  const handleCorrectAnswer = (value: string, id: number) => {
+    console.log(value, id);
+  }
 
   const onAddBtnClick = () => {
     setCount(count + 1);
     setInputList(inputList.concat(<Input key={inputList.length} />));
+    // handleAnswerInput();
   };
 
   return (

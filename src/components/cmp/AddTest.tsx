@@ -27,6 +27,10 @@ export const AddTest = () => {
     console.log(state);
   };
 
+  const handleAnswersChange = (answers: any) => {
+    console.log(answers);
+  };
+
   return (
     <div className="w-full">
       <div className="row">
