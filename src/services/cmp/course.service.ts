@@ -124,3 +124,28 @@ export const addCourse = async (course: ICourse | any): Promise<any> => {
     return error;
   }
 };
+
+/**
+ * Creates a new course audio
+ *
+ * @param {any} audio
+ * @returns {any} result
+ */
+ export const addCourseAudio = async (video: any, courseId: number): Promise<any> => {
+  try {
+    let config = {
+      headers: {
+        Authorization:
+          "Bearer " +
+          String(localStorage.getItem(LOCALSTORAGE_KEYS.accessToken)).replace(
+            /['"\\]+/g,
+            ""
+          ),
+      },
+    };
+
+    return await axios.post(constants.baseUrl + `/courses/${courseId}/audio`, video, config);
+  } catch (error: any) {
+    return error;
+  }
+};

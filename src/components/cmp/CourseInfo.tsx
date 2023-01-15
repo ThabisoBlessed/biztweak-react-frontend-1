@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CMPMenu } from "./CMPMenu";
 import UserImg from "../../images/icons/user.png";
 import { useNavigate } from "react-router-dom";
@@ -50,6 +50,10 @@ export const CourseInfo = () => {
   const navigate = useNavigate();
   const [dropdown, setDropdown] = useState(dropDownMenuInit);
   const [clickedMenuItem, setClickedMenuItem] = useState({} as IMenuListItem);
+
+  useEffect(() => {
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+  });
 
   const onEditCourse = () => {
     navigate("/cmp/manage-courses/edit-course");

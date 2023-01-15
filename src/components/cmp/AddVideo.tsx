@@ -17,8 +17,6 @@ export const AddVideo = () => {
   const [videoPreview, setVideoPreview] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  let reader = new FileReader();
-
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     console.log(course);
@@ -211,7 +209,7 @@ export const AddVideo = () => {
                   {/* <button className="btn hover:bg-[#16f0fb] w-[150px] h-[50px] hover:text-white bg-[#00c2cb] mt-2 text-[white]">
                     Save &amp; View
                   </button> */}
-                  <button className="btn w-[150px] h-[50px] mt-2 bg-black text-white hover:bg-gray-900">
+                  <button onClick={onSkip} className="btn w-[150px] h-[50px] mt-2 bg-black text-white hover:bg-gray-900">
                     Cancel
                   </button>
                   <button
