@@ -43,20 +43,17 @@ export const Answer = () => {
     } else {
       const existing = storedAnswers.find(a => a.id === id);
       existing.answer = value;
-      console.log(existing);
-      // for (let index = 0; index < storedAnswers.length; index++) {
-      //   const element = storedAnswers[index];
-      //   // if (element.id === id) {
-      //   //   storedAnswers.push({ id: element.id, answer: value, correct_answer: element.correct_answer });
-      //   // }
-      // }
     }
     setAnswers(storedAnswers);
-    console.log(storedAnswers);
   };
 
   const handleCorrectAnswer = (value: string, id: number) => {
-    console.log(value, id);
+    const storedAnswers: any[] = answers;
+    const existing = storedAnswers.find(a => a.id === id);
+    existing.correct_answer = value == "on"  ? true : false;
+    setAnswers(storedAnswers);
+
+    console.log(answers);
   }
 
   const onAddBtnClick = () => {
