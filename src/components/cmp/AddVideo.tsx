@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { CMPMenu } from "./CMPMenu";
 import CourseVideo from "../../images/video.mp4";
 import { ICourse } from "../../model/course.model";
+import { addCourseVideo } from "../../services/cmp/course.service";
 
 export const AddVideo = () => {
   const [videoType, setVideoType] = useState("upload");
@@ -10,14 +11,50 @@ export const AddVideo = () => {
   const { state } = useLocation();
   const [selectedCourse] = useState(state || ({} as ICourse));
   const [course, setCourse] = useState(selectedCourse.course);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [video, setVideo] = useState({} as File);
+  const [videoPreview, setVideoPreview] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  let reader = new FileReader();
 
   useEffect(() => {
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     console.log(course);
   });
 
   const choosevideoType = (type: string) => {
     setVideoType(type);
+  };
+
+  const handleVideo = (e: any) => {
+    const file = e.target.files[0];
+    setVideo(file);
+    setVideoPreview(URL.createObjectURL(file));
+  };
+
+  const onSkip = () => {
+    navigate("/cmp/manage-courses/add-audio", { state: { course } });
+  };
+
+  const onSave = async (event: any) => {
+    event.preventDefault();
+   
+    const data = new FormData() 
+    data.append('name', name);
+    data.append('description', description);
+    data.append('type', "test");
+    data.append('video', video);
+
+    const addedVideo = await addCourseVideo(data, course.id);
+    console.log(addedVideo);
+    if (addedVideo.data) {
+      const videoResult = addedVideo.data.package.data;
+      console.log(videoResult);
+      navigate("/cmp/manage-courses/add-audio", { state: { course } });
+    }
+    setIsLoading(false);
   };
 
   return (
@@ -38,13 +75,20 @@ export const AddVideo = () => {
                     <label>Video Name</label>
                   </div>
                   <div className="col-md-6">
-                    <input type="text" className="form-control" />
+                    <input
+                      type="text"
+                      className="form-control"
+                      onChange={(e) => setName(e.target.value)}
+                    />
                   </div>
                 </div>
                 <div className="form-group row align-items-center my-3">
                   <label>Video Description</label>
                   <div className="col-md-8">
-                    <textarea className="form-control"></textarea>
+                    <textarea
+                      className="form-control"
+                      onChange={(e) => setDescription(e.target.value)}
+                    ></textarea>
                   </div>
                 </div>
 
@@ -140,6 +184,7 @@ export const AddVideo = () => {
                         <input
                           type="file"
                           className="video-input form-control"
+                          onChange={(e) => handleVideo(e)}
                         />
                       ) : (
                         <div>
@@ -156,7 +201,7 @@ export const AddVideo = () => {
 
                 <div className="form-group row align-items-center my-3">
                   <video
-                    src={CourseVideo}
+                    src={videoPreview}
                     controls={true}
                     className="img-fluid h-[450px] mt-2"
                   ></video>
@@ -166,11 +211,24 @@ export const AddVideo = () => {
                   {/* <button className="btn hover:bg-[#16f0fb] w-[150px] h-[50px] hover:text-white bg-[#00c2cb] mt-2 text-[white]">
                     Save &amp; View
                   </button> */}
-                  <button className="btn hover:bg-[#16f0fb] w-[150px] h-[50px] hover:text-white bg-[#00c2cb] mt-2 text-[white]">
-                    Save
-                  </button>
-                  <button className="btn w-[150px] h-[50px] bg-black text-white hover:bg-gray-900">
+                  <button className="btn w-[150px] h-[50px] mt-2 bg-black text-white hover:bg-gray-900">
                     Cancel
+                  </button>
+                  <button
+                    onClick={onSkip}
+                    className="btn w-[150px] h-[50px] mt-2 bg-black text-white hover:bg-gray-900"
+                  >
+                    Skip
+                  </button>
+                  <button
+                    onClick={onSave}
+                    className="btn hover:bg-[#16f0fb] w-[150px] h-[50px] hover:text-white bg-[#00c2cb] mt-2 text-[white]"
+                  >
+                    {isLoading ? (
+                      <span className="capitalize">Saving...</span>
+                    ) : (
+                      <span className="capitalize">Save</span>
+                    )}
                   </button>
                 </div>
               </div>

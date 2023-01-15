@@ -99,3 +99,28 @@ export const addCourse = async (course: ICourse | any): Promise<any> => {
     return error;
   }
 };
+
+/**
+ * Creates a new course video
+ *
+ * @param {any} video
+ * @returns {any} result
+ */
+ export const addCourseVideo = async (video: any, courseId: number): Promise<any> => {
+  try {
+    let config = {
+      headers: {
+        Authorization:
+          "Bearer " +
+          String(localStorage.getItem(LOCALSTORAGE_KEYS.accessToken)).replace(
+            /['"\\]+/g,
+            ""
+          ),
+      },
+    };
+
+    return await axios.post(constants.baseUrl + `/courses/${courseId}/video`, video, config);
+  } catch (error: any) {
+    return error;
+  }
+};
