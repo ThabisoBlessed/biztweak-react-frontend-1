@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { CMPMenu } from "./CMPMenu";
 import UserImg from "../../images/icons/user.png";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { IMenuListItem } from "../../model/menu-list-item.model";
+import { ICourse } from "../../model/course.model";
+import { getCourse } from "../../services/cmp/course.service";
 
 export const CourseInfo = () => {
+  const { state } = useLocation();
+  const [selectedCourse] = useState(state || ({} as ICourse));
+  const [course, setCourse] = useState(selectedCourse.course);
+  const [isInitLoad, setIsInitLoad] = useState(true);
+  
   const dropDownMenuInit: IMenuListItem[] = [
     {
       id: 0,
@@ -49,15 +56,28 @@ export const CourseInfo = () => {
   ];
   const navigate = useNavigate();
   const [dropdown, setDropdown] = useState(dropDownMenuInit);
-  const [clickedMenuItem, setClickedMenuItem] = useState({} as IMenuListItem);
 
   useEffect(() => {
     window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    if (isInitLoad) {
+      onGetCourse();
+      console.log(course);
+      setIsInitLoad(false);
+    }
   });
 
   const onEditCourse = () => {
-    navigate("/cmp/manage-courses/edit-course");
+    // navigate("/cmp/manage-courses/edit-course");
   };
+
+  const onGetCourse = async () => {
+    const couseResponse = await getCourse(course.id);
+    if (couseResponse.data) {
+      const courseResult = couseResponse.data.package.data;
+      setCourse(courseResult)
+    }
+    console.log(course);
+  }
 
   const onPreviewCourse = () => {
     navigate("/cmp/manage-courses/course-preview");
@@ -91,19 +111,9 @@ export const CourseInfo = () => {
                   </div>
                   <div className="col-md-9">
                     <h4 className="text-dark text-2xl font-medium">
-                      Introduction to Entrepreneurship
+                      {course.title}
                     </h4>
-                    <p className="mb-0">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when an unknown
-                      printer took a galley of type and scrambled it to make a
-                      type specimen book. It has survived not only five
-                      centuries, but also the leap into electronic typesetting,
-                      remaining essentially unchanged. It was popularised in the
-                      1960s with the release of Letraset sheets containing Lorem
-                      Ipsum passages.
-                    </p>
+                    <p className="mb-0">{course.description}</p>
                   </div>
                 </div>
               </div>
@@ -166,25 +176,25 @@ export const CourseInfo = () => {
                   <span className="badge bg-[#65c8d0] text-dark">
                     Total Courses
                   </span>
-                  <h2 className="text-dark fw-600">52</h2>
+                  <h2 className="text-dark fw-600">1</h2>
                 </div>
                 <div>
                   <span className="badge bg-[#65c8d0] text-dark">
                     Total Videos
                   </span>
-                  <h2 className="text-dark fw-600">452</h2>
+                  <h2 className="text-dark fw-600">{course.videos.length}</h2>
                 </div>
                 <div>
                   <span className="badge bg-[#65c8d0] text-dark">
                     Total Audios
                   </span>
-                  <h2 className="text-dark fw-600">524</h2>
+                  <h2 className="text-dark fw-600">{course.audios.length}</h2>
                 </div>
                 <div>
                   <span className="badge bg-[#65c8d0] text-dark">
                     Total Text
                   </span>
-                  <h2 className="text-dark fw-600">525</h2>
+                  <h2 className="text-dark fw-600">{course.texts.length}</h2>
                 </div>
               </div>
             </div>

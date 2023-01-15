@@ -17,8 +17,8 @@ export const DashboardCourse = (props: any) => {
     props.handleCourseClick(index);
   };
 
-  const onStartCourse = () => {
-    navigate("/lms/course");
+  const onStartCourse = (course: any) => {
+    navigate("/lms/course", { state: { course } });
   };
 
   return (
@@ -29,7 +29,7 @@ export const DashboardCourse = (props: any) => {
             <div
               id={course.id}
               data-testid={course.id}
-              onClick={(event) => handleClick(event)}
+              // onClick={(event) => handleClick(event)}
               key={i}
               className="col-lg-3 col-md-4 mb-3 mb-lg-0"
             >
@@ -67,7 +67,7 @@ export const DashboardCourse = (props: any) => {
                     <div>
                       <button
                         className="btn text-[white] hover:bg-[#16f0fb] bg-[#00c2cb]"
-                        onClick={onStartCourse}
+                        onClick={() => onStartCourse(course)}
                       >
                         Continue
                       </button>
