@@ -23,6 +23,7 @@ export const AddTest = () => {
   const onSubmitQuestion = () => {
     console.log(textEditorText);
     console.log(answers);
+    navigate("/cmp/manage-courses/add-video", { state: { course }})
   };
 
   const handleEditorStateChange = (text: string) => {

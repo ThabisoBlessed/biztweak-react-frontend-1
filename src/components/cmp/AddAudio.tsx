@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { CMPMenu } from "./CMPMenu";
 import CourseAudio from "../../images/audio.mp3";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { ICourse } from "../../model/course.model";
 
 export const AddAudio = () => {
   const [audioType, setAudioType] = useState("upload");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const [selectedCourse] = useState(state || ({} as ICourse));
+  const [course, setCourse] = useState(selectedCourse.course);
 
   useEffect(() => {
     window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-  }, [audioType, navigate]);
+    console.log(course);
+  });
 
   const chooseAudioType = (type: string) => {
     setAudioType(type);

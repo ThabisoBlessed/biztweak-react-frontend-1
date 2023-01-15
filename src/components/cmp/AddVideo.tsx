@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { CMPMenu } from "./CMPMenu";
 import CourseVideo from "../../images/video.mp4";
+import { ICourse } from "../../model/course.model";
 
 export const AddVideo = () => {
   const [videoType, setVideoType] = useState("upload");
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const [selectedCourse] = useState(state || ({} as ICourse));
+  const [course, setCourse] = useState(selectedCourse.course);
 
   useEffect(() => {
     window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-  }, [videoType, navigate]);
+    console.log(course);
+  });
 
   const choosevideoType = (type: string) => {
     setVideoType(type);
