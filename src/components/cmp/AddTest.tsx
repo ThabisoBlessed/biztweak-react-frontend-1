@@ -8,27 +8,29 @@ import { CMPMenu } from "./CMPMenu";
 import { TextEditor } from "./TextEditor";
 
 export const AddTest = () => {
-  const initAnswers: ITestAnswer[] = [];
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { state } = useLocation();
   const [selectedCourse] = useState(state || ({} as ICourse));
   const [course, setCourse] = useState(selectedCourse.course);
   const [textEditorText, setTextEditorText] = useState("");
+  const [answers, setAnswers] = useState("");
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    console.log(course);
-  }, [isLoading]);
+  });
 
-  const onAddAnswer = () => {};
+  const onSubmitQuestion = () => {
+    console.log(textEditorText);
+    console.log(answers);
+  };
 
-  const handleEditorStateChange = (state: EditorState) => {
-    console.log(state);
+  const handleEditorStateChange = (text: string) => {
+    setTextEditorText(text);
   };
 
   const handleAnswerChange = (answers: any) => {
-    console.log(answers);
+    setAnswers(answers);
   };
 
   return (
@@ -55,7 +57,7 @@ export const AddTest = () => {
             <Answer handleAnswerChange={handleAnswerChange}/>
 
             <div className="form-group d-flex justify-content-between my-5">
-              <button className="btn btn-main btn-wide bg-[#6c757d] hover:bg-[#a1b0bc] text-white w-[150px]">
+              <button onClick={onSubmitQuestion} className="btn btn-main btn-wide bg-[#6c757d] hover:bg-[#a1b0bc] text-white w-[150px]">
                 Submit Question
               </button>
             </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 export const Answer = (props: any) => {
   const [count, setCount] = useState(1);
@@ -22,7 +22,7 @@ export const Answer = (props: any) => {
                 type="radio"
                 className="form-check-input"
                 autoComplete="off"
-                id="answer"
+                id={`answer${count}`}
                 onChange={(e) => handleCorrectAnswer(e.target.value, count)}
               />
               Correct Answer
