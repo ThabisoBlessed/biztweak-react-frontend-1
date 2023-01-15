@@ -5,17 +5,10 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "./TextEditor.css";
 
 export const TextEditor = (props: any) => {
-    const [text, setText] = useState({} as EditorState);
 
-    const onEditorStateChange = (state: EditorState) => {
-      setText(state);
-      // console.log(text);textEditorText
-      console.log(text.getCurrentContent().getPlainText());
-    }
-
-    const editorState = (e: any) => {
-      console.log(e);
-    }
+  const onEditorStateChange = (state: EditorState) => {
+    props.handleEditorStateChange(state.getCurrentContent().getPlainText());
+  };
 
   return (
     <div>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { EditorState } from "react-draft-wysiwyg";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ICourse } from "../../model/course.model";
 import { ITestAnswer } from "../../model/test-answer.model";
@@ -22,6 +23,10 @@ export const AddTest = () => {
 
   const onAddAnswer = () => {};
 
+  const handleEditorStateChange = (state: EditorState) => {
+    console.log(state);
+  };
+
   return (
     <div className="w-full">
       <div className="row">
@@ -39,7 +44,7 @@ export const AddTest = () => {
 
             <div className="form-group row align-items-center my-3">
               <div className="col-md-6 col-lg-6 bg-white">
-                <TextEditor />
+                <TextEditor handleEditorStateChange={handleEditorStateChange} />
               </div>
             </div>
 
