@@ -27,7 +27,7 @@ export const AddTest = () => {
     console.log(state);
   };
 
-  const handleAnswersChange = (answers: any) => {
+  const handleAnswerChange = (answers: any) => {
     console.log(answers);
   };
 
@@ -52,7 +52,7 @@ export const AddTest = () => {
               </div>
             </div>
 
-            <Answer />
+            <Answer handleAnswerChange={handleAnswerChange}/>
 
             <div className="form-group d-flex justify-content-between my-5">
               <button className="btn btn-main btn-wide bg-[#6c757d] hover:bg-[#a1b0bc] text-white w-[150px]">

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-export const Answer = () => {
+export const Answer = (props: any) => {
   const [count, setCount] = useState(1);
   const Input = () => {
     return (
@@ -22,6 +22,7 @@ export const Answer = () => {
                 type="radio"
                 className="form-check-input"
                 autoComplete="off"
+                id="answer"
                 onChange={(e) => handleCorrectAnswer(e.target.value, count)}
               />
               Correct Answer
@@ -39,12 +40,13 @@ export const Answer = () => {
   const handleAnswerInput = (value: string, id: number) => {
     const storedAnswers: any[] = answers;
     if (storedAnswers.filter(a => a.id === id).length === 0) {
-      storedAnswers.push({ id: id, answer: value, correct_answer: "" });
+      storedAnswers.push({ id: id, answer: value, correct_answer: false });
     } else {
       const existing = storedAnswers.find(a => a.id === id);
       existing.answer = value;
     }
     setAnswers(storedAnswers);
+    onGetAnswers();
   };
 
   const handleCorrectAnswer = (value: string, id: number) => {
@@ -52,14 +54,16 @@ export const Answer = () => {
     const existing = storedAnswers.find(a => a.id === id);
     existing.correct_answer = value == "on"  ? true : false;
     setAnswers(storedAnswers);
-
-    console.log(answers);
+    onGetAnswers();
   }
 
   const onAddBtnClick = () => {
     setCount(count + 1);
     setInputList(inputList.concat(<Input key={inputList.length} />));
-    // handleAnswerInput();
+  };
+
+  const onGetAnswers = () => {
+    props.handleAnswerChange(answers);
   };
 
   return (
