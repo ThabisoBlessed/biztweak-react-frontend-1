@@ -6,6 +6,7 @@ import { getAllUsers } from "../../services/admin/admin.service";
 import { getAllMentors } from "../../services/admin/mentor.service";
 import { getCurrentUser } from "../../services/lms/user.service";
 import { AdminMenu } from "./AdminMenu";
+import { AdminUserList } from "./AdminUserList";
 import { IncubatorUserList } from "./IncubatorUserList";
 import { Mentors } from "./Mentors";
 
@@ -77,6 +78,7 @@ export const Users = (props: any) => {
   return (
     <div className="w-full col-12">
           {userMode === "incubator" ? <div className="m-3"><IncubatorUserList /></div> : null}
+          {userMode === "admin" ? <div className="m-3"><AdminUserList /></div> : null}
           {userMode === "super-admin" ? (
             <div className="container-fluid">
               <div className="row mt-3">
