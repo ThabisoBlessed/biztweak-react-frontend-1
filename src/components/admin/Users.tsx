@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
 import { IUser } from "../../model/user.model";
 import { getAllUsers } from "../../services/admin/admin.service";
+import { getAllMentors } from "../../services/admin/mentor.service";
 import { getCurrentUser } from "../../services/lms/user.service";
 import { AdminMenu } from "./AdminMenu";
 import { Mentors } from "./Mentors";
@@ -14,6 +15,7 @@ export const Users = () => {
   const { state } = useLocation();
   const [selectedUserMode] = useState(state || "");
   const [userMode, setUserMode] = useState(selectedUserMode.userMode);
+  const [mentors, setMentors] = useState();
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -51,6 +53,15 @@ export const Users = () => {
     setIsLoading(false);
   };
 
+  const getMentors = async () => {
+    const mentorsResponse = await getAllMentors();
+    if (mentorsResponse.data) {
+      const courseResult = mentorsResponse.data.package.data;
+      setMentors(courseResult)
+    }
+    console.log(mentors);
+  }
+
   const onViewUser = (user: IUser) => {
     console.log(user);
   };
@@ -62,7 +73,7 @@ export const Users = () => {
           <AdminMenu />
         </div>
         <div className="col-md-10 text-left bg-light border-start">
-          {userMode === "incubator" ? <div className="m-3"><Mentors /></div> : null}
+          {userMode === "incubator" ? <div className="m-3"><Mentors mentors={mentors || []} /></div> : null}
           {userMode === "admin" ? (
             <div className="container-fluid">
               <div className="row mt-3">
