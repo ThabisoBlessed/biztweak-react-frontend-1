@@ -8,8 +8,9 @@ import { getCurrentUser } from "../../services/lms/user.service";
 import { AdminMenu } from "./AdminMenu";
 import { Mentors } from "./Mentors";
 
-export const Users = () => {
-  const [users, setUsers] = useState([]);
+export const Users = (props: any) => {
+  const initUser: IUser[] = [];
+  const [users, setUsers] = useState(initUser);
   const [currentUser, setCurrentUser] = useState({} as IUser);
   const [isLoading, setIsLoading] = useState(true);
   const { state } = useLocation();
@@ -46,7 +47,15 @@ export const Users = () => {
     const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
     if (storageUser) {
       const usersResult = await getAllUsers();
-      const usersBody = usersResult.data.package.data;
+      const usersBody: IUser[] = usersResult.data.package.data;
+      switch (userMode) {
+        case "admin":
+          setUsers(usersBody);
+          break;
+      
+        default:
+          break;
+      }
       setUsers(usersBody);
       console.log(usersBody);
     }
@@ -68,11 +77,6 @@ export const Users = () => {
 
   return (
     <div className="w-full col-12">
-      <div className="row">
-        <div className="col-md-2 min-h-[100vh]">
-          <AdminMenu />
-        </div>
-        <div className="col-md-10 text-left bg-light border-start">
           {userMode === "incubator" ? <div className="m-3"><Mentors mentors={mentors || []} /></div> : null}
           {userMode === "admin" ? (
             <div className="container-fluid">
@@ -132,8 +136,6 @@ export const Users = () => {
               </div>
             </div>
           ) : null}
-        </div>
-      </div>
     </div>
   );
 };

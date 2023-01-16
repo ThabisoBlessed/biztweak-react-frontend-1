@@ -1,10 +1,10 @@
 import React from 'react'
-import { IncubatorDashboard } from './IncubatorDashboard'
+import { AdminDashboard } from './AdminDashboard'
 
 export const Admin = () => {
   return (
     <div className="w-full">
-    <IncubatorDashboard />
+    <AdminDashboard />
   </div>
   )
 }

@@ -5,7 +5,6 @@ import EntreprenursImg from "../../images/icons/entreprenuers.png";
 import ConsultantsImg from "../../images/icons/consultants.png";
 import MentorImg from "../../images/icons/mentor.png";
 import IncubatorsImg from "../../images/icons/incubators.png";
-import CompanyImg from "../../images/company.png";
 import { DashboardCourse } from "./DashboardCourse";
 import { ICourse } from "../../model/course.model";
 import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
@@ -87,7 +86,7 @@ export const Dashboard = () => {
             </div>
 
             <div className="mt-2 overflow-y-scroll h-[400px]">
-              {courses.length > 0 ? <DashboardCourse courses={courses} /> : null}
+              <DashboardCourse courses={courses || []} />
             </div>
           </div>
         </div>

@@ -28,7 +28,7 @@ export const UsersCard = (props: any) => {
     },
   ];
   const [users, setUsers] = useState(props.users);
-  const [userMode, setUserMode] = useState(props.mode);
+  const [userMode, setUserMode] = useState(props.userMode);
 
   const onGoToUsers = () => {
     console.log(userMode);

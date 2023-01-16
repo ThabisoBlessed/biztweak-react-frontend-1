@@ -1,28 +1,40 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import EntreprenursImg from "../../images/icons/entreprenuers.png";
 import ConsultantsImg from "../../images/icons/consultants.png";
 import MentorImg from "../../images/icons/mentor.png";
 import IncubatorsImg from "../../images/icons/incubators.png";
-import { ICourse } from '../../model/course.model';
-import { getLocalStorageValue, LOCALSTORAGE_KEYS } from '../../config';
-import { IUser } from '../../model/user.model';
-import { getAllcourses } from '../../services/cmp/course.service';
-import { DashboardCourse } from '../lms/DashboardCourse';
-import { LMSMenu } from '../lms/LMSMenu';
-import { AdminMenu } from './AdminMenu';
+import { ICourse } from "../../model/course.model";
+import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
+import { IUser } from "../../model/user.model";
+import { getAllcourses } from "../../services/cmp/course.service";
+import { DashboardCourse } from "../lms/DashboardCourse";
+import { LMSMenu } from "../lms/LMSMenu";
+import { AdminMenu } from "./AdminMenu";
+import { getAllUsers } from "../../services/admin/admin.service";
+import { getAllMentors } from "../../services/admin/mentor.service";
+import { getAllCompanies } from "../../services/business/company.service";
+import { ActionsCard } from "./ActionsCard";
+import { ChartCard } from "./ChartCard";
+import { Mentors } from "./Mentors";
+import { UsersCard } from "./UsersCard";
+import { Users } from "./Users";
 
 export const AdminDashboard = () => {
   const initCourses: ICourse[] = [];
   const [courses, setCourses] = useState(initCourses);
   const [isLoading, setIsLoading] = useState(true);
+  const [companies, setCompanies] = useState([]);
+  const [mentors, setMentors] = useState();
+  const [users, setUsers] = useState([]);
+  const [isInitLoad, setIsInitLoad] = useState(true);
 
   useEffect(() => {
-    if (courses.length === 0) {
+    if (isInitLoad) {
       getCourses();
-      setIsLoading(false);
     }
+    setIsInitLoad(false);
   });
-  
+
   const getCourses = async () => {
     const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
     if (storageUser) {
@@ -36,7 +48,37 @@ export const AdminDashboard = () => {
       }
     }
   };
-  
+
+  const getMentors = async () => {
+    const mentorsResponse = await getAllMentors();
+    if (mentorsResponse.data) {
+      const courseResult = mentorsResponse.data.package.data;
+      setMentors(courseResult);
+    }
+    console.log(mentors);
+  };
+
+  const getusers = async () => {
+    const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
+    if (storageUser) {
+      const usersResult = await getAllUsers();
+      const usersBody = usersResult.data.package.data;
+      setUsers(usersBody);
+      console.log(usersBody);
+    }
+  };
+
+  const getCompanies = async () => {
+    const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
+    if (storageUser) {
+      const companiesResult = await getAllCompanies();
+      const companiesBody = companiesResult.data.package.data;
+      setCompanies(companiesBody);
+
+      console.log(companies);
+    }
+  };
+
   return (
     <div className="w-full">
       <div className="row">
@@ -46,11 +88,11 @@ export const AdminDashboard = () => {
         <div className="col-md-10 text-left bg-light border-start">
           <div className="container-fluid">
             <div className="card shadow mt-2">
-            <div className="card-header bg-white border-0">
-                  <h5 className="mb-0 text-2xl font-medium text-dark">
-                    Overview
-                  </h5>
-                </div>
+              <div className="card-header bg-white border-0">
+                <h5 className="mb-0 text-2xl font-medium text-dark">
+                  Overview
+                </h5>
+              </div>
               <div className="card-body border-0">
                 <div className="row">
                   <div className="col-lg-3 col-sm-6 mb-3 mb-lg-0">
@@ -86,26 +128,40 @@ export const AdminDashboard = () => {
             </div>
 
             <div className="row mt-3">
-                <div className="col-md-4 mb-3 mb-md-0">
-                    <button className="btn col-12 p-3 border-[black] hover:bg-[black] hover:text-white rounded-2 btn-white"><i className="fas fa-plus"></i> Add New user</button>
-                </div>
-                <div className="col-md-4 mb-3 mb-md-0">
-                    <button className="btn col-12 p-3 border-[black] hover:bg-[black] hover:text-white rounded-2 btn-white"><i className="fas fa-users"></i> Total registered
-                        user
-                    </button>
-                </div>
-                <div className="col-md-4 mb-3 mb-md-0">
-                    <button className="btn col-12 p-3 border-[black] hover:bg-[black] hover:text-white rounded-2 btn-white"><i className="fas fa-file-alt"></i> All assesments
-                    </button>
-                </div>
+              <div className="col-md-4 mb-3 mb-md-0">
+                <button className="btn col-12 p-3 border-[black] hover:bg-[black] hover:text-white rounded-2 btn-white">
+                  <i className="fas fa-plus"></i> Add New user
+                </button>
+              </div>
+              <div className="col-md-4 mb-3 mb-md-0">
+                <button className="btn col-12 p-3 border-[black] hover:bg-[black] hover:text-white rounded-2 btn-white">
+                  <i className="fas fa-users"></i> Total registered user
+                </button>
+              </div>
+              <div className="col-md-4 mb-3 mb-md-0">
+                <button className="btn col-12 p-3 border-[black] hover:bg-[black] hover:text-white rounded-2 btn-white">
+                  <i className="fas fa-file-alt"></i> All assesments
+                </button>
+              </div>
             </div>
 
-            <div className="mt-2 overflow-y-scroll h-[400px]">
-              {courses.length > 0 ? <DashboardCourse courses={courses} /> : null}
+            <div className="row mt-2">
+              <div className="col-lg-4">
+                <UsersCard userMode={"admin"} users={users || []} />
+              </div>
+              <div className="col-lg-4">
+                <ActionsCard />
+              </div>
+              <div className="col-lg-4">
+                <ChartCard />
+              </div>
+            </div>
+            <div className="mt-2 mb-2">
+              <Users userMode={"admin"} users={users || []}/>
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

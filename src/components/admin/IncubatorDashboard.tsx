@@ -16,19 +16,23 @@ import { getAllMentors } from "../../services/admin/mentor.service";
 export const IncubatorDashboard = () => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isInitLoad, setIsInitLoad] = useState(true);
   const [companies, setCompanies] = useState([]);
   const [mentors, setMentors] = useState();
 
   useEffect(() => {
-    if (users.length === 0) {
+    if (isInitLoad) {
       getusers();
-    } 
+    }
 
     // if (companies.length === 0) {
     //   getCompanies();
     // }
 
-    getMentors();
+    if (isInitLoad) {
+      getMentors();
+    }
+    setIsInitLoad(false);
   });
 
   const getMentors = async () => {
@@ -108,7 +112,7 @@ export const IncubatorDashboard = () => {
             </div>
             <div className="row mt-2">
               <div className="col-lg-4">
-                {users.length > 0 ? <UsersCard mode={"incubator"} users={users} /> : null}
+                <UsersCard mode={"incubator"} users={users || []} />
               </div>
               <div className="col-lg-4">
                <ActionsCard />
