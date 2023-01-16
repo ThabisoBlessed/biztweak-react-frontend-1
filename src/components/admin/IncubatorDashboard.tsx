@@ -11,11 +11,13 @@ import { ChartCard } from "./ChartCard";
 import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
 import { getAllUsers } from "../../services/admin/admin.service";
 import { getAllCompanies } from "../../services/business/company.service";
+import { getAllMentors } from "../../services/admin/mentor.service";
 
 export const IncubatorDashboard = () => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [companies, setCompanies] = useState([]);
+  const [mentors, setMentors] = useState();
 
   useEffect(() => {
     if (users.length === 0) {
@@ -25,7 +27,18 @@ export const IncubatorDashboard = () => {
     // if (companies.length === 0) {
     //   getCompanies();
     // }
+
+    getMentors();
   });
+
+  const getMentors = async () => {
+    const mentorsResponse = await getAllMentors();
+    if (mentorsResponse.data) {
+      const courseResult = mentorsResponse.data.package.data;
+      setMentors(courseResult)
+    }
+    console.log(mentors);
+  }
 
   const getusers = async () => {
     const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
@@ -105,7 +118,7 @@ export const IncubatorDashboard = () => {
               </div>
             </div>
             <div className="mt-2 mb-2">
-              <Mentors />
+              <Mentors mentors={mentors || []}/>
             </div>
           </div>
         </div>

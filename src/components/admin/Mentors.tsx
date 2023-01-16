@@ -1,16 +1,10 @@
+import { useEffect } from "preact/hooks";
 import React, { useState } from "react";
+import { getAllMentors } from "../../services/admin/mentor.service";
 import "./Mentors.css";
 
-export const Mentors = () => {
-  const initMentors: any[] = [
-    {
-      id: 1,
-      name: "Guide App",
-      bizCode: "Johannesburg, South Africa",
-      manageBizCode: "Other",
-    },
-  ];
-  const [mentors, setMentors] = useState(initMentors);
+export const Mentors = (props: any) => {
+  const [mentors, setMentors] = useState(props.mentors);
 
   return (
     <div className="card shadow">
