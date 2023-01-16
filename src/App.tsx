@@ -6,7 +6,6 @@ import { Home } from "./components/home/Home";
 import { Footer } from "./components/layout/Footer";
 import { LMS } from "./components/lms/LMS";
 import { Courses } from "./components/lms/Courses";
-import { Dashboard } from "./components/lms/Dashboard";
 import { Register } from "./components/auth/Register";
 import { Login } from "./components/auth/Login";
 import { ResetPassword } from "./components/auth/ResetPassword";
@@ -44,6 +43,8 @@ import { CMPAdminProfile } from "./components/cmp/CMPAdminProfile";
 import { AdminProfile } from "./components/admin/AdminProfile";
 import { AddNewIncubator } from "./components/admin/AddNewIncubator";
 import { Mentors } from "./components/admin/Mentors";
+import { Dashboard } from "./components/cmp/Dashboard";
+import { AdminDashboard } from "./components/admin/AdminDashboard";
 
 function App() {
   return (
@@ -89,7 +90,7 @@ function App() {
           <Route path="/cmp/manage-courses/add-quiz" element={<AddQuiz />}></Route>
           <Route path="/cmp/manage-courses/add-assignment" element={<AddAssignment />}></Route>
 
-          <Route path="/admin/*" element={<Dashboard />}></Route>
+          <Route path="/admin/*" element={<AdminDashboard />}></Route>
           {/* <Route path="/admin/incubator-dashboard" element={<IncubatorDashboard />}></Route> */}
           <Route path="/admin/incubator-dashboard" element={<IncubatorDashboard />}></Route>
           <Route path="/admin/users" element={<Users />}></Route>
