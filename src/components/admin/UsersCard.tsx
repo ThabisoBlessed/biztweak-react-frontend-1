@@ -32,7 +32,6 @@ export const UsersCard = (props: any) => {
 
   const onGoToUsers = () => {
     console.log(userMode);
-    console.log(users);
     navigate("/admin/users", { state: { userMode } });
   };
 

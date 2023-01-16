@@ -13,6 +13,7 @@ export const Users = (props: any) => {
   const [users, setUsers] = useState(initUser);
   const [currentUser, setCurrentUser] = useState({} as IUser);
   const [isLoading, setIsLoading] = useState(true);
+  const [isInitLoad, setIsInitLoad] = useState(true);
   const { state } = useLocation();
   const [selectedUserMode] = useState(state || "");
   const [userMode, setUserMode] = useState(selectedUserMode.userMode);
@@ -22,14 +23,11 @@ export const Users = (props: any) => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 
     console.log(userMode);
-
-    if (currentUser && !currentUser.email) {
+    if (isInitLoad) {
+      getusers();
       getProfile();
     }
-
-    if (users.length === 0) {
-      getusers();
-    }
+    setIsInitLoad(false);
   });
 
   const getProfile = async () => {
@@ -68,7 +66,7 @@ export const Users = (props: any) => {
       const courseResult = mentorsResponse.data.package.data;
       setMentors(courseResult)
     }
-    console.log(mentors);
+    console.log(userMode);
   }
 
   const onViewUser = (user: IUser) => {

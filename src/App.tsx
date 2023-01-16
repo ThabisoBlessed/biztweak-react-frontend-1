@@ -45,6 +45,7 @@ import { AddNewIncubator } from "./components/admin/AddNewIncubator";
 import { Mentors } from "./components/admin/Mentors";
 import { Dashboard } from "./components/cmp/Dashboard";
 import { AdminDashboard } from "./components/admin/AdminDashboard";
+import { UserList } from "./components/admin/UserList";
 
 function App() {
   return (
@@ -93,7 +94,7 @@ function App() {
           <Route path="/admin/*" element={<AdminDashboard />}></Route>
           {/* <Route path="/admin/incubator-dashboard" element={<IncubatorDashboard />}></Route> */}
           <Route path="/admin/incubator-dashboard" element={<IncubatorDashboard />}></Route>
-          {/* <Route path="/admin/users" element={<Users />}></Route> */}
+          <Route path="/admin/users" element={<UserList />}></Route>
           <Route path="/admin/admin-user" element={<AdminProfile />}></Route>
           <Route path="/admin/statistics" element={<Calendar />}></Route>
           <Route path="/admin/calendar" element={<AdminCalendar />}></Route>
