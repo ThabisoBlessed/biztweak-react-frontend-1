@@ -10,31 +10,48 @@ import { ICourse } from "../../model/course.model";
 import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
 import { IUser } from "../../model/user.model";
 import { getAllcourses } from "../../services/cmp/course.service";
+import { getCurrentUser } from "../../services/lms/user.service";
 
 export const Dashboard = () => {
   const initCourses: ICourse[] = [];
   const [courses, setCourses] = useState(initCourses);
   const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState({} as IUser);
+  const [isInitLoad, setIsInitLoad] = useState(true);
 
   useEffect(() => {
-    if (courses.length === 0) {
+    if (isInitLoad) {
+      getProfile();
       getCourses();
-      setIsLoading(false);
     }
+    setIsInitLoad(false);
   });
+
+  const getProfile = async () => {
+    const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
+    if (storageUser) {
+      const userResult: IUser = JSON.parse(storageUser);
+      const profile = await getCurrentUser(userResult.id);
+      setUser(profile.data.package.data);
+      setIsLoading(false);
+
+      console.log(profile);
+    }
+  };
   
   const getCourses = async () => {
     const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
     if (storageUser) {
       const userResult: IUser = JSON.parse(storageUser);
       const coursesResult = await getAllcourses();
+      console.log(coursesResult);
       if (coursesResult.data) {
         const myCourses: ICourse[] = coursesResult.data.package.data;
-        setCourses(
-          myCourses.filter((c) => c.user.id === Number(userResult.id))
-        );
+        const filtered = myCourses.filter((c) => c.user.id === Number(userResult.id));
+        setCourses(filtered);
       }
     }
+    console.log();
   };
 
   return (
@@ -86,7 +103,7 @@ export const Dashboard = () => {
             </div>
 
             <div className="mt-2 overflow-y-scroll h-[400px]">
-              <DashboardCourse courses={courses || []} />
+             {courses.length > 0 ?  <DashboardCourse courses={courses} /> : null}
             </div>
           </div>
         </div>

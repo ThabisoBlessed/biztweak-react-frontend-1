@@ -5,13 +5,15 @@ import { getCurrentUser } from '../../services/lms/user.service';
 import { UserProfile } from '../shared/UserProfile'
 
 export const AdminProfile = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({} as IUser);
   const [isLoading, setIsLoading] = useState(true);
+  const [isInitLoad, setIsInitLoad] = useState(true);
 
   useEffect(() => {
-    if (!user) {
+    if (isInitLoad) {
       getProfile();
     }
+    setIsInitLoad(false);
   });
 
   const getProfile = async () => {
