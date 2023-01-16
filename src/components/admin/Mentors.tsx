@@ -1,6 +1,5 @@
 import { useEffect } from "preact/hooks";
 import React, { useState } from "react";
-import { getAllMentors } from "../../services/admin/mentor.service";
 import "./Mentors.css";
 
 export const Mentors = (props: any) => {
