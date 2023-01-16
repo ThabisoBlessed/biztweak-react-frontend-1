@@ -42,6 +42,8 @@ import { SuperAdminDashboard } from "./components/admin/SuperAdminDashboard";
 import { AddNewUser } from "./components/admin/AddNewUser";
 import { CMPAdminProfile } from "./components/cmp/CMPAdminProfile";
 import { AdminProfile } from "./components/admin/AdminProfile";
+import { AddNewIncubator } from "./components/admin/AddNewIncubator";
+import { Mentors } from "./components/admin/Mentors";
 
 function App() {
   return (
@@ -99,6 +101,8 @@ function App() {
           <Route path="/admin/attendance" element={<AdminAttendance />}></Route>
           <Route path="/admin/super-admin-dashboard" element={<SuperAdminDashboard />}></Route>
           <Route path="/admin/add-user" element={<AddNewUser />}></Route>
+          <Route path="/admin/add-incubator" element={<AddNewIncubator />}></Route>
+          <Route path="/admin/mentors" element={<Mentors />}></Route>
         </Routes>
       </Router>
       <Footer />
