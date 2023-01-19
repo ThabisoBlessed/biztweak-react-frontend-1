@@ -76,7 +76,6 @@ export const AdminDashboard = () => {
       const companiesResult = await getAllCompanies();
       const companiesBody = companiesResult.data.package.data;
       setCompanies(companiesBody);
-
       console.log(companies);
     }
   };

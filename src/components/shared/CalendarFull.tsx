@@ -12,6 +12,8 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { INITIAL_EVENTS, createEventId } from "./event-utils";
 import "./CalendarFull.css";
+import { ICalendarEvent } from "../../model/calendar-event.model";
+import { EventFrequency } from "../../model/enum/event-frequency-enum";
 
 interface DemoAppState {
   weekendsVisible: boolean;
@@ -56,7 +58,23 @@ export const CalendarFull = () => {
 
   const handleEvents = (events: EventApi[]) => {
     setCurrentEvents(events);
+    console.log(currentEvents);
   };
+
+  const handleEventAdd = (e: any) => {
+    console.log("added", e);
+    const newEvent = {} as ICalendarEvent;
+    newEvent.title = e.event._def.title;
+    newEvent.start_date = e.event._instance.range.start;
+    newEvent.end_date = e.event._instance.range.end;
+    newEvent.description = "";
+    newEvent.type = "test";
+    newEvent.frequency = EventFrequency.weekly;
+
+    console.log(newEvent);
+
+    
+  }
 
   return (
     <>
@@ -80,11 +98,9 @@ export const CalendarFull = () => {
           eventContent={renderEventContent} // custom render function
           eventClick={handleEventClick}
           eventsSet={handleEvents} // called after events are initialized/added/changed/removed
-          /* you can update a remote database when these fire:
-          eventAdd={function(){}}
+          eventAdd={handleEventAdd} // called after event added
           eventChange={function(){}}
           eventRemove={function(){}}
-          */
         />
       </div>
     </>
