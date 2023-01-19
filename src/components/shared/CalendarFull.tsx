@@ -50,41 +50,38 @@ export const CalendarFull = () => {
   };
 
   const handleEventClick = (clickInfo: EventClickArg) => {
-    // if (
-    //   confirm(
-    //     `Are you sure you want to delete the event '${clickInfo.event.title}'`
-    //   )
-    // ) {
-    //   clickInfo.event.remove();
-    // }
+    if (
+      window.confirm(
+        `Are you sure you want to delete the event '${clickInfo.event.title}'`
+      )
+    ) {
+      clickInfo.event.remove();
+      console.log(clickInfo);
+    }
   };
 
   const handleEvents = (events: EventApi[]) => {
     setCurrentEvents(events);
-    console.log(currentEvents);
   };
 
-  const handleEventAdd = async(e: any) => {
+  const handleEventAdd = async (e: any) => {
     console.log("added", e);
     const newEvent = {} as ICalendarEvent;
     newEvent.title = e.event._def.title;
     newEvent.start_date = e.event._instance.range.start;
     newEvent.end_date = e.event._instance.range.end;
-    newEvent.description = "";
+    newEvent.description = `${e.event._def.allDay}`;
     newEvent.type = "test";
     newEvent.frequency = EventFrequency.weekly;
 
     console.log(newEvent);
 
-    const addedEvent = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
-    if (addedEvent) {
-      const eventResult = await addEvent(newEvent);
-      if (eventResult.data) {
-        const event = eventResult.data.package.data;
-        console.log(event);
-      }
+    const eventResult = await addEvent(newEvent);
+    if (eventResult.data) {
+      const event = eventResult.data.package.data;
+      console.log(event);
     }
-  }
+  };
 
   return (
     <>
@@ -109,8 +106,8 @@ export const CalendarFull = () => {
           eventClick={handleEventClick}
           eventsSet={handleEvents} // called after events are initialized/added/changed/removed
           eventAdd={handleEventAdd} // called after event added
-          eventChange={function(){}}
-          eventRemove={function(){}}
+          eventChange={function () {}}
+          eventRemove={function () {}}
         />
       </div>
     </>
