@@ -14,6 +14,9 @@ import { INITIAL_EVENTS, createEventId } from "./event-utils";
 import "./CalendarFull.css";
 import { ICalendarEvent } from "../../model/calendar-event.model";
 import { EventFrequency } from "../../model/enum/event-frequency-enum";
+import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
+import { getAllCompanies } from "../../services/business/company.service";
+import { addEvent } from "../../services/lms/event.service";
 
 interface DemoAppState {
   weekendsVisible: boolean;
@@ -61,7 +64,7 @@ export const CalendarFull = () => {
     console.log(currentEvents);
   };
 
-  const handleEventAdd = (e: any) => {
+  const handleEventAdd = async(e: any) => {
     console.log("added", e);
     const newEvent = {} as ICalendarEvent;
     newEvent.title = e.event._def.title;
@@ -73,7 +76,14 @@ export const CalendarFull = () => {
 
     console.log(newEvent);
 
-    
+    const addedEvent = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
+    if (addedEvent) {
+      const eventResult = await addEvent(newEvent);
+      if (eventResult.data) {
+        const event = eventResult.data.package.data;
+        console.log(event);
+      }
+    }
   }
 
   return (
