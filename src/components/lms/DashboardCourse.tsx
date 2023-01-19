@@ -66,7 +66,7 @@ export const DashboardCourse = (props: any) => {
                     </div>
                     <div>
                       <button
-                        className="btn text-[white] hover:bg-[#16f0fb] bg-[#00c2cb]"
+                        className="btn text-white hover:bg-[#16f0fb] bg-[#00c2cb]"
                         onClick={() => onStartCourse(course)}
                       >
                         Continue

@@ -4,6 +4,7 @@ import { getLocalStorageValue, LOCALSTORAGE_KEYS } from '../../config';
 import { IUser } from '../../model/user.model';
 import { getCurrentUser } from '../../services/lms/user.service';
 import { UserProfile } from '../shared/UserProfile'
+import { CMPMenu } from './CMPMenu';
 
 export const CMPAdminProfile = () => {
   const [user, setUser] = useState(null);
@@ -29,7 +30,34 @@ export const CMPAdminProfile = () => {
 
   return (
     <div>
-      {isLoading ? <div className="text-center text-4xl h-[100vh]">Loading...</div> : (
+      {isLoading ? 
+      <div className="w-full">
+      <div className="row">
+        <div className="col-md-2 min-h-[100vh]">
+          <CMPMenu />
+        </div>
+        <div className="col-md-10 text-left bg-light border-start">
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="card shadow mt-3 mb-3">
+                  <div className="card-header bg-white border-0">
+                    <h5 className="mb-0 text-2xl font-medium text-dark">
+                      Profile Settings
+                    </h5>
+                  </div>
+
+                  <div className="card-body border-0 text-center">
+                    <h1>Loading...</h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      : (
         <UserProfile menu={"cmp"} user={user} isLoading={isLoading} />
       )}
     </div>
