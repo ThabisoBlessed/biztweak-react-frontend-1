@@ -103,7 +103,7 @@ export const Courses = () => {
               </>
             )}
 
-            <div className="line-pagination">
+            {/* <div className="line-pagination">
               <div className="d-flex justify-content-between">
                 <button className="arrow-btn">
                   <i className="fa fa-arrow-left"></i>
@@ -112,7 +112,7 @@ export const Courses = () => {
                   <i className="fa fa-arrow-right"></i>
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

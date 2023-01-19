@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { LMSMenu } from "./LMSMenu";
 import "./LMS.css";
-import EntreprenursImg from "../../images/icons/entreprenuers.png";
-import ConsultantsImg from "../../images/icons/consultants.png";
-import MentorImg from "../../images/icons/mentor.png";
-import IncubatorsImg from "../../images/icons/incubators.png";
+import FileImg from "../../images/icons/file.png";
+import CheckImg from "../../images/icons/check.png";
+import ClockImg from "../../images/icons/clock.png";
+import CoinsImg from "../../images/icons/coins.png";
 import { DashboardCourse } from "./DashboardCourse";
 import { ICourse } from "../../model/course.model";
 import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
@@ -72,30 +72,30 @@ export const Dashboard = () => {
                 <div className="row">
                   <div className="col-lg-3 col-sm-6 mb-3 mb-lg-0">
                     <div className="col-12 bg-1 p-4 rounded-2 text-dark bg-[#b5e4ca40]">
-                      <img src={EntreprenursImg} width="40px" alt=""></img>
-                      <p className="small my-2">Entrepreneurs</p>
+                      <img src={FileImg} width="40px" alt=""></img>
+                      <p className="small my-2">Total Courses</p>
                       <h1 className="m-0 fw-bold">{courses.length}</h1>
                     </div>
                   </div>
                   <div className="col-lg-3 col-sm-6 mb-3 mb-lg-0">
                     <div className="col-12 bg-2 p-4 rounded-2 text-dark bg-[#d8e5eb]">
-                      <img src={ConsultantsImg} width="40px" alt=""></img>
-                      <p className="small my-2">Consultants</p>
-                      <h1 className="m-0 fw-bold">334</h1>
+                      <img src={CheckImg} width="40px" alt=""></img>
+                      <p className="small my-2">Completed</p>
+                      <h1 className="m-0 fw-bold">5</h1>
                     </div>
                   </div>
                   <div className="col-lg-3 col-sm-6 mb-3 mb-lg-0">
                     <div className="col-12 bg-3 p-4 rounded-2 text-dark bg-[#dfdbec]">
-                      <img src={MentorImg} width="40px" alt=""></img>
-                      <p className="small my-2">Mentors</p>
-                      <h1 className="m-0 fw-bold">112</h1>
+                      <img src={ClockImg} width="40px" alt=""></img>
+                      <p className="small my-2">Training Time</p>
+                      <h1 className="m-0 fw-bold">6</h1>
                     </div>
                   </div>
                   <div className="col-lg-3 col-sm-6 mb-3 mb-lg-0">
                     <div className="col-12 bg-4 p-4 rounded-2 text-dark bg-[#fff65a40]">
-                      <img src={IncubatorsImg} width="40px" alt=""></img>
-                      <p className="small my-2">Incubators</p>
-                      <h1 className="m-0 fw-bold">12K</h1>
+                      <img src={CoinsImg} width="40px" alt=""></img>
+                      <p className="small my-2">Points</p>
+                      <h1 className="m-0 fw-bold">7</h1>
                     </div>
                   </div>
                 </div>

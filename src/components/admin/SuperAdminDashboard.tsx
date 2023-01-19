@@ -31,6 +31,7 @@ export const SuperAdminDashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
+  const [isInitLoad, setIsInitLoad] = useState(true);
 
   const data = [
     ["Elements", "Priority Elements"],
@@ -42,19 +43,14 @@ export const SuperAdminDashboard = () => {
   ];
 
   useEffect(() => {
-    if (user && !user.email) {
+    if (isInitLoad) {
       getProfile();
-    }
-
-    if (companies.length === 0) {
       getCompanies();
-      setIsLoading(false);
-    }
-
-    if (users.length === 0) {
       getusers();
     }
-  }, [companies]);
+    setIsInitLoad(false);
+    setIsLoading(false);
+  });
 
   const onAddNewUser = () => {
     navigate("/admin/dashboard/add-user");
@@ -140,7 +136,12 @@ export const SuperAdminDashboard = () => {
                       <div className="col-12 bg-1 p-4 rounded-2 text-dark bg-[#b5e4ca40]">
                         <img src={EntreprenursImg} width="40px" alt=""></img>
                         <p className="small my-2">Entrepreneurs</p>
-                        <h1 className="m-0 fw-bold">{users.filter((u: any) => u.role === "ENTREPRENEUR").length}</h1>
+                        <h1 className="m-0 fw-bold">
+                          {
+                            users.filter((u: any) => u.role === "ENTREPRENEUR")
+                              .length
+                          }
+                        </h1>
                       </div>
                     </div>
                     <div className="col-md-2 col-sm-6 mb-3 mb-lg-0">
@@ -169,7 +170,7 @@ export const SuperAdminDashboard = () => {
               </div>
 
               <div className="mb-2 mt-2">
-                <Entrepreneurs companies={companies || []} />
+                {companies.length > 0 ? <Entrepreneurs companies={companies} /> : null}
               </div>
             </div>
           )}

@@ -35,7 +35,7 @@ export const Mentors = (props: any) => {
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="overflow-y-scroll h-[400px]">
             {mentors.map((mentor: any, index: number) => {
               return (
                 <tr key={index}>

@@ -123,9 +123,9 @@ export const ReportSummary = () => {
                 <Recommendations />
               </div>
 
-              <div className="webinar">
+              {/* <div className="webinar">
                 <Webinar />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

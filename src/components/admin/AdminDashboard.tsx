@@ -7,8 +7,6 @@ import { ICourse } from "../../model/course.model";
 import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
 import { IUser } from "../../model/user.model";
 import { getAllcourses } from "../../services/cmp/course.service";
-import { DashboardCourse } from "../lms/DashboardCourse";
-import { LMSMenu } from "../lms/LMSMenu";
 import { AdminMenu } from "./AdminMenu";
 import { getAllUsers } from "../../services/admin/admin.service";
 import { getAllMentors } from "../../services/admin/mentor.service";
@@ -18,12 +16,15 @@ import { ChartCard } from "./ChartCard";
 import { Mentors } from "./Mentors";
 import { UsersCard } from "./UsersCard";
 import { Users } from "./Users";
+import { AdminUserList } from "./AdminUserList";
+import { ICompany } from "../../model/company.model";
 
 export const AdminDashboard = () => {
   const initCourses: ICourse[] = [];
   const [courses, setCourses] = useState(initCourses);
   const [isLoading, setIsLoading] = useState(true);
-  const [companies, setCompanies] = useState([]);
+  const initCompanies: ICompany[] = [];
+  const [companies, setCompanies] = useState(initCompanies);
   const [mentors, setMentors] = useState();
   const [users, setUsers] = useState([]);
   const [isInitLoad, setIsInitLoad] = useState(true);
@@ -31,6 +32,7 @@ export const AdminDashboard = () => {
   useEffect(() => {
     if (isInitLoad) {
       getCourses();
+      getusers()
     }
     setIsInitLoad(false);
   });
@@ -147,7 +149,7 @@ export const AdminDashboard = () => {
 
             <div className="row mt-2">
               <div className="col-lg-4">
-                <UsersCard userMode={"admin"} users={users || []} />
+                {users.length > 0 ? <UsersCard userMode={"admin"} users={users || []} /> : null}
               </div>
               <div className="col-lg-4">
                 <ActionsCard />
@@ -156,8 +158,8 @@ export const AdminDashboard = () => {
                 <ChartCard />
               </div>
             </div>
-            <div className="mt-2 mb-2">
-              <Users userMode={"admin"} users={users || []}/>
+            <div className="mt-3 mb-2">
+              {users.length > 0 ? <AdminUserList companies={companies || []}/> : null}
             </div>
           </div>
         </div>

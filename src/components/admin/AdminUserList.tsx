@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { ICompany } from "../../model/company.model";
 import { getAllCompanies } from "../../services/business/company.service";
 
-export const AdminUserList = () => {
+export const AdminUserList = (props: any) => {
   const initCompanies: ICompany[] = [];
-  const [companies, setCompanies] = useState(initCompanies);
+  const [companies, setCompanies] = useState(props.companies || initCompanies);
 
   const [isInitLoad, setIsInitLoad] = useState(true);
 
