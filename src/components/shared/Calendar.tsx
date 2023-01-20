@@ -29,7 +29,7 @@ export const Calendar = (props: any) => {
                   </div>
                 </div>
 
-                <div className="card bg-light border-0 mb-4">
+                <div className="card bg-light border-0 mb-4 overflow-y-scroll h-[300px]">
                   <>
                     {props.INITIAL_EVENTS_UPCOMING.map(
                       (upcoming: any, index: number) => {
