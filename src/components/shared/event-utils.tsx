@@ -26,8 +26,7 @@ getAllEvents().then(events => {
 
 
 export const INITIAL_EVENTS: EventInput[] = initialEvents;
-
-console.log(INITIAL_EVENTS)
+export const INITIAL_EVENTS_UPCOMING: any[] = initialEvents;
 
 export function createEventId() {
   return String(eventGuid++);
