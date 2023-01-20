@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { Calendar } from "../shared/Calendar";
 import { INITIAL_EVENTS_UPCOMING } from "../shared/event-utils";
-import { LMSMenu } from "./LMSMenu";
 
 export const LMSCalendar = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const initEvents: any[] = [];
+  const [groupedEvents, setGroupedEvents] = useState(initEvents);
+  const [isInitLoad, setIsInitLoad] = useState(true);
 
   useEffect(() => {
     // Give calendar some time to init
     setTimeout(() => {
-      INITIAL_EVENTS_UPCOMING.sort(function compare(a: any, b: any) {
-        var dateA = new Date(a.start);
-        var dateB = new Date(b.start);
-        console.log(dateA, dateB);
+      if (isInitLoad) {
+        INITIAL_EVENTS_UPCOMING.sort(function compare(a: any, b: any) {
+          var dateA = new Date(a.start);
+          var dateB = new Date(b.start);
+          console.log(dateA, dateB);
 
-        return +dateA - +dateB;
-      });
-      console.log(INITIAL_EVENTS_UPCOMING);
-      console.log(groupByDate(INITIAL_EVENTS_UPCOMING));
-
-      setIsLoading(false);
+          return +dateA - +dateB;
+        });
+        setGroupedEvents(groupByDate(INITIAL_EVENTS_UPCOMING));
+        setIsLoading(false);
+      }
+      setIsInitLoad(false);
     }, 1000);
   });
 
@@ -29,9 +32,9 @@ export const LMSCalendar = () => {
     data.forEach(function (val: any) {
       var date = val.start.split("T")[0];
       if (date in groups) {
-        groups[date].push(val.sport);
+        groups[date].push(val);
       } else {
-        groups[date] = new Array(val.sport);
+        groups[date] = new Array(val);
       }
     });
 
@@ -47,6 +50,7 @@ export const LMSCalendar = () => {
         <Calendar
           menu={"lms"}
           INITIAL_EVENTS_UPCOMING={INITIAL_EVENTS_UPCOMING}
+          groupedEvents={groupedEvents}
         />
       )}
     </div>

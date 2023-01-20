@@ -6,6 +6,10 @@ import { CalendarFull } from "./CalendarFull";
 import { DatePicker } from "./DatePicker";
 
 export const Calendar = (props: any) => {
+  useEffect(() => {
+    console.log(props.groupedEvents);
+  }, []);
+
   return (
     <div className="w-full">
       <div className="row">
@@ -34,7 +38,7 @@ export const Calendar = (props: any) => {
                     {props.INITIAL_EVENTS_UPCOMING.map(
                       (upcoming: any, index: number) => {
                         return (
-                          <div className="card-body">
+                          <div className="card-body" key={index}>
                             <div className="mb-2">
                               <p className="mb-0 text-muted">
                                 {upcoming.start}
@@ -45,7 +49,7 @@ export const Calendar = (props: any) => {
                                   {/* <small className="text-muted">
                                     GDM 2nd semester
                                   </small> */}
-                                  <p className="small mb-0">{upcoming.title}</p>
+                                  {/* <p className="small mb-0">{upcoming.title}</p> */}
                                 </div>
                               </div>
                             </div>
