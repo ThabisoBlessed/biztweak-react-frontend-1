@@ -29,12 +29,13 @@ export const CalendarFull = () => {
   const [currentEvents, setCurrentEvents] = useState(eventAPIs);
   const initEvents: any[] = [];
   const [existingEvents, setExistingEvents] = useState(initEvents);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getExistingEvents();
-  });
+  }, []);
 
-  const getExistingEvents = async() => {
+  const getExistingEvents = async () => {
     let initialEvents: any[] = [];
     const events = await getAllEvents();
     if (events.data.package) {
@@ -46,16 +47,17 @@ export const CalendarFull = () => {
           const eventToShow = {
             id: String(event.id),
             title: event.title,
-            start: new Date(event.start_date).toISOString().replace(/T.*$/, ''),
-            end: new Date(event.end_date).toISOString().replace(/T.*$/, '')
+            start: new Date(event.start_date).toISOString().replace(/T.*$/, ""),
+            end: new Date(event.end_date).toISOString().replace(/T.*$/, ""),
           };
           initialEvents.push(eventToShow);
         }
       }
+      setIsLoading(false);
     }
 
     setExistingEvents(initialEvents);
-  }
+  };
 
   const handleWeekendsToggle = () => {
     setWeekendsVisible(!weekendsVisible);
@@ -114,31 +116,37 @@ export const CalendarFull = () => {
 
   return (
     <>
-      {/* {renderSidebar} */}
-      <div className="demo-app-main bg-white">
-        <FullCalendar
-          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-          headerToolbar={{
-            left: "prev,next today",
-            center: "title",
-            right: "dayGridMonth,timeGridWeek,timeGridDay",
-          }}
-          initialView="dayGridMonth"
-          editable={true}
-          selectable={true}
-          selectMirror={true}
-          dayMaxEvents={true}
-          weekends={weekendsVisible}
-          initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
-          select={handleDateSelect}
-          eventContent={renderEventContent} // custom render function
-          eventClick={handleEventClick}
-          eventsSet={handleEvents} // called after events are initialized/added/changed/removed
-          eventAdd={handleEventAdd} // called after event added
-          eventChange={function () {}}
-          eventRemove={function () {}}
-        />
-      </div>
+      {isLoading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <div>
+          {/* {renderSidebar} */}
+          <div className="demo-app-main bg-white">
+            <FullCalendar
+              plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+              headerToolbar={{
+                left: "prev,next today",
+                center: "title",
+                right: "dayGridMonth,timeGridWeek,timeGridDay",
+              }}
+              initialView="dayGridMonth"
+              editable={true}
+              selectable={true}
+              selectMirror={true}
+              dayMaxEvents={true}
+              weekends={weekendsVisible}
+              initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
+              select={handleDateSelect}
+              eventContent={renderEventContent} // custom render function
+              eventClick={handleEventClick}
+              eventsSet={handleEvents} // called after events are initialized/added/changed/removed
+              eventAdd={handleEventAdd} // called after event added
+              eventChange={function () {}}
+              eventRemove={function () {}}
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 };
