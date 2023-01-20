@@ -44,7 +44,10 @@ export const LMSCalendar = () => {
       {isLoading ? (
         <div className="text-center text-4xl h-[100vh]">Loading...</div>
       ) : (
-        <Calendar menu={"lms"} INITIAL_EVENTS_UPCOMING={INITIAL_EVENTS_UPCOMING}  />
+        <Calendar
+          menu={"lms"}
+          INITIAL_EVENTS_UPCOMING={INITIAL_EVENTS_UPCOMING}
+        />
       )}
     </div>
   );

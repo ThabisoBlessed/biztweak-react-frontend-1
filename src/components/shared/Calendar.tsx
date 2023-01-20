@@ -42,9 +42,9 @@ export const Calendar = (props: any) => {
                               <div className="mb-2 alert d-flex bg-white align-items-center">
                                 <div>09:00</div>
                                 <div className="ms-2 border-start ps-2">
-                                  <small className="text-muted">
+                                  {/* <small className="text-muted">
                                     GDM 2nd semester
-                                  </small>
+                                  </small> */}
                                   <p className="small mb-0">{upcoming.title}</p>
                                 </div>
                               </div>
