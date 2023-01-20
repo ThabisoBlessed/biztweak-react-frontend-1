@@ -32,32 +32,11 @@ export const CalendarFull = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getExistingEvents();
-  }, []);
-
-  const getExistingEvents = async () => {
-    let initialEvents: any[] = [];
-    const events = await getAllEvents();
-    if (events.data.package) {
-      const eventsResult: ICalendarEvent[] = events.data.package.data;
-      for (let index = 0; index < eventsResult.length; index++) {
-        const event = eventsResult[index];
-        for (let index = 0; index < eventsResult.length; index++) {
-          const event = eventsResult[index];
-          const eventToShow = {
-            id: String(event.id),
-            title: event.title,
-            start: new Date(event.start_date).toISOString().replace(/T.*$/, ""),
-            end: new Date(event.end_date).toISOString().replace(/T.*$/, ""),
-          };
-          initialEvents.push(eventToShow);
-        }
-      }
+    // Give calendar some time to init
+    setTimeout(() => {
       setIsLoading(false);
-    }
-
-    setExistingEvents(initialEvents);
-  };
+    }, 2000);
+  }, []);
 
   const handleWeekendsToggle = () => {
     setWeekendsVisible(!weekendsVisible);
