@@ -19,6 +19,7 @@ export const LMSCalendar = () => {
         });
         setGroupedEvents(groupByDate(INITIAL_EVENTS_UPCOMING));
         setIsLoading(false);
+        console.log(INITIAL_EVENTS_UPCOMING);
       }
       setIsInitLoad(false);
     }, 1000);
@@ -27,11 +28,11 @@ export const LMSCalendar = () => {
   const groupByDate = (data: any) => {
     var groups: any[] = [];
     data.forEach(function (val: any) {
-      var date = val.start.split("T")[0];
-      if (date in groups) {
-        groups[date].push(val);
+      var id = val.id;
+      if (id in groups) {
+        groups[id].push(val);
       } else {
-        groups[date] = new Array(val);
+        groups[id] = new Array(val);
       }
     });
     return groups;
