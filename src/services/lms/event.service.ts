@@ -29,7 +29,7 @@ export const addEvent = async (event: ICalendarEvent | any): Promise<any> => {
 };
 
 /**
- * Gets a event by ID
+ * Gets an event by ID
  *
  * @returns {any} event
  */
@@ -71,6 +71,31 @@ export const addEvent = async (event: ICalendarEvent | any): Promise<any> => {
     };
 
     return await axios.get(constants.baseUrl + `/events`, config);
+  } catch (error: any) {
+    return error;
+  }
+};
+
+
+/**
+ * Deletes an event by ID
+ *
+ * @returns {any} event
+ */
+ export const deleteEvent = async (id: number): Promise<any> => {
+  try {
+    let config = {
+      headers: {
+        Authorization:
+          "Bearer " +
+          String(localStorage.getItem(LOCALSTORAGE_KEYS.accessToken)).replace(
+            /['"\\]+/g,
+            ""
+          ),
+      },
+    };
+
+    return await axios.delete(constants.baseUrl + `/events/${id}`, config);
   } catch (error: any) {
     return error;
   }
