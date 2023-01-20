@@ -35,7 +35,7 @@ export const CalendarFull = () => {
     // Give calendar some time to init
     setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 1000);
   }, []);
 
   const handleWeekendsToggle = () => {
