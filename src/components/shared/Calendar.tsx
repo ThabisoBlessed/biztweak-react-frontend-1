@@ -4,40 +4,8 @@ import { AdminMenu } from "../admin/AdminMenu";
 import { LMSMenu } from "../lms/LMSMenu";
 import { CalendarFull } from "./CalendarFull";
 import { DatePicker } from "./DatePicker";
-import {
-  INITIAL_EVENTS,
-  createEventId,
-  INITIAL_EVENTS_UPCOMING,
-} from "./event-utils";
 
 export const Calendar = (props: any) => {
-  useEffect(() => {
-    props.INITIAL_EVENTS_UPCOMING.sort(function compare(a: any, b: any) {
-      var dateA = new Date(a.start);
-      var dateB = new Date(b.start);
-      console.log(dateA, dateB);
-
-      return +dateA - +dateB;
-    });
-    console.log(props.INITIAL_EVENTS_UPCOMING);
-  });
-
-  const groupByDate = (data: any) => {
-    var groups: any = {};
-
-    data.forEach(function (val: any) {
-      var date = val.start.split("T")[0];
-      if (date in groups) {
-        groups[date].push(val.sport);
-      } else {
-        groups[date] = new Array(val.sport);
-      }
-    });
-
-    console.log(groups);
-    return groups;
-  };
-
   return (
     <div className="w-full">
       <div className="row">
@@ -63,7 +31,7 @@ export const Calendar = (props: any) => {
 
                 <div className="card bg-light border-0 mb-4">
                   <>
-                    {INITIAL_EVENTS_UPCOMING.map(
+                    {props.INITIAL_EVENTS_UPCOMING.map(
                       (upcoming: any, index: number) => {
                         return (
                           <div className="card-body">
