@@ -60,6 +60,8 @@ export const CalendarFull = () => {
   };
 
   const handleEventClick = (clickInfo: EventClickArg) => {
+    console.log(clickInfo.event._def.publicId);
+    console.log(INITIAL_EVENTS[Number(clickInfo.event._def.publicId) - 1]);
     if (
       window.confirm(
         `Are you sure you want to delete the event '${clickInfo.event.title}'`
