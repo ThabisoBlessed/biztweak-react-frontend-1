@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   EventApi,
   DateSelectArg,
@@ -16,7 +16,7 @@ import { ICalendarEvent } from "../../model/calendar-event.model";
 import { EventFrequency } from "../../model/enum/event-frequency-enum";
 import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
 import { getAllCompanies } from "../../services/business/company.service";
-import { addEvent } from "../../services/lms/event.service";
+import { addEvent, getAllEvents } from "../../services/lms/event.service";
 
 interface DemoAppState {
   weekendsVisible: boolean;
@@ -27,6 +27,35 @@ export const CalendarFull = () => {
   const eventAPIs: EventApi[] = [];
   const [weekendsVisible, setWeekendsVisible] = useState(true);
   const [currentEvents, setCurrentEvents] = useState(eventAPIs);
+  const initEvents: any[] = [];
+  const [existingEvents, setExistingEvents] = useState(initEvents);
+
+  useEffect(() => {
+    getExistingEvents();
+  });
+
+  const getExistingEvents = async() => {
+    let initialEvents: any[] = [];
+    const events = await getAllEvents();
+    if (events.data.package) {
+      const eventsResult: ICalendarEvent[] = events.data.package.data;
+      for (let index = 0; index < eventsResult.length; index++) {
+        const event = eventsResult[index];
+        for (let index = 0; index < eventsResult.length; index++) {
+          const event = eventsResult[index];
+          const eventToShow = {
+            id: String(event.id),
+            title: event.title,
+            start: new Date(event.start_date).toISOString().replace(/T.*$/, ''),
+            end: new Date(event.end_date).toISOString().replace(/T.*$/, '')
+          };
+          initialEvents.push(eventToShow);
+        }
+      }
+    }
+
+    setExistingEvents(initialEvents);
+  }
 
   const handleWeekendsToggle = () => {
     setWeekendsVisible(!weekendsVisible);
@@ -77,7 +106,7 @@ export const CalendarFull = () => {
     console.log(newEvent);
 
     const eventResult = await addEvent(newEvent);
-    if (eventResult.data) {
+    if (eventResult.data.package) {
       const event = eventResult.data.package.data;
       console.log(event);
     }
