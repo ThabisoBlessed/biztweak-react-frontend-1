@@ -35,6 +35,7 @@ export const CalendarFull = () => {
     // Give calendar some time to init
     setTimeout(() => {
       setIsLoading(false);
+      console.log(INITIAL_EVENTS);
     }, 1000);
   }, []);
 
@@ -60,8 +61,6 @@ export const CalendarFull = () => {
   };
 
   const handleEventClick = async(clickInfo: EventClickArg) => {
-    console.log(clickInfo.event._def.publicId);
-    console.log();
     if (
       window.confirm(
         `Are you sure you want to delete the event '${clickInfo.event.title}'`
@@ -90,12 +89,9 @@ export const CalendarFull = () => {
     newEvent.type = "test";
     newEvent.frequency = EventFrequency.weekly;
 
-    console.log(newEvent);
-
     const eventResult = await addEvent(newEvent);
     if (eventResult.data.package) {
       const event = eventResult.data.package.data;
-      console.log(event);
     }
   };
 

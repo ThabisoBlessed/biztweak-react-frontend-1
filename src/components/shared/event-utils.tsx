@@ -5,6 +5,7 @@ import { getAllEvents } from "../../services/lms/event.service";
 let eventGuid = 0;
 let todayStr = new Date().toISOString().replace(/T.*$/, ""); // YYYY-MM-DD of today
 let initialEvents: any[] = [];
+let initialEventsUpcoming: any[] = [];
 
 getAllEvents().then((events) => {
   if (events.data.package) {
@@ -17,15 +18,20 @@ getAllEvents().then((events) => {
         start: new Date(event.start_date).toISOString().replace(/T.*$/, ""),
         end: new Date(event.end_date).toISOString().replace(/T.*$/, ""),
       };
+      const upcoming = {
+        id: String(event.id),
+        title: event.title,
+        start: new Date(event.start_date).toISOString(),
+        end: new Date(event.end_date).toISOString(),
+      };
       initialEvents.push(eventToShow);
+      initialEventsUpcoming.push(upcoming);
     }
   }
 });
 
-
-
 export const INITIAL_EVENTS: EventInput[] = initialEvents;
-export const INITIAL_EVENTS_UPCOMING: any[] = initialEvents;
+export const INITIAL_EVENTS_UPCOMING: any[] = initialEventsUpcoming;
 
 export function createEventId() {
   return String(eventGuid++);

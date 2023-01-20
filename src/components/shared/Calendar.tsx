@@ -41,10 +41,10 @@ export const Calendar = (props: any) => {
                           <div className="card-body" key={index}>
                             <div className="mb-2">
                               <p className="mb-0 text-muted">
-                                {upcoming.start}
+                                {new Date(upcoming.start).toDateString()}
                               </p>
                               <div className="mb-2 alert d-flex bg-white align-items-center">
-                                <div>09:00</div>
+                                <div>{new Date(upcoming.start).toLocaleTimeString()}</div>
                                 <div className="ms-2 border-start ps-2">
                                   {/* <small className="text-muted">
                                     GDM 2nd semester
