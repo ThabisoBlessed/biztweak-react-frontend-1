@@ -15,8 +15,6 @@ export const LMSCalendar = () => {
         INITIAL_EVENTS_UPCOMING.sort(function compare(a: any, b: any) {
           var dateA = new Date(a.start);
           var dateB = new Date(b.start);
-          console.log(dateA, dateB);
-
           return +dateA - +dateB;
         });
         setGroupedEvents(groupByDate(INITIAL_EVENTS_UPCOMING));
@@ -27,8 +25,7 @@ export const LMSCalendar = () => {
   });
 
   const groupByDate = (data: any) => {
-    var groups: any = {};
-
+    var groups: any[] = [];
     data.forEach(function (val: any) {
       var date = val.start.split("T")[0];
       if (date in groups) {
@@ -37,8 +34,6 @@ export const LMSCalendar = () => {
         groups[date] = new Array(val);
       }
     });
-
-    console.log(groups);
     return groups;
   };
 
