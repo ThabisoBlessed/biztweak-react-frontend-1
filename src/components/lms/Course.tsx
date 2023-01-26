@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./Course.css";
 import { ICourse } from "../../model/course.model";
 import { IUser } from "../../model/user.model";
+import { addAttendance } from "../../services/lms/attendance.service";
 
 export const Course = () => {
   const navigate = useNavigate();
@@ -17,7 +18,13 @@ export const Course = () => {
     console.log(course);
   });
 
-  const onStartCourse = () => {
+  const onStartCourse = async () => {
+    const attendance = await addAttendance({
+      category: "test",
+      type: "test",
+      date: new Date().toString(),
+      attended: true
+    })
     navigate("/lms/play-course", { state: { course }});
   } 
 

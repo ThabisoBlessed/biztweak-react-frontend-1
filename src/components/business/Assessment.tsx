@@ -5,7 +5,6 @@ import { BusinessAssessment } from "./BusinessAssessment";
 import { isLoggedIn } from "../../config";
 import { useLocation, useNavigate } from "react-router-dom";
 import { IBusinessMenuBusinessModel } from "../../model/business-menu-business-model";
-import { getBusinessIndustry, getBusinessPhases } from "../../services/business/assessment.service";
 
 export const Assessment = () => {
   const navigate = useNavigate();
