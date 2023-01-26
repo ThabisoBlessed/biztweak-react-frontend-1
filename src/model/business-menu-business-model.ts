@@ -16,4 +16,6 @@ export interface IBusinessMenuBusinessModel {
     registration_date: string;
     registration_number: string;
     report: any;
+    phaseId: number;
+    industryId: number;
 }

@@ -63,7 +63,10 @@ export const getAssessmentQuestions = async (phaseId: number): Promise<any> => {
  * @param {string} answers 
  * @returns {any} result
  */
-export const addAssessmentQuestions = async (answers: string, companyId: string, phaseId: number): Promise<any> => {
+export const addAssessmentQuestions = async (answers: string, companyId: number, phaseId: number): Promise<any> => {
+  console.log(answers);
+  console.log(companyId);
+  console.log(phaseId);
   try {
     let config = {
       headers: {

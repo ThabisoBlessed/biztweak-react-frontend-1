@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { isLoggedIn, LOCALSTORAGE_KEYS, setLocalStorageValue } from "../../config";
+import { IBusinessIndustryAndPhase } from "../../model/business-industry-and-phase.model";
 import { IBusinessMenuBusinessModel } from "../../model/business-menu-business-model";
 import { listCompaniesForLoggedInUser } from "../../services/business/company.service";
 
@@ -16,15 +17,25 @@ export const BusinessMenu = (props: any) => {
 
   const listCompanies = async () => {
     const businesses = await listCompaniesForLoggedInUser();
-    console.log(businesses)
     if (businesses.data && businesses.data.package) {
+      console.log(businesses.data.package);
       setActiveBusinesses(businesses.data.package.data);
       // console.log(businesses.data.package.data);
     }
   }
 
   const onCompleteAssessment = (business: IBusinessMenuBusinessModel) => {
-    navigate("/business/manage-business/assessment", { state: { business } });
+    const businessIndustryAndPhaseModel = {} as IBusinessIndustryAndPhase;
+    businessIndustryAndPhaseModel.businessIndustry = business.phaseId;
+    businessIndustryAndPhaseModel.businessPhase = business.industryId;
+
+    const businessIndustryAndPhase = businessIndustryAndPhaseModel;
+
+    navigate("/business/manage-business/assessment", {
+      state: { businessIndustryAndPhase },
+    });
+    
+    navigate("/business/manage-business/assessment", { state: { business, businessIndustryAndPhaseModel } });
   };
 
   const onViewBizReport = (business: IBusinessMenuBusinessModel) => {

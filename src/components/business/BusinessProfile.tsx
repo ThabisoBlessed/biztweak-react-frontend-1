@@ -42,7 +42,8 @@ export const BusinessProfile = () => {
   const [questionAndAnswer, setQuestionAndAnswer] = useState(
     questions.questionList
   );
-  const [formatedQuestionAndAnswer, setFormatedQuestionAndAnswer] = useState();
+  const formatted: any[] = [];
+  const [formatedQuestionAndAnswer, setFormatedQuestionAndAnswer] = useState(formatted);
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
@@ -57,6 +58,7 @@ export const BusinessProfile = () => {
         result.push(formatted);
       }
       console.log(result);
+      setFormatedQuestionAndAnswer(result);
     }
     // console.log(questionAndAnswer);
   }, [navigate]);
@@ -111,15 +113,11 @@ export const BusinessProfile = () => {
 
       const response = await addCompany(company);
       console.log("create new company response: ", response.data);
-      if (
-        response.status &&
-        response.data.package.data &&
-        response.data.package.data.id
-      ) {
+      if (response.data.package.data.data) {
         const assessment = await addAssessmentQuestions(
-          JSON.stringify(questionAndAnswer),
-          response.data.package.data.id,
-          businessIndustryAndPhase.businessPhase
+          JSON.stringify(formatedQuestionAndAnswer),
+          Number(response.data.package.data.data.id),
+          Number(businessIndustryAndPhase.businessPhase)
         );
         const success = assessment.data;
         const isNewCompany = true;
@@ -128,7 +126,7 @@ export const BusinessProfile = () => {
           assessment.data
         );
         if (success) {
-          const business = assessment.data.package.data;
+          const business = assessment.data.package.data.data;
           navigate("/business/manage-business/report-summary", {
             state: { business, isNewCompany },
           });
