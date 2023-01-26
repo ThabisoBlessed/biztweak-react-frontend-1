@@ -33,8 +33,8 @@ export const addCompany = async (company: any): Promise<any> => {
       annualTurnover: company.annual_turnover,
       monthlyTurnover: company.monthly_turnover,
       productsOrServices: company.products_or_services,
-      phase: String(company.phase),
-      industry: String(company.industry),
+      phase: company.phase,
+      industry: company.industry,
     }, config);
   } catch (error: any) {
     return error;
