@@ -20,6 +20,43 @@ export const getAssessmentQuestions = async (): Promise<any> => {
   }
 };
 
+
+/**
+ * Gets a list of business phases
+ * @returns {Promise<any>} response
+ */
+ export const getBusinessPhases = async (): Promise<any> => {
+  try {
+    let config = {
+      headers: {
+        'Authorization': 'Bearer ' + String(localStorage.getItem(LOCALSTORAGE_KEYS.accessToken)).replace(/['"\\]+/g, '')
+      }
+    }
+
+    return await axios.get(constants.baseUrl + `/phases`, config);
+  } catch (error: any) {
+    return error;
+  }
+};
+
+/**
+ * Gets a list of business industries
+ * @returns {Promise<any>} response
+ */
+ export const getBusinessIndustry = async (): Promise<any> => {
+  try {
+    let config = {
+      headers: {
+        'Authorization': 'Bearer ' + String(localStorage.getItem(LOCALSTORAGE_KEYS.accessToken)).replace(/['"\\]+/g, '')
+      }
+    }
+
+    return await axios.get(constants.baseUrl + `/industries`, config);
+  } catch (error: any) {
+    return error;
+  }
+};
+
 /**
  * Add assessment questions
  * 

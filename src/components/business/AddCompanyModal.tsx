@@ -74,13 +74,13 @@ export const AddCompanyModal = (props: any) => {
                       className="form-select"
                       id="industry"
                       name="industry"
-                      value={businessIndustry.value}
+                      value={businessIndustry.label}
                       onChange={handleIndustryItemClick}
                     >
                       {props.industries.map((industry: any, index: number) => {
                         return (
-                          <option key={index} value={industry.value}>
-                            {industry.name}
+                          <option key={index} value={industry.label}>
+                            {industry.label}
                           </option>
                         );
                       })}
@@ -98,13 +98,13 @@ export const AddCompanyModal = (props: any) => {
                       className="form-select"
                       id="biz_phase"
                       name="biz_phase"
-                      value={businessPhase.value}
+                      value={businessPhase.label}
                       onChange={handleBizPhaseItemClick}
                     >
                       {props.bizPhases.map((phase: any, index: number) => {
                         return (
-                          <option key={index} value={phase.value}>
-                            {phase.name}
+                          <option key={index} value={phase.label}>
+                            {phase.label}
                           </option>
                         );
                       })}

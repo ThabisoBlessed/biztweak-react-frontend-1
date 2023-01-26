@@ -8,116 +8,30 @@ import {
 } from "../../config";
 import { BusinessMenu } from "./BusinessMenu";
 import { AddCompanyModal } from "./AddCompanyModal";
+import {
+  getBusinessIndustry,
+  getBusinessPhases,
+} from "../../services/business/assessment.service";
 
 export const AddCompany = () => {
   const navigate = useNavigate();
-  const bizPhaseList: any[] = [
-    {
-      id: 0,
-      name: "I have an idea but don’t know what to do next",
-      value: "phase_1",
-    },
-    {
-      id: 1,
-      name: "I have a business but am not making money",
-      value: "phase_2",
-    },
-    {
-      id: 2,
-      name: "I have products/services but I have poor sales",
-      value: "phase_3",
-    },
-    {
-      id: 3,
-      name: "We are generating revenue, we would like to grow through investment",
-      value: "phase_4",
-    },
-    {
-      id: 4,
-      name: "I would like to be an entrepreneur but don’t know where to start",
-      value: "phase_5",
-    },
-  ];
-  const industryList: any[] = [
-    {
-      id: 0,
-      name: "Admin/Business Support",
-      value: "AdminBusinessSupport",
-    },
-    {
-      id: 1,
-      name: "Agriculture, Forestry,Fishing and Hunting",
-      value: "AgricultureForestryFishingAndHunting",
-    },
-    {
-      id: 2,
-      name: "Arts, Entertainment and Recreation",
-      value: "ArtsEntertainmentAndRecreation",
-    },
-    {
-      id: 3,
-      name: "Finance and Insurance",
-      value: "FinanceAndInsurance",
-    },
-    {
-      id: 4,
-      name: "Healthcare and Social Assistance",
-      value: "HealthcareAndSocialAssistance",
-    },
-    {
-      id: 5,
-      name: "Hospitality",
-      value: "Hospitality",
-    },
-    {
-      id: 6,
-      name: "Information Technology",
-      value: "InformationTechnology",
-    },
-    {
-      id: 7,
-      name: "Manufacturing",
-      value: "Manufacturing",
-    },
-    {
-      id: 8,
-      name: "Mining and Mineral processing",
-      value: "MiningAndMineralProcessing",
-    },
-    {
-      id: 9,
-      name: "Professional, Scientific and Technical Services",
-      value: "ProfessionalScientificAndTechnicalServices",
-    },
-    {
-      id: 10,
-      name: "Real Estate",
-      value: "RealEstate",
-    },
-    {
-      id: 11,
-      name: "Retail",
-      value: "Retail",
-    },
-    {
-      id: 12,
-      name: "TransportAndLogistics",
-      value: "Transport and Logistics",
-    },
-    {
-      id: 13,
-      name: "Other",
-      value: "Other",
-    },
-  ];
+  const bizPhaseList: any[] = [];
+  const industryList: any[] = [];
   const [bizPhases, setBizPhases] = useState(bizPhaseList);
-  const [industries, setIndustries] = useState(industryList);
+  const [bizIndustries, setBizIndustries] = useState(industryList);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isInitLoad, setIsInitLoad] = useState(true);
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
 
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-    
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+
+    if (isInitLoad) {
+      getBizPhases();
+      getBizIndustry();
+    }
+
     const isNewUserMode = getLocalStorageValue(
       LOCALSTORAGE_KEYS.newUserMode
     )?.replace(/['"\\]+/g, "");
@@ -129,7 +43,29 @@ export const AddCompany = () => {
       element.click();
       setLocalStorageValue(LOCALSTORAGE_KEYS.newUserMode, "false");
     }
+
+    console.log(bizPhases);
+    console.log(bizIndustries);
   }, [navigate]);
+
+  const getBizPhases = async () => {
+    const phases = await getBusinessPhases();
+    console.log(phases);
+    if (phases.data && phases.data.package) {
+      setBizPhases(phases.data.package.data);
+    }
+    setIsLoading(false);
+  };
+
+  const getBizIndustry = async () => {
+    const industry = await getBusinessIndustry();
+    console.log(industry);
+    if (industry.data && industry.data.package) {
+      setBizIndustries(industry.data.package.data);
+    }
+    setIsLoading(false);
+    setIsInitLoad(false);
+  };
 
   return (
     <div>
@@ -163,7 +99,9 @@ export const AddCompany = () => {
             </div>
           </div>
 
-          <AddCompanyModal industries={industries} bizPhases={bizPhases} />
+          {bizIndustries.length > 0 && bizPhases.length > 0 ? (
+            <AddCompanyModal industries={bizIndustries} bizPhases={bizPhases} />
+          ) : null}
         </div>
       </div>
     </div>
