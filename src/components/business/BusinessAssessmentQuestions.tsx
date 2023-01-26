@@ -117,6 +117,7 @@ export const BusinessAssessmentQuestions = (props: any) => {
       }
     }
     allQuestionsAnswered();
+    console.log(questionList);
   };
 
   /**
@@ -156,7 +157,7 @@ export const BusinessAssessmentQuestions = (props: any) => {
    *
    */
   const allQuestionsAnswered = () => {
-    const answered = questionList.filter((q) => q.answer === "yes|no");
+    const answered = questionList.filter((q) => !q.answer);
     if (answered.length > 0) {
       setCanSave(false);
     } else {
