@@ -34,11 +34,11 @@ export const BusinessAssessmentQuestions = (props: any) => {
 
     console.log(props.businessIndustryAndPhase);
 
-    if (questionList.length) {
+    if (isInitLoad) {
       listAssessmentQuestions();
     }
 
-    if (questionList.length > 0) {
+    if (isInitLoad) {
       for (let index = 0; index < questionList.length; index++) {
         const question = questionList[index];
         mapQuestions(question);
@@ -46,6 +46,7 @@ export const BusinessAssessmentQuestions = (props: any) => {
     }
 
     setMappedQuestions(mappedQuestionList);
+    setIsInitLoad(false);
   }, [questionList]);
 
   /**
