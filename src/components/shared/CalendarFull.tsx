@@ -16,7 +16,11 @@ import { ICalendarEvent } from "../../model/calendar-event.model";
 import { EventFrequency } from "../../model/enum/event-frequency-enum";
 import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
 import { getAllCompanies } from "../../services/business/company.service";
-import { addEvent, deleteEvent, getAllEvents } from "../../services/lms/event.service";
+import {
+  addEvent,
+  deleteEvent,
+  getAllEvents,
+} from "../../services/lms/event.service";
 
 interface DemoAppState {
   weekendsVisible: boolean;
@@ -35,7 +39,6 @@ export const CalendarFull = () => {
     // Give calendar some time to init
     setTimeout(() => {
       setIsLoading(false);
-      console.log(INITIAL_EVENTS);
     }, 1000);
   }, []);
 
@@ -60,17 +63,26 @@ export const CalendarFull = () => {
     }
   };
 
-  const handleEventClick = async(clickInfo: EventClickArg) => {
+  const handleEventClick = async (clickInfo: EventClickArg) => {
+    console.log(clickInfo.event._def);
+    console.log(INITIAL_EVENTS);
     if (
       window.confirm(
         `Are you sure you want to delete the event '${clickInfo.event.title}'`
       )
     ) {
-      const eventToDelete = INITIAL_EVENTS[Number(clickInfo.event._def.publicId) - 1];
-      const deleteEventResult: any = await deleteEvent(Number(eventToDelete.id));
-      if (deleteEventResult.data) {
-        clickInfo.event.remove();
-        console.log("deleted");
+      const eventToDelete = INITIAL_EVENTS.find((e: any) => {
+        return e.id == clickInfo.event._def.publicId;
+      });
+      console.log(eventToDelete);
+      if (eventToDelete) {
+        const deleteEventResult: any = await deleteEvent(
+          Number(eventToDelete.id)
+        );
+        if (deleteEventResult.data) {
+          clickInfo.event.remove();
+          console.log("deleted");
+        }
       }
     }
   };
