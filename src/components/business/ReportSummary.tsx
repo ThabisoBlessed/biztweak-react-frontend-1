@@ -27,8 +27,7 @@ export const ReportSummary = () => {
 
   // Set charts data
   const getReports = () => {
-    const reports = isNewCompany ? business.report.scores : JSON.parse(business.report.scores);
-    console.log(business);
+    const reports = isNewCompany ? business.report : JSON.parse(business.report);
     const allData = data;
     for (let index = 0; index < reports.length; index++) {
       const report = reports[index];
