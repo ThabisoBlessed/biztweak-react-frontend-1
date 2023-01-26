@@ -29,12 +29,12 @@ export const addCompany = async (company: any): Promise<any> => {
       registrationNumber: company.registration_number,
       registered: company.registered,
       location: company.location,
-      employees: company.employees,
+      numberOfEmployees: company.employees,
       annualTurnover: company.annual_turnover,
       monthlyTurnover: company.monthly_turnover,
       productsOrServices: company.products_or_services,
-      phase: company.phase,
-      industry: company.industry,
+      phaseId: company.phase,
+      industryId: company.industry,
     }, config);
   } catch (error: any) {
     return error;

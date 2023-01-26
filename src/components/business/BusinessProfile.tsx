@@ -21,7 +21,7 @@ export const BusinessProfile = () => {
   const [businessIndustryAndPhase, setBusinessIndustryAndPhase] = useState(businessIndustryAndPhaseState.businessIndustryAndPhase);
   const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState("");
-  const [logo, setLogo] = useState("");
+  const [logo, setLogo] = useState();
   const [registrationNumber, setRegistrationNumber] = useState("");
   const [registered, setRegistered] = useState("false");
   const [registrationDate, setRegistrationDate] = useState("");
@@ -63,7 +63,8 @@ export const BusinessProfile = () => {
       const company = {
         id: 0,
         name: name,
-        logo: logo,
+        logo: "",
+        // logo: logo,
         registration_date: registrationDate || new Date().toString(),
         registration_number: registrationNumber,
         registered: registered === "false" ? false : true,
@@ -96,8 +97,9 @@ export const BusinessProfile = () => {
 
   const handleLogoFile = async (e: any) => {
     const file = e.target.files[0];
-    const base64: any = await convertToBase64(file);
-    setLogo(base64);
+    setLogo(file);
+    // const base64: any = await convertToBase64(file);
+    // setLogo(base64);
   };
 
   const onBack = () => {
