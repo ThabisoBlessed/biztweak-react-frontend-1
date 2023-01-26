@@ -38,11 +38,7 @@ export const BusinessAssessmentQuestions = (props: any) => {
       listAssessmentQuestions();
     }
 
-      for (let index = 0; index < questionList.length; index++) {
-        const question = questionList[index];
-        console.log(question);
-        mapQuestions(question);
-      }
+    mapQuestions();
 
     setMappedQuestions(mappedQuestionList);
     setIsInitLoad(false);
@@ -50,33 +46,41 @@ export const BusinessAssessmentQuestions = (props: any) => {
 
   /**
    * Maps question for display
-   * @param mappedQuestions
-   * @param question
    */
-  const mapQuestions = (question: any) => {
-    const existing = mappedQuestionList.find(
-      (q) => q.category === question.category
-    );
-    const questionToSave = {} as IQuestion;
+  const mapQuestions = () => {
+    const displayQuestions: IMappedAssessmentQuestion[] = [];
 
-    if (existing) {
-      questionToSave.answer = "no";
-      questionToSave.label = question.question;
-      questionToSave.id = question.id;
-      existing.questions.push(questionToSave);
-    } else {
-      const answer = {} as IMappedAssessmentQuestion;
-      answer.id = question.id;
-      answer.category = question.category;
-      answer.questions = [];
-
-      questionToSave.answer = question.answer;
-      questionToSave.label = question.label;
-      questionToSave.id = question.id;
-      answer.questions.push(questionToSave);
-
-      mappedQuestionList.push(answer);
+    for (let index = 0; index < questionList.length; index++) {
+      const question = questionList[index];
+      
+      // Create category
+      const existing = mappedQuestionList.find(
+        (q) => q.category === question.category
+      );
+      const questionToSave = {} as IQuestion;
+  
+      if (existing) {
+        questionToSave.answer = "no";
+        questionToSave.question = question.question;
+        questionToSave.label = question.question;
+        questionToSave.id = question.id;
+        existing.questions.push(questionToSave);
+      } else {
+        const answer = {} as IMappedAssessmentQuestion;
+        answer.id = question.id;
+        answer.category = question.category;
+        answer.questions = [];
+  
+        questionToSave.question = question.question;
+        questionToSave.answer = "no";
+        questionToSave.label = question.question;
+        questionToSave.id = question.id;
+        answer.questions.push(questionToSave);
+  
+        mappedQuestionList.push(answer);
+      }
     }
+    console.log(mappedQuestionList);
   };
 
   /**
@@ -84,7 +88,9 @@ export const BusinessAssessmentQuestions = (props: any) => {
    */
   const listAssessmentQuestions = async () => {
     setIsLoading(true);
-    const assessmentQuestions = await getAssessmentQuestions(Number(props.businessIndustryAndPhase.businessPhase));
+    const assessmentQuestions = await getAssessmentQuestions(
+      Number(props.businessIndustryAndPhase.businessPhase)
+    );
     if (assessmentQuestions.data && assessmentQuestions.data.package) {
       // console.log(assessmentQuestions.data.package.data)
       setQuestionList(assessmentQuestions.data.package.data);
@@ -126,7 +132,10 @@ export const BusinessAssessmentQuestions = (props: any) => {
         state: { questionList, businessIndustryAndPhase },
       });
     } else {
-      const update = await addAssessmentQuestions(JSON.stringify(questionList), business.id);
+      const update = await addAssessmentQuestions(
+        JSON.stringify(questionList),
+        business.id
+      );
 
       // Successful call return "data", failed call returns "response"
       const success = update.data;

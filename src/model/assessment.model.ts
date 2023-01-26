@@ -3,6 +3,7 @@ export interface Assessment {
   category: string;
   label: string;
   answer: string;
+  question: string;
   createdAt: string;
   updatedAt: string;
 }

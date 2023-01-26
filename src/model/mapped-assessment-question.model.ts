@@ -7,6 +7,7 @@ export interface IMappedAssessmentQuestion {
 export interface IQuestion {
   id: number;
   label: string;
+  question: string;
   answer: string;
   date: string;
   category: string;
