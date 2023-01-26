@@ -18,7 +18,8 @@ export const BusinessAssessmentQuestions = (props: any) => {
   const mappedQuestionList: IMappedAssessmentQuestion[] = [];
   const [mappedQuestions, setMappedQuestions] = useState(mappedQuestionList);
   const [canSave, setCanSave] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isInitLoad, setIsInitLoad] = useState(true);
   const { state } = useLocation();
 
   // Update existing company
@@ -31,7 +32,9 @@ export const BusinessAssessmentQuestions = (props: any) => {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 
-    if (questionList.length === 0) {
+    console.log(props.businessIndustryAndPhase);
+
+    if (questionList.length) {
       listAssessmentQuestions();
     }
 
@@ -81,8 +84,11 @@ export const BusinessAssessmentQuestions = (props: any) => {
    */
   const listAssessmentQuestions = async () => {
     setIsLoading(true);
-    const assessmentQuestions = await getAssessmentQuestions();
-    setQuestionList(assessmentQuestions.data.package.data);
+    const assessmentQuestions = await getAssessmentQuestions(Number(props.businessIndustryAndPhase.businessPhase));
+    if (assessmentQuestions.data && assessmentQuestions.data.package) {
+      console.log(assessmentQuestions.data.package.data)
+      setQuestionList(assessmentQuestions.data.package.data);
+    }
     setIsLoading(false);
   };
 
@@ -152,7 +158,7 @@ export const BusinessAssessmentQuestions = (props: any) => {
   return (
     <div>
       {isLoading ? (
-        <h1></h1>
+        <h1 className="text-center">Loading...</h1>
       ) : (
         <div>
           <div className="accordion" id="assessment-accordion">

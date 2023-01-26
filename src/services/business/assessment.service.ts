@@ -6,7 +6,7 @@ import * as constants from "../../constants";
  * Gets a list of assessement questions
  * @returns {Promise<Assessment[]>} response
  */
-export const getAssessmentQuestions = async (): Promise<any> => {
+export const getAssessmentQuestions = async (phaseId: number): Promise<any> => {
   try {
     let config = {
       headers: {
@@ -14,7 +14,7 @@ export const getAssessmentQuestions = async (): Promise<any> => {
       }
     }
 
-    return await axios.get(constants.baseUrl + `/assessments`, config);
+    return await axios.get(constants.baseUrl + `/assessments/questions/${phaseId}`, config);
   } catch (error: any) {
     return error;
   }

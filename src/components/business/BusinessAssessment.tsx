@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../config";
 import { IBusinessIndustryAndPhase } from "../../model/business-industry-and-phase.model";
-import { getBusinessPhases, getBusinessIndustry } from "../../services/business/assessment.service";
+import {
+  getBusinessPhases,
+  getBusinessIndustry,
+} from "../../services/business/assessment.service";
 import { BusinessAssessmentQuestions } from "./BusinessAssessmentQuestions";
 import { CompleteCompanyProfileModal } from "./CompleteCompanyProfileModal";
 
@@ -12,8 +15,12 @@ export const BusinessAssessment = (props: any): JSX.Element => {
   const [businessPhase, setBusinessPhase] = useState();
   const [businessIndustry, setBusinessIndustry] = useState();
   const [business, setBusiness] = useState(props.business);
-  const [businessIndustryAndPhaseState] = useState(state || {} as IBusinessIndustryAndPhase);
-  const [businessIndustryAndPhase, setBusinessIndustryAndPhase] = useState(businessIndustryAndPhaseState.businessIndustryAndPhase);
+  const [businessIndustryAndPhaseState] = useState(
+    state || ({} as IBusinessIndustryAndPhase)
+  );
+  const [businessIndustryAndPhase, setBusinessIndustryAndPhase] = useState(
+    businessIndustryAndPhaseState.businessIndustryAndPhase
+  );
   const bizPhaseList: any[] = [];
   const industryList: any[] = [];
   const [bizPhases, setBizPhases] = useState(bizPhaseList);
@@ -27,20 +34,21 @@ export const BusinessAssessment = (props: any): JSX.Element => {
     if (isInitLoad) {
       getBizPhases();
       getBizIndustry();
-
-      console.log(bizIndustries);
-      console.log(bizPhases);
     }
 
-    
     setBusinessPhase(businessIndustryAndPhase.businessPhase);
   }, [navigate]);
+
   const getBizPhases = async () => {
     const phases = await getBusinessPhases();
-    
+
     if (phases.data && phases.data.package) {
       setBizPhases(phases.data.package.data);
-      setBusinessPhase(phases.data.package.data.find((ind: any) => ind.id === businessIndustryAndPhase.businessPhase).label);
+      setBusinessPhase(
+        phases.data.package.data.find(
+          (ind: any) => ind.id === businessIndustryAndPhase.businessPhase
+        ).label
+      );
     }
     setIsLoading(false);
   };
@@ -49,7 +57,11 @@ export const BusinessAssessment = (props: any): JSX.Element => {
     const industry = await getBusinessIndustry();
     if (industry.data && industry.data.package) {
       setBizIndustries(industry.data.package.data);
-      setBusinessIndustry(industry.data.package.data.find((ind: any) => ind.id === businessIndustryAndPhase.businessIndustry).label);
+      setBusinessIndustry(
+        industry.data.package.data.find(
+          (ind: any) => ind.id === businessIndustryAndPhase.businessIndustry
+        ).label
+      );
     }
     setIsLoading(false);
     setIsInitLoad(false);
@@ -94,7 +106,10 @@ export const BusinessAssessment = (props: any): JSX.Element => {
           </div>
         </div>
 
-        <BusinessAssessmentQuestions business={business} businessIndustryAndPhase={businessIndustryAndPhase} />
+        <BusinessAssessmentQuestions
+          business={business}
+          businessIndustryAndPhase={businessIndustryAndPhase}
+        />
 
         <CompleteCompanyProfileModal businessIndustry={businessIndustry} />
       </div>
