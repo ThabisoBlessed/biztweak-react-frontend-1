@@ -10,18 +10,25 @@ import { IBusinessIndustryAndPhase } from "../../model/business-industry-and-pha
 import { IBusinessMenuBusinessModel } from "../../model/business-menu-business-model";
 import { IMappedAssessmentQuestion } from "../../model/mapped-assessment-question.model";
 import { addAssessmentQuestions } from "../../services/business/assessment.service";
-import { addCompany, getCompany } from "../../services/business/company.service";
+import {
+  addCompany,
+  getCompany,
+} from "../../services/business/company.service";
 import { convertToBase64 } from "../util/file-util";
 import { BusinessMenu } from "./BusinessMenu";
 
 export const BusinessProfile = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const [businessIndustryAndPhaseState] = useState(state || {} as IBusinessIndustryAndPhase);
-  const [businessIndustryAndPhase, setBusinessIndustryAndPhase] = useState(businessIndustryAndPhaseState.businessIndustryAndPhase);
+  const [businessIndustryAndPhaseState] = useState(
+    state || ({} as IBusinessIndustryAndPhase)
+  );
+  const [businessIndustryAndPhase, setBusinessIndustryAndPhase] = useState(
+    businessIndustryAndPhaseState.businessIndustryAndPhase
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState("");
-  const [logo, setLogo] = useState();
+  const [logo, setLogo] = useState({} as File);
   const [registrationNumber, setRegistrationNumber] = useState("");
   const [registered, setRegistered] = useState("false");
   const [registrationDate, setRegistrationDate] = useState("");
@@ -32,19 +39,21 @@ export const BusinessProfile = () => {
   const [productsOrServices, setProductsOrServices] = useState("");
   const mappedQuestionList: IMappedAssessmentQuestion[] = [];
   const [questions] = useState(state || mappedQuestionList);
-  const [questionAndAnswer, setQuestionAndAnswer] = useState(questions.questionList);
+  const [questionAndAnswer, setQuestionAndAnswer] = useState(
+    questions.questionList
+  );
   const [formatedQuestionAndAnswer, setFormatedQuestionAndAnswer] = useState();
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
-    
+
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 
     if (questionAndAnswer && questionAndAnswer.length > 0) {
       const result: any[] = [];
       for (let index = 0; index < questionAndAnswer.length; index++) {
         const question = questionAndAnswer[index];
-        const formatted = { questionId: question.id, answer: question.answer};
+        const formatted = { questionId: question.id, answer: question.answer };
         result.push(formatted);
       }
       console.log(result);
@@ -60,33 +69,69 @@ export const BusinessProfile = () => {
     setIsLoading(true);
 
     if (businessIndustryAndPhase) {
-      const company = {
-        id: 0,
-        name: name,
-        logo: "",
-        // logo: logo,
-        registration_date: registrationDate || new Date().toString(),
-        registration_number: registrationNumber,
-        registered: registered === "false" ? false : true,
-        location: location,
-        employees: numberOfEmployees,
-        annual_turnover: annualTurnover,
-        monthly_turnover: monthlyTurnover,
-        products_or_services: productsOrServices,
-        phase: businessIndustryAndPhase.businessPhase,
-        industry: businessIndustryAndPhase.businessIndustry,
-      };
+      // const company = {
+      //   id: 0,
+      //   name: name,
+      //   logo: "",
+      //   registration_date: registrationDate || new Date().toString(),
+      //   registration_number: registrationNumber,
+      //   registered: registered === "false" ? false : true,
+      //   location: location,
+      //   employees: numberOfEmployees,
+      //   annual_turnover: annualTurnover,
+      //   monthly_turnover: monthlyTurnover,
+      //   products_or_services: productsOrServices,
+      //   phase: businessIndustryAndPhase.businessPhase,
+      //   industry: businessIndustryAndPhase.businessIndustry,
+      // };
+
+      const company = new FormData();
+      company.append("id", String(0));
+      company.append("name", name);
+      company.append("logo", logo);
+      company.append(
+        "registrationDate",
+        registrationDate || new Date().toString()
+      );
+      company.append("registrationNumber", registrationNumber);
+      company.append(
+        "registered",
+        registered === "false" ? String(false) : String(true)
+      );
+      company.append("location", location);
+      company.append("numberOfEmployees", String(numberOfEmployees));
+      company.append("annualTurnover", String(annualTurnover));
+      company.append("monthlyTurnover", String(monthlyTurnover));
+      company.append("productsOrServices", String(productsOrServices));
+      company.append("phaseId", String(businessIndustryAndPhase.businessPhase));
+      company.append(
+        "industryId",
+        String(businessIndustryAndPhase.businessIndustry)
+      );
 
       const response = await addCompany(company);
       console.log("create new company response: ", response.data);
-      if (response.status && response.data.package.data && response.data.package.data.id) {
-        const assessment = await addAssessmentQuestions(JSON.stringify(questionAndAnswer), response.data.package.data.id, businessIndustryAndPhase.businessPhase);
+      if (
+        response.status &&
+        response.data.package.data &&
+        response.data.package.data.id
+      ) {
+        const assessment = await addAssessmentQuestions(
+          JSON.stringify(questionAndAnswer),
+          response.data.package.data.id,
+          businessIndustryAndPhase.businessPhase
+        );
         const success = assessment.data;
         const isNewCompany = true;
-        console.log("create new company assessment response: ", assessment.data);
+        console.log(
+          "create new company assessment response: ",
+          assessment.data
+        );
         if (success) {
-          const business = assessment.data.package.data
-          navigate("/business/manage-business/report-summary", { state: { business, isNewCompany }});
+          const business = assessment.data.package.data;
+          navigate("/business/manage-business/report-summary", {
+            state: { business, isNewCompany },
+          });
         }
       } else {
         navigate("/business");
