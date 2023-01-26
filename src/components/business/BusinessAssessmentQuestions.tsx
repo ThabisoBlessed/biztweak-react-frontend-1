@@ -38,12 +38,11 @@ export const BusinessAssessmentQuestions = (props: any) => {
       listAssessmentQuestions();
     }
 
-    if (isInitLoad) {
       for (let index = 0; index < questionList.length; index++) {
         const question = questionList[index];
+        console.log(question);
         mapQuestions(question);
       }
-    }
 
     setMappedQuestions(mappedQuestionList);
     setIsInitLoad(false);
@@ -54,15 +53,15 @@ export const BusinessAssessmentQuestions = (props: any) => {
    * @param mappedQuestions
    * @param question
    */
-  const mapQuestions = (question: Assessment) => {
+  const mapQuestions = (question: any) => {
     const existing = mappedQuestionList.find(
       (q) => q.category === question.category
     );
     const questionToSave = {} as IQuestion;
 
     if (existing) {
-      questionToSave.answer = question.answer;
-      questionToSave.label = question.label;
+      questionToSave.answer = "no";
+      questionToSave.label = question.question;
       questionToSave.id = question.id;
       existing.questions.push(questionToSave);
     } else {
@@ -87,7 +86,7 @@ export const BusinessAssessmentQuestions = (props: any) => {
     setIsLoading(true);
     const assessmentQuestions = await getAssessmentQuestions(Number(props.businessIndustryAndPhase.businessPhase));
     if (assessmentQuestions.data && assessmentQuestions.data.package) {
-      console.log(assessmentQuestions.data.package.data)
+      // console.log(assessmentQuestions.data.package.data)
       setQuestionList(assessmentQuestions.data.package.data);
     }
     setIsLoading(false);
