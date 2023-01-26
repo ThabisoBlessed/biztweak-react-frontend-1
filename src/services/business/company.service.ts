@@ -22,18 +22,19 @@ export const addCompany = async (company: any): Promise<any> => {
     };
 
     return await axios.post(constants.baseUrl + `/companies`, {
+      id: company.id,
       name: company.name,
       logo: company.logo,
-      registration_date: company.registration_date,
-      registration_number: company.registration_number,
+      registrationDate: company.registration_date,
+      registrationNumber: company.registration_number,
       registered: company.registered,
       location: company.location,
       employees: company.employees,
-      annual_turnover: company.annual_turnover,
-      monthly_turnover: company.monthly_turnover,
-      products_or_services: company.products_or_services,
-      phase: company.phase,
-      industry: company.industry,
+      annualTurnover: company.annual_turnover,
+      monthlyTurnover: company.monthly_turnover,
+      productsOrServices: company.products_or_services,
+      phase: String(company.phase),
+      industry: String(company.industry),
     }, config);
   } catch (error: any) {
     return error;

@@ -33,10 +33,23 @@ export const BusinessProfile = () => {
   const mappedQuestionList: IMappedAssessmentQuestion[] = [];
   const [questions] = useState(state || mappedQuestionList);
   const [questionAndAnswer, setQuestionAndAnswer] = useState(questions.questionList);
+  const [formatedQuestionAndAnswer, setFormatedQuestionAndAnswer] = useState();
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
+    
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+
+    if (questionAndAnswer && questionAndAnswer.length > 0) {
+      const result: any[] = [];
+      for (let index = 0; index < questionAndAnswer.length; index++) {
+        const question = questionAndAnswer[index];
+        const formatted = { questionId: question.id, answer: question.answer};
+        result.push(formatted);
+      }
+      console.log(result);
+    }
+    // console.log(questionAndAnswer);
   }, [navigate]);
 
   /**
@@ -66,7 +79,7 @@ export const BusinessProfile = () => {
       const response = await addCompany(company);
       console.log("create new company response: ", response.data);
       if (response.status && response.data.package.data && response.data.package.data.id) {
-        const assessment = await addAssessmentQuestions(JSON.stringify(questionAndAnswer), response.data.package.data.id);
+        const assessment = await addAssessmentQuestions(JSON.stringify(questionAndAnswer), response.data.package.data.id, businessIndustryAndPhase.businessPhase);
         const success = assessment.data;
         const isNewCompany = true;
         console.log("create new company assessment response: ", assessment.data);

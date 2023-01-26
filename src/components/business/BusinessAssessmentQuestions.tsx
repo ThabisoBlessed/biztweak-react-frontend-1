@@ -133,9 +133,18 @@ export const BusinessAssessmentQuestions = (props: any) => {
         state: { questionList, businessIndustryAndPhase },
       });
     } else {
+      const result: any[] = [];
+      for (let index = 0; index < questionList.length; index++) {
+        const question = questionList[index];
+        const formatted = { questionId: question.id, answer: question.answer};
+        result.push(formatted);
+      }
+      console.log(result);
+
       const update = await addAssessmentQuestions(
-        JSON.stringify(questionList),
-        business.id
+        JSON.stringify(result),
+        business.id,
+        business.phase
       );
 
       // Successful call return "data", failed call returns "response"
