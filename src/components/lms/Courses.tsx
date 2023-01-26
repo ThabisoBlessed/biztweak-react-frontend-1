@@ -8,6 +8,7 @@ import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
 import { getAllcourses } from "../../services/cmp/course.service";
 import { ICourse } from "../../model/course.model";
 import { IUser } from "../../model/user.model";
+import { IAttendance } from "../../model/attendance.model";
 
 export const Courses = () => {
   const navigate = useNavigate();

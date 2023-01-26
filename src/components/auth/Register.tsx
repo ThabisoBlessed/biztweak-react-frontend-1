@@ -107,14 +107,15 @@ export const Register = () => {
                           autoComplete="false"
                           onChange={(e) => setPassword(e.target.value)}
                         />
-                        <small
+                       
+                      </div>
+                       <small
                           id="passwordHelp"
-                          className="form-text text-muted"
+                          className="form-text ml-2 text-muted"
                         >
                           Should include number and special character eg.
                           "2020@hello"
                         </small>
-                      </div>
                       <div className="input-group input-group-lg p-2 mb-3">
                         <i className="fa fa-star input-group-text"></i>
                         <input
