@@ -74,7 +74,7 @@ export const addAssessmentQuestions = async (answers: string, companyId: number,
       }
     }
 
-    return await axios.post(constants.baseUrl + `/assessments/questions/${phaseId}`, { companyId: companyId, questionsAndAnswers: answers }, config);
+    return await axios.post(constants.baseUrl + `/assessments`, { companyId: companyId, questionsAndAnswers: answers }, config);
   } catch (error: any) {
     return error;
   }
