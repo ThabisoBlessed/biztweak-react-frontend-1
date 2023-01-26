@@ -11,17 +11,19 @@ export const AddCompanyModal = (props: any) => {
   useEffect(() => {}, [businessIndustry, businessPhase]);
 
   const handleIndustryItemClick = (event: any) => {
+    console.log(event.target.value)
     setBusinessIndustry(event.target.value);
   };
 
   const handleBizPhaseItemClick = (event: any) => {
+    console.log(event.target.value)
     setBusinessPhase(event.target.value);
   };
 
   const onSave = () => {
     const businessIndustryAndPhaseModel = {} as IBusinessIndustryAndPhase;
-    businessIndustryAndPhaseModel.businessIndustry = businessIndustry.id;
-    businessIndustryAndPhaseModel.businessPhase = businessPhase.id;
+    businessIndustryAndPhaseModel.businessIndustry = props.industries.find((b: any) => b.label === businessIndustry).id;
+    businessIndustryAndPhaseModel.businessPhase = props.bizPhases.find((b: any) => b.label === businessPhase).id;
 
     const businessIndustryAndPhase = businessIndustryAndPhaseModel;
 
