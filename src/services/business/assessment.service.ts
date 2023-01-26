@@ -64,9 +64,6 @@ export const getAssessmentQuestions = async (phaseId: number): Promise<any> => {
  * @returns {any} result
  */
 export const addAssessmentQuestions = async (answers: string, companyId: number, phaseId: number): Promise<any> => {
-  console.log(answers);
-  console.log(companyId);
-  console.log(phaseId);
   try {
     let config = {
       headers: {

@@ -126,7 +126,7 @@ export const BusinessProfile = () => {
           assessment.data
         );
         if (success) {
-          const business = assessment.data.package.data.data;
+          const business = assessment.data.package.data;
           navigate("/business/manage-business/report-summary", {
             state: { business, isNewCompany },
           });
