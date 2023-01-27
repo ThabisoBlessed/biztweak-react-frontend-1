@@ -127,8 +127,9 @@ export const BusinessProfile = () => {
         );
         if (success) {
           const business = assessment.data.package.data;
+          const assessments = response.data.package.data.data;
           navigate("/business/manage-business/report-summary", {
-            state: { business, isNewCompany },
+            state: { business, assessments, isNewCompany },
           });
         }
       } else {
