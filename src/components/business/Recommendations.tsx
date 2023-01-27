@@ -2,7 +2,9 @@ import { useEffect } from "preact/hooks";
 import React, { useState } from "react";
 
 export const Recommendations = (props: any) => {
-  const [recommendedModules, setRecommendedModules] = useState(props.recommendedModules);
+  const [recommendedModules, setRecommendedModules] = useState(
+    props.recommendedModules
+  );
   const [reports, setReports] = useState(props.data);
   const [modules, setModules] = useState(props.modules);
 
@@ -21,8 +23,10 @@ export const Recommendations = (props: any) => {
           </div>
         </div>
         <div className="row">
-          <div className="col-md-6">
-            <div className="accordion" id="strategy">
+          {modules.map((module: any, index: number) => {
+            return (
+              <div className="col-md-6" key={index}>
+            <div className="accordion" id={`strategy${index}`}>
               <div className="accordion-item border-0 mb-2">
                 <h2 className="accordion-header">
                   <button
@@ -43,7 +47,7 @@ export const Recommendations = (props: any) => {
                 <div
                   id="item-1"
                   className="accordion-collapse collapse text-center"
-                  data-bs-parent="#strategy"
+                  data-bs-parent={`strategy${index}`}
                 >
                   <div className="accordion-body">
                     <p className="recom lead text-sm m-2">-Revenue models</p>
@@ -57,6 +61,9 @@ export const Recommendations = (props: any) => {
               </div>
             </div>
           </div>
+            );
+          })}
+         
         </div>
 
         <div className="alert rounded-0 bg-[#00c2cb] text-center text-white p-4 mb-5">
