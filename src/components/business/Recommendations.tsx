@@ -41,7 +41,7 @@ export const Recommendations = (props: any) => {
                       className="me-3 rounded-circle img-fluid h-[50px] w-[50px]"
                       alt=""
                     />
-                    Strategic Planning
+                    {module[0]}
                   </button>
                 </h2>
                 <div
