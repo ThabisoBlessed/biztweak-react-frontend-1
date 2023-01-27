@@ -28,9 +28,7 @@ export const BusinessMenu = (props: any) => {
     const businessIndustryAndPhaseModel = {} as IBusinessIndustryAndPhase;
     businessIndustryAndPhaseModel.businessIndustry = business.phase.id;
     businessIndustryAndPhaseModel.businessPhase = business.industry.id;
-
     const businessIndustryAndPhase = businessIndustryAndPhaseModel;
-
 
     // navigate("/business/manage-business/assessment", {
     //   state: { businessIndustryAndPhase },

@@ -4,7 +4,6 @@ import { BarChart } from "../shared/charts/BarChart";
 import { PieChart } from "../shared/charts/PieChart";
 import { FullReport } from "./FullReport";
 import { Recommendations } from "./Recommendations";
-import { Webinar } from "./Webinar";
 import { useLocation, useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../config";
 
