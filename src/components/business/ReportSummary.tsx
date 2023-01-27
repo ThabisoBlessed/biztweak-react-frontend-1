@@ -122,11 +122,13 @@ export const ReportSummary = () => {
               </div>
 
               <div className="recommendation">
-                <Recommendations
-                  recommendedModules={recommendedModules}
-                  data={data}
-                  modules={modules}
-                />
+                {modules && recommendedModules ? (
+                  <Recommendations
+                    recommendedModules={business.recommendedModules}
+                    // data={data}
+                    modules={modules}
+                  />
+                ) : null}
               </div>
 
               {/* <div className="webinar">
