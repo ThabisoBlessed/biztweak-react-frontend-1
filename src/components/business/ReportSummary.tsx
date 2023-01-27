@@ -125,6 +125,7 @@ export const ReportSummary = () => {
                 <Recommendations
                   recommendedModules={recommendedModules}
                   data={data}
+                  modules={modules}
                 />
               </div>
 
