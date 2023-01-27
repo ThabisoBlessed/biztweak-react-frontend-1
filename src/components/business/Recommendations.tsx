@@ -42,7 +42,7 @@ export const Recommendations = (props: any) => {
                           className="me-3 rounded-circle img-fluid h-[50px] w-[50px]"
                           alt=""
                         />
-                        Strategic Planning
+                        {modules[0]}
                       </button>
                     </h2>
                     <div
@@ -51,16 +51,11 @@ export const Recommendations = (props: any) => {
                       data-bs-parent="#strategy"
                     >
                       <div className="accordion-body">
-                        <p className="recom lead text-sm m-2">
-                          -Revenue models
-                        </p>
-                        <p className="recom lead text-sm m-2">
-                          -Value proposition canvas
-                        </p>
-
-                        <p className="recom lead text-sm m-2">
-                          -Scale strategy
-                        </p>
+                        {modules[1].map((value: any, index: number) => {
+                          return (
+                            <p key={index} className="recom lead text-sm m-2">-{value}</p>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>

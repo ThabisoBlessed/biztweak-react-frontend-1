@@ -31,7 +31,7 @@ export const ReportSummary = () => {
       getReports();
     }
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    console.log("modules:", modules);
+    console.log("business:", business);
     setRecommendedModules(business.recommendedModules);
   }, [navigate]);
 
