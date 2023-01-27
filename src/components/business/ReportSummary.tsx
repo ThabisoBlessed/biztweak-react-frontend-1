@@ -49,10 +49,11 @@ export const ReportSummary = () => {
       const report = reports[index];
       const reportSet = [report.category, report.percentage];
       const modulesSet = [report.category, report.modules];
-      const businessConceptSet = [
+      const allReportsSet = [
         report.category,
         report.recommendations,
         report.recommendations[0].type,
+        report.percentage
       ];
 
       if (!allData.includes(reportSet)) {
@@ -63,8 +64,8 @@ export const ReportSummary = () => {
         allModules.push(modulesSet);
       }
 
-      if (!businessConceptSet.includes(businessConceptSet)) {
-        allFullReports.push(businessConceptSet);
+      if (!allReportsSet.includes(allReportsSet)) {
+        allFullReports.push(allReportsSet);
       }
     }
     setData(allData);

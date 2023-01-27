@@ -20,23 +20,6 @@ export const addCompany = async (company: any): Promise<any> => {
           ),
       },
     };
-
-    // return await axios.post(constants.baseUrl + `/companies`, {
-    //   id: company.id,
-    //   name: company.name,
-    //   logo: company.logo,
-    //   registrationDate: company.registration_date,
-    //   registrationNumber: company.registration_number,
-    //   registered: company.registered,
-    //   location: company.location,
-    //   numberOfEmployees: company.employees,
-    //   annualTurnover: company.annual_turnover,
-    //   monthlyTurnover: company.monthly_turnover,
-    //   productsOrServices: company.products_or_services,
-    //   phaseId: company.phase,
-    //   industryId: company.industry,
-    // }, config);
-
     return await axios.post(constants.baseUrl + `/companies`, company, config);
   } catch (error: any) {
     return error;

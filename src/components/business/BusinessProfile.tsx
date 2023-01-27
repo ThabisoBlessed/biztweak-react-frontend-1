@@ -71,22 +71,6 @@ export const BusinessProfile = () => {
     setIsLoading(true);
 
     if (businessIndustryAndPhase) {
-      // const company = {
-      //   id: 0,
-      //   name: name,
-      //   logo: "",
-      //   registration_date: registrationDate || new Date().toString(),
-      //   registration_number: registrationNumber,
-      //   registered: registered === "false" ? false : true,
-      //   location: location,
-      //   employees: numberOfEmployees,
-      //   annual_turnover: annualTurnover,
-      //   monthly_turnover: monthlyTurnover,
-      //   products_or_services: productsOrServices,
-      //   phase: businessIndustryAndPhase.businessPhase,
-      //   industry: businessIndustryAndPhase.businessIndustry,
-      // };
-
       const company = new FormData();
       company.append("id", String(0));
       company.append("name", name);

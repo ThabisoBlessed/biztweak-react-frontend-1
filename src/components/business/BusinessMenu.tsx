@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { isLoggedIn, LOCALSTORAGE_KEYS, setLocalStorageValue } from "../../config";
+import {
+  isLoggedIn,
+  LOCALSTORAGE_KEYS,
+  setLocalStorageValue,
+} from "../../config";
 import { IBusinessIndustryAndPhase } from "../../model/business-industry-and-phase.model";
 import { IBusinessMenuBusinessModel } from "../../model/business-menu-business-model";
 import { listCompaniesForLoggedInUser } from "../../services/business/company.service";
@@ -22,7 +26,7 @@ export const BusinessMenu = (props: any) => {
       setActiveBusinesses(businesses.data.package.data);
       // console.log(businesses.data.package.data);
     }
-  }
+  };
 
   const onCompleteAssessment = (business: IBusinessMenuBusinessModel) => {
     const businessIndustryAndPhaseModel = {} as IBusinessIndustryAndPhase;
@@ -33,23 +37,27 @@ export const BusinessMenu = (props: any) => {
     // navigate("/business/manage-business/assessment", {
     //   state: { businessIndustryAndPhase },
     // });
-    
-    navigate("/business/manage-business/assessment", { state: { business, businessIndustryAndPhase } });
+
+    navigate("/business/manage-business/assessment", {
+      state: { business, businessIndustryAndPhase },
+    });
   };
 
   const onViewBizReport = (business: IBusinessMenuBusinessModel) => {
     const isNewCompany = false;
-    navigate("/business/manage-business/report-summary", { state: { business, isNewCompany } });
+    navigate("/business/manage-business/report-summary", {
+      state: { business, isNewCompany },
+    });
     window.location.reload();
   };
 
   const onAddCompany = () => {
-    const addCompanyModal = document.getElementById('addCompanyModal');
+    const addCompanyModal = document.getElementById("addCompanyModal");
     if (!addCompanyModal) {
       setLocalStorageValue(LOCALSTORAGE_KEYS.newUserMode, "true");
       navigate("/business");
     }
-  }
+  };
 
   return (
     <div className="b-0 m-0 min-h-[100vh]">
@@ -70,7 +78,11 @@ export const BusinessMenu = (props: any) => {
           {activeBusinesses.map(
             (business: IBusinessMenuBusinessModel, index: number) => {
               return (
-                <li className="top-buffer mt-2" key={index} id={index.toString()}>
+                <li
+                  className="top-buffer mt-2"
+                  key={index}
+                  id={index.toString()}
+                >
                   <div className="accordion-item">
                     <h2 className="accordion-header" id="heading37">
                       <button
@@ -111,7 +123,13 @@ export const BusinessMenu = (props: any) => {
                           </p>
                         </div>
                         <div className="top-buffer">
-                          {business.assessments ? (
+                          <button
+                            className="btn profile-menu-action-btn mt-2 mb-2 text-white bg-[#00c2cb] hover:bg-[#16f0fb]"
+                            onClick={() => onViewBizReport(business)}
+                          >
+                            <i className="fa fa-file-alt"></i> View Biz Report
+                          </button>
+                          {/* {business.assessments ? (
                             <button
                               className="btn profile-menu-action-btn mt-2 mb-2 text-white bg-[#00c2cb] hover:bg-[#16f0fb]"
                               onClick={() => onViewBizReport(business)}
@@ -126,7 +144,7 @@ export const BusinessMenu = (props: any) => {
                               <i className="fa fa-file-alt"></i> Complete
                               Assessment
                             </button>
-                          )}
+                          )} */}
                         </div>
                       </div>
                     </div>
