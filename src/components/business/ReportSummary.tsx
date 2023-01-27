@@ -49,8 +49,11 @@ export const ReportSummary = () => {
       const report = reports[index];
       const reportSet = [report.category, report.percentage];
       const modulesSet = [report.category, report.modules];
-      const businessConceptSet = [report.category, report.recommendations, report.recommendations[0].type];
-      console.log(businessConceptSet);
+      const businessConceptSet = [
+        report.category,
+        report.recommendations,
+        report.recommendations[0].type,
+      ];
 
       if (!allData.includes(reportSet)) {
         allData.push(reportSet);
@@ -67,8 +70,6 @@ export const ReportSummary = () => {
     setData(allData);
     setModules(allModules);
     setFullReport(allFullReports);
-
-    console.log(fullReport);
   };
 
   const options = {
@@ -129,7 +130,9 @@ export const ReportSummary = () => {
               </div>
 
               <div className="full-report">
-                <FullReport />
+                {modules && recommendedModules && fullReport ? (
+                  <FullReport fullReport={fullReport} />
+                ) : null}
               </div>
 
               <div className="recommendation">

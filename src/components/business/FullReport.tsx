@@ -1,12 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../config";
 
-export const FullReport = () => {
+export const FullReport = (props: any) => {
   const navigate = useNavigate();
+  const [fullReport, setFullReport] = useState(props.fullReport);
+  const initFullReport: (string | number)[][][] = [];
+  const [businessStructure, setBusinessStructure] = useState(initFullReport);
+  const [businessConcept, setBusinessConcept] = useState(initFullReport);
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
+
+    setBusinessStructure(props.fullReport.filter((r: any) => String(r[2]).toLowerCase() === "business structure"));
+    setBusinessConcept(props.fullReport.filter((r: any) => String(r[2]).toLowerCase() === "business concept"));
+
+    console.log(businessConcept);
+    console.log(businessStructure);
+    // console.log('businessConcept', businessConcept);
   }, [navigate]);
 
   return (
