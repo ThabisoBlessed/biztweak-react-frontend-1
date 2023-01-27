@@ -50,12 +50,13 @@ export const Recommendations = (props: any) => {
                   data-bs-parent={`strategy${index}`}
                 >
                   <div className="accordion-body">
-                    <p className="recom lead text-sm m-2">-Revenue models</p>
-                    <p className="recom lead text-sm m-2">
-                      -Value proposition canvas
-                    </p>
-
-                    <p className="recom lead text-sm m-2">-Scale strategy</p>
+                  {module[1].map(
+                    (module: any, index: number) => {
+                      return (
+                        <p key={index} className="recom lead text-sm m-2">-{module}</p>
+                      );
+                    }
+                  )}
                   </div>
                 </div>
               </div>
