@@ -43,9 +43,6 @@ export const AddCompany = () => {
       element.click();
       setLocalStorageValue(LOCALSTORAGE_KEYS.newUserMode, "false");
     }
-
-    console.log(bizPhases);
-    console.log(bizIndustries);
   }, [navigate]);
 
   const getBizPhases = async () => {
@@ -59,7 +56,6 @@ export const AddCompany = () => {
 
   const getBizIndustry = async () => {
     const industry = await getBusinessIndustry();
-    console.log(industry);
     if (industry.data && industry.data.package) {
       setBizIndustries(industry.data.package.data);
     }

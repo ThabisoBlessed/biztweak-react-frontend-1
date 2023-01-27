@@ -4,11 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { IBusinessIndustryAndPhase } from "../../model/business-industry-and-phase.model";
 
 export const AddCompanyModal = (props: any) => {
-  const [businessPhase, setBusinessPhase] = useState(props.bizPhases[0]);
-  const [businessIndustry, setBusinessIndustry] = useState(props.industries[0]);
+  const [businessPhase, setBusinessPhase] = useState(props.bizPhases[0].label);
+  const [businessIndustry, setBusinessIndustry] = useState(props.industries[0].label);
   const navigate = useNavigate();
 
-  useEffect(() => {}, [businessIndustry, businessPhase]);
+  useEffect(() => {
+  }, [businessIndustry, businessPhase]);
 
   const handleIndustryItemClick = (event: any) => {
     console.log(event.target.value)
