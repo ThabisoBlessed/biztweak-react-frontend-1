@@ -1,6 +1,11 @@
-import React from "react";
+import { useEffect } from "preact/hooks";
+import React, { useState } from "react";
 
-export const Recommendations = () => {
+export const Recommendations = (props: any) => {
+  const [recommendedModules, setRecommendedModules] = useState(props.recommendedModules);
+
+  console.log(recommendedModules);
+
   return (
     <div>
       <div className="recommendations bg-primary-light row">
@@ -40,7 +45,9 @@ export const Recommendations = () => {
                 >
                   <div className="accordion-body">
                     <p className="recom lead text-sm m-2">-Revenue models</p>
-                    <p className="recom lead text-sm m-2">-Value proposition canvas</p>
+                    <p className="recom lead text-sm m-2">
+                      -Value proposition canvas
+                    </p>
 
                     <p className="recom lead text-sm m-2">-Scale strategy</p>
                   </div>
@@ -60,39 +67,44 @@ export const Recommendations = () => {
           </div>
         </div>
         <div className="col-md-6">
-            <div className="accordion" key={"professionals"} id="strategy">
-              <div className="accordion-item border-0 mb-2">
-                <h2 className="accordion-header">
-                  <button
-                    className="accordion-button bg-white text-dark fw-normal collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#professionals"
-                    aria-expanded="false"
-                  >
-                    <img
-                      src="https://biztweak.org.za/public/new/images/skills.png"
-                      className="me-3 rounded-circle img-fluid h-[50px] w-[50px]"
-                      alt=""
-                    />
-                    3 Skills Required to the business
-                  </button>
-                </h2>
-                <div
-                  id="professionals"
-                  className="accordion-collapse collapse text-center"
-                  data-bs-parent="#strategy"
+          <div className="accordion" key={"professionals"} id="strategy">
+            <div className="accordion-item border-0 mb-2">
+              <h2 className="accordion-header">
+                <button
+                  className="accordion-button bg-white text-dark fw-normal collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#professionals"
+                  aria-expanded="false"
                 >
-                  <div className="accordion-body">
-                    <p className="recom lead text-sm m-2">-Revenue models</p>
-                    <p className="recom lead text-sm m-2">-Value proposition canvas</p>
-
-                    <p className="recom lead text-sm m-2">-Scale strategy</p>
-                  </div>
+                  <img
+                    src="https://biztweak.org.za/public/new/images/skills.png"
+                    className="me-3 rounded-circle img-fluid h-[50px] w-[50px]"
+                    alt=""
+                  />
+                  3 Skills Required to the business
+                </button>
+              </h2>
+              <div
+                id="professionals"
+                className="accordion-collapse collapse text-center"
+                data-bs-parent="#strategy"
+              >
+                <div className="accordion-body">
+                  {recommendedModules.map(
+                    (recommendation: any, index: number) => {
+                      return (
+                        <p key={index} className="recom lead text-sm m-2">
+                          -{recommendation}
+                        </p>
+                      );
+                    }
+                  )}
                 </div>
               </div>
             </div>
           </div>
+        </div>
       </div>
     </div>
   );

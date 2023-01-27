@@ -13,8 +13,12 @@ export const ReportSummary = () => {
   const { state } = useLocation();
   const [selectedState] = useState(state || {});
   const [business, setBusiness] = useState(selectedState.business);
+  const initRecommendedModules: string[] = [];
+  const [recommendedModules, setRecommendedModules] = useState(initRecommendedModules);
   const [isNewCompany, setIsNewCompany] = useState(selectedState.isNewCompany);
-  const initData: (string | number)[][] = [["Elements", "Priority Elements Percentages"]];
+  const initData: (string | number)[][] = [
+    ["Elements", "Priority Elements Percentages"],
+  ];
   const [data, setData] = useState(initData);
 
   useEffect(() => {
@@ -23,21 +27,25 @@ export const ReportSummary = () => {
       getReports();
     }
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    console.log("business:", business.recommendedModules);
+    setRecommendedModules(business.recommendedModules);
   }, [navigate]);
 
   // Set charts data
   const getReports = () => {
-    const reports = isNewCompany ? business.report : JSON.parse(business.report);
+    const reports = isNewCompany
+      ? business.report
+      : JSON.parse(business.report);
     const allData = data;
     for (let index = 0; index < reports.length; index++) {
       const report = reports[index];
-      const set = [report.category, report.percentage ];
+      const set = [report.category, report.percentage];
       if (!allData.includes(set)) {
         allData.push(set);
       }
     }
     setData(allData);
-  }
+  };
 
   const options = {
     title: "My Daily Activities",
@@ -63,15 +71,13 @@ export const ReportSummary = () => {
             <div className="card-body">
               <h2 className="mt-3 text-3xl text-dark">
                 {business.name}'s Report Summary
-                <button
-                  className="btn btn-sm text-white bg-[#00c2cb] btn-info p-3 float-end"
-                >
+                <button className="btn btn-sm text-white bg-[#00c2cb] btn-info p-3 float-end">
                   Download Report
                 </button>
               </h2>
               <p className="d-flex mt-4 text-dark">
-                <i className="fa fa-info m-0"></i>&nbsp;We are generating revenue,
-                we would like to grow through investment
+                <i className="fa fa-info m-0"></i>&nbsp;We are generating
+                revenue, we would like to grow through investment
               </p>
 
               <div
@@ -80,7 +86,9 @@ export const ReportSummary = () => {
               >
                 <h6>Sales Score</h6>
                 <div id="doughnutChart" className="card-body m-0 p-0">
-                  {!data ? null : <PieChart data={data} width={"100%"} height={"300px"} />}
+                  {!data ? null : (
+                    <PieChart data={data} width={"100%"} height={"300px"} />
+                  )}
                 </div>
               </div>
 
@@ -101,7 +109,11 @@ export const ReportSummary = () => {
               </div>
 
               <div className="recommendation">
-                <Recommendations />
+                {recommendedModules && recommendedModules.length > 0 ? (
+                  <Recommendations
+                  recommendedModules={recommendedModules}
+                  />
+                ) : null}
               </div>
 
               {/* <div className="webinar">
