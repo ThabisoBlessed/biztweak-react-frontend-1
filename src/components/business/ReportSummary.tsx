@@ -14,12 +14,16 @@ export const ReportSummary = () => {
   const [selectedState] = useState(state || {});
   const [business, setBusiness] = useState(selectedState.business);
   const initRecommendedModules: string[] = [];
-  const [recommendedModules, setRecommendedModules] = useState(initRecommendedModules);
+  const [recommendedModules, setRecommendedModules] = useState(
+    initRecommendedModules
+  );
   const [isNewCompany, setIsNewCompany] = useState(selectedState.isNewCompany);
   const initData: (string | number)[][] = [
     ["Elements", "Priority Elements Percentages"],
   ];
   const [data, setData] = useState(initData);
+  const initModules: (string | number)[][] = [];
+  const [modules, setModules] = useState(initModules);
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
@@ -27,7 +31,7 @@ export const ReportSummary = () => {
       getReports();
     }
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    console.log("business:", business.recommendedModules);
+    console.log("modules:", modules);
     setRecommendedModules(business.recommendedModules);
   }, [navigate]);
 
@@ -37,14 +41,23 @@ export const ReportSummary = () => {
       ? business.report
       : JSON.parse(business.report);
     const allData = data;
+    const allModules = modules;
+
     for (let index = 0; index < reports.length; index++) {
       const report = reports[index];
-      const set = [report.category, report.percentage];
-      if (!allData.includes(set)) {
-        allData.push(set);
+      const reportSet = [report.category, report.percentage];
+      const modulesSet = [report.category, report.modules];
+
+      if (!allData.includes(reportSet)) {
+        allData.push(reportSet);
+      }
+
+      if (!modules.includes(modulesSet)) {
+        allModules.push(modulesSet);
       }
     }
     setData(allData);
+    setModules(allModules);
   };
 
   const options = {
@@ -109,11 +122,10 @@ export const ReportSummary = () => {
               </div>
 
               <div className="recommendation">
-                {recommendedModules && recommendedModules.length > 0 ? (
-                  <Recommendations
+                <Recommendations
                   recommendedModules={recommendedModules}
-                  />
-                ) : null}
+                  data={data}
+                />
               </div>
 
               {/* <div className="webinar">

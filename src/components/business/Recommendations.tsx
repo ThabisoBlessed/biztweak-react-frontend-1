@@ -3,6 +3,9 @@ import React, { useState } from "react";
 
 export const Recommendations = (props: any) => {
   const [recommendedModules, setRecommendedModules] = useState(props.recommendedModules);
+  const [reports, setReports] = useState(props.data);
+
+  console.log("reports: ", reports);
 
   return (
     <div>
