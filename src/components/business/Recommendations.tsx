@@ -2,7 +2,9 @@ import { useEffect } from "preact/hooks";
 import React, { useState } from "react";
 
 export const Recommendations = (props: any) => {
-  const [recommendedModules, setRecommendedModules] = useState(props.recommendedModules);
+  const [recommendedModules, setRecommendedModules] = useState(
+    props.recommendedModules
+  );
   // const [reports, setReports] = useState(props.data);
   const [modules, setModules] = useState(props.modules);
 
@@ -22,42 +24,50 @@ export const Recommendations = (props: any) => {
           </div>
         </div>
         <div className="row">
-          <div className="col-md-6">
-            <div className="accordion" id="strategy">
-              <div className="accordion-item border-0 mb-2">
-                <h2 className="accordion-header">
-                  <button
-                    className="accordion-button bg-white text-dark fw-normal collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#item-1"
-                    aria-expanded="false"
-                  >
-                    <img
-                      src="https://biztweak.org.za/public/new/images/strategic.png"
-                      className="me-3 rounded-circle img-fluid h-[50px] w-[50px]"
-                      alt=""
-                    />
-                    Strategic Planning
-                  </button>
-                </h2>
-                <div
-                  id="item-1"
-                  className="accordion-collapse collapse text-center"
-                  data-bs-parent="#strategy"
-                >
-                  <div className="accordion-body">
-                    <p className="recom lead text-sm m-2">-Revenue models</p>
-                    <p className="recom lead text-sm m-2">
-                      -Value proposition canvas
-                    </p>
+          {modules.map((modules: any, index: number) => {
+            return (
+              <div className="col-md-6" key={index}>
+                <div className="accordion" id="strategy">
+                  <div className="accordion-item border-0 mb-2">
+                    <h2 className="accordion-header">
+                      <button
+                        className="accordion-button bg-white text-dark fw-normal collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target={`#item-${index}`}
+                        aria-expanded="false"
+                      >
+                        <img
+                          src="https://biztweak.org.za/public/new/images/strategic.png"
+                          className="me-3 rounded-circle img-fluid h-[50px] w-[50px]"
+                          alt=""
+                        />
+                        Strategic Planning
+                      </button>
+                    </h2>
+                    <div
+                      id={`item-${index}`}
+                      className="accordion-collapse collapse text-center"
+                      data-bs-parent="#strategy"
+                    >
+                      <div className="accordion-body">
+                        <p className="recom lead text-sm m-2">
+                          -Revenue models
+                        </p>
+                        <p className="recom lead text-sm m-2">
+                          -Value proposition canvas
+                        </p>
 
-                    <p className="recom lead text-sm m-2">-Scale strategy</p>
+                        <p className="recom lead text-sm m-2">
+                          -Scale strategy
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
 
         <div className="alert rounded-0 bg-[#00c2cb] text-center text-white p-4 mb-5">
