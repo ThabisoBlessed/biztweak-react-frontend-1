@@ -23,8 +23,8 @@ export const ReportSummary = () => {
   const [data, setData] = useState(initData);
   const initModules: (string | number)[][] = [];
   const [modules, setModules] = useState(initModules);
-  const initBusinessConcepts: (string | number)[][][] = [];
-  const [businessConcepts, setBusinessConcepts] = useState(initBusinessConcepts);
+  const initFullReport: (string | number)[][][] = [];
+  const [fullReport, setFullReport] = useState(initFullReport);
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
@@ -43,7 +43,7 @@ export const ReportSummary = () => {
       : JSON.parse(business.report);
     const allData = data;
     const allModules = modules;
-    const allBusinessConcepts = businessConcepts;
+    const allFullReports = fullReport;
 
     for (let index = 0; index < reports.length; index++) {
       const report = reports[index];
@@ -61,14 +61,14 @@ export const ReportSummary = () => {
       }
 
       if (!businessConceptSet.includes(businessConceptSet)) {
-        allBusinessConcepts.push(businessConceptSet);
+        allFullReports.push(businessConceptSet);
       }
     }
     setData(allData);
     setModules(allModules);
-    setBusinessConcepts(allBusinessConcepts);
+    setFullReport(allFullReports);
 
-    console.log(businessConcepts);
+    console.log(fullReport);
   };
 
   const options = {
