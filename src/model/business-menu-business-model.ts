@@ -4,12 +4,12 @@ export interface IBusinessMenuBusinessModel {
     date: string;
     employees: number;
     id: number;
-    industry: string;
+    industry: any;
     location: string;
     logo: string;
     monthly_turnover: number;
     name: string;
-    phase: string;
+    phase: any;
     products_or_services: string;
     rating: string;
     registered: boolean;

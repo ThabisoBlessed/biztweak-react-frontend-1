@@ -5,11 +5,7 @@ export const Recommendations = (props: any) => {
   const [recommendedModules, setRecommendedModules] = useState(
     props.recommendedModules
   );
-  // const [reports, setReports] = useState(props.data);
   const [modules, setModules] = useState(props.modules);
-
-  console.log("recommendedModules: ", recommendedModules);
-  console.log("modules: ", modules);
 
   return (
     <div>

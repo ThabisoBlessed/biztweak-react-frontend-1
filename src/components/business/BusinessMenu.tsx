@@ -26,16 +26,17 @@ export const BusinessMenu = (props: any) => {
 
   const onCompleteAssessment = (business: IBusinessMenuBusinessModel) => {
     const businessIndustryAndPhaseModel = {} as IBusinessIndustryAndPhase;
-    businessIndustryAndPhaseModel.businessIndustry = business.phaseId;
-    businessIndustryAndPhaseModel.businessPhase = business.industryId;
+    businessIndustryAndPhaseModel.businessIndustry = business.phase.id;
+    businessIndustryAndPhaseModel.businessPhase = business.industry.id;
 
     const businessIndustryAndPhase = businessIndustryAndPhaseModel;
 
-    navigate("/business/manage-business/assessment", {
-      state: { businessIndustryAndPhase },
-    });
+
+    // navigate("/business/manage-business/assessment", {
+    //   state: { businessIndustryAndPhase },
+    // });
     
-    navigate("/business/manage-business/assessment", { state: { business, businessIndustryAndPhaseModel } });
+    navigate("/business/manage-business/assessment", { state: { business, businessIndustryAndPhase } });
   };
 
   const onViewBizReport = (business: IBusinessMenuBusinessModel) => {
@@ -103,12 +104,12 @@ export const BusinessMenu = (props: any) => {
                         <div className="small text-start">
                           <p className="d-flex m-2">
                             <i className="fa fa-info me-3"></i>
-                            {business.phase}
+                            {business.phase.label}
                           </p>
 
                           <p className="m-2">
                             <i className="fa fa-industry me-3"></i>
-                            {business.industry}
+                            {business.industry.label}
                           </p>
                         </div>
                         <div className="top-buffer">
