@@ -4,8 +4,6 @@ import React, { useState } from "react";
 export const Recommendations = (props: any) => {
   const [recommendedModules, setRecommendedModules] = useState(props.recommendedModules);
 
-  console.log(recommendedModules);
-
   return (
     <div>
       <div className="recommendations bg-primary-light row">
@@ -82,7 +80,7 @@ export const Recommendations = (props: any) => {
                     className="me-3 rounded-circle img-fluid h-[50px] w-[50px]"
                     alt=""
                   />
-                  3 Skills Required to the business
+                  {recommendedModules.length} Skills Required to the business
                 </button>
               </h2>
               <div
