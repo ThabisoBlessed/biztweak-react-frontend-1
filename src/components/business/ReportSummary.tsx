@@ -23,6 +23,8 @@ export const ReportSummary = () => {
   const [data, setData] = useState(initData);
   const initModules: (string | number)[][] = [];
   const [modules, setModules] = useState(initModules);
+  const initBusinessConcepts: (string | number)[][][] = [];
+  const [businessConcepts, setBusinessConcepts] = useState(initBusinessConcepts);
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
@@ -30,7 +32,7 @@ export const ReportSummary = () => {
       getReports();
     }
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    console.log("business:", business);
+    // console.log("business:", business);
     setRecommendedModules(business.recommendedModules);
   }, [navigate]);
 
@@ -41,11 +43,14 @@ export const ReportSummary = () => {
       : JSON.parse(business.report);
     const allData = data;
     const allModules = modules;
+    const allBusinessConcepts = businessConcepts;
 
     for (let index = 0; index < reports.length; index++) {
       const report = reports[index];
       const reportSet = [report.category, report.percentage];
       const modulesSet = [report.category, report.modules];
+      const businessConceptSet = [report.category, report.recommendations, report.recommendations[0].type];
+      console.log(businessConceptSet);
 
       if (!allData.includes(reportSet)) {
         allData.push(reportSet);
@@ -54,9 +59,16 @@ export const ReportSummary = () => {
       if (!modules.includes(modulesSet)) {
         allModules.push(modulesSet);
       }
+
+      if (!businessConceptSet.includes(businessConceptSet)) {
+        allBusinessConcepts.push(businessConceptSet);
+      }
     }
     setData(allData);
     setModules(allModules);
+    setBusinessConcepts(allBusinessConcepts);
+
+    console.log(businessConcepts);
   };
 
   const options = {
