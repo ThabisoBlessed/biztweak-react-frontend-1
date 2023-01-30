@@ -103,7 +103,6 @@ export const ReportSummary = () => {
     }
 
     setRecommendedModules(initRecommendations);
-    console.log(recommendedModules);
     setIsLoading(false);
   };
 

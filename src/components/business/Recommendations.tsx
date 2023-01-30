@@ -21,8 +21,8 @@ export const Recommendations = (props: any) => {
             </p>
           </div>
         </div>
-        {/* <div className="row">
-          {modules.map((modules: any, index: number) => {
+        <div className="row">
+          {recommendedModules.map((modules: any, index: number) => {
             return (
               <div className="col-md-6" key={index}>
                 <div className="accordion" id="strategy">
@@ -61,7 +61,7 @@ export const Recommendations = (props: any) => {
               </div>
             );
           })}
-        </div> */}
+        </div>
 
         <div className="alert rounded-0 bg-[#00c2cb] text-center text-white p-4 mb-5">
           <div className="row justify-content-center">
