@@ -25,16 +25,16 @@ export const ReportSummary = () => {
   const initFullReport: (string | number)[][][] = [];
   const [fullReport, setFullReport] = useState(initFullReport);
   const [assessment, setAssessment] = useState(business);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
     if (business && data.length === 1) {
       getReports();
     }
-    console.log('recommendedModules', recommendedModules);
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    // setRecommendedModules(business.recommendedModules);
-  }, [navigate]);
+    console.log(recommendedModules);
+  }, [recommendedModules, data]);
 
   // Set charts data
   const getReports = () => {
@@ -69,16 +69,42 @@ export const ReportSummary = () => {
 
     setData(initData);
 
-    // Set recommendations 
+    // Set recommendations
     const initRecommendations: (string | [])[][] = [];
-    initRecommendations.push(["Strategic Planning", business.recommendedModules["Strategic Planning"]]);
-    initRecommendations.push(["Market Intelligence", business.recommendedModules["Market Intelligence"]]);
-    initRecommendations.push(["Talent Management", business.recommendedModules["Talent Management"]]);
-    initRecommendations.push(["Process Management", business.recommendedModules["Process Management"]]);
-    initRecommendations.push(["Product Development", business.recommendedModules["Product Development"]]);
+    if (business.recommendedModules["Strategic Planning"]) {
+      initRecommendations.push([
+        "Strategic Planning",
+        business.recommendedModules["Strategic Planning"],
+      ]);
+    }
+    if (business.recommendedModules["Market Intelligence"]) {
+      initRecommendations.push([
+        "Market Intelligence",
+        business.recommendedModules["Market Intelligence"],
+      ]);
+    }
+    if (business.recommendedModules["Talent Management"]) {
+      initRecommendations.push([
+        "Talent Management",
+        business.recommendedModules["Talent Management"],
+      ]);
+    }
+    if (business.recommendedModules["Process Management"]) {
+      initRecommendations.push([
+        "Process Management",
+        business.recommendedModules["Process Management"],
+      ]);
+    }
+    if (business.recommendedModules["Product Development"]) {
+      initRecommendations.push([
+        "Product Development",
+        business.recommendedModules["Product Development"],
+      ]);
+    }
 
-    console.log(initRecommendations);
     setRecommendedModules(initRecommendations);
+    console.log(recommendedModules);
+    setIsLoading(false);
   };
 
   const options = {
@@ -145,13 +171,11 @@ export const ReportSummary = () => {
               </div> */}
 
               <div className="recommendation">
-                {recommendedModules ? (
+                {isLoading ? null : (
                   <Recommendations
                     recommendedModules={recommendedModules}
-                    // data={data}
-                    // modules={assessment.}
                   />
-                ) : null}
+                )}
               </div>
 
               {/* <div className="webinar">

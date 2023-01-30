@@ -7,7 +7,7 @@ export const Recommendations = (props: any) => {
   );
   const [modules, setModules] = useState(props.modules);
 
-  console.log(recommendedModules);
+  console.log('recommendedModules', recommendedModules);
 
   return (
     <div>
