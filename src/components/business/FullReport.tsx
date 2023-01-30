@@ -173,7 +173,7 @@ export const FullReport = (props: any) => {
                                               return (
                                                 <div
                                                   key={i}
-                                                  className="list-group-item d-flex justify-content-between align-items-start list-group-item-danger"
+                                                  className={`list-group-item d-flex justify-content-between align-items-start ${response.answer === "NO" ? "list-group-item-danger" : "list-group-item-success"}`}
                                                 >
                                                   <p className="mb-0 color-code text-sm">
                                                     {response.output}
