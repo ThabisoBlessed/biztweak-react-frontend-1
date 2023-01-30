@@ -20,6 +20,14 @@ export const FullReport = (props: any) => {
 
     console.log(businessConcept);
     console.log(businessStructure);
+
+    const cats = businessStructure.reduce((catsSoFar: any, { questionId, answer, output, category, type }: { questionId: number, answer: string, output: string, category: string, type: string }) => {
+      if (!catsSoFar[category]) catsSoFar[category] = [];
+      catsSoFar[category].push({ questionId, answer, output, category, type });
+      return catsSoFar;
+    }, {});
+
+    console.log(cats);
     // console.log('businessConcept', businessConcept);
     setIsLoading(false);
   }, [navigate]);
@@ -144,7 +152,7 @@ export const FullReport = (props: any) => {
                               aria-controls="collapseOne"
                               data-bs-parent={`accordion${index}`}
                             >
-                              Priority Elements
+                              {structure.category}
                             </button>
                             <div id={`structure_collapse${index}`} className="accordion-body">
                               <ul className="list-group">
