@@ -7,6 +7,8 @@ export const Recommendations = (props: any) => {
   );
   const [modules, setModules] = useState(props.modules);
 
+  console.log(recommendedModules);
+
   return (
     <div>
       <div className="recommendations bg-primary-light row">

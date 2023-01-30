@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { BusinessMenu } from "./BusinessMenu";
 import { BarChart } from "../shared/charts/BarChart";
 import { PieChart } from "../shared/charts/PieChart";
-import { FullReport } from "./FullReport";
 import { Recommendations } from "./Recommendations";
 import { useLocation, useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../config";
@@ -12,7 +11,7 @@ export const ReportSummary = () => {
   const { state } = useLocation();
   const [selectedState] = useState(state || {});
   const [business, setBusiness] = useState(selectedState.business);
-  const initRecommendedModules: string[] = [];
+  const initRecommendedModules: (string | [])[][] = [];
   const [recommendedModules, setRecommendedModules] = useState(
     initRecommendedModules
   );
@@ -32,7 +31,7 @@ export const ReportSummary = () => {
     if (business && data.length === 1) {
       getReports();
     }
-    console.log(data);
+    console.log('recommendedModules', recommendedModules);
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     // setRecommendedModules(business.recommendedModules);
   }, [navigate]);
@@ -69,6 +68,17 @@ export const ReportSummary = () => {
     ]);
 
     setData(initData);
+
+    // Set recommendations 
+    const initRecommendations: (string | [])[][] = [];
+    initRecommendations.push(["Strategic Planning", business.recommendedModules["Strategic Planning"]]);
+    initRecommendations.push(["Market Intelligence", business.recommendedModules["Market Intelligence"]]);
+    initRecommendations.push(["Talent Management", business.recommendedModules["Talent Management"]]);
+    initRecommendations.push(["Process Management", business.recommendedModules["Process Management"]]);
+    initRecommendations.push(["Product Development", business.recommendedModules["Product Development"]]);
+
+    console.log(initRecommendations);
+    setRecommendedModules(initRecommendations);
   };
 
   const options = {
@@ -135,9 +145,9 @@ export const ReportSummary = () => {
               </div> */}
 
               <div className="recommendation">
-                {assessment ? (
+                {recommendedModules ? (
                   <Recommendations
-                    recommendedModules={assessment.recommendedModules}
+                    recommendedModules={recommendedModules}
                     // data={data}
                     // modules={assessment.}
                   />
