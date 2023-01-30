@@ -207,9 +207,9 @@ export const FullReport = (props: any) => {
               <div id="collapse1" className="accordion-collapse collapse show">
                 <div className="accordion-body">
                   <p className="text-dark">Business Diagnosis</p>
-                  {displayBusinessStructure && displayBusinessStructure.length > 0 ? null : (
+                  {isLoading ? null : (
                     <>
-                      {/* {displayBusinessStructure.map(
+                      {displayBusinessStructure.map(
                         (structure: any, index: number) => {
                           return (
                             <div
@@ -231,7 +231,7 @@ export const FullReport = (props: any) => {
                                     aria-controls="collapseOne"
                                     data-bs-parent={`accordion${index}`}
                                   >
-                                    {structure.category}
+                                    {structure[0]}
                                   </button>
                                   <div
                                     id={`structure_collapse${index}`}
@@ -242,7 +242,7 @@ export const FullReport = (props: any) => {
                                         <p className="text-2xl">
                                           {structure[0]}
                                           <span className="badge float-end rounded-pill bg-[#00c2cb]">
-                                            {structure.percentage}%
+                                            {structure[1].percentage}%
                                           </span>
                                         </p>
                                         <div className="clearfix"></div>
@@ -262,7 +262,7 @@ export const FullReport = (props: any) => {
                             </div>
                           );
                         }
-                      )} */}
+                      )}
                     </>
                   )}
                 </div>
