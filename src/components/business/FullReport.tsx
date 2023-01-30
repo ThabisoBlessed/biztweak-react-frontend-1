@@ -53,7 +53,7 @@ export const FullReport = (props: any) => {
   const [displayBusinessStructure, setDisplayBusinessStructure] = useState(
     Object.entries(businessStructureDisplay)
   );
-  const businessConceptDisplay: any[] = businessConcept.reduce(
+  const businessConceptDisplay = businessConcept.reduce(
     (
       businessSoFar: any,
       {
@@ -99,7 +99,7 @@ export const FullReport = (props: any) => {
     // setDisplayBusinessStructure(businessStructureDisplay);
 
     console.log(displayBusinessStructure);
-    // console.log(displayBusinessConcept);
+    console.log(displayBusinessConcept);
     // console.log(businessStructure);
 
     // console.log('businessConcept', businessConcept);
