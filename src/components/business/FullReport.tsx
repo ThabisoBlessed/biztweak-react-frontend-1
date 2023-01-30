@@ -5,33 +5,97 @@ import { isLoggedIn } from "../../config";
 export const FullReport = (props: any) => {
   const navigate = useNavigate();
   const [fullReport, setFullReport] = useState(props.fullReport);
-  const initFullReport: (string | number)[][][] = [];
-  const [businessStructure, setBusinessStructure] = useState( props.fullReport.filter(
-    (r: any) => String(r.type).toLowerCase() === "business structure"
-  ));
-  const [businessConcept, setBusinessConcept] = useState( props.fullReport.filter(
-    (r: any) => String(r.type).toLowerCase() === "business concept"
-  ));
-  const businessStructureDisplay = businessStructure.reduce((businessSoFar: any, { questionId, answer, output, category, type, percentage }: { questionId: number, answer: string, output: string, category: string, type: string, percentage: number }) => {
-    if (!businessSoFar[category]) businessSoFar[category] = [];
-    businessSoFar[category].push({ questionId, answer, output, category, type });
-    return businessSoFar;
-  }, {});
-  const [displayBusinessStructure, setDisplayBusinessStructure] = useState(businessStructureDisplay);
-  const businessConceptDisplay = businessConcept.reduce((businessSoFar: any, { questionId, answer, output, category, type, percentage }: { questionId: number, answer: string, output: string, category: string, type: string, percentage: number }) => {
-    if (!businessSoFar[category]) businessSoFar[category] = [];
-    businessSoFar[category].push({ questionId, answer, output, category, type });
-    return businessSoFar;
-  }, {});
-  const [displayBusinessConcept, setDisplayBusinessConcept] = useState(businessConceptDisplay);
+  const initFullReport: (string | any)[][] = [];
+  const [businessStructure, setBusinessStructure] = useState(
+    props.fullReport.filter(
+      (r: any) => String(r.type).toLowerCase() === "business structure"
+    )
+  );
+  const [businessConcept, setBusinessConcept] = useState(
+    props.fullReport.filter(
+      (r: any) => String(r.type).toLowerCase() === "business concept"
+    )
+  );
+  const businessStructureDisplay = businessStructure.reduce(
+    (
+      businessSoFar: any,
+      {
+        questionId,
+        answer,
+        output,
+        category,
+        type,
+        percentage,
+      }: {
+        questionId: number;
+        answer: string;
+        output: string;
+        category: string;
+        type: string;
+        percentage: number;
+      }
+    ) => {
+      if (!businessSoFar[category]) businessSoFar[category] = [];
+      businessSoFar[category].push({
+        questionId,
+        answer,
+        output,
+        category,
+        type,
+        percentage: 0
+      });
+      return businessSoFar;
+    },
+    {}
+  );
+  const [displayBusinessStructure, setDisplayBusinessStructure] = useState(
+    Object.entries(businessStructureDisplay)
+  );
+  const businessConceptDisplay: any[] = businessConcept.reduce(
+    (
+      businessSoFar: any,
+      {
+        questionId,
+        answer,
+        output,
+        category,
+        type,
+        percentage,
+      }: {
+        questionId: number;
+        answer: string;
+        output: string;
+        category: string;
+        type: string;
+        percentage: number;
+      }
+    ) => {
+      if (!businessSoFar[category]) businessSoFar[category] = [];
+      businessSoFar[category].push({
+        questionId,
+        answer,
+        output,
+        category,
+        type,
+        percentage: 0
+      });
+      return businessSoFar;
+    },
+    {}
+  );
+  const [displayBusinessConcept, setDisplayBusinessConcept] = useState(
+    Object.entries(businessConceptDisplay)
+  );
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
     // console.log(fullReport);
+    
+    // setDisplayBusinessStructure(businessStructureDisplay);
 
-    console.log(businessStructureDisplay);
-    console.log(businessConceptDisplay);
+    console.log(displayBusinessStructure);
+    // console.log(displayBusinessConcept);
     // console.log(businessStructure);
 
     // console.log('businessConcept', businessConcept);
@@ -143,54 +207,64 @@ export const FullReport = (props: any) => {
               <div id="collapse1" className="accordion-collapse collapse show">
                 <div className="accordion-body">
                   <p className="text-dark">Business Diagnosis</p>
-
-                  {businessStructure.map((structure: any, index: number) => {
-                    return (
-                      <div id={`accordion${index}`} className="accordion" key={index}>
-                        <div className="accordion-item bg-transparent cust-accordion">
-                          <h2 className="accordion-header" id="headingOne">
-                            <button
-                              className="accordion-button collapsed bg-[#f1feff]"
-                              type="button"
-                              data-bs-toggle="collapse"
-                              data-bs-target={`#structure_collapse${index}`} 
-                              aria-expanded="false"
-                              aria-controls="collapseOne"
-                              data-bs-parent={`accordion${index}`}
+                  {displayBusinessStructure && displayBusinessStructure.length > 0 ? null : (
+                    <>
+                      {/* {displayBusinessStructure.map(
+                        (structure: any, index: number) => {
+                          return (
+                            <div
+                              id={`accordion${index}`}
+                              className="accordion"
+                              key={index}
                             >
-                              {structure.category}
-                            </button>
-                            <div id={`structure_collapse${index}`} className="accordion-body">
-                              <ul className="list-group">
-                                <li className="list-group-item bg-[#f1feff]">
-                                  <p className="text-2xl">
-                                    {structure[0]}
-                                    <span className="badge float-end rounded-pill bg-[#00c2cb]">
-                                    {structure[3]}%
-                                    </span>
-                                  </p>
-                                  <div className="clearfix"></div>
-                                  <ul className="list-group list-group-numbered">
-                                    <div className="list-group-item d-flex justify-content-between align-items-start list-group-item-danger">
-                                      <p className="mb-0 color-code text-sm">
-                                        Problem being solved not determined
-                                      </p>
-                                    </div>
-                                  
-                                    <div className="list-group-item d-flex justify-content-between align-items-start list-group-item-success">
-                                      <p className="mb-0 color-code text-sm">
-                                        Customer needs have been determined.
-                                      </p>
-                                    </div>
-                                  </ul>
-                                </li>
-                              </ul>
+                              <div className="accordion-item bg-transparent cust-accordion">
+                                <h2
+                                  className="accordion-header"
+                                  id="headingOne"
+                                >
+                                  <button
+                                    className="accordion-button collapsed bg-[#f1feff]"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target={`#structure_collapse${index}`}
+                                    aria-expanded="false"
+                                    aria-controls="collapseOne"
+                                    data-bs-parent={`accordion${index}`}
+                                  >
+                                    {structure.category}
+                                  </button>
+                                  <div
+                                    id={`structure_collapse${index}`}
+                                    className="accordion-body"
+                                  >
+                                    <ul className="list-group">
+                                      <li className="list-group-item bg-[#f1feff]">
+                                        <p className="text-2xl">
+                                          {structure[0]}
+                                          <span className="badge float-end rounded-pill bg-[#00c2cb]">
+                                            {structure.percentage}%
+                                          </span>
+                                        </p>
+                                        <div className="clearfix"></div>
+                                        <ul className="list-group list-group-numbered">
+                                          <div className="list-group-item d-flex justify-content-between align-items-start list-group-item-danger">
+                                            <p className="mb-0 color-code text-sm">
+                                              Problem being solved not
+                                              determined
+                                            </p>
+                                          </div>
+                                        </ul>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </h2>
+                              </div>
                             </div>
-                          </h2>
-                        </div>
-                      </div>
-                    );
-                  })}
+                          );
+                        }
+                      )} */}
+                    </>
+                  )}
                 </div>
               </div>
             </div>
