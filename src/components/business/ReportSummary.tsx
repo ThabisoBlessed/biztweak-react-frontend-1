@@ -5,6 +5,7 @@ import { PieChart } from "../shared/charts/PieChart";
 import { Recommendations } from "./Recommendations";
 import { useLocation, useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../config";
+import { FullReport } from "./FullReport";
 
 export const ReportSummary = () => {
   const navigate = useNavigate();
@@ -33,15 +34,15 @@ export const ReportSummary = () => {
       getReports();
     }
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    console.log(recommendedModules);
-  }, [recommendedModules, data]);
+    // console.log(business);
+  }, []);
 
-  // Set charts data
   const getReports = () => {
     const reports = isNewCompany
       ? business.report
       : JSON.parse(business.report);
 
+    // Set charts data
     const initData: (string | number)[][] = [
       ["Elements", "Priority Elements Percentages"],
     ];
@@ -163,17 +164,15 @@ export const ReportSummary = () => {
                 </div>
               </div>
 
-              {/* <div className="full-report">
-                {modules && recommendedModules && fullReport ? (
-                  <FullReport fullReport={fullReport} />
+              <div className="full-report">
+                {!isLoading ? (
+                  <FullReport fullReport={business.questionsResponses} />
                 ) : null}
-              </div> */}
+              </div>
 
               <div className="recommendation">
                 {isLoading ? null : (
-                  <Recommendations
-                    recommendedModules={recommendedModules}
-                  />
+                  <Recommendations recommendedModules={recommendedModules} />
                 )}
               </div>
 

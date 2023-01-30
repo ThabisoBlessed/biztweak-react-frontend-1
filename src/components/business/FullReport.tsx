@@ -6,26 +6,22 @@ export const FullReport = (props: any) => {
   const navigate = useNavigate();
   const [fullReport, setFullReport] = useState(props.fullReport);
   const initFullReport: (string | number)[][][] = [];
-  const [businessStructure, setBusinessStructure] = useState(initFullReport);
-  const [businessConcept, setBusinessConcept] = useState(initFullReport);
+  const [businessStructure, setBusinessStructure] = useState( props.fullReport.filter(
+    (r: any) => String(r.type).toLowerCase() === "business structure"
+  ));
+  const [businessConcept, setBusinessConcept] = useState( props.fullReport.filter(
+    (r: any) => String(r.type).toLowerCase() === "business concept"
+  ));
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
-    console.log(fullReport);
-    // setBusinessStructure(
-    //   props.fullReport.filter(
-    //     (r: any) => String(r[2]).toLowerCase() === "business structure"
-    //   )
-    // );
-    // setBusinessConcept(
-    //   props.fullReport.filter(
-    //     (r: any) => String(r[2]).toLowerCase() === "business concept"
-    //   )
-    // );
+    // console.log(fullReport);
 
-    // console.log(businessConcept);
-    // console.log(businessStructure);
+    console.log(businessConcept);
+    console.log(businessStructure);
     // console.log('businessConcept', businessConcept);
+    setIsLoading(false);
   }, [navigate]);
 
   return (

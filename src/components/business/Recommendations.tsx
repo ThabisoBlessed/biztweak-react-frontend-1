@@ -5,10 +5,6 @@ export const Recommendations = (props: any) => {
   const [recommendedModules, setRecommendedModules] = useState(
     props.recommendedModules
   );
-  const [modules, setModules] = useState(props.modules);
-
-  console.log('recommendedModules', recommendedModules);
-
   return (
     <div>
       <div className="recommendations bg-primary-light row">
