@@ -12,22 +12,28 @@ export const FullReport = (props: any) => {
   const [businessConcept, setBusinessConcept] = useState( props.fullReport.filter(
     (r: any) => String(r.type).toLowerCase() === "business concept"
   ));
+  const businessStructureDisplay = businessStructure.reduce((businessSoFar: any, { questionId, answer, output, category, type, percentage }: { questionId: number, answer: string, output: string, category: string, type: string, percentage: number }) => {
+    if (!businessSoFar[category]) businessSoFar[category] = [];
+    businessSoFar[category].push({ questionId, answer, output, category, type });
+    return businessSoFar;
+  }, {});
+  const [displayBusinessStructure, setDisplayBusinessStructure] = useState(businessStructureDisplay);
+  const businessConceptDisplay = businessConcept.reduce((businessSoFar: any, { questionId, answer, output, category, type, percentage }: { questionId: number, answer: string, output: string, category: string, type: string, percentage: number }) => {
+    if (!businessSoFar[category]) businessSoFar[category] = [];
+    businessSoFar[category].push({ questionId, answer, output, category, type });
+    return businessSoFar;
+  }, {});
+  const [displayBusinessConcept, setDisplayBusinessConcept] = useState(businessConceptDisplay);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
     // console.log(fullReport);
 
-    console.log(businessConcept);
-    console.log(businessStructure);
+    console.log(businessStructureDisplay);
+    console.log(businessConceptDisplay);
+    // console.log(businessStructure);
 
-    const cats = businessStructure.reduce((catsSoFar: any, { questionId, answer, output, category, type }: { questionId: number, answer: string, output: string, category: string, type: string }) => {
-      if (!catsSoFar[category]) catsSoFar[category] = [];
-      catsSoFar[category].push({ questionId, answer, output, category, type });
-      return catsSoFar;
-    }, {});
-
-    console.log(cats);
     // console.log('businessConcept', businessConcept);
     setIsLoading(false);
   }, [navigate]);
