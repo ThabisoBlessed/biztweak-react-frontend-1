@@ -12,19 +12,19 @@ export const FullReport = (props: any) => {
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
     console.log(fullReport);
-    setBusinessStructure(
-      props.fullReport.filter(
-        (r: any) => String(r[2]).toLowerCase() === "business structure"
-      )
-    );
-    setBusinessConcept(
-      props.fullReport.filter(
-        (r: any) => String(r[2]).toLowerCase() === "business concept"
-      )
-    );
+    // setBusinessStructure(
+    //   props.fullReport.filter(
+    //     (r: any) => String(r[2]).toLowerCase() === "business structure"
+    //   )
+    // );
+    // setBusinessConcept(
+    //   props.fullReport.filter(
+    //     (r: any) => String(r[2]).toLowerCase() === "business concept"
+    //   )
+    // );
 
-    console.log(businessConcept);
-    console.log(businessStructure);
+    // console.log(businessConcept);
+    // console.log(businessStructure);
     // console.log('businessConcept', businessConcept);
   }, [navigate]);
 

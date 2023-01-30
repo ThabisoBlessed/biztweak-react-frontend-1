@@ -25,15 +25,16 @@ export const ReportSummary = () => {
   const [modules, setModules] = useState(initModules);
   const initFullReport: (string | number)[][][] = [];
   const [fullReport, setFullReport] = useState(initFullReport);
+  const [assessment, setAssessment] = useState(business);
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
     if (business && data.length === 1) {
       getReports();
     }
+    console.log(data);
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    // console.log("business:", business);
-    setRecommendedModules(business.recommendedModules);
+    // setRecommendedModules(business.recommendedModules);
   }, [navigate]);
 
   // Set charts data
@@ -41,36 +42,33 @@ export const ReportSummary = () => {
     const reports = isNewCompany
       ? business.report
       : JSON.parse(business.report);
-    const allData = data;
-    const allModules = modules;
-    const allFullReports = fullReport;
 
-    for (let index = 0; index < reports.length; index++) {
-      const report = reports[index];
-      const reportSet = [report.category, report.percentage];
-      const modulesSet = [report.category, report.modules];
-      const allReportsSet = [
-        report.category,
-        report.recommendations,
-        report.recommendations[0].type,
-        report.percentage
-      ];
+    const initData: (string | number)[][] = [
+      ["Elements", "Priority Elements Percentages"],
+    ];
+    initData.push([
+      "Compliance and Certification",
+      assessment.report["Compliance and Certification"],
+    ]);
+    initData.push(["Cost Structure", assessment.report["Cost Structure"]]);
+    initData.push([
+      "Customer Segments",
+      assessment.report["Customer Segments"],
+    ]);
+    initData.push([
+      "Functional Capability",
+      assessment.report["Functional Capability"],
+    ]);
+    initData.push(["Key Resources", assessment.report["Key Resources"]]);
+    initData.push(["Proof of Concept", assessment.report["Proof of Concept"]]);
+    initData.push(["Prototype", assessment.report["Prototype"]]);
+    initData.push(["Revenue Streams", assessment.report["Revenue Streams"]]);
+    initData.push([
+      "Value Proposition",
+      assessment.report["Value Proposition"],
+    ]);
 
-      if (!allData.includes(reportSet)) {
-        allData.push(reportSet);
-      }
-
-      if (!modules.includes(modulesSet)) {
-        allModules.push(modulesSet);
-      }
-
-      if (!allReportsSet.includes(allReportsSet)) {
-        allFullReports.push(allReportsSet);
-      }
-    }
-    setData(allData);
-    setModules(allModules);
-    setFullReport(allFullReports);
+    setData(initData);
   };
 
   const options = {
@@ -130,18 +128,18 @@ export const ReportSummary = () => {
                 </div>
               </div>
 
-              <div className="full-report">
+              {/* <div className="full-report">
                 {modules && recommendedModules && fullReport ? (
                   <FullReport fullReport={fullReport} />
                 ) : null}
-              </div>
+              </div> */}
 
               <div className="recommendation">
-                {modules && recommendedModules ? (
+                {assessment ? (
                   <Recommendations
-                    recommendedModules={business.recommendedModules}
+                    recommendedModules={assessment.recommendedModules}
                     // data={data}
-                    modules={modules}
+                    // modules={assessment.}
                   />
                 ) : null}
               </div>

@@ -19,7 +19,7 @@ export const Recommendations = (props: any) => {
             </p>
           </div>
         </div>
-        <div className="row">
+        {/* <div className="row">
           {modules.map((modules: any, index: number) => {
             return (
               <div className="col-md-6" key={index}>
@@ -59,7 +59,7 @@ export const Recommendations = (props: any) => {
               </div>
             );
           })}
-        </div>
+        </div> */}
 
         <div className="alert rounded-0 bg-[#00c2cb] text-center text-white p-4 mb-5">
           <div className="row justify-content-center">
@@ -94,7 +94,7 @@ export const Recommendations = (props: any) => {
                 className="accordion-collapse collapse text-center"
                 data-bs-parent="#strategy"
               >
-                <div className="accordion-body">
+                {/* <div className="accordion-body">
                   {recommendedModules.map(
                     (recommendation: any, index: number) => {
                       return (
@@ -104,7 +104,7 @@ export const Recommendations = (props: any) => {
                       );
                     }
                   )}
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
