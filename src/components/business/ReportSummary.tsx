@@ -23,7 +23,7 @@ export const ReportSummary = () => {
     ["Elements", "Priority Elements Percentages"],
   ];
   const [data, setData] = useState(initData);
-  // const [assessment, setAssessment] = useState(business);
+  const [fullReport, setFullReport] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [isInitLoad, setIsInitLoad] = useState(true);
 
@@ -31,11 +31,8 @@ export const ReportSummary = () => {
     if (!isLoggedIn()) navigate("/auth/login");
     if (isInitLoad) {
       findBusiness(business.id);
-
-      setIsInitLoad(false);
     }
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    // console.log(business);
   }, []);
 
   const findBusiness = async (id: number) => {
@@ -46,7 +43,8 @@ export const ReportSummary = () => {
       getReports(data.assessment);
     }
 
-    console.log(business);
+    setFullReport(data.assessment.questionsAndAnswers);
+    setIsInitLoad(false);
   }
 
   const getReports = async(assessment: any) => {
@@ -173,13 +171,13 @@ export const ReportSummary = () => {
                 </div>
               </div>
 
-              {/* <div className="full-report">
+              <div className="full-report">
                 {!isInitLoad && !isLoading ? (
-                  <FullReport fullReport={business.assessment.questionsResponses} />
+                  <FullReport fullReport={fullReport} />
                 ) : null}
               </div>
 
-              <div className="recommendation">
+              {/* <div className="recommendation">
                 {isLoading ? null : (
                   <Recommendations recommendedModules={business.assessment.recommendedModules} />
                 )}
