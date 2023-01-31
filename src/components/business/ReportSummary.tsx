@@ -81,31 +81,31 @@ export const ReportSummary = () => {
 
     // Set recommendations
     const initRecommendations: (string | [])[][] = [];
-    if (business.recommendedModules["Strategic Planning"]) {
+    if (business.recommendedModules && business.recommendedModules["Strategic Planning"]) {
       initRecommendations.push([
         "Strategic Planning",
         business.recommendedModules["Strategic Planning"],
       ]);
     }
-    if (business.recommendedModules["Market Intelligence"]) {
+    if (business.recommendedModules && business.recommendedModules["Market Intelligence"]) {
       initRecommendations.push([
         "Market Intelligence",
         business.recommendedModules["Market Intelligence"],
       ]);
     }
-    if (business.recommendedModules["Talent Management"]) {
+    if (business.recommendedModules && business.recommendedModules["Talent Management"]) {
       initRecommendations.push([
         "Talent Management",
         business.recommendedModules["Talent Management"],
       ]);
     }
-    if (business.recommendedModules["Process Management"]) {
+    if (business.recommendedModules && business.recommendedModules["Process Management"]) {
       initRecommendations.push([
         "Process Management",
         business.recommendedModules["Process Management"],
       ]);
     }
-    if (business.recommendedModules["Product Development"]) {
+    if (business.recommendedModules && business.recommendedModules["Product Development"]) {
       initRecommendations.push([
         "Product Development",
         business.recommendedModules["Product Development"],
@@ -173,17 +173,17 @@ export const ReportSummary = () => {
                 </div>
               </div>
 
-              <div className="full-report">
-                {!isLoading ? (
-                  <FullReport fullReport={business.questionsResponses} />
+              {/* <div className="full-report">
+                {!isInitLoad && !isLoading ? (
+                  <FullReport fullReport={business.assessment.questionsResponses} />
                 ) : null}
               </div>
 
               <div className="recommendation">
                 {isLoading ? null : (
-                  <Recommendations recommendedModules={recommendedModules} />
+                  <Recommendations recommendedModules={business.assessment.recommendedModules} />
                 )}
-              </div>
+              </div> */}
 
               {/* <div className="webinar">
                 <Webinar />
