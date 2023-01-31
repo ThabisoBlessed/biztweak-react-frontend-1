@@ -35,6 +35,10 @@ export const ReportSummary = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
 
+  /**
+   * Finds business by id and sets report
+   * @param id 
+   */
   const findBusiness = async (id: number) => {
     const businessResult = await getCompany(id);
     const data = businessResult.data.package.data;
@@ -47,6 +51,10 @@ export const ReportSummary = () => {
     setIsInitLoad(false);
   }
 
+  /**
+   * Sets recommended modules and chart data
+   * @param assessment 
+   */
   const getReports = async(assessment: any) => {
     
     // Set charts data
@@ -76,8 +84,6 @@ export const ReportSummary = () => {
     ]);
 
     setData(initData);
-
-    console.log(assessment.recommendedModules)
 
     // Set recommendations
     const initRecommendations: (string | [])[][] = [];
@@ -175,7 +181,7 @@ export const ReportSummary = () => {
 
               <div className="full-report">
                 {!isInitLoad && !isLoading ? (
-                  <FullReport fullReport={fullReport} />
+                  <FullReport fullReport={fullReport} chartData={data} />
                 ) : null}
               </div>
 

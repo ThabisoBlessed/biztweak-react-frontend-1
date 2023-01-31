@@ -5,6 +5,7 @@ import { isLoggedIn } from "../../config";
 export const FullReport = (props: any) => {
   const navigate = useNavigate();
   const [fullReport, setFullReport] = useState(props.fullReport);
+  const [chartData, setChatData] = useState(props.chartData);
   const initFullReport: (string | any)[][] = [];
   const [businessStructure, setBusinessStructure] = useState(
     props.fullReport.filter(
@@ -25,7 +26,7 @@ export const FullReport = (props: any) => {
         output,
         category,
         type,
-        percentage,
+        percentage = 0,
       }: {
         questionId: number;
         answer: string;
@@ -43,7 +44,7 @@ export const FullReport = (props: any) => {
           output,
           category,
           type,
-          percentage: 0,
+          percentage,
         });
       }
       return businessSoFar;
@@ -62,7 +63,7 @@ export const FullReport = (props: any) => {
         output,
         category,
         type,
-        percentage,
+        percentage = 0,
       }: {
         questionId: number;
         answer: string;
@@ -80,7 +81,7 @@ export const FullReport = (props: any) => {
           output,
           category,
           type,
-          percentage: 0,
+          percentage,
         });
       }
       return businessSoFar;
@@ -94,15 +95,7 @@ export const FullReport = (props: any) => {
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
-    // console.log(fullReport);
-
-    // setDisplayBusinessStructure(businessStructureDisplay);
-
-    console.log(displayBusinessStructure);
     console.log(displayBusinessConcept);
-    // console.log(businessStructure);
-
-    // console.log('businessConcept', businessConcept);
     setIsLoading(false);
   }, [navigate]);
 
