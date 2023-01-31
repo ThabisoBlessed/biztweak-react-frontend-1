@@ -77,36 +77,38 @@ export const ReportSummary = () => {
 
     setData(initData);
 
+    console.log(assessment.recommendedModules)
+
     // Set recommendations
     const initRecommendations: (string | [])[][] = [];
-    if (business.recommendedModules && business.recommendedModules["Strategic Planning"]) {
+    if (assessment.recommendedModules && assessment.recommendedModules["Strategic Planning"]) {
       initRecommendations.push([
         "Strategic Planning",
-        business.recommendedModules["Strategic Planning"],
+        assessment.recommendedModules["Strategic Planning"],
       ]);
     }
-    if (business.recommendedModules && business.recommendedModules["Market Intelligence"]) {
+    if (assessment.recommendedModules && assessment.recommendedModules["Market Intelligence"]) {
       initRecommendations.push([
         "Market Intelligence",
-        business.recommendedModules["Market Intelligence"],
+        assessment.recommendedModules["Market Intelligence"],
       ]);
     }
-    if (business.recommendedModules && business.recommendedModules["Talent Management"]) {
+    if (assessment.recommendedModules && assessment.recommendedModules["Talent Management"]) {
       initRecommendations.push([
         "Talent Management",
-        business.recommendedModules["Talent Management"],
+        assessment.recommendedModules["Talent Management"],
       ]);
     }
-    if (business.recommendedModules && business.recommendedModules["Process Management"]) {
+    if (assessment.recommendedModules && assessment.recommendedModules["Process Management"]) {
       initRecommendations.push([
         "Process Management",
-        business.recommendedModules["Process Management"],
+        assessment.recommendedModules["Process Management"],
       ]);
     }
-    if (business.recommendedModules && business.recommendedModules["Product Development"]) {
+    if (assessment.recommendedModules && assessment.recommendedModules["Product Development"]) {
       initRecommendations.push([
         "Product Development",
-        business.recommendedModules["Product Development"],
+        assessment.recommendedModules["Product Development"],
       ]);
     }
 
@@ -177,11 +179,11 @@ export const ReportSummary = () => {
                 ) : null}
               </div>
 
-              {/* <div className="recommendation">
+              <div className="recommendation">
                 {isLoading ? null : (
-                  <Recommendations recommendedModules={business.assessment.recommendedModules} />
+                  <Recommendations recommendedModules={recommendedModules} />
                 )}
-              </div> */}
+              </div>
 
               {/* <div className="webinar">
                 <Webinar />
