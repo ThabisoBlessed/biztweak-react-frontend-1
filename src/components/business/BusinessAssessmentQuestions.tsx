@@ -128,12 +128,16 @@ export const BusinessAssessmentQuestions = (props: any) => {
     const questionToChange = tempMapped.find(q => q.id === question.id);
     if (questionToChange) {
       const subQuestionToChange = questionToChange.questions.find(q => q.label === checkedQuestion);
-      console.log(subQuestionToChange);
+      if (subQuestionToChange) {
+        subQuestionToChange.hidden = true;
+      }
     }
 
-    // setMappedQuestions(tempMapped);
+    setMappedQuestions(tempMapped);
 
     allQuestionsAnswered();
+
+    console.log(mappedQuestions);
   };
 
   /**
@@ -227,7 +231,7 @@ export const BusinessAssessmentQuestions = (props: any) => {
                           return (
                             <div
                               className={`question mb-3 ${
-                                subQuestion.hidden ? "hidden" : ""
+                                subQuestion.hidden ? "d-none" : ""
                               }`}
                               key={`${String(subQuestion.label)
                                 .toLowerCase()
