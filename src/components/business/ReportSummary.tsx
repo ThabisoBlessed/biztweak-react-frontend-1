@@ -6,42 +6,51 @@ import { Recommendations } from "./Recommendations";
 import { useLocation, useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../config";
 import { FullReport } from "./FullReport";
+import { getBusinessAssessment, getCompany } from "../../services/business/company.service";
 
 export const ReportSummary = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [selectedState] = useState(state || {});
   const [business, setBusiness] = useState(selectedState.business);
+  const [isViewReportMode, setIsViewReportMode] = useState(selectedState.isViewReportMode);
   const initRecommendedModules: (string | [])[][] = [];
   const [recommendedModules, setRecommendedModules] = useState(
     initRecommendedModules
   );
-  const [isNewCompany, setIsNewCompany] = useState(selectedState.isNewCompany);
+  // const [isNewCompany, setIsNewCompany] = useState(selectedState.isNewCompany);
   const initData: (string | number)[][] = [
     ["Elements", "Priority Elements Percentages"],
   ];
   const [data, setData] = useState(initData);
-  const initModules: (string | number)[][] = [];
-  const [modules, setModules] = useState(initModules);
-  const initFullReport: (string | number)[][][] = [];
-  const [fullReport, setFullReport] = useState(initFullReport);
-  const [assessment, setAssessment] = useState(business);
+  // const [assessment, setAssessment] = useState(business);
   const [isLoading, setIsLoading] = useState(true);
+  const [isInitLoad, setIsInitLoad] = useState(true);
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
-    if (business && data.length === 1) {
-      getReports();
+    if (isInitLoad) {
+      findBusiness(business.id);
+
+      setIsInitLoad(false);
     }
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    console.log(business);
+    // console.log(business);
   }, []);
 
-  const getReports = () => {
-    const reports = isNewCompany
-      ? business.report
-      : JSON.parse(business.report);
+  const findBusiness = async (id: number) => {
+    const businessResult = await getCompany(id);
+    const data = businessResult.data.package.data;
+    if (data) {
+      setBusiness(data);
+      getReports(data.assessment);
+    }
 
+    console.log(business);
+  }
+
+  const getReports = async(assessment: any) => {
+    
     // Set charts data
     const initData: (string | number)[][] = [
       ["Elements", "Priority Elements Percentages"],

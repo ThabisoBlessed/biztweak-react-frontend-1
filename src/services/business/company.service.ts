@@ -97,3 +97,21 @@ export const addCompany = async (company: any): Promise<any> => {
     return error;
   }
 };
+
+/**
+ * Gets business assessement
+ * @returns {Promise<Assessment[]>} response
+ */
+ export const getBusinessAssessment = async (companyId: number): Promise<any> => {
+  try {
+    let config = {
+      headers: {
+        'Authorization': 'Bearer ' + String(localStorage.getItem(LOCALSTORAGE_KEYS.accessToken)).replace(/['"\\]+/g, '')
+      }
+    }
+
+    return await axios.get(constants.baseUrl + `/companies/${companyId}/assessments/${companyId}`, config);
+  } catch (error: any) {
+    return error;
+  }
+};

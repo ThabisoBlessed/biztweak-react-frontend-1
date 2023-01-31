@@ -22,7 +22,7 @@ export const BusinessMenu = (props: any) => {
   const listCompanies = async () => {
     const businesses = await listCompaniesForLoggedInUser();
     if (businesses.data && businesses.data.package) {
-      console.log(businesses.data.package);
+      // console.log(businesses.data.package);
       setActiveBusinesses(businesses.data.package.data);
       // console.log(businesses.data.package.data);
     }
@@ -44,9 +44,9 @@ export const BusinessMenu = (props: any) => {
   };
 
   const onViewBizReport = (business: IBusinessMenuBusinessModel) => {
-    const isNewCompany = false;
+    const isViewReportMode = true;
     navigate("/business/manage-business/report-summary", {
-      state: { business, isNewCompany },
+      state: { business, isViewReportMode },
     });
     window.location.reload();
   };

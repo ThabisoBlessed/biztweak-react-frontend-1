@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
-  getLocalStorageValue,
   isLoggedIn,
-  LOCALSTORAGE_KEYS,
 } from "../../config";
 import { loading } from "../../constants";
 import { IBusinessIndustryAndPhase } from "../../model/business-industry-and-phase.model";
-import { IBusinessMenuBusinessModel } from "../../model/business-menu-business-model";
 import { IMappedAssessmentQuestion } from "../../model/mapped-assessment-question.model";
 import { addAssessmentQuestions } from "../../services/business/assessment.service";
 import {
   addCompany,
-  getCompany,
 } from "../../services/business/company.service";
-import { convertToBase64 } from "../util/file-util";
 import { BusinessMenu } from "./BusinessMenu";
 
 export const BusinessProfile = () => {
@@ -43,7 +38,8 @@ export const BusinessProfile = () => {
     questions.questionList
   );
   const formatted: any[] = [];
-  const [formatedQuestionAndAnswer, setFormatedQuestionAndAnswer] = useState(formatted);
+  const [formatedQuestionAndAnswer, setFormatedQuestionAndAnswer] =
+    useState(formatted);
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
@@ -69,6 +65,7 @@ export const BusinessProfile = () => {
   const onSave = async (e: any) => {
     e.preventDefault();
     setIsLoading(true);
+    let savedBusiness: any = null;
 
     if (businessIndustryAndPhase) {
       const company = new FormData();
@@ -98,22 +95,20 @@ export const BusinessProfile = () => {
       const response = await addCompany(company);
       console.log("create new company response: ", response.data);
       if (response.data.package.data.data) {
+        savedBusiness = response.data.package.data.data;
+
         const assessment = await addAssessmentQuestions(
           JSON.stringify(formatedQuestionAndAnswer),
           Number(response.data.package.data.data.id),
           Number(businessIndustryAndPhase.businessPhase)
         );
+
         const success = assessment.data;
-        const isNewCompany = true;
-        console.log(
-          "create new company assessment response: ",
-          assessment.data
-        );
         if (success) {
-          const business = assessment.data.package.data;
+          const business = savedBusiness;
           const assessments = response.data.package.data.data;
           navigate("/business/manage-business/report-summary", {
-            state: { business, assessments, isNewCompany },
+            state: { business, assessments },
           });
         }
       } else {
