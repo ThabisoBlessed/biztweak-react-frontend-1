@@ -52,35 +52,37 @@ export const BusinessAssessmentQuestions = (props: any) => {
 
     for (let index = 0; index < questionList.length; index++) {
       const question = questionList[index];
-      
+
       // Create category
       const existing = mappedQuestionList.find(
         (q) => q.category === question.category
       );
       const questionToSave = {} as IQuestion;
-  
+
       if (existing) {
         questionToSave.answer = "no";
         questionToSave.question = question.question;
         questionToSave.label = question.question;
         questionToSave.id = question.id;
+        questionToSave.hidden = false;
         existing.questions.push(questionToSave);
       } else {
         const answer = {} as IMappedAssessmentQuestion;
         answer.id = question.id;
         answer.category = question.category;
         answer.questions = [];
-  
+        answer.hidden = false;
+
         questionToSave.question = question.question;
         questionToSave.answer = "no";
         questionToSave.label = question.question;
         questionToSave.id = question.id;
+        questionToSave.hidden = false;
         answer.questions.push(questionToSave);
-  
+
         mappedQuestionList.push(answer);
       }
     }
-    console.log(mappedQuestionList);
   };
 
   /**
@@ -104,7 +106,11 @@ export const BusinessAssessmentQuestions = (props: any) => {
    * @param question
    * @param answer
    */
-  const questionChecked = (question: IQuestion, answer: string) => {
+  const questionChecked = (checkedQuestion: string, question: IMappedAssessmentQuestion, answer: string) => {
+    console.log(checkedQuestion);
+    console.log(question);
+
+    // Check answered question
     for (let index = 0; index < questionList.length; index++) {
       const element = questionList[index];
       if (element.id === question.id) {
@@ -116,8 +122,18 @@ export const BusinessAssessmentQuestions = (props: any) => {
         }
       }
     }
+
+    // Hide answered questions
+    const tempMapped = mappedQuestions;
+    const questionToChange = tempMapped.find(q => q.id === question.id);
+    if (questionToChange) {
+      const subQuestionToChange = questionToChange.questions.find(q => q.label === checkedQuestion);
+      console.log(subQuestionToChange);
+    }
+
+    // setMappedQuestions(tempMapped);
+
     allQuestionsAnswered();
-    console.log(questionList);
   };
 
   /**
@@ -136,10 +152,9 @@ export const BusinessAssessmentQuestions = (props: any) => {
       const result: any[] = [];
       for (let index = 0; index < questionList.length; index++) {
         const question = questionList[index];
-        const formatted = { questionId: question.id, answer: question.answer};
+        const formatted = { questionId: question.id, answer: question.answer };
         result.push(formatted);
       }
-      console.log(result);
 
       const update = await addAssessmentQuestions(
         JSON.stringify(result),
@@ -208,10 +223,12 @@ export const BusinessAssessmentQuestions = (props: any) => {
                   >
                     <div className="accordion-body bg-[white]">
                       {question.questions.map(
-                        (subQuestion: any, index: number) => {
+                        (subQuestion: IQuestion, index: number) => {
                           return (
                             <div
-                              className="question mb-3"
+                              className={`question mb-3 ${
+                                subQuestion.hidden ? "hidden" : ""
+                              }`}
                               key={`${String(subQuestion.label)
                                 .toLowerCase()
                                 .replace(/[^a-zA-Z0-9 ]/g, "")}`}
@@ -238,7 +255,7 @@ export const BusinessAssessmentQuestions = (props: any) => {
                                   .replace(/[^a-zA-Z0-9 ]/g, "")}_yes`}
                                 className="m-2"
                                 onChange={() =>
-                                  questionChecked(subQuestion, "yes")
+                                  questionChecked(subQuestion.label, question, "yes")
                                 }
                               />
                               <label
@@ -259,7 +276,7 @@ export const BusinessAssessmentQuestions = (props: any) => {
                                   .replace(/[^a-zA-Z0-9 ]/g, "")}_no`}
                                 className="m-2"
                                 onChange={() =>
-                                  questionChecked(subQuestion, "no")
+                                  questionChecked(subQuestion.label, question, "no")
                                 }
                               />
                             </div>

@@ -2,6 +2,7 @@ export interface IMappedAssessmentQuestion {
   id: number;
   category: string;
   questions: IQuestion[];
+  hidden: false;
 }
 
 export interface IQuestion {
@@ -11,4 +12,5 @@ export interface IQuestion {
   answer: string;
   date: string;
   category: string;
+  hidden: boolean;
 }
