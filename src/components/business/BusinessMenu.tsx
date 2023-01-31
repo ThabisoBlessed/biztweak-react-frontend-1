@@ -89,7 +89,7 @@ export const BusinessMenu = (props: any) => {
                         className="accordion-button text-dark bg-[#f1feff]"
                         type="button"
                         data-bs-toggle="collapse"
-                        data-bs-target={`#collapse${index}`}
+                        data-bs-target={`#biz_collapse${index}`}
                         aria-expanded="true"
                         aria-controls={`collapse${index}`}
                       >
@@ -97,10 +97,10 @@ export const BusinessMenu = (props: any) => {
                       </button>
                     </h2>
                     <div
-                      id={`collapse${index}`}
+                      id={`biz_collapse${index}`}
                       className="accordion-collapse collapse show"
                       aria-labelledby="heading37"
-                      data-bs-parent={`#collapse${index}`}
+                      data-bs-parent={`#biz_collapse${index}`}
                     >
                       <div className="accordion-body">
                         <h2 className="small text-center mb-0">
