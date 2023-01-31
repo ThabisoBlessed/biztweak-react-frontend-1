@@ -31,17 +31,14 @@ export const BusinessAssessmentQuestions = (props: any) => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-
-    console.log(props.businessIndustryAndPhase);
-
     if (isInitLoad) {
       listAssessmentQuestions();
     }
-
     mapQuestions();
-
     setMappedQuestions(mappedQuestionList);
     setIsInitLoad(false);
+
+    console.log(questionList);
   }, [questionList]);
 
   /**
@@ -106,14 +103,14 @@ export const BusinessAssessmentQuestions = (props: any) => {
    * @param question
    * @param answer
    */
-  const questionChecked = (checkedQuestion: string, question: IMappedAssessmentQuestion, answer: string) => {
-    console.log(checkedQuestion);
-    console.log(question);
-
+  const questionChecked = (
+    checkedQuestion: IQuestion,
+    answer: string
+  ) => {
     // Check answered question
     for (let index = 0; index < questionList.length; index++) {
       const element = questionList[index];
-      if (element.id === question.id) {
+      if (element.id === checkedQuestion.id) {
         if (element.answer === answer) {
           break;
         } else {
@@ -122,22 +119,19 @@ export const BusinessAssessmentQuestions = (props: any) => {
         }
       }
     }
-
-    // Hide answered questions
-    const tempMapped = mappedQuestions;
-    const questionToChange = tempMapped.find(q => q.id === question.id);
-    if (questionToChange) {
-      const subQuestionToChange = questionToChange.questions.find(q => q.label === checkedQuestion);
-      if (subQuestionToChange) {
-        subQuestionToChange.hidden = true;
-      }
-    }
-
-    setMappedQuestions(tempMapped);
-
     allQuestionsAnswered();
 
-    console.log(mappedQuestions);
+    // Hide answered questions
+    // const tempMapped = mappedQuestions;
+    // const questionToChange = tempMapped.find(q => q.id === question.id);
+    // if (questionToChange) {
+    //   const subQuestionToChange = questionToChange.questions.find(q => q.label === checkedQuestion);
+    //   if (subQuestionToChange) {
+    //     subQuestionToChange.hidden = true;
+    //   }
+    // }
+
+    // setMappedQuestions(tempMapped);
   };
 
   /**
@@ -186,6 +180,7 @@ export const BusinessAssessmentQuestions = (props: any) => {
    */
   const allQuestionsAnswered = () => {
     const answered = questionList.filter((q) => !q.answer);
+    console.log(answered);
     if (answered.length > 0) {
       setCanSave(false);
     } else {
@@ -259,7 +254,10 @@ export const BusinessAssessmentQuestions = (props: any) => {
                                   .replace(/[^a-zA-Z0-9 ]/g, "")}_yes`}
                                 className="m-2"
                                 onChange={() =>
-                                  questionChecked(subQuestion.label, question, "yes")
+                                  questionChecked(
+                                    subQuestion,
+                                    "yes"
+                                  )
                                 }
                               />
                               <label
@@ -280,7 +278,10 @@ export const BusinessAssessmentQuestions = (props: any) => {
                                   .replace(/[^a-zA-Z0-9 ]/g, "")}_no`}
                                 className="m-2"
                                 onChange={() =>
-                                  questionChecked(subQuestion.label, question, "no")
+                                  questionChecked(
+                                    subQuestion,
+                                    "no"
+                                  )
                                 }
                               />
                             </div>
