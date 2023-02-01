@@ -103,10 +103,7 @@ export const BusinessAssessmentQuestions = (props: any) => {
    * @param question
    * @param answer
    */
-  const questionChecked = (
-    checkedQuestion: IQuestion,
-    answer: string
-  ) => {
+  const questionChecked = (checkedQuestion: IQuestion, answer: string) => {
     // Check answered question
     for (let index = 0; index < questionList.length; index++) {
       const element = questionList[index];
@@ -121,17 +118,14 @@ export const BusinessAssessmentQuestions = (props: any) => {
     }
     allQuestionsAnswered();
 
-    // Hide answered questions
-    // const tempMapped = mappedQuestions;
-    // const questionToChange = tempMapped.find(q => q.id === question.id);
-    // if (questionToChange) {
-    //   const subQuestionToChange = questionToChange.questions.find(q => q.label === checkedQuestion);
-    //   if (subQuestionToChange) {
-    //     subQuestionToChange.hidden = true;
-    //   }
-    // }
-
-    // setMappedQuestions(tempMapped);
+    const toRemove = document.getElementById(
+      `${String(checkedQuestion.label)
+        .toLowerCase()
+        .replace(/[^a-zA-Z0-9 ]/g, "")}`
+    );
+    if (toRemove) {
+      toRemove.remove();
+    }
   };
 
   /**
@@ -225,9 +219,6 @@ export const BusinessAssessmentQuestions = (props: any) => {
                         (subQuestion: IQuestion, index: number) => {
                           return (
                             <div
-                              className={`question mb-3 ${
-                                subQuestion.hidden ? "d-none" : ""
-                              }`}
                               key={`${String(subQuestion.label)
                                 .toLowerCase()
                                 .replace(/[^a-zA-Z0-9 ]/g, "")}`}
@@ -254,10 +245,7 @@ export const BusinessAssessmentQuestions = (props: any) => {
                                   .replace(/[^a-zA-Z0-9 ]/g, "")}_yes`}
                                 className="m-2"
                                 onChange={() =>
-                                  questionChecked(
-                                    subQuestion,
-                                    "yes"
-                                  )
+                                  questionChecked(subQuestion, "yes")
                                 }
                               />
                               <label
@@ -278,10 +266,7 @@ export const BusinessAssessmentQuestions = (props: any) => {
                                   .replace(/[^a-zA-Z0-9 ]/g, "")}_no`}
                                 className="m-2"
                                 onChange={() =>
-                                  questionChecked(
-                                    subQuestion,
-                                    "no"
-                                  )
+                                  questionChecked(subQuestion, "no")
                                 }
                               />
                             </div>
