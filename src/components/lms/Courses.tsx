@@ -12,6 +12,7 @@ import { IAttendance } from "../../model/attendance.model";
 import { getAllUsers } from "../../services/admin/admin.service";
 import { getCurrentUser } from "../../services/lms/user.service";
 import { UserProfile } from "../shared/UserProfile";
+import { listCompaniesForLoggedInUser } from "../../services/business/company.service";
 
 export const Courses = () => {
   const navigate = useNavigate();
@@ -20,10 +21,12 @@ export const Courses = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState({} as IUser);
   const [isInitLoad, setIsInitLoad] = useState(true);
+  const [businesses, setBusinesses] = useState();
 
   useEffect(() => {
     if (isInitLoad) {
       getUser();
+      getBusinesses();
       setIsLoading(false);
       setIsInitLoad(false)
     }
@@ -46,6 +49,18 @@ export const Courses = () => {
       const profile = await getCurrentUser(userResult.id);
       const userProfile = profile.data.package.data;
       setUser(userProfile);
+    }
+  };
+
+  const getBusinesses = async () => {
+    const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
+    if (storageUser) {
+      const businessesResult = await listCompaniesForLoggedInUser();
+      if (businessesResult.data) {
+        const myBusinesses = businessesResult.data.package.data;
+        setBusinesses(myBusinesses);
+        console.log(myBusinesses);
+      }
     }
   };
 

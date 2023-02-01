@@ -37,8 +37,6 @@ export const BusinessAssessmentQuestions = (props: any) => {
     mapQuestions();
     setMappedQuestions(mappedQuestionList);
     setIsInitLoad(false);
-
-    console.log(questionList);
   }, [questionList]);
 
   /**
@@ -174,7 +172,6 @@ export const BusinessAssessmentQuestions = (props: any) => {
    */
   const allQuestionsAnswered = () => {
     const answered = questionList.filter((q) => !q.answer);
-    console.log(answered);
     if (answered.length > 0) {
       setCanSave(false);
     } else {
