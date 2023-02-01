@@ -9,22 +9,44 @@ import { getAllcourses } from "../../services/cmp/course.service";
 import { ICourse } from "../../model/course.model";
 import { IUser } from "../../model/user.model";
 import { IAttendance } from "../../model/attendance.model";
+import { getAllUsers } from "../../services/admin/admin.service";
+import { getCurrentUser } from "../../services/lms/user.service";
+import { UserProfile } from "../shared/UserProfile";
 
 export const Courses = () => {
   const navigate = useNavigate();
   const initCourses: ICourse[] = [];
   const [courses, setCourses] = useState(initCourses);
   const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState({} as IUser);
+  const [isInitLoad, setIsInitLoad] = useState(true);
 
   useEffect(() => {
-    if (courses.length === 0) {
-      getCourses();
+    if (isInitLoad) {
+      getUser();
       setIsLoading(false);
+      setIsInitLoad(false)
     }
+    // if (courses.length === 0) {
+    //   getCourses();
+    //   setIsLoading(false);
+    // }
+    console.log(user);
   });
 
   const onStartCourse = (course: ICourse) => {
     navigate("/lms/course", { state: { course } });
+  };
+
+  const getUser = async () => {
+    const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
+    if (storageUser) {
+      const userResult: IUser = JSON.parse(storageUser);
+
+      const profile = await getCurrentUser(userResult.id);
+      const userProfile = profile.data.package.data;
+      setUser(userProfile);
+    }
   };
 
   const getCourses = async () => {
@@ -40,7 +62,7 @@ export const Courses = () => {
   };
 
   const onClickInstructor = (instructor: IUser) => {
-    navigate("/lms/instructor-profile", { state: { instructor }});
+    navigate("/lms/instructor-profile", { state: { instructor } });
   };
 
   return (
@@ -84,7 +106,14 @@ export const Courses = () => {
                               />
                               <div>
                                 <div>{course.user.fullname}</div>
-                                <div className="small">{courses.filter(c => c.user.id === course.user.id).length} Lessons</div>
+                                <div className="small">
+                                  {
+                                    courses.filter(
+                                      (c) => c.user.id === course.user.id
+                                    ).length
+                                  }{" "}
+                                  Lessons
+                                </div>
                               </div>
                             </div>
                           </div>
