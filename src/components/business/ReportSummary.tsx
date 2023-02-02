@@ -80,10 +80,12 @@ export const ReportSummary = () => {
     initData.push(["Proof of Concept", assessment.report["Proof of Concept"]]);
     initData.push(["Prototype", assessment.report["Prototype"]]);
     initData.push(["Revenue Streams", assessment.report["Revenue Streams"]]);
-    initData.push([
-      "Value Proposition",
-      assessment.report["Value Proposition"],
-    ]);
+    initData.push(["Value Proposition",assessment.report["Value Proposition"]]);
+    initData.push(["Key Partners",assessment.report["Key Partners"]]);
+    initData.push(["Current Alternatives",assessment.report["Current Alternatives"]]);
+    initData.push(["Business and Customers",assessment.report["Business and Customers"]]);
+    initData.push(["Ownership and Mindset",assessment.report["Ownership and Mindset"]]);
+    initData.push(["Delivery Expertise",assessment.report["Delivery Expertise"]]);
 
     const percentages = {
       "Compliance and Certification": assessment.report["Compliance and Certification"],
@@ -94,7 +96,12 @@ export const ReportSummary = () => {
       "Proof of Concept": assessment.report["Proof of Concept"],
       "Prototype": assessment.report["Prototype"],
       "Revenue Streams": assessment.report["Revenue Streams"],
-      "Value Proposition": assessment.report["Value Proposition"]
+      "Value Proposition": assessment.report["Value Proposition"],
+      "Key Partners": assessment.report["Key Partners"],
+      "Current Alternatives": assessment.report["Current Alternatives"],
+      "Business and Customers": assessment.report["Business and Customers"],
+      "Ownership and Mindset": assessment.report["Ownership and Mindset"],
+      "Delivery Expertise": assessment.report["Delivery Expertise"],
    };
 
    setPercentagesMap(percentages);
@@ -142,9 +149,11 @@ export const ReportSummary = () => {
         assessment.recommendedModules["Marketing and Sales"],
       ]);
     }
-
+    
     setRecommendedModules(initRecommendations);
     setIsLoading(false);
+
+    
   };
 
   const options = {
