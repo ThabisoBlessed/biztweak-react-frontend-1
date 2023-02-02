@@ -124,7 +124,7 @@ export const BusinessAssessmentQuestions = (props: any) => {
     if (toRemove) {
       setTimeout(() => {
         toRemove.remove();
-      }, 2000);
+      }, 1000);
     }
   };
 

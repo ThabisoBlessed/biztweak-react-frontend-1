@@ -65,21 +65,21 @@ export const ReportSummary = () => {
     ];
     initData.push([
       "Compliance and Certification",
-      assessment.report["Compliance and Certification"],
+      assessment.report.percentages["Compliance and Certification"],
     ]);
-    initData.push(["Cost Structure", assessment.report["Cost Structure"]]);
+    initData.push(["Cost Structure", assessment.report.percentages["Cost Structure"]]);
     initData.push([
       "Customer Segments",
-      assessment.report["Customer Segments"],
+      assessment.report.percentages["Customer Segments"],
     ]);
     initData.push([
       "Functional Capability",
-      assessment.report["Functional Capability"],
+      assessment.report.percentages["Functional Capability"],
     ]);
-    initData.push(["Key Resources", assessment.report["Key Resources"]]);
-    initData.push(["Proof of Concept", assessment.report["Proof of Concept"]]);
-    initData.push(["Prototype", assessment.report["Prototype"]]);
-    initData.push(["Revenue Streams", assessment.report["Revenue Streams"]]);
+    initData.push(["Key Resources", assessment.report.percentages["Key Resources"]]);
+    initData.push(["Proof of Concept", assessment.report.percentages["Proof of Concept"]]);
+    initData.push(["Prototype", assessment.report.percentages["Prototype"]]);
+    initData.push(["Revenue Streams", assessment.report.percentages["Revenue Streams"]]);
     initData.push(["Value Proposition",assessment.report["Value Proposition"]]);
     initData.push(["Key Partners",assessment.report["Key Partners"]]);
     initData.push(["Current Alternatives",assessment.report["Current Alternatives"]]);
@@ -89,21 +89,21 @@ export const ReportSummary = () => {
     initData.push(["Marketing and Sales",assessment.report["Marketing and Sales"]]);
 
     const percentages = {
-      "Compliance and Certification": assessment.report["Compliance and Certification"],
-      "Cost Structure": assessment.report["Cost Structure"],
-      "Customer Segments": assessment.report["Customer Segments"],
-      "Functional Capability": assessment.report["Functional Capability"],
-      "Key Resources": assessment.report["Key Resources"],
-      "Proof of Concept": assessment.report["Proof of Concept"],
-      "Prototype": assessment.report["Prototype"],
-      "Revenue Streams": assessment.report["Revenue Streams"],
-      "Value Proposition": assessment.report["Value Proposition"],
-      "Key Partners": assessment.report["Key Partners"],
-      "Current Alternatives": assessment.report["Current Alternatives"],
-      "Business and Customers": assessment.report["Business and Customers"],
-      "Ownership and Mindset": assessment.report["Ownership and Mindset"],
-      "Delivery Expertise": assessment.report["Delivery Expertise"],
-      "Marketing and Sales": assessment.report["Marketing and Sales"],
+      "Compliance and Certification": assessment.report.percentages["Compliance and Certification"],
+      "Cost Structure": assessment.report.percentages["Cost Structure"],
+      "Customer Segments": assessment.report.percentages["Customer Segments"],
+      "Functional Capability": assessment.report.percentages["Functional Capability"],
+      "Key Resources": assessment.report.percentages["Key Resources"],
+      "Proof of Concept": assessment.report.percentages["Proof of Concept"],
+      "Prototype": assessment.report.percentages["Prototype"],
+      "Revenue Streams": assessment.report.percentages["Revenue Streams"],
+      "Value Proposition": assessment.report.percentages["Value Proposition"],
+      "Key Partners": assessment.report.percentages["Key Partners"],
+      "Current Alternatives": assessment.report.percentages["Current Alternatives"],
+      "Business and Customers": assessment.report.percentages["Business and Customers"],
+      "Ownership and Mindset": assessment.report.percentages["Ownership and Mindset"],
+      "Delivery Expertise": assessment.report.percentages["Delivery Expertise"],
+      "Marketing and Sales": assessment.report.percentages["Marketing and Sales"],
    };
    
    setPercentagesMap(percentages);
