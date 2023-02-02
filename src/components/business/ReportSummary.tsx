@@ -123,6 +123,11 @@ export const ReportSummary = () => {
       "Marketing and Sales",
       assessment.report["Marketing and Sales"],
     ]);
+    initData.push([
+      "Customer relations",
+      assessment.report["Customer relations"],
+    ]);
+    initData.push(["Channels", assessment.report["Channels"]]);
 
     const percentages = {
       "Compliance and Certification":
@@ -146,6 +151,8 @@ export const ReportSummary = () => {
       "Delivery Expertise": assessment.report.percentages["Delivery Expertise"],
       "Marketing and Sales":
         assessment.report.percentages["Marketing and Sales"],
+      "Customer relations": assessment.report.percentages["Customer relations"],
+      "Channels": assessment.report.percentages["Channels"],
     };
 
     setPercentagesMap(percentages);

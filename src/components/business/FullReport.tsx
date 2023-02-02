@@ -148,8 +148,8 @@ export const FullReport = (props: any) => {
                 className="accordion-collapse collapse show"
               >
                 <div className="accordion-body">
-                <p className="text-dark">Business Diagnosis</p>
-                
+                  <p className="text-dark">Business Diagnosis</p>
+
                   {/* Priority */}
                   <div className="accordion-item bg-transparent">
                     <h1 className="accordion-header mb-0 mt-0" id="heading1">
@@ -168,7 +168,49 @@ export const FullReport = (props: any) => {
                       id="collapse_priority_1"
                       className="accordion-collapse collapse show"
                     >
-                      <div className="accordion-body">Test 2</div>
+                      <div className="accordion-body">
+                        {isLoading ? null : (
+                          <>
+                            {displayBusinessConcept.map(
+                              (concept: any, index: number) => {
+                                return (
+                                  <>
+                                    {concept[1][0].isBestPerforming ? (
+                                      <ul className="list-group">
+                                        <li className="list-group-item bg-[#f1feff]">
+                                          <p className="text-sm">
+                                            {concept[0]}
+                                            <span className="badge float-end rounded-pill bg-[#00c2cb]">
+                                              {percentages[concept[0]]}%
+                                            </span>
+                                          </p>
+                                          <div className="clearfix"></div>
+                                          <ul className="list-group list-group-numbered">
+                                            {concept[1].map(
+                                              (response: any, i: number) => {
+                                                return (
+                                                  <div
+                                                    key={i}
+                                                    className="list-group-item d-flex justify-content-between align-items-start list-group-item-danger"
+                                                  >
+                                                    <p className="mb-0 color-code text-sm">
+                                                      {response.output}
+                                                    </p>
+                                                  </div>
+                                                );
+                                              }
+                                            )}
+                                          </ul>
+                                        </li>
+                                      </ul>
+                                    ) : null}
+                                  </>
+                                );
+                              }
+                            )}
+                          </>
+                        )}
+                      </div>
                     </div>
                   </div>
 
@@ -194,8 +236,8 @@ export const FullReport = (props: any) => {
                     </div>
                   </div>
 
-                   {/* Major Gaps */}
-                   <div className="accordion-item bg-transparent">
+                  {/* Major Gaps */}
+                  <div className="accordion-item bg-transparent">
                     <h1 className="accordion-header mb-0 mt-0" id="heading1">
                       <button
                         className="accordion-button collapsed bg-[#f1feff]"
