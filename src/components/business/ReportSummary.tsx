@@ -6,14 +6,19 @@ import { Recommendations } from "./Recommendations";
 import { useLocation, useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../config";
 import { FullReport } from "./FullReport";
-import { getBusinessAssessment, getCompany } from "../../services/business/company.service";
+import {
+  getBusinessAssessment,
+  getCompany,
+} from "../../services/business/company.service";
 
 export const ReportSummary = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [selectedState] = useState(state || {});
   const [business, setBusiness] = useState(selectedState.business);
-  const [isViewReportMode, setIsViewReportMode] = useState(selectedState.isViewReportMode);
+  const [isViewReportMode, setIsViewReportMode] = useState(
+    selectedState.isViewReportMode
+  );
   const initRecommendedModules: (string | [])[][] = [];
   const [recommendedModules, setRecommendedModules] = useState(
     initRecommendedModules
@@ -25,6 +30,7 @@ export const ReportSummary = () => {
   const [data, setData] = useState(initData);
   const [percentagesMap, setPercentagesMap] = useState({} as any);
   const [fullReport, setFullReport] = useState();
+  const [fullReportCategories, setFullReportCategories] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [isInitLoad, setIsInitLoad] = useState(true);
 
@@ -39,7 +45,7 @@ export const ReportSummary = () => {
 
   /**
    * Finds business by id and sets report
-   * @param id 
+   * @param id
    */
   const findBusiness = async (id: number) => {
     const businessResult = await getCompany(id);
@@ -50,15 +56,15 @@ export const ReportSummary = () => {
     }
 
     setFullReport(data.assessment.questionsAndAnswers);
+    setFullReportCategories(data.assessment.report.fullReport);
     setIsInitLoad(false);
-  }
+  };
 
   /**
    * Sets recommended modules and chart data
-   * @param assessment 
+   * @param assessment
    */
-  const getReports = async(assessment: any) => {
-    
+  const getReports = async (assessment: any) => {
     // Set charts data
     const initData: (string | number)[][] = [
       ["Elements", "Priority Elements Percentages"],
@@ -67,7 +73,10 @@ export const ReportSummary = () => {
       "Compliance and Certification",
       assessment.report.percentages["Compliance and Certification"],
     ]);
-    initData.push(["Cost Structure", assessment.report.percentages["Cost Structure"]]);
+    initData.push([
+      "Cost Structure",
+      assessment.report.percentages["Cost Structure"],
+    ]);
     initData.push([
       "Customer Segments",
       assessment.report.percentages["Customer Segments"],
@@ -76,86 +85,132 @@ export const ReportSummary = () => {
       "Functional Capability",
       assessment.report.percentages["Functional Capability"],
     ]);
-    initData.push(["Key Resources", assessment.report.percentages["Key Resources"]]);
-    initData.push(["Proof of Concept", assessment.report.percentages["Proof of Concept"]]);
+    initData.push([
+      "Key Resources",
+      assessment.report.percentages["Key Resources"],
+    ]);
+    initData.push([
+      "Proof of Concept",
+      assessment.report.percentages["Proof of Concept"],
+    ]);
     initData.push(["Prototype", assessment.report.percentages["Prototype"]]);
-    initData.push(["Revenue Streams", assessment.report.percentages["Revenue Streams"]]);
-    initData.push(["Value Proposition",assessment.report["Value Proposition"]]);
-    initData.push(["Key Partners",assessment.report["Key Partners"]]);
-    initData.push(["Current Alternatives",assessment.report["Current Alternatives"]]);
-    initData.push(["Business and Customers",assessment.report["Business and Customers"]]);
-    initData.push(["Ownership and Mindset",assessment.report["Ownership and Mindset"]]);
-    initData.push(["Delivery Expertise",assessment.report["Delivery Expertise"]]);
-    initData.push(["Marketing and Sales",assessment.report["Marketing and Sales"]]);
+    initData.push([
+      "Revenue Streams",
+      assessment.report.percentages["Revenue Streams"],
+    ]);
+    initData.push([
+      "Value Proposition",
+      assessment.report["Value Proposition"],
+    ]);
+    initData.push(["Key Partners", assessment.report["Key Partners"]]);
+    initData.push([
+      "Current Alternatives",
+      assessment.report["Current Alternatives"],
+    ]);
+    initData.push([
+      "Business and Customers",
+      assessment.report["Business and Customers"],
+    ]);
+    initData.push([
+      "Ownership and Mindset",
+      assessment.report["Ownership and Mindset"],
+    ]);
+    initData.push([
+      "Delivery Expertise",
+      assessment.report["Delivery Expertise"],
+    ]);
+    initData.push([
+      "Marketing and Sales",
+      assessment.report["Marketing and Sales"],
+    ]);
 
     const percentages = {
-      "Compliance and Certification": assessment.report.percentages["Compliance and Certification"],
+      "Compliance and Certification":
+        assessment.report.percentages["Compliance and Certification"],
       "Cost Structure": assessment.report.percentages["Cost Structure"],
       "Customer Segments": assessment.report.percentages["Customer Segments"],
-      "Functional Capability": assessment.report.percentages["Functional Capability"],
+      "Functional Capability":
+        assessment.report.percentages["Functional Capability"],
       "Key Resources": assessment.report.percentages["Key Resources"],
       "Proof of Concept": assessment.report.percentages["Proof of Concept"],
-      "Prototype": assessment.report.percentages["Prototype"],
+      Prototype: assessment.report.percentages["Prototype"],
       "Revenue Streams": assessment.report.percentages["Revenue Streams"],
       "Value Proposition": assessment.report.percentages["Value Proposition"],
       "Key Partners": assessment.report.percentages["Key Partners"],
-      "Current Alternatives": assessment.report.percentages["Current Alternatives"],
-      "Business and Customers": assessment.report.percentages["Business and Customers"],
-      "Ownership and Mindset": assessment.report.percentages["Ownership and Mindset"],
+      "Current Alternatives":
+        assessment.report.percentages["Current Alternatives"],
+      "Business and Customers":
+        assessment.report.percentages["Business and Customers"],
+      "Ownership and Mindset":
+        assessment.report.percentages["Ownership and Mindset"],
       "Delivery Expertise": assessment.report.percentages["Delivery Expertise"],
-      "Marketing and Sales": assessment.report.percentages["Marketing and Sales"],
-   };
-   
-   setPercentagesMap(percentages);
+      "Marketing and Sales":
+        assessment.report.percentages["Marketing and Sales"],
+    };
 
-   console.log("percentages", percentages);
-   console.log("percentages", percentages["Compliance and Certification"]);
+    setPercentagesMap(percentages);
 
     setData(initData);
 
     // Set recommendations
     const initRecommendations: (string | [])[][] = [];
-    if (assessment.recommendedModules && assessment.recommendedModules["Strategic Planning"]) {
+    if (
+      assessment.recommendedModules &&
+      assessment.recommendedModules["Strategic Planning"]
+    ) {
       initRecommendations.push([
         "Strategic Planning",
         assessment.recommendedModules["Strategic Planning"],
       ]);
     }
-    if (assessment.recommendedModules && assessment.recommendedModules["Market Intelligence"]) {
+    if (
+      assessment.recommendedModules &&
+      assessment.recommendedModules["Market Intelligence"]
+    ) {
       initRecommendations.push([
         "Market Intelligence",
         assessment.recommendedModules["Market Intelligence"],
       ]);
     }
-    if (assessment.recommendedModules && assessment.recommendedModules["Talent Management"]) {
+    if (
+      assessment.recommendedModules &&
+      assessment.recommendedModules["Talent Management"]
+    ) {
       initRecommendations.push([
         "Talent Management",
         assessment.recommendedModules["Talent Management"],
       ]);
     }
-    if (assessment.recommendedModules && assessment.recommendedModules["Process Management"]) {
+    if (
+      assessment.recommendedModules &&
+      assessment.recommendedModules["Process Management"]
+    ) {
       initRecommendations.push([
         "Process Management",
         assessment.recommendedModules["Process Management"],
       ]);
     }
-    if (assessment.recommendedModules && assessment.recommendedModules["Product Development"]) {
+    if (
+      assessment.recommendedModules &&
+      assessment.recommendedModules["Product Development"]
+    ) {
       initRecommendations.push([
         "Product Development",
         assessment.recommendedModules["Product Development"],
       ]);
     }
-    if (assessment.recommendedModules && assessment.recommendedModules["Marketing and Sales"]) {
+    if (
+      assessment.recommendedModules &&
+      assessment.recommendedModules["Marketing and Sales"]
+    ) {
       initRecommendations.push([
         "Marketing and Sales",
         assessment.recommendedModules["Marketing and Sales"],
       ]);
     }
-    
+
     setRecommendedModules(initRecommendations);
     setIsLoading(false);
-
-    
   };
 
   const options = {
@@ -217,7 +272,12 @@ export const ReportSummary = () => {
 
               <div className="full-report">
                 {!isInitLoad && !isLoading ? (
-                  <FullReport fullReport={fullReport} chartData={data} percentages={percentagesMap} />
+                  <FullReport
+                    fullReport={fullReport}
+                    chartData={data}
+                    percentages={percentagesMap}
+                    fullReportCategories={fullReportCategories}
+                  />
                 ) : null}
               </div>
 

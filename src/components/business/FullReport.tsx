@@ -26,6 +26,13 @@ export const FullReport = (props: any) => {
         category,
         type,
         percentage = 0,
+        isMajorGap = props.fullReportCategories.isMajorGap.includes(category),
+        isPriorityElement = props.fullReportCategories.isPriorityElement.includes(
+          category
+        ),
+        isBestPerforming = props.fullReportCategories.isBestPerforming.includes(
+          category
+        ),
       }: {
         questionId: number;
         answer: string;
@@ -33,6 +40,9 @@ export const FullReport = (props: any) => {
         category: string;
         type: string;
         percentage: number;
+        isMajorGap: boolean;
+        isPriorityElement: boolean;
+        isBestPerforming: boolean;
       }
     ) => {
       if (output.length > 0) {
@@ -44,6 +54,9 @@ export const FullReport = (props: any) => {
           category,
           type,
           percentage,
+          isMajorGap,
+          isPriorityElement,
+          isBestPerforming,
         });
       }
       return businessSoFar;
@@ -63,6 +76,13 @@ export const FullReport = (props: any) => {
         category,
         type,
         percentage = 0,
+        isMajorGap = props.fullReportCategories.isMajorGap.includes(category),
+        isPriorityElement = props.fullReportCategories.isPriorityElement.includes(
+          category
+        ),
+        isBestPerforming = props.fullReportCategories.isBestPerforming.includes(
+          category
+        ),
       }: {
         questionId: number;
         answer: string;
@@ -70,6 +90,9 @@ export const FullReport = (props: any) => {
         category: string;
         type: string;
         percentage: number;
+        isMajorGap: boolean;
+        isPriorityElement: boolean;
+        isBestPerforming: boolean;
       }
     ) => {
       if (output.length > 0) {
@@ -81,6 +104,9 @@ export const FullReport = (props: any) => {
           category,
           type,
           percentage,
+          isMajorGap,
+          isPriorityElement,
+          isBestPerforming,
         });
       }
       return businessSoFar;
@@ -94,7 +120,7 @@ export const FullReport = (props: any) => {
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
-    console.log(percentages);
+    console.log(businessConceptDisplay);
     setIsLoading(false);
   }, [navigate]);
 
