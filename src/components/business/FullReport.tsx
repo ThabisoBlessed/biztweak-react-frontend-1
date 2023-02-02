@@ -136,86 +136,85 @@ export const FullReport = (props: any) => {
                   className="accordion-button collapsed bg-[#f1feff]"
                   type="button"
                   data-bs-toggle="collapse"
-                  data-bs-target="#collapse1"
+                  data-bs-target="#collapse_1_1"
                   aria-expanded="false"
-                  aria-controls="collapse1"
+                  aria-controls="collapse_1_1"
                 >
                   Business Concept
                 </button>
               </h1>
-              <div id="collapse1" className="accordion-collapse collapse show">
+              <div
+                id="collapse_1_1"
+                className="accordion-collapse collapse show"
+              >
                 <div className="accordion-body">
-                  <p className="text-dark">Business Diagnosis</p>
-                  {isLoading ? null : (
-                    <>
-                      {displayBusinessConcept.map(
-                        (concept: any, index: number) => {
-                          return (
-                            <div
-                              id={`accordion${index}`}
-                              className="accordion"
-                              key={index}
-                            >
-                              <div className="accordion-item bg-transparent cust-accordion">
-                                <h2
-                                  className="accordion-header"
-                                  id="headingOne"
-                                >
-                                  <button
-                                    className="accordion-button collapsed bg-[#f1feff]"
-                                    type="button"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target={`#structure_collapse${index}`}
-                                    aria-expanded="false"
-                                    aria-controls="collapseOne"
-                                    data-bs-parent={`accordion${index}`}
-                                  >
-                                    {concept[0]}
-                                  </button>
-                                  <div
-                                    id={`structure_collapse${index}`}
-                                    className="accordion-body"
-                                  >
-                                    <ul className="list-group">
-                                      <li className="list-group-item bg-[#f1feff]">
-                                        <p className="text-sm">
-                                          {concept[0]}
-                                          <span className="badge float-end rounded-pill bg-[#00c2cb]">
-                                            {percentages[concept[0]]}%
-                                          </span>
-                                        </p>
-                                        <div className="clearfix"></div>
-                                        <ul className="list-group list-group-numbered">
-                                          {concept[1].map(
-                                            (response: any, i: number) => {
-                                              return (
-                                                <div
-                                                  key={i}
-                                                  className={`list-group-item d-flex justify-content-between align-items-start ${
-                                                    response.answer === "NO"
-                                                      ? "list-group-item-danger"
-                                                      : "list-group-item-success"
-                                                  }`}
-                                                >
-                                                  <p className="mb-0 color-code text-sm">
-                                                    {response.output}
-                                                  </p>
-                                                </div>
-                                              );
-                                            }
-                                          )}
-                                        </ul>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </h2>
-                              </div>
-                            </div>
-                          );
-                        }
-                      )}
-                    </>
-                  )}
+                <p className="text-dark">Business Diagnosis</p>
+                
+                  {/* Priority */}
+                  <div className="accordion-item bg-transparent">
+                    <h1 className="accordion-header mb-0 mt-0" id="heading1">
+                      <button
+                        className="accordion-button collapsed bg-[#f1feff]"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapse_priority_1"
+                        aria-expanded="false"
+                        aria-controls="collapsepriority_1"
+                      >
+                        Priority Elements
+                      </button>
+                    </h1>
+                    <div
+                      id="collapse_priority_1"
+                      className="accordion-collapse collapse show"
+                    >
+                      <div className="accordion-body">Test 2</div>
+                    </div>
+                  </div>
+
+                  {/* Best Perfoming */}
+                  <div className="accordion-item bg-transparent">
+                    <h1 className="accordion-header mb-0 mt-0" id="heading1">
+                      <button
+                        className="accordion-button collapsed bg-[#f1feff]"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapse_best_performing_1"
+                        aria-expanded="false"
+                        aria-controls="collapse_best_performing_1"
+                      >
+                        Best Performing
+                      </button>
+                    </h1>
+                    <div
+                      id="collapse_best_performing_1"
+                      className="accordion-collapse collapse show"
+                    >
+                      <div className="accordion-body">Test</div>
+                    </div>
+                  </div>
+
+                   {/* Major Gaps */}
+                   <div className="accordion-item bg-transparent">
+                    <h1 className="accordion-header mb-0 mt-0" id="heading1">
+                      <button
+                        className="accordion-button collapsed bg-[#f1feff]"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapse_major_gaps_1"
+                        aria-expanded="false"
+                        aria-controls="collapse_major_gaps_1"
+                      >
+                        Major Gaps
+                      </button>
+                    </h1>
+                    <div
+                      id="collapse_major_gaps_1"
+                      className="accordion-collapse collapse show"
+                    >
+                      <div className="accordion-body">Test 3</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
