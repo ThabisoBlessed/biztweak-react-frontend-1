@@ -174,7 +174,7 @@ export const FullReport = (props: any) => {
                             {displayBusinessConcept.map(
                               (concept: any, index: number) => {
                                 return (
-                                  <div key={`collapsepriority_1_list_${index}`}>
+                                  <div key={`collapse_priority_1_list_${index}`}>
                                     {concept[1][0].isPriorityElement ? (
                                       <ul className="list-group" >
                                         <li className="list-group-item bg-[#f1feff]">
@@ -190,8 +190,8 @@ export const FullReport = (props: any) => {
                                               (response: any, i: number) => {
                                                 return (
                                                   <div
-                                                    key={`collapsepriority_1_list_${index}_${i}`}
-                                                    className="list-group-item d-flex justify-content-between align-items-start list-group-item-danger"
+                                                    key={`collapse_priority_1_list_${index}_${i}`}
+                                                    className={`list-group-item d-flex justify-content-between align-items-start ${response.answer === "YES" ? "list-group-item-success": "list-group-item-danger"}`}
                                                   >
                                                     <p className="mb-0 color-code text-sm">
                                                       {response.output}
@@ -232,7 +232,49 @@ export const FullReport = (props: any) => {
                       id="collapse_best_performing_1"
                       className="accordion-collapse collapse show"
                     >
-                      <div className="accordion-body">Test</div>
+                      <div className="accordion-body">
+                      {isLoading ? null : (
+                          <>
+                            {displayBusinessConcept.map(
+                              (concept: any, index: number) => {
+                                return (
+                                  <div key={`collapse_best_perfoming_1_list_${index}`}>
+                                    {concept[1][0].isBestPerforming ? (
+                                      <ul className="list-group" >
+                                        <li className="list-group-item bg-[#f1feff]">
+                                          <p className="text-sm">
+                                            {concept[0]}
+                                            <span className="badge float-end rounded-pill bg-[#00c2cb]">
+                                              {percentages[concept[0]]}%
+                                            </span>
+                                          </p>
+                                          <div className="clearfix"></div>
+                                          <ul className="list-group list-group-numbered">
+                                            {concept[1].map(
+                                              (response: any, i: number) => {
+                                                return (
+                                                  <div
+                                                    key={`collapse_best_perfoming_1_list_${index}_${i}`}
+                                                    className={`list-group-item d-flex justify-content-between align-items-start ${response.answer === "YES" ? "list-group-item-success": "list-group-item-danger"}`}
+                                                  >
+                                                    <p className="mb-0 color-code text-sm">
+                                                      {response.output}
+                                                    </p>
+                                                  </div>
+                                                );
+                                              }
+                                            )}
+                                          </ul>
+                                        </li>
+                                      </ul>
+                                    ) : null}
+                                  </div>
+                                );
+                              }
+                            )}
+                          </>
+                        )}
+                      </div>
                     </div>
                   </div>
 
