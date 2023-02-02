@@ -396,15 +396,15 @@ export const FullReport = (props: any) => {
                         className="accordion-button collapsed bg-[#f1feff]"
                         type="button"
                         data-bs-toggle="collapse"
-                        data-bs-target="#collapse_priority_1"
+                        data-bs-target="#collapse_priority_2"
                         aria-expanded="false"
-                        aria-controls="collapsepriority_1"
+                        aria-controls="collapsepriority_2"
                       >
                         Priority Elements
                       </button>
                     </h1>
                     <div
-                      id="collapse_priority_1"
+                      id="collapse_priority_2"
                       className="accordion-collapse collapse show"
                     >
                       <div className="accordion-body">
@@ -414,7 +414,7 @@ export const FullReport = (props: any) => {
                               (structure: any, index: number) => {
                                 return (
                                   <div
-                                    key={`collapse_priority_1_list_${index}`}
+                                    key={`collapse_priority_2_list_${index}`}
                                   >
                                     {structure[1][0].isPriorityElement ? (
                                       <ul className="list-group">
@@ -431,7 +431,7 @@ export const FullReport = (props: any) => {
                                               (response: any, i: number) => {
                                                 return (
                                                   <div
-                                                    key={`collapse_priority_1_list_${index}_${i}`}
+                                                    key={`collapse_priority_2_list_${index}_${i}`}
                                                     className={`list-group-item d-flex justify-content-between align-items-start ${
                                                       response.answer === "YES"
                                                         ? "list-group-item-success"
@@ -466,15 +466,15 @@ export const FullReport = (props: any) => {
                         className="accordion-button collapsed bg-[#f1feff]"
                         type="button"
                         data-bs-toggle="collapse"
-                        data-bs-target="#collapse_best_performing_1"
+                        data-bs-target="#collapse_best_performing_2"
                         aria-expanded="false"
-                        aria-controls="collapse_best_performing_1"
+                        aria-controls="collapse_best_performing_2"
                       >
                         Best Performing
                       </button>
                     </h1>
                     <div
-                      id="collapse_best_performing_1"
+                      id="collapse_best_performing_2"
                       className="accordion-collapse collapse show"
                     >
                       <div className="accordion-body">
@@ -484,7 +484,7 @@ export const FullReport = (props: any) => {
                               (structure: any, index: number) => {
                                 return (
                                   <div
-                                    key={`collapse_best_perfoming_1_list_${index}`}
+                                    key={`collapse_best_perfoming_2_list_${index}`}
                                   >
                                     {structure[1][0].isBestPerforming ? (
                                       <ul className="list-group">
