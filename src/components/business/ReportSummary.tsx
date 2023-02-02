@@ -32,6 +32,7 @@ export const ReportSummary = () => {
     if (isInitLoad) {
       findBusiness(business.id);
     }
+    console.log(business);
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
 
@@ -115,6 +116,12 @@ export const ReportSummary = () => {
       initRecommendations.push([
         "Product Development",
         assessment.recommendedModules["Product Development"],
+      ]);
+    }
+    if (assessment.recommendedModules && assessment.recommendedModules["Marketing and Sales"]) {
+      initRecommendations.push([
+        "Marketing and Sales",
+        assessment.recommendedModules["Marketing and Sales"],
       ]);
     }
 

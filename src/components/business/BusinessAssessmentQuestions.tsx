@@ -122,7 +122,9 @@ export const BusinessAssessmentQuestions = (props: any) => {
         .replace(/[^a-zA-Z0-9 ]/g, "")}`
     );
     if (toRemove) {
-      toRemove.remove();
+      setTimeout(() => {
+        toRemove.remove();
+      }, 2000);
     }
   };
 
