@@ -5,8 +5,8 @@ export interface ICalendarEvent {
   title: string;
   description: string;
   type: string;
-  start_date: Date;
-  end_date: Date;
+  startDate: Date;
+  endDate: Date;
   frequency: EventFrequency;
   date: Date;
 }

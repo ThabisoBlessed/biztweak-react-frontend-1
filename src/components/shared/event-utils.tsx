@@ -15,14 +15,14 @@ getAllEvents().then((events) => {
       const eventToShow = {
         id: String(event.id),
         title: event.title,
-        start: new Date(event.start_date).toISOString().replace(/T.*$/, ""),
-        end: new Date(event.end_date).toISOString().replace(/T.*$/, ""),
+        start: new Date(event.startDate).toISOString().replace(/T.*$/, ""),
+        end: new Date(event.endDate).toISOString().replace(/T.*$/, ""),
       };
       const upcoming = {
         id: String(event.id),
         title: event.title,
-        start: new Date(event.start_date).toISOString(),
-        end: new Date(event.end_date).toISOString(),
+        start: new Date(event.startDate).toISOString(),
+        end: new Date(event.endDate).toISOString(),
       };
       initialEvents.push(eventToShow);
       initialEventsUpcoming.push(upcoming);

@@ -95,8 +95,8 @@ export const CalendarFull = () => {
     console.log("added", e);
     const newEvent = {} as ICalendarEvent;
     newEvent.title = e.event._def.title;
-    newEvent.start_date = e.event._instance.range.start;
-    newEvent.end_date = e.event._instance.range.end;
+    newEvent.startDate = e.event._instance.range.start;
+    newEvent.endDate = e.event._instance.range.end;
     newEvent.description = `${e.event._def.allDay}`;
     newEvent.type = "test";
     newEvent.frequency = EventFrequency.weekly;
