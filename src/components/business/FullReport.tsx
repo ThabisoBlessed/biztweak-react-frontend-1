@@ -174,9 +174,9 @@ export const FullReport = (props: any) => {
                             {displayBusinessConcept.map(
                               (concept: any, index: number) => {
                                 return (
-                                  <>
-                                    {concept[1][0].isBestPerforming ? (
-                                      <ul className="list-group">
+                                  <div key={`collapsepriority_1_list_${index}`}>
+                                    {concept[1][0].isPriorityElement ? (
+                                      <ul className="list-group" >
                                         <li className="list-group-item bg-[#f1feff]">
                                           <p className="text-sm">
                                             {concept[0]}
@@ -190,7 +190,7 @@ export const FullReport = (props: any) => {
                                               (response: any, i: number) => {
                                                 return (
                                                   <div
-                                                    key={i}
+                                                    key={`collapsepriority_1_list_${index}_${i}`}
                                                     className="list-group-item d-flex justify-content-between align-items-start list-group-item-danger"
                                                   >
                                                     <p className="mb-0 color-code text-sm">
@@ -204,7 +204,7 @@ export const FullReport = (props: any) => {
                                         </li>
                                       </ul>
                                     ) : null}
-                                  </>
+                                  </div>
                                 );
                               }
                             )}
