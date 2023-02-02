@@ -86,6 +86,7 @@ export const ReportSummary = () => {
     initData.push(["Business and Customers",assessment.report["Business and Customers"]]);
     initData.push(["Ownership and Mindset",assessment.report["Ownership and Mindset"]]);
     initData.push(["Delivery Expertise",assessment.report["Delivery Expertise"]]);
+    initData.push(["Marketing and Sales",assessment.report["Marketing and Sales"]]);
 
     const percentages = {
       "Compliance and Certification": assessment.report["Compliance and Certification"],
@@ -102,8 +103,9 @@ export const ReportSummary = () => {
       "Business and Customers": assessment.report["Business and Customers"],
       "Ownership and Mindset": assessment.report["Ownership and Mindset"],
       "Delivery Expertise": assessment.report["Delivery Expertise"],
+      "Marketing and Sales": assessment.report["Marketing and Sales"],
    };
-
+   
    setPercentagesMap(percentages);
 
    console.log("percentages", percentages);
