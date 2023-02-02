@@ -23,6 +23,7 @@ export const ReportSummary = () => {
     ["Elements", "Priority Elements Percentages"],
   ];
   const [data, setData] = useState(initData);
+  const [percentagesMap, setPercentagesMap] = useState({} as any);
   const [fullReport, setFullReport] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [isInitLoad, setIsInitLoad] = useState(true);
@@ -83,6 +84,23 @@ export const ReportSummary = () => {
       "Value Proposition",
       assessment.report["Value Proposition"],
     ]);
+
+    const percentages = {
+      "Compliance and Certification": assessment.report["Compliance and Certification"],
+      "Cost Structure": assessment.report["Cost Structure"],
+      "Customer Segments": assessment.report["Customer Segments"],
+      "Functional Capability": assessment.report["Functional Capability"],
+      "Key Resources": assessment.report["Key Resources"],
+      "Proof of Concept": assessment.report["Proof of Concept"],
+      "Prototype": assessment.report["Prototype"],
+      "Revenue Streams": assessment.report["Revenue Streams"],
+      "Value Proposition": assessment.report["Value Proposition"]
+   };
+
+   setPercentagesMap(percentages);
+
+   console.log("percentages", percentages);
+   console.log("percentages", percentages["Compliance and Certification"]);
 
     setData(initData);
 
@@ -188,7 +206,7 @@ export const ReportSummary = () => {
 
               <div className="full-report">
                 {!isInitLoad && !isLoading ? (
-                  <FullReport fullReport={fullReport} chartData={data} />
+                  <FullReport fullReport={fullReport} chartData={data} percentages={percentagesMap} />
                 ) : null}
               </div>
 

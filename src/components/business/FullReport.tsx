@@ -4,8 +4,7 @@ import { isLoggedIn } from "../../config";
 
 export const FullReport = (props: any) => {
   const navigate = useNavigate();
-  const [fullReport, setFullReport] = useState(props.fullReport);
-  const [chartData, setChatData] = useState(props.chartData);
+  const [percentages, setPercentages] = useState(props.percentages);
   const initFullReport: (string | any)[][] = [];
   const [businessStructure, setBusinessStructure] = useState(
     props.fullReport.filter(
@@ -95,7 +94,7 @@ export const FullReport = (props: any) => {
 
   useEffect(() => {
     if (!isLoggedIn()) navigate("/auth/login");
-    console.log(displayBusinessConcept);
+    console.log(percentages);
     setIsLoading(false);
   }, [navigate]);
 
@@ -156,7 +155,7 @@ export const FullReport = (props: any) => {
                                         <p className="text-sm">
                                           {concept[0]}
                                           <span className="badge float-end rounded-pill bg-[#00c2cb]">
-                                            {concept[1].percentage}%
+                                            {percentages[concept[0]]}%
                                           </span>
                                         </p>
                                         <div className="clearfix"></div>
@@ -166,7 +165,11 @@ export const FullReport = (props: any) => {
                                               return (
                                                 <div
                                                   key={i}
-                                                  className={`list-group-item d-flex justify-content-between align-items-start ${response.answer === "NO" ? "list-group-item-danger" : "list-group-item-success"}`}
+                                                  className={`list-group-item d-flex justify-content-between align-items-start ${
+                                                    response.answer === "NO"
+                                                      ? "list-group-item-danger"
+                                                      : "list-group-item-success"
+                                                  }`}
                                                 >
                                                   <p className="mb-0 color-code text-sm">
                                                     {response.output}
@@ -248,7 +251,7 @@ export const FullReport = (props: any) => {
                                         <p className="text-sm">
                                           {structure[0]}
                                           <span className="badge float-end rounded-pill bg-[#00c2cb]">
-                                            {structure[1].percentage}%
+                                            {percentages[structure[0]]}%
                                           </span>
                                         </p>
                                         <div className="clearfix"></div>
