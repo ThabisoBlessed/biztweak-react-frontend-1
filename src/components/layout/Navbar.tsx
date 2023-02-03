@@ -60,7 +60,7 @@ export const Navbar = () => {
     if (user) {
       const userResult: IUser = JSON.parse(user);
       setUserEmail(userResult.email);
-      setUserName(userResult.fullname);
+      setUserName(userResult.fullNames);
     }
     
     setSelectedMenu();

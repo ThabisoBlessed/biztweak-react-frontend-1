@@ -120,7 +120,7 @@ export const Courses = () => {
                                 alt=""
                               />
                               <div>
-                                <div>{course.user.fullname}</div>
+                                <div>{course.user.fullNames}</div>
                                 <div className="small">
                                   {
                                     courses.filter(

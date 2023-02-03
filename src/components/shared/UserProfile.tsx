@@ -9,7 +9,7 @@ import { convertToBase64 } from "../util/file-util";
 
 export const UserProfile = (props: any) => {
   const [education, setEducation] = useState(props.user.education);
-  const [fullname, setFullname] = useState(props.user.fullname);
+  const [fullNames, setFullname] = useState(props.user.fullNames);
   const [email, setEmail] = useState(props.user.email);
   const [id, setId] = useState(props.user.id);
   const [location, setLocation] = useState(props.user.location);
@@ -17,14 +17,14 @@ export const UserProfile = (props: any) => {
   const [photo, setPhoto] = useState({} as File);
   const [registered, setRegistered] = useState(props.user.registered);
   const [role, setRole] = useState(props.user.role);
-  const [work_experience, setWorkExperience] = useState(
-    props.user.work_experience
+  const [workExperience, setWorkExperience] = useState(
+    props.user.workExperience
   );
-  const [work_experience2, setWorkExperience2] = useState(
-    props.user.work_experience2
+  const [workExperience2, setWorkExperience2] = useState(
+    props.user.workExperience2
   );
   const [bio, setBio] = useState(props.user.bio);
-  const [old_password, setOldPassword] = useState("");
+  const [oldPassword, setOldPassword] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -34,12 +34,12 @@ export const UserProfile = (props: any) => {
   const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
   const [passwordSuccessMessage, setPasswordSuccessMessage] = useState("");
   const [marketNewsletter, setMarketNewsletter] = useState(
-    props.user.market_newsletter || ""
+    props.user.marketNewsletter || ""
   );
   const [
     productUpdatesAndCommunityAnnouncements,
     setProductUpdatesAndCommunityAnnouncements,
-  ] = useState(props.user.product_updates_and_community_announcements || "");
+  ] = useState(props.user.productUpdatesAndCommunityAnnouncements || "");
 
   /**
    * Updates current user password
@@ -52,12 +52,12 @@ export const UserProfile = (props: any) => {
     setPasswordSuccessMessage("");
     setIsLoading(false);
 
-    if (password === "" || confirmPassword === "" || old_password === "") {
+    if (password === "" || confirmPassword === "" || oldPassword === "") {
       setPasswordErrorMessage("All password fields are required");
     } else if (confirmPassword !== password) {
       setPasswordErrorMessage("Passwords do not match");
     } else {
-      const update = await updatePassword(old_password, password, id);
+      const update = await updatePassword(oldPassword, password, id);
 
       // Successful call returns "data", failed call returns "response"
       const success = update.data;
@@ -84,20 +84,21 @@ export const UserProfile = (props: any) => {
 
     const userProfile: IUser = {
       id: id,
-      fullname: fullname,
+      fullNames: fullNames,
       email: email,
       phone: phone,
       education: education,
-      work_experience: work_experience,
-      work_experience2: work_experience2,
+      workExperience: workExperience,
+      workExperience2: workExperience2,
       location: location,
       role: role,
       registered: registered,
       photo: photo,
-      market_newsletter: marketNewsletter === "true" ? true : false,
-      product_updates_and_community_announcements:
+      marketNewsletter: marketNewsletter === "true" ? true : false,
+      productUpdatesAndCommunityAnnouncements:
         productUpdatesAndCommunityAnnouncements === "true" ? true : false,
-      bio: ""
+      bio: "",
+      assessments: null
     };
 
     const update = await updateProfile(userProfile);
@@ -228,7 +229,7 @@ export const UserProfile = (props: any) => {
                                   <input
                                     type="text"
                                     className="form-control core"
-                                    value={!fullname ? "" : fullname}
+                                    value={!fullNames ? "" : fullNames}
                                     onChange={(e) =>
                                       setFullname(e.target.value)
                                     }
@@ -252,6 +253,28 @@ export const UserProfile = (props: any) => {
                                     className="form-control core"
                                     value={!email ? "" : email}
                                     onChange={(e) => setEmail(e.target.value)}
+                                  />
+                                </div>
+                                <div className="form-group mt-2">
+                                  <div className="d-flex justify-content-between">
+                                    <label className="text-dark">
+                                      Phone &nbsp;
+                                      <i
+                                        className="fa fa-info-circle text-muted"
+                                        data-bs-toggle="tooltip"
+                                        title="Phone is required"
+                                        data-bs-original-title="Phone is required."
+                                        aria-label="Phone is required."
+                                      ></i>
+                                    </label>
+                                  </div>
+                                  <input
+                                    type="text"
+                                    className="form-control core"
+                                    value={!phone ? "" : phone}
+                                    onChange={(e) =>
+                                      setPhone(e.target.value)
+                                    }
                                   />
                                 </div>
                                 <div className="form-group mt-2">
@@ -317,7 +340,7 @@ export const UserProfile = (props: any) => {
                                     className="form-control core"
                                     autoComplete="false"
                                     id="oldPassword"
-                                    value={!old_password ? "" : old_password}
+                                    value={!oldPassword ? "" : oldPassword}
                                     onChange={(e) =>
                                       setOldPassword(e.target.value)
                                     }

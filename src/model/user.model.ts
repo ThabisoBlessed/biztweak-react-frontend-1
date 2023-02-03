@@ -3,18 +3,19 @@ import { UserRole } from "./enum/user-roles.enum";
 
 export interface IUser {
     id: number;
-    fullname: string;
+    fullNames: string;
     email: string;
     phone: string;
     education: string,
-    work_experience: string,
-    work_experience2: string,
+    workExperience: string,
+    workExperience2: string,
     location: string,
     role: string;
     registered: string;
     photo: File;
-    market_newsletter: any;
-    product_updates_and_community_announcements: any;
+    marketNewsletter: any;
+    productUpdatesAndCommunityAnnouncements: any;
     bio: string;
     companies?: ICompany[]
+    assessments: any;
 }

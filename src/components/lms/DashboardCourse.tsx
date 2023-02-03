@@ -48,7 +48,7 @@ export const DashboardCourse = (props: any) => {
                       width="30px"
                       alt=""
                     ></img>
-                    {course.user.fullname}
+                    {course.user.fullNames}
                   </p>
                   <div className="d-flex justify-content-between align-items-center">
                     <div className="w-100 me-3 text-dark">

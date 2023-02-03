@@ -31,14 +31,14 @@ export const LMSMenu = () => {
       isActive: false,
       titleClasses: "ml-4",
     },
-    {
-      id: 3,
-      title: "Messages",
-      link: "/lms/messages",
-      iconClass: "fa-lg fa-solid fa-envelope",
-      isActive: false,
-      titleClasses: "ml-3",
-    },
+    // {
+    //   id: 3,
+    //   title: "Messages",
+    //   link: "/lms/messages",
+    //   iconClass: "fa-lg fa-solid fa-envelope",
+    //   isActive: false,
+    //   titleClasses: "ml-3",
+    // },
     // {
     //   id: 4,
     //   title: "Digital Tools",

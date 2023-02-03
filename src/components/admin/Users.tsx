@@ -107,7 +107,7 @@ export const Users = (props: any) => {
                           return (
                             <tr key={index}>
                               <td>{user.id}</td>
-                              <td>{user.fullname}</td>
+                              <td>{user.fullNames}</td>
                               <td>{user.email}</td>
                               <td>{user.role}</td>
                               <td>
