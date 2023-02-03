@@ -136,7 +136,7 @@ export const updatePassword = async (
  * Updates the profile for logged in user
  * @returns {IUser} user
  */
-export const updateProfile = async (profile: any): Promise<any> => {
+export const updateProfile = async (profile: any, userId: number): Promise<any> => {
   try {
     let config = {
       headers: {
@@ -149,7 +149,7 @@ export const updateProfile = async (profile: any): Promise<any> => {
       },
     };
 
-    return await axios.put(constants.baseUrl + `/users/${profile.id}`, profile, config);
+    return await axios.put(constants.baseUrl + `/users/${userId}`, profile, config);
   } catch (error: any) {
     return error;
   }

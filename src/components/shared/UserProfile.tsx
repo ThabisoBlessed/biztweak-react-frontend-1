@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AvatarImg from "../../images/avatar.png";
 import { IUser } from "../../model/user.model";
 import { updatePassword, updateProfile } from "../../services/lms/user.service";
 import { AdminMenu } from "../admin/AdminMenu";
 import { CMPMenu } from "../cmp/CMPMenu";
 import { LMSMenu } from "../lms/LMSMenu";
-import { convertToBase64 } from "../util/file-util";
 
 export const UserProfile = (props: any) => {
   const [education, setEducation] = useState(props.user.education);
@@ -40,6 +39,14 @@ export const UserProfile = (props: any) => {
     productUpdatesAndCommunityAnnouncements,
     setProductUpdatesAndCommunityAnnouncements,
   ] = useState(props.user.productUpdatesAndCommunityAnnouncements || "");
+  const [selectedImage, setSelectedImage] = useState("");
+
+  useEffect(() => {
+    console.log("Hello");
+    if (props.user.photo) {
+      setSelectedImage(URL.createObjectURL(props.user.photo))
+    }
+  })
 
   /**
    * Updates current user password
@@ -96,7 +103,7 @@ export const UserProfile = (props: any) => {
     profile.append("productUpdatesAndCommunityAnnouncements", productUpdatesAndCommunityAnnouncements === "true" ? String(true) : String(false));
     profile.append("bio", bio);
 
-    const update = await updateProfile(profile);
+    const update = await updateProfile(profile, props.user.id);
 
     // Successful call returns "data", failed call returns "response"
     const success = update.data;
@@ -128,6 +135,7 @@ export const UserProfile = (props: any) => {
 
   const handlePhotoFile = async (e: any) => {
     const file = e.target.files[0];
+    setSelectedImage(URL.createObjectURL(file))
     setPhoto(file);
     // const base64: any = await convertToBase64(file);
     // setLogo(base64);
@@ -184,7 +192,7 @@ export const UserProfile = (props: any) => {
                                   <div className="d-flex align-items-center">
                                     <div>
                                       <img
-                                        src={AvatarImg}
+                                        src={selectedImage.length > 0 ? selectedImage : AvatarImg}
                                         className="rounded-circle w-[60px]"
                                         alt=""
                                       />

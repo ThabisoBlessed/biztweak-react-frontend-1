@@ -67,17 +67,6 @@ export const AddCourse = () => {
     e.preventDefault();
     setIsLoading(false);
 
-    // const courseModel = {} as ICourse;
-    // courseModel.title = title;
-    // courseModel.description = description;
-    // courseModel.category = category;
-    // courseModel.intro_video = JSON.stringify(introVideo);
-    // courseModel.start_datetime = startDatetime;
-    // courseModel.expiry_datetime = expiryDatetime;
-    // courseModel.business_phase = businessPhase;
-    // courseModel.score = 0;
-    // courseModel.logo = JSON.stringify(logo);
-
     const data = new FormData() 
     data.append('title', title);
     data.append('description', description);
