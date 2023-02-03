@@ -133,12 +133,10 @@ export const updatePassword = async (
 };
 
 /**
- * Updates the password for logged in user
- * @param {string} oldPassword
- * @param {string} newPassword
+ * Updates the profile for logged in user
  * @returns {IUser} user
  */
-export const updateProfile = async (profile: IUser): Promise<any> => {
+export const updateProfile = async (profile: any): Promise<any> => {
   try {
     let config = {
       headers: {

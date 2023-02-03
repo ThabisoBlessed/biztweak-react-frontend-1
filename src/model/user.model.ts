@@ -17,5 +17,4 @@ export interface IUser {
     productUpdatesAndCommunityAnnouncements: any;
     bio: string;
     companies?: ICompany[]
-    assessments: any;
 }

@@ -80,28 +80,23 @@ export const UserProfile = (props: any) => {
     setIsSaving(true);
     setPasswordErrorMessage("");
     setPasswordSuccessMessage("");
-    setIsLoading(false);
 
-    const userProfile: IUser = {
-      id: id,
-      fullNames: fullNames,
-      email: email,
-      phone: phone,
-      education: education,
-      workExperience: workExperience,
-      workExperience2: workExperience2,
-      location: location,
-      role: role,
-      registered: registered,
-      photo: photo,
-      marketNewsletter: marketNewsletter === "true" ? true : false,
-      productUpdatesAndCommunityAnnouncements:
-        productUpdatesAndCommunityAnnouncements === "true" ? true : false,
-      bio: "",
-      assessments: null
-    };
+    const profile = new FormData();
+    profile.append("photo", String(photo));
+    profile.append("fullNames", fullNames);
+    profile.append("email", email);
+    profile.append("phone", phone);
+    profile.append("education", education);
+    profile.append("workExperience", workExperience);
+    profile.append("workExperience2", workExperience2);
+    profile.append("location", location);
+    profile.append("role", role);
+    profile.append("registered", registered);
+    profile.append("marketNewsletter", marketNewsletter === "true" ? String(true) : String(false));
+    profile.append("productUpdatesAndCommunityAnnouncements", productUpdatesAndCommunityAnnouncements === "true" ? String(true) : String(false));
+    profile.append("bio", bio);
 
-    const update = await updateProfile(userProfile);
+    const update = await updateProfile(profile);
 
     // Successful call returns "data", failed call returns "response"
     const success = update.data;
@@ -116,6 +111,7 @@ export const UserProfile = (props: any) => {
     }
 
     setIsSaving(false);
+    setIsLoading(false);
   };
 
   const checkMarketNewsletterValue = (e: any) => {
@@ -132,8 +128,9 @@ export const UserProfile = (props: any) => {
 
   const handlePhotoFile = async (e: any) => {
     const file = e.target.files[0];
-    const base64: any = await convertToBase64(file);
-    setPhoto(base64);
+    setPhoto(file);
+    // const base64: any = await convertToBase64(file);
+    // setLogo(base64);
   };
 
   const onRemovePhoto = (e: any) => {
