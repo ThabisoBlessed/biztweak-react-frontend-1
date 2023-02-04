@@ -7,16 +7,17 @@ export interface ICompany {
   location: string;
   phase: string;
   registered: boolean;
-  registration_number: string;
-  registration_date: string;
-  products_or_services: string;
+  registrationNumber: string;
+  registrationDate: string;
+  productsOrServices: string;
   industry: string;
   employees: number;
-  monthly_turnover: number;
-  annual_turnover: number;
+  monthlyTurnover: number;
+  annualTurnover: number;
   rating: any;
   date: string;
   user: IUser;
   report: any;
   score: number;
+  assessment?: any;
 }

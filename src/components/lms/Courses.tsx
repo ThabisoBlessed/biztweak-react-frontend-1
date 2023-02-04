@@ -13,6 +13,7 @@ import { getAllUsers } from "../../services/admin/admin.service";
 import { getCurrentUser } from "../../services/lms/user.service";
 import { UserProfile } from "../shared/UserProfile";
 import { listCompaniesForLoggedInUser } from "../../services/business/company.service";
+import { ICompany } from "../../model/company.model";
 
 export const Courses = () => {
   const navigate = useNavigate();
@@ -21,7 +22,12 @@ export const Courses = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState({} as IUser);
   const [isInitLoad, setIsInitLoad] = useState(true);
-  const [businesses, setBusinesses] = useState();
+  const initBiz: ICompany[] = [];
+  const [businesses, setBusinesses] = useState(initBiz);
+  const initRecommendedModules: (string | [])[][] = [];
+  const [recommendedModules, setRecommendedModules] = useState(
+    initRecommendedModules
+  );
 
   useEffect(() => {
     if (isInitLoad) {
@@ -57,9 +63,16 @@ export const Courses = () => {
     if (storageUser) {
       const businessesResult = await listCompaniesForLoggedInUser();
       if (businessesResult.data) {
-        const myBusinesses = businessesResult.data.package.data;
+        const myBusinesses: ICompany[] = businessesResult.data.package.data;
         setBusinesses(myBusinesses);
         console.log(myBusinesses);
+
+        const courses: any[] = [];
+        for (let index = 0; index < myBusinesses.length; index++) {
+          const biz = myBusinesses[index];
+          courses.push(biz.assessment.recommendedModules["Market Intelligence"]);
+        }
+        console.log(courses);
       }
     }
   };
@@ -71,7 +84,6 @@ export const Courses = () => {
       if (coursesResult.data) {
         const myCourses = coursesResult.data.package.data;
         setCourses(myCourses);
-        console.log(myCourses);
       }
     }
   };

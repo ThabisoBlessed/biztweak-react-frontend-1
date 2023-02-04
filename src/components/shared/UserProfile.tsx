@@ -33,12 +33,12 @@ export const UserProfile = (props: any) => {
   const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
   const [passwordSuccessMessage, setPasswordSuccessMessage] = useState("");
   const [marketNewsletter, setMarketNewsletter] = useState(
-    props.user.marketNewsletter || ""
+    props.user.marketNewsletter || "false"
   );
   const [
     productUpdatesAndCommunityAnnouncements,
     setProductUpdatesAndCommunityAnnouncements,
-  ] = useState(props.user.productUpdatesAndCommunityAnnouncements || "");
+  ] = useState(props.user.productUpdatesAndCommunityAnnouncements || "false");
   const [selectedImage, setSelectedImage] = useState("");
 
   useEffect(() => {
@@ -99,8 +99,8 @@ export const UserProfile = (props: any) => {
     profile.append("location", location);
     profile.append("role", role);
     profile.append("registered", registered);
-    profile.append("marketNewsletter", marketNewsletter === "true" ? String(true) : String(false));
-    profile.append("productUpdatesAndCommunityAnnouncements", productUpdatesAndCommunityAnnouncements === "true" ? String(true) : String(false));
+    profile.append("marketNewsletter", marketNewsletter);
+    profile.append("productUpdatesAndCommunityAnnouncements", productUpdatesAndCommunityAnnouncements);
     profile.append("bio", bio);
 
     const update = await updateProfile(profile, props.user.id);

@@ -66,7 +66,7 @@ export const AdminUserList = (props: any) => {
                   <td>{company.phase}</td>
                   <td>{company.industry}</td>
                   <td>{company.employees}</td>
-                  <td>{company.annual_turnover}</td>
+                  <td>{company.annualTurnover}</td>
                   <td>{company.rating}</td>
                   <td>
                     <a href="#" className="text-[#00c2cb]">

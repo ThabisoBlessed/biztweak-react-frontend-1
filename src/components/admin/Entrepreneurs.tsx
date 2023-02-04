@@ -60,7 +60,7 @@ export const Entrepreneurs = (props: any) => {
                     </span>
                   </td>
                   <td>{company.location}</td>
-                  <td>{company.annual_turnover}</td>
+                  <td>{company.annualTurnover}</td>
                   <td>{company.score ? company.score : 0}%</td>
                   <td>0%</td>
                   <td>0%</td>
