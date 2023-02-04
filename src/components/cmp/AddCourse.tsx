@@ -14,19 +14,20 @@ export const AddCourse = () => {
   const [introVideo, setIntroVideo] = useState({} as File);
   const [startDatetime, setStartDatetime] = useState("");
   const [expiryDatetime, setExpiryDatetime] = useState("");
+  const [phaseId, setPhaseId] = useState(0);
   const bizPhaseList: any[] = [
     {
-      id: 0,
+      id: 1,
       name: "Ideation",
       value: "ideation",
     },
     {
-      id: 1,
+      id: 2,
       name: "Start-Up",
       value: "start_up",
     },
     {
-      id: 2,
+      id: 3,
       name: "Early Stage",
       value: "early_stage",
     },
@@ -43,8 +44,9 @@ export const AddCourse = () => {
   };
 
   const handleBizPhaseItemClick = (event: any) => {
-    console.log();
     setBusinessPhase(event.target.value);
+    const selected = bizPhaseList.find(b => b.value === event.target.value);
+    setPhaseId(selected.id);
   };
 
   const handleVideo = (e: any) => {
@@ -71,12 +73,14 @@ export const AddCourse = () => {
     data.append('title', title);
     data.append('description', description);
     data.append('category', category);
-    data.append('start_datetime', startDatetime);
-    data.append('expiry_datetime', expiryDatetime);
-    data.append('business_phase', businessPhase);
+    data.append('startDatetime', startDatetime);
+    data.append('expiryDatetime', expiryDatetime);
+    data.append('businessPhase', businessPhase);
     data.append('score', "0");
     data.append('logo', logo);
-    data.append('intro_video', introVideo);
+    data.append('introVideo', introVideo);
+    data.append('phaseId', String(phaseId));
+    data.append('timeOptions', String({}));
 
     const courseResult = await addCourse(data);
     const success = courseResult.data;

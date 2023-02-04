@@ -34,7 +34,7 @@ export const Courses = () => {
       getUser();
       getBusinesses();
       setIsLoading(false);
-      setIsInitLoad(false)
+      setIsInitLoad(false);
     }
     // if (courses.length === 0) {
     //   getCourses();
@@ -68,11 +68,73 @@ export const Courses = () => {
         console.log(myBusinesses);
 
         const courses: any[] = [];
+        const initRecommendations: (string | [])[][] = [];
+
         for (let index = 0; index < myBusinesses.length; index++) {
           const biz = myBusinesses[index];
-          courses.push(biz.assessment.recommendedModules["Market Intelligence"]);
+          courses.push(
+            biz.assessment.recommendedModules["Market Intelligence"][1]
+          );
+
+          if (
+            biz.assessment.recommendedModules &&
+            biz.assessment.recommendedModules["Strategic Planning"]
+          ) {
+            initRecommendations.push([
+              "Strategic Planning",
+              biz.assessment.recommendedModules["Strategic Planning"][1],
+            ]);
+          }
+          if (
+            biz.assessment.recommendedModules &&
+            biz.assessment.recommendedModules["Market Intelligence"]
+          ) {
+            initRecommendations.push([
+              "Market Intelligence",
+              biz.assessment.recommendedModules["Market Intelligence"][1],
+            ]);
+          }
+          if (
+            biz.assessment.recommendedModules &&
+            biz.assessment.recommendedModules["Talent Management"]
+          ) {
+            initRecommendations.push([
+              "Talent Management",
+              biz.assessment.recommendedModules["Talent Management"][1],
+            ]);
+          }
+          if (
+            biz.assessment.recommendedModules &&
+            biz.assessment.recommendedModules["Process Management"]
+          ) {
+            initRecommendations.push([
+              "Process Management",
+              biz.assessment.recommendedModules["Process Management"][1],
+            ]);
+          }
+          if (
+            biz.assessment.recommendedModules &&
+            biz.assessment.recommendedModules["Product Development"]
+          ) {
+            initRecommendations.push([
+              "Product Development",
+              biz.assessment.recommendedModules["Product Development"][1],
+            ]);
+          }
+          if (
+            biz.assessment.recommendedModules &&
+            biz.assessment.recommendedModules["Marketing and Sales"]
+          ) {
+            initRecommendations.push([
+              "Marketing and Sales",
+              biz.assessment.recommendedModules["Marketing and Sales"][1],
+            ]);
+          }
+
+         
         }
-        console.log(courses);
+        setRecommendedModules(initRecommendations);
+        console.log(initRecommendations);
       }
     }
   };
