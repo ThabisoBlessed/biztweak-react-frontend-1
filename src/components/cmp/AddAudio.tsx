@@ -16,6 +16,7 @@ export const AddAudio = () => {
   const [description, setDescription] = useState("");
   const [audio, setAudio] = useState({} as File);
   const [audioPreview, setAudioPreview] = useState("");
+  const [updateMode] = useState(selectedCourse.updateMode);
 
   useEffect(() => {
     window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
@@ -42,10 +43,8 @@ export const AddAudio = () => {
     data.append('file', String(audio));
 
     const addedAudio = await addCourseAudio(data, course.id);
-    console.log(addedAudio);
     if (addedAudio.data) {
       const audioResult = addedAudio.data.package.data;
-      console.log(audioResult);
       navigate("/cmp/manage-courses/course-info", { state: { course } });
     }
     setIsLoading(false);

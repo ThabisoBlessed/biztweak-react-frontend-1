@@ -42,7 +42,6 @@ export const UserProfile = (props: any) => {
   const [selectedImage, setSelectedImage] = useState("");
 
   useEffect(() => {
-    console.log("Hello");
     if (props.user.photo) {
       setSelectedImage(URL.createObjectURL(props.user.photo))
     }

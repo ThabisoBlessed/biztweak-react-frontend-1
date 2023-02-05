@@ -10,6 +10,7 @@ export const AddVideo = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [selectedCourse] = useState(state || ({} as ICourse));
+  const [updateMode] = useState(selectedCourse.updateMode);
   const [course, setCourse] = useState(selectedCourse.course);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -33,24 +34,32 @@ export const AddVideo = () => {
   };
 
   const onSkip = () => {
-    navigate("/cmp/manage-courses/add-audio", { state: { course } });
+    if (!updateMode) {
+      navigate("/cmp/manage-courses/add-audio", { state: { course } });
+    } else {
+      navigate("/cmp/manage-courses/course-info", { state: { course } });
+    }
   };
 
   const onSave = async (event: any) => {
     event.preventDefault();
-   
-    const data = new FormData() 
-    data.append('name', name);
-    data.append('description', description);
-    data.append('type', "test");
-    data.append('file', String(video));
+
+    const data = new FormData();
+    data.append("name", name);
+    data.append("description", description);
+    data.append("type", "test");
+    data.append("file", String(video));
 
     const addedVideo = await addCourseVideo(data, course.id);
     console.log(addedVideo);
     if (addedVideo.data) {
       const videoResult = addedVideo.data.package.data;
       console.log(videoResult);
-      navigate("/cmp/manage-courses/add-audio", { state: { course } });
+      if (!updateMode) {
+        navigate("/cmp/manage-courses/add-audio", { state: { course } });
+      } else {
+        navigate("/cmp/manage-courses/course-info", { state: { course } });
+      }
     }
     setIsLoading(false);
   };
@@ -209,7 +218,10 @@ export const AddVideo = () => {
                   {/* <button className="btn hover:bg-[#16f0fb] w-[150px] h-[50px] hover:text-white bg-[#00c2cb] mt-2 text-[white]">
                     Save &amp; View
                   </button> */}
-                  <button onClick={onSkip} className="btn w-[150px] h-[50px] mt-2 bg-black text-white hover:bg-gray-900">
+                  <button
+                    onClick={onSkip}
+                    className="btn w-[150px] h-[50px] mt-2 bg-black text-white hover:bg-gray-900"
+                  >
                     Cancel
                   </button>
                   <button

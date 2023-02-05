@@ -89,7 +89,8 @@ export const CourseInfo = () => {
   const handleDropdownItemClick = (menu: IMenuListItem) => {
     const selected = dropdown.find(s => s.id === menu.id);
     if (selected) {
-      navigate(selected.link, { state: { course } });
+      const updateMode = true;
+      navigate(selected.link, { state: { course, updateMode } });
     }
   };
 

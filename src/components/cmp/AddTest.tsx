@@ -13,6 +13,7 @@ export const AddTest = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [selectedCourse] = useState(state || ({} as ICourse));
+  const [updateMode] = useState(selectedCourse.updateMode);
   const [course, setCourse] = useState(selectedCourse.course);
   const [textEditorText, setTextEditorText] = useState("");
   const [answers, setAnswers] = useState("");
@@ -34,8 +35,12 @@ export const AddTest = () => {
       correctAnswer: false,
     };
     const courseTest = await addCourseTest(test, course.id);
-    console.log(courseTest);
-    navigate("/cmp/manage-courses/add-video", { state: { course } });
+    if (!updateMode) {
+      navigate("/cmp/manage-courses/add-video", { state: { course } });
+    } else {
+      navigate("/cmp/manage-courses/course-info", { state: { course } });
+    }
+
     setIsSaving(false);
   };
 
