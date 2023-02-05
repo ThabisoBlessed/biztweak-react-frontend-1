@@ -11,6 +11,7 @@ export const CourseInfo = () => {
   const [selectedCourse] = useState(state || ({} as ICourse));
   const [course, setCourse] = useState(selectedCourse.course);
   const [isInitLoad, setIsInitLoad] = useState(true);
+  const [selectedImage, setSelectedImage] = useState("");
   
   const dropDownMenuInit: IMenuListItem[] = [
     {
@@ -21,14 +22,14 @@ export const CourseInfo = () => {
       isActive: false,
       titleClasses: "ml-3",
     },
-    {
-      id: 1,
-      title: "Text",
-      link: "/cmp/manage-courses/add-text",
-      iconClass: "fa-lg fa-solid fa-text-slash",
-      isActive: false,
-      titleClasses: "ml-3",
-    },
+    // {
+    //   id: 1,
+    //   title: "Text",
+    //   link: "/cmp/manage-courses/add-text",
+    //   iconClass: "fa-lg fa-solid fa-text-slash",
+    //   isActive: false,
+    //   titleClasses: "ml-3",
+    // },
     {
       id: 2,
       title: "Audio",
@@ -40,19 +41,19 @@ export const CourseInfo = () => {
     {
       id: 3,
       title: "Quiz",
-      link: "/cmp/manage-courses/add-quiz",
+      link: "/cmp/manage-courses/add-test",
       iconClass: "fa-lg fa-solid fa-question",
       isActive: false,
       titleClasses: "ml-6",
     },
-    {
-      id: 4,
-      title: "Assignment",
-      link: "/cmp/manage-courses/add-assignment",
-      iconClass: "fa-lg fa-solid fa-file-alt",
-      isActive: false,
-      titleClasses: "ml-4",
-    },
+    // {
+    //   id: 4,
+    //   title: "Assignment",
+    //   link: "/cmp/manage-courses/add-assignment",
+    //   iconClass: "fa-lg fa-solid fa-file-alt",
+    //   isActive: false,
+    //   titleClasses: "ml-4",
+    // },
   ];
   const navigate = useNavigate();
   const [dropdown, setDropdown] = useState(dropDownMenuInit);
@@ -61,8 +62,11 @@ export const CourseInfo = () => {
     window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
     if (isInitLoad) {
       onGetCourse();
-      console.log(course);
       setIsInitLoad(false);
+    }
+    console.log(course);
+    if (course.logo) {
+      setSelectedImage(URL.createObjectURL(course.logo))
     }
   });
 
@@ -76,17 +80,16 @@ export const CourseInfo = () => {
       const courseResult = couseResponse.data.package.data;
       setCourse(courseResult)
     }
-    console.log(course);
   }
 
   const onPreviewCourse = () => {
-    navigate("/cmp/manage-courses/course-preview");
+    navigate("/cmp/manage-courses/course-preview", { state: { course } });
   };
 
   const handleDropdownItemClick = (menu: IMenuListItem) => {
     const selected = dropdown.find(s => s.id === menu.id);
     if (selected) {
-      navigate(selected.link);
+      navigate(selected.link, { state: { course } });
     }
   };
 
@@ -104,9 +107,9 @@ export const CourseInfo = () => {
                   <div className="col-md-3">
                     <div>Overview card</div>
                     <label className="rounded-3 bg-[#dfdbec] px-5 py-4 text-center">
-                      <img src={UserImg} alt="" height="60px" />
-                      <div className="mt-2 text-dark">Upload Course Image</div>
-                      <input type="file" className="d-none" />
+                      <img src={selectedImage.length > 0 ? selectedImage : UserImg} alt="" height="60px" />
+                      {/* <div className="mt-2 text-dark">Upload Course Image</div>
+                      <input type="file" className="d-none" /> */}
                     </label>
                   </div>
                   <div className="col-md-9">
@@ -156,12 +159,12 @@ export const CourseInfo = () => {
                   >
                     Edit Course
                   </button>
-                  <button
+                  {/* <button
                     className="btn btn btn-main hover:bg-[#16f0fb]  hover:text-white bg-[#00c2cb] mt-2 text-[white]"
                     onClick={onPreviewCourse}
                   >
                     Preview Course
-                  </button>
+                  </button> */}
                   {/* <button className="btn btn-secondary">...</button> */}
                 </div>
               </div>
@@ -192,9 +195,9 @@ export const CourseInfo = () => {
                 </div>
                 <div>
                   <span className="badge bg-[#65c8d0] text-dark">
-                    Total Text
+                    Total Tests
                   </span>
-                  <h2 className="text-dark fw-600">{course.texts.length}</h2>
+                  <h2 className="text-dark fw-600">{course.tests.length}</h2>
                 </div>
               </div>
             </div>

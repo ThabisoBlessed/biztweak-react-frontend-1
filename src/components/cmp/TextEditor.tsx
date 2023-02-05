@@ -1,13 +1,20 @@
 import { EditorState } from "draft-js";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "./TextEditor.css";
 
 export const TextEditor = (props: any) => {
+  const [isInitLoad, setIsInitLoad] = useState(true);
+
+  useEffect(() => {
+    // setIsInitLoad(false);
+  });
 
   const onEditorStateChange = (state: EditorState) => {
-    props.handleEditorStateChange(state.getCurrentContent().getPlainText());
+    if (props.handleEditorStateChange) {
+      props.handleEditorStateChange(state.getCurrentContent().getPlainText());
+    }
   };
 
   return (

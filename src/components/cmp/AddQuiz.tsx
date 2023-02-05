@@ -1,10 +1,16 @@
-import React from "react";
+import { useEffect } from "preact/hooks";
+import React, { useState } from "react";
 import { Answer } from "./Answer";
 import { CMPMenu } from "./CMPMenu";
 import { TextEditor } from "./TextEditor";
 import "./TextEditor.css";
 
 export const AddQuiz = () => {
+  const [isInitLoad, setIsInitLoad] = useState(true);
+
+  // useEffect(() => {
+  //   console.log("hello");
+  // });
   return (
     <div className="w-full">
       <div className="row">
