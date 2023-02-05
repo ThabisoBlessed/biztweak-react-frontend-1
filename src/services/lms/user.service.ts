@@ -149,7 +149,7 @@ export const updateProfile = async (profile: any, userId: number): Promise<any> 
       },
     };
 
-    return await axios.put(constants.baseUrl + `/users/${userId}`, profile, config);
+    return await axios.put(constants.baseUrl + `/users/${userId}/profile`, profile, config);
   } catch (error: any) {
     return error;
   }
