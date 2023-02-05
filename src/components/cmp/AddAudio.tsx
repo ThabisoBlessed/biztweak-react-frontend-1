@@ -39,7 +39,7 @@ export const AddAudio = () => {
     data.append('name', name);
     data.append('description', description);
     data.append('type', "test");
-    data.append('audio', audio);
+    data.append('file', String(audio));
 
     const addedAudio = await addCourseAudio(data, course.id);
     console.log(addedAudio);

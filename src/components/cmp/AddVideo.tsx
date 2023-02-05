@@ -43,7 +43,7 @@ export const AddVideo = () => {
     data.append('name', name);
     data.append('description', description);
     data.append('type', "test");
-    data.append('video', video);
+    data.append('file', String(video));
 
     const addedVideo = await addCourseVideo(data, course.id);
     console.log(addedVideo);

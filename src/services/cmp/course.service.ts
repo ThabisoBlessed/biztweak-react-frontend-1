@@ -149,3 +149,28 @@ export const addCourse = async (course: ICourse | any): Promise<any> => {
     return error;
   }
 };
+
+/**
+ * Creates a new course test
+ *
+ * @param {any} test
+ * @returns {any} result
+ */
+ export const addCourseTest = async (test: any, courseId: number): Promise<any> => {
+  try {
+    let config = {
+      headers: {
+        Authorization:
+          "Bearer " +
+          String(localStorage.getItem(LOCALSTORAGE_KEYS.accessToken)).replace(
+            /['"\\]+/g,
+            ""
+          ),
+      },
+    };
+
+    return await axios.post(constants.baseUrl + `/courses/${courseId}/test`, test, config);
+  } catch (error: any) {
+    return error;
+  }
+};
