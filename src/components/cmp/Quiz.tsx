@@ -1,25 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { ICourse } from "../../model/course.model";
 import { IQuiz } from "../../model/quiz.model";
 import { CMPMenu } from "./CMPMenu";
 import { QuizModal } from "./QuizModal";
 
 export const Quiz = () => {
   const navigate = useNavigate();
-  const quizes: IQuiz[] = [
-    {
-      status: "Added",
-      question:
-        " Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-    },
-  ];
-  const [quiz, setQuiz] = useState(quizes);
+  const { state } = useLocation();
+  const [selectedCourse] = useState(state || ({} as ICourse));
+  const [updateMode] = useState(selectedCourse.updateMode);
+  const [course, setCourse] = useState(selectedCourse.course);
+  const quizesInit: IQuiz[] = [];
+  const [quizes, setQuizes] = useState(quizesInit);
 
   useEffect(() => {
+    console.log(course.tests)
     // window.history.pushState(null, "", document.URL);
     // window.addEventListener("popstate", function (event) {
     //   navigate(-1);
     // });
+    setQuizes(course.tests);
   });
 
   const onEdit = () => {
@@ -37,7 +38,7 @@ export const Quiz = () => {
         <div className="col-md-10 text-left bg-light border-start">
           <form className="row m-3">
             <div className="col-md-12">
-              <h2 className="fw-600 text-dark">Test Name</h2>
+              <h2 className="fw-600 text-dark">{course.title}</h2>
               <table className="table">
                 <thead className="bg-[#00c2cb]">
                   <tr>

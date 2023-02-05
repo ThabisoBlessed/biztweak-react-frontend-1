@@ -38,7 +38,7 @@ export const AddTest = () => {
     if (!updateMode) {
       navigate("/cmp/manage-courses/add-video", { state: { course } });
     } else {
-      navigate("/cmp/manage-courses/course-info", { state: { course } });
+      navigate("/cmp/manage-courses/quiz", { state: { course, updateMode } });
     }
 
     setIsSaving(false);

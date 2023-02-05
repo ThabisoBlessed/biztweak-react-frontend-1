@@ -1,4 +1,7 @@
 export interface IQuiz {
-  status: string;
+  answers: string;
+  correctAnswer: boolean;
+  id: number;
   question: string;
+  status: string;
 }
