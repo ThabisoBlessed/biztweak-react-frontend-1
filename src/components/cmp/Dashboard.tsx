@@ -86,21 +86,21 @@ export const Dashboard = () => {
                     <div className="col-12 bg-2 p-4 rounded-2 text-dark bg-[#d8e5eb]">
                       <img src={ConsultantsImg} width="40px" alt=""></img>
                       <p className="small my-2">Consultants</p>
-                      <h1 className="m-0 fw-bold">4</h1>
+                      <h1 className="m-0 fw-bold">0</h1>
                     </div>
                   </div>
                   <div className="col-lg-3 col-sm-6 mb-3 mb-lg-0">
                     <div className="col-12 bg-3 p-4 rounded-2 text-dark bg-[#dfdbec]">
                       <img src={MentorImg} width="40px" alt=""></img>
                       <p className="small my-2">Mentors</p>
-                      <h1 className="m-0 fw-bold">2</h1>
+                      <h1 className="m-0 fw-bold">0</h1>
                     </div>
                   </div>
                   <div className="col-lg-3 col-sm-6 mb-3 mb-lg-0">
                     <div className="col-12 bg-4 p-4 rounded-2 text-dark bg-[#fff65a40]">
                       <img src={CoachesImg} width="40px" alt=""></img>
                       <p className="small my-2">Points</p>
-                      <h1 className="m-0 fw-bold">5</h1>
+                      <h1 className="m-0 fw-bold">0</h1>
                     </div>
                   </div>
                 </div>

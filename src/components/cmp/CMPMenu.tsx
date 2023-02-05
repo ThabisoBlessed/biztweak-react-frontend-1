@@ -22,14 +22,14 @@ export const CMPMenu = () => {
       isActive: false,
       titleClasses: "ml-3",
     },
-    {
-      id: 2,
-      title: "Statistics",
-      link: "/cmp/manage-courses/statistics",
-      iconClass: "fa-lg fas fa-chart-bar",
-      isActive: false,
-      titleClasses: "ml-3",
-    },
+    // {
+    //   id: 2,
+    //   title: "Statistics",
+    //   link: "/cmp/manage-courses/statistics",
+    //   iconClass: "fa-lg fas fa-chart-bar",
+    //   isActive: false,
+    //   titleClasses: "ml-3",
+    // },
     {
       id: 3,
       title: "Manage Course",

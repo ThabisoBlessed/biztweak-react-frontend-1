@@ -24,7 +24,6 @@ export const AddTest = () => {
   const onSubmitQuestion = () => {
     console.log(textEditorText);
     console.log(answers);
-    navigate("/cmp/manage-courses/add-video", { state: { course }})
   };
 
   const handleEditorStateChange = (text: string) => {
@@ -34,6 +33,10 @@ export const AddTest = () => {
   const handleAnswerChange = (answers: any) => {
     setAnswers(answers);
   };
+
+  const onSkip = () => {
+    navigate("/cmp/manage-courses/add-video", { state: { course }})
+  }
 
   return (
     <div className="w-full">
@@ -58,9 +61,12 @@ export const AddTest = () => {
 
             <Answer handleAnswerChange={handleAnswerChange}/>
 
-            <div className="form-group d-flex justify-content-between my-5">
+            <div className="form-group d-flex my-5">
               <button onClick={onSubmitQuestion} className="btn btn-main btn-wide bg-[#6c757d] hover:bg-[#a1b0bc] text-white w-[150px]">
                 Submit Question
+              </button>
+              <button onClick={onSkip} className="btn btn-main btn-wide ml-4 bg-[#6c757d] hover:bg-[#a1b0bc] text-white w-[150px]">
+                Next
               </button>
             </div>
           </div>
