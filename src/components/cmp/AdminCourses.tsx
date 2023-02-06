@@ -164,7 +164,7 @@ export const AdminCourses = () => {
                                 className="btn btn-lg mb-3 text-white hover:bg-[#16f0fb] w-[150px] bg-[#00c2cb] mt-2 "
                                 onClick={() => onEditCourse(course)}
                               >
-                                Edit Course
+                                View Course
                               </button>
                             </div>
                           </div>

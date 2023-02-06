@@ -194,7 +194,7 @@ export const UserProfile = (props: any) => {
                                     <div>
                                       <img
                                         src={selectedImage.length > 0 ? selectedImage : AvatarImg}
-                                        className="rounded-circle w-[60px]"
+                                        className="rounded-circle w-[100px]"
                                         alt=""
                                       />
                                     </div>
