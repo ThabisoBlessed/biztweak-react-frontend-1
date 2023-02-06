@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ICourse } from "../../model/course.model";
 import { IQuiz } from "../../model/quiz.model";
+import { ITestAnswer } from "../../model/test-answer.model";
 import { CMPMenu } from "./CMPMenu";
 import { QuizModal } from "./QuizModal";
 
@@ -13,9 +14,11 @@ export const Quiz = () => {
   const [course, setCourse] = useState(selectedCourse.course);
   const quizesInit: IQuiz[] = [];
   const [quizes, setQuizes] = useState(quizesInit);
+  const [selectedQuiz, setSelectedQuiz] = useState({} as IQuiz);
+  const answersInit: ITestAnswer[] = [];
+  const [selectedAnswers, setSelectedAnswers] = useState(answersInit);
 
   useEffect(() => {
-    console.log(course.tests)
     // window.history.pushState(null, "", document.URL);
     // window.addEventListener("popstate", function (event) {
     //   navigate(-1);
@@ -28,6 +31,11 @@ export const Quiz = () => {
   };
 
   const onDelete = () => {};
+
+  const onViewQuiz = (quiz: IQuiz) => {
+    setSelectedQuiz(quiz);
+    setSelectedAnswers(JSON.parse(quiz.answers))
+  };
 
   return (
     <div className="w-full">
@@ -51,7 +59,7 @@ export const Quiz = () => {
                   {quizes.map((quiz: IQuiz, index: number) => {
                     return (
                       <tr key={index}>
-                        <td>{quiz.status}</td>
+                        <td>{quiz.status === "0" ? "Added" : "Unknown"}</td>
                         <td>{quiz.question}</td>
                         <td>
                           <button
@@ -65,6 +73,7 @@ export const Quiz = () => {
                             data-bs-toggle="modal"
                             data-bs-target="#quizModal"
                             href="#quizModal"
+                            onClick={() => onViewQuiz(quiz)}
                           >
                             <i className="fa fa-search fa-lg"></i>
                           </a>
@@ -83,7 +92,7 @@ export const Quiz = () => {
             </div>
           </form>
 
-          <QuizModal />
+          <QuizModal selectedAnswers={selectedAnswers} selectedQuiz={selectedQuiz} course={course}/>
         </div>
       </div>
     </div>

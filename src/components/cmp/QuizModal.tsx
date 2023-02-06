@@ -1,14 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import { ITestAnswer } from "../../model/test-answer.model";
 
 export const QuizModal = (props: any) => {
-  const initAnswers: ITestAnswer[] = [
-    { id: 0, title: "Question 1", correctAnswer: false },
-    { id: 1, title: "Question 2", correctAnswer: true },
-  ];
-  const [answers, setAnswers] = useState(initAnswers);
-
   return (
     <div>
       <div
@@ -34,13 +27,11 @@ export const QuizModal = (props: any) => {
                 Preview Question
               </h4>
               <p className="my-3">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s.
+                {props.selectedQuiz.question}
               </p>
               <div className="form-group row align-items-center mb-3">
                 <div className="col-md-6">
-                  {answers.map((answer: ITestAnswer, index: number) => {
+                  {props.selectedAnswers.map((answer: ITestAnswer, index: number) => {
                     return (
                       <div key={index}>
                         <label
@@ -52,10 +43,10 @@ export const QuizModal = (props: any) => {
                             className="form-check-input"
                             name="answer"
                             autoComplete="off"
-                            checked={answer.correctAnswer}
+                            checked={answer.correct_answer}
                             onChange={() => {}}
                           />
-                          &nbsp;{answer.title}
+                          &nbsp;{answer.answer}
                         </label>
                         <br></br>
                       </div>
