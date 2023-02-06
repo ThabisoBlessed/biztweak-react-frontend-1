@@ -7,7 +7,7 @@ import { DatePicker } from "./DatePicker";
 
 export const Calendar = (props: any) => {
   useEffect(() => {
-    console.log(props.groupedEvents);
+    console.log(props.INITIAL_EVENTS_UPCOMING);
   }, []);
 
   return (
@@ -35,16 +35,20 @@ export const Calendar = (props: any) => {
 
                 <div className="card bg-light border-0 mb-4 overflow-y-scroll h-[300px]">
                   <>
-                    {props.INITIAL_EVENTS_UPCOMING.map(
-                      (upcoming: any, index: number) => {
-                        return (
-                          <div className="card-body" key={index}>
-                            <div className="mb-2">
+                    <div className="card-body">
+                      {props.INITIAL_EVENTS_UPCOMING.map(
+                        (upcoming: any, index: number) => {
+                          return (
+                            <div className="mb-2"  key={index}>
                               <p className="mb-0 text-muted">
                                 {new Date(upcoming.start).toDateString()}
                               </p>
                               <div className="mb-2 alert d-flex bg-white align-items-center">
-                                <div>{new Date(upcoming.start).toLocaleTimeString()}</div>
+                                <div>
+                                  {new Date(
+                                    upcoming.start
+                                  ).toLocaleTimeString()}
+                                </div>
                                 <div className="ms-2 border-start ps-2">
                                   {/* <small className="text-muted">
                                     GDM 2nd semester
@@ -53,10 +57,10 @@ export const Calendar = (props: any) => {
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        );
-                      }
-                    )}
+                          );
+                        }
+                      )}
+                    </div>
                   </>
                 </div>
               </div>
