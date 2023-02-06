@@ -56,7 +56,6 @@ export const AddVideo = () => {
     data.append("file", videoLink.length > 0 ? videoLink : String(video));
 
     const addedVideo = await addCourseVideo(data, course.id);
-    console.log(addedVideo);
     if (addedVideo.data) {
       const videoResult = addedVideo.data.package.data;
       console.log(videoResult);

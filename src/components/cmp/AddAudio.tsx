@@ -17,6 +17,8 @@ export const AddAudio = () => {
   const [audio, setAudio] = useState({} as File);
   const [audioPreview, setAudioPreview] = useState("");
   const [updateMode] = useState(selectedCourse.updateMode);
+  const [audioLink, setAudioLink] = useState("");
+  const [selectedImage, setSelectedImage] = useState("" || audioLink);
 
   useEffect(() => {
     window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
@@ -27,6 +29,10 @@ export const AddAudio = () => {
     const file = e.target.files[0];
     setAudio(file);
     setAudioPreview(URL.createObjectURL(file));
+  };
+
+  const handleSetVideoLink = (link: string) => {
+    setAudioLink(link);
   };
 
   const onSkip = () => {
@@ -40,7 +46,7 @@ export const AddAudio = () => {
     data.append('name', name);
     data.append('description', description);
     data.append('type', "test");
-    data.append('file', String(audio));
+    data.append('file', audioLink.length > 0 ? audioLink : String(audio));
 
     const addedAudio = await addCourseAudio(data, course.id);
     if (addedAudio.data) {
@@ -52,6 +58,10 @@ export const AddAudio = () => {
 
   const chooseAudioType = (type: string) => {
     setAudioType(type);
+  };
+
+  const handleSetAudioLink = (link: string) => {
+    setAudioLink(link);
   };
 
   return (
@@ -102,7 +112,7 @@ export const AddAudio = () => {
                         className="btn btn-outline-secondary"
                         htmlFor="youtube"
                       >
-                        Youtube
+                        Link
                       </label>
                       <input
                         type="radio"
@@ -134,6 +144,7 @@ export const AddAudio = () => {
                             type="text"
                             placeholder="Link"
                             className="video-input form-control"
+                            onChange={(e) => { setAudioLink(e.target.value); handleSetAudioLink(e.target.value) }}
                           />
                         </div>
                       )}

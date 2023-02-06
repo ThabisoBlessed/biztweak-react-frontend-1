@@ -66,7 +66,7 @@ export const CourseInfo = () => {
     }
     console.log(course);
     if (course.logo) {
-      setSelectedImage(URL.createObjectURL(course.logo))
+      setSelectedImage(course.logo)
     }
   });
 
