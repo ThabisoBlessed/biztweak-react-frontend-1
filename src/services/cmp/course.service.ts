@@ -174,3 +174,32 @@ export const addCourse = async (course: ICourse | any): Promise<any> => {
     return error;
   }
 };
+
+
+/**
+ * Deletes a quiz
+ *
+ * @param {any} courseId
+ * @param {any} quizId
+ * @returns {any} result
+ */
+ export const deleteQuiz = async (courseId: number, quizId: number): Promise<any> => {
+  try {
+    let config = {
+      headers: {
+        Authorization:
+          "Bearer " +
+          String(localStorage.getItem(LOCALSTORAGE_KEYS.accessToken)).replace(
+            /['"\\]+/g,
+            ""
+          ),
+      },
+    };
+
+    return await axios.delete(constants.baseUrl + `/courses/${courseId}/quiz/${quizId}`, config);
+  } catch (error: any) {
+    return error;
+  }
+};
+
+

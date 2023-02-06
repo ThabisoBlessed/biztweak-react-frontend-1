@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { ICourse } from "../../model/course.model";
 import { IQuiz } from "../../model/quiz.model";
 import { ITestAnswer } from "../../model/test-answer.model";
+import { deleteQuiz } from "../../services/cmp/course.service";
 import { CMPMenu } from "./CMPMenu";
 import { QuizModal } from "./QuizModal";
 
@@ -17,20 +18,27 @@ export const Quiz = () => {
   const [selectedQuiz, setSelectedQuiz] = useState({} as IQuiz);
   const answersInit: ITestAnswer[] = [];
   const [selectedAnswers, setSelectedAnswers] = useState(answersInit);
+  
 
   useEffect(() => {
     // window.history.pushState(null, "", document.URL);
     // window.addEventListener("popstate", function (event) {
     //   navigate(-1);
     // });
+    console.log(selectedQuiz);
     setQuizes(course.tests);
   });
 
   const onEdit = () => {
-    navigate("/cmp/manage-courses/course-info");
+    navigate("/cmp/manage-courses/course-info", { state: { course }});
   };
 
-  const onDelete = () => {};
+  const onDelete = async (event: any, quiz: any) => {
+    event.preventDefault();
+    const deleted = await deleteQuiz(course.id, quiz.id);
+    console.log(deleted);
+    window.location.reload();
+  };
 
   const onViewQuiz = (quiz: IQuiz) => {
     setSelectedQuiz(quiz);
@@ -79,7 +87,7 @@ export const Quiz = () => {
                           </a>
                           <button
                             className="btn text-dark btn-link"
-                            onClick={onDelete}
+                            onClick={(event) => { setSelectedQuiz(quiz); onDelete(event, quiz); }}
                           >
                             <i className="fa fa-trash fa-lg"></i>
                           </button>
