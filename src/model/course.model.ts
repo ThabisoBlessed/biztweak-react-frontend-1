@@ -1,14 +1,14 @@
 import { IUser } from "./user.model";
 
 export interface ICourse {
-  id?: string;
+  id: number;
   title: string;
   description: string;
   category: string;
-  intro_video: any;
-  start_datetime: string;
-  expiry_datetime: string;
-  business_phase: string;
+  introVideo: any;
+  startDatetime: string;
+  expiryDatetime: string;
+  businessPhase: string;
   score: number;
   user: IUser;
   logo: any;

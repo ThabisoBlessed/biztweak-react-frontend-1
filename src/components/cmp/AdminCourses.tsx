@@ -3,7 +3,7 @@ import AvatarImg from "../../images/avatar.png";
 import { useNavigate } from "react-router-dom";
 import "./Course.css";
 import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
-import { getAllcourses } from "../../services/cmp/course.service";
+import { getAllcourses, getCourse } from "../../services/cmp/course.service";
 import { ICourse } from "../../model/course.model";
 import { IUser } from "../../model/user.model";
 import { getCurrentUser } from "../../services/lms/user.service";
@@ -41,8 +41,12 @@ export const AdminCourses = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   });
 
-  const onStartCourse = (course: ICourse) => {
-    navigate("/lms/course", { state: { course } });
+  const onEditCourse = async (course: ICourse) => {
+    const couseResponse = await getCourse(course.id);
+    if (couseResponse.data) {
+      const course = couseResponse.data.package.data;
+      navigate("/cmp/manage-courses/course-info", { state: { course } });
+    }
   };
 
   const getUser = async () => {
@@ -119,7 +123,7 @@ export const AdminCourses = () => {
                     </button>
                   </div>
                 ) : (
-                  <div>
+                  <div className="col-12 row">
                     {courses.map((course: ICourse, index: number) => {
                       return (
                         <div className="col-lg-3 col-md-4 mb-3" key={index}>
@@ -158,9 +162,9 @@ export const AdminCourses = () => {
                             <div className="text-center">
                               <button
                                 className="btn btn-lg mb-3 text-white hover:bg-[#16f0fb] w-[150px] bg-[#00c2cb] mt-2 "
-                                onClick={() => onStartCourse(course)}
+                                onClick={() => onEditCourse(course)}
                               >
-                                Start Course
+                                Edit Course
                               </button>
                             </div>
                           </div>

@@ -27,7 +27,7 @@ export const DashboardCourse = (props: any) => {
         {courses.map((course: ICourse, i: number) => {
           return (
             <div
-              id={course.id}
+              id={String(course.id)}
               data-testid={course.id}
               // onClick={(event) => handleClick(event)}
               key={i}

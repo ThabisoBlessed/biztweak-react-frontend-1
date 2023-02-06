@@ -22,7 +22,7 @@ export const Dashboard = () => {
   useEffect(() => {
     if (isInitLoad) {
       getProfile();
-      getCourses();
+      // getCourses();
     }
     setIsInitLoad(false);
   });
@@ -32,6 +32,7 @@ export const Dashboard = () => {
     if (storageUser) {
       const userResult: IUser = JSON.parse(storageUser);
       const profile = await getCurrentUser(userResult.id);
+      console.log(profile.data.package.data);
       setUser(profile.data.package.data);
       setIsLoading(false);
 
