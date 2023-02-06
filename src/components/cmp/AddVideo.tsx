@@ -15,6 +15,7 @@ export const AddVideo = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [video, setVideo] = useState({} as File);
+  const [videoLink, setVideoLink] = useState("");
   const [videoPreview, setVideoPreview] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -33,6 +34,10 @@ export const AddVideo = () => {
     setVideoPreview(URL.createObjectURL(file));
   };
 
+  const handleSetVideoLink = (link: string) => {
+    setVideoPreview(link);
+  };
+
   const onSkip = () => {
     if (!updateMode) {
       navigate("/cmp/manage-courses/add-audio", { state: { course } });
@@ -48,7 +53,7 @@ export const AddVideo = () => {
     data.append("name", name);
     data.append("description", description);
     data.append("type", "test");
-    data.append("file", String(video));
+    data.append("file", videoLink.length > 0 ? videoLink : String(video));
 
     const addedVideo = await addCourseVideo(data, course.id);
     console.log(addedVideo);
@@ -199,6 +204,7 @@ export const AddVideo = () => {
                             type="text"
                             placeholder="Link"
                             className="video-input form-control"
+                            onChange={(e) => { setVideoLink(e.target.value); handleSetVideoLink(e.target.value) }}
                           />
                         </div>
                       )}

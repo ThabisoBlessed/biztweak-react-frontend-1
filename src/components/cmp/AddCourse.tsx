@@ -36,8 +36,8 @@ export const AddCourse = () => {
   const [businessPhase, setBusinessPhase] = useState(bizPhaseList[0]);
   const [isLoading, setIsLoading] = useState(false);
   const [logo, setLogo] = useState({} as File);
-
-  const [selectedImage, setSelectedImage] = useState("");
+  const [videoLink, setVideoLink] = useState("");
+  const [selectedImage, setSelectedImage] = useState("" || videoLink);
 
   const chooseVideoType = (type: string) => {
     setVideoType(type);
@@ -77,7 +77,7 @@ export const AddCourse = () => {
     data.append('expiryDatetime', expiryDatetime);
     data.append('businessPhase', businessPhase);
     data.append('score', "0");
-    data.append('logo', logo);
+    data.append('logo', videoLink.length > 0 ? videoLink : logo);
     data.append('introVideo', introVideo);
     data.append('phaseId', String(phaseId));
     data.append('timeOptions', String({}));
@@ -178,6 +178,7 @@ export const AddCourse = () => {
                       type="text"
                       placeholder="Link"
                       className="video-input form-control"
+                      onChange={(e) => setVideoLink(e.target.value)}
                     />
                   </div>
                 )}
