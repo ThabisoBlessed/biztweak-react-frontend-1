@@ -34,10 +34,16 @@ export const Quiz = () => {
   };
 
   const onDelete = async (event: any, quiz: any) => {
-    event.preventDefault();
-    const deleted = await deleteQuiz(course.id, quiz.id);
-    console.log(deleted);
-    window.location.reload();
+    if (
+      window.confirm(
+        `Are you sure you want to delete quiz: \n'${selectedQuiz.question}'`
+      )
+    ) {
+      event.preventDefault();
+      const deleted = await deleteQuiz(course.id, quiz.id);
+      console.log(deleted);
+      window.location.reload();
+    }
   };
 
   const onViewQuiz = (quiz: IQuiz) => {
