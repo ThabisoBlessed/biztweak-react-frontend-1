@@ -33,11 +33,19 @@ export const CMPMenu = () => {
     {
       id: 3,
       title: "Manage Course",
-      link: "/cmp/manage-courses/quiz",
+      link: "/cmp/manage-courses/courses",
       iconClass: "fa-lg fa-solid fa-bars",
       isActive: false,
       titleClasses: "ml-3",
     },
+    //  {
+    //   id: 4,
+    //   title: "Courses",
+    //   link: "/cmp/manage-courses/courses",
+    //   iconClass: "fa-lg fas fa-file-text",
+    //   isActive: false,
+    //   titleClasses: "ml-3",
+    // },
   ];
   const [menu, setMenu] = useState(menuList);
   const [selectedPath, setSelectedPath] = useState("");
