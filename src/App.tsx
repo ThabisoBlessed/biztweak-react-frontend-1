@@ -47,6 +47,7 @@ import { Dashboard } from "./components/cmp/Dashboard";
 import { AdminDashboard } from "./components/admin/AdminDashboard";
 import { UserList } from "./components/admin/UserList";
 import { AdminCourses } from "./components/cmp/AdminCourses";
+import { AddCourse } from "./components/cmp/AddCourse";
 
 function App() {
   return (
@@ -92,6 +93,7 @@ function App() {
           <Route path="/cmp/manage-courses/add-quiz" element={<AddQuiz />}></Route>
           <Route path="/cmp/manage-courses/add-assignment" element={<AddAssignment />}></Route>
           <Route path="/cmp/manage-courses/courses" element={<AdminCourses />}></Route>
+          <Route path="/cmp/manage-courses/add-course" element={<AddCourse />}></Route>
 
           <Route path="/admin/*" element={<AdminDashboard />}></Route>
           {/* <Route path="/admin/incubator-dashboard" element={<IncubatorDashboard />}></Route> */}

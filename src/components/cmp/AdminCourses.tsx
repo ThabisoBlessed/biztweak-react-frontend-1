@@ -9,12 +9,14 @@ import { IUser } from "../../model/user.model";
 import { getCurrentUser } from "../../services/lms/user.service";
 import { ICompany } from "../../model/company.model";
 import { CMPMenu } from "./CMPMenu";
+import { AddCourse } from "./AddCourse";
 
 export const AdminCourses = () => {
   const navigate = useNavigate();
   const initCourses: ICourse[] = [];
   const [courses, setCourses] = useState(initCourses);
   const [isLoading, setIsLoading] = useState(true);
+  const [addCourse, setOnAddCourse] = useState(false);
   const [user, setUser] = useState({} as IUser);
   const [isInitLoad, setIsInitLoad] = useState(true);
   const initBiz: ICompany[] = [];
@@ -36,6 +38,7 @@ export const AdminCourses = () => {
     //   setIsLoading(false);
     // }
     console.log(user);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   });
 
   const onStartCourse = (course: ICourse) => {
@@ -65,8 +68,17 @@ export const AdminCourses = () => {
     }
   };
 
+  const onAddCourse = () => {
+    setOnAddCourse(true);
+  };
+
   const onClickInstructor = (instructor: IUser) => {
     navigate("/lms/instructor-profile", { state: { instructor } });
+  };
+
+  const onCancel = () => {
+    setOnAddCourse(false);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
 
   return (
@@ -80,6 +92,14 @@ export const AdminCourses = () => {
             <div className="card bg-transparent border-0 mb-3">
               <div className="card-header bg-transparent border-0">
                 <h5 className="mb-0 text-2xl font-medium text-dark">Courses</h5>
+                {!addCourse ? (
+                  <button
+                    className="btn btn-lg mb-3 text-white hover:bg-[#16f0fb] w-[150px] bg-[#00c2cb] mt-2 "
+                    onClick={onAddCourse}
+                  >
+                    Add Course
+                  </button>
+                ) : null}
               </div>
             </div>
 
@@ -87,53 +107,68 @@ export const AdminCourses = () => {
               <div className="text-center text-4xl h-[100vh]">Loading...</div>
             ) : (
               <>
-                {courses.map((course: ICourse, index: number) => {
-                  return (
-                    <div className="col-lg-3 col-md-4 mb-3" key={index}>
-                      <div className="card">
-                        <div className="card-body">
-                          <img
-                            src={course.logo}
-                            className="img-fluid card-img-top h-[150px]"
-                            alt="logo"
-                          />
-                          <h5 className="my-2">{course.title}</h5>
-                          <div className="d-flex justify-content-between align-items-center cursor-pointer">
-                            <div
-                              className="w-100 me-3 d-flex align-items-center"
-                              onClick={() => onClickInstructor(course.user)}
-                            >
+                {addCourse ? (
+                  <div>
+                    <AddCourse />
+
+                    <button
+                      onClick={onCancel}
+                      className="btn btn-lg mb-3 hover:bg-[#16f0fb] w-[150px] hover:text-white bg-[#00c2cb] mt-2 text-[white]"
+                    >
+                      <span>Cancel</span>
+                    </button>
+                  </div>
+                ) : (
+                  <div>
+                    {courses.map((course: ICourse, index: number) => {
+                      return (
+                        <div className="col-lg-3 col-md-4 mb-3" key={index}>
+                          <div className="card">
+                            <div className="card-body">
                               <img
-                                src={AvatarImg}
-                                className="rounded-circle me-2 w-[30px] h-[30px]"
-                                alt=""
+                                src={course.logo}
+                                className="img-fluid card-img-top h-[150px]"
+                                alt="logo"
                               />
-                              <div>
-                                <div>{course.user.fullNames}</div>
-                                <div className="small">
-                                  {
-                                    courses.filter(
-                                      (c) => c.user.id === course.user.id
-                                    ).length
-                                  }{" "}
-                                  Lessons
+                              <h5 className="my-2">{course.title}</h5>
+                              <div className="d-flex justify-content-between align-items-center cursor-pointer">
+                                <div
+                                  className="w-100 me-3 d-flex align-items-center"
+                                  onClick={() => onClickInstructor(course.user)}
+                                >
+                                  <img
+                                    src={AvatarImg}
+                                    className="rounded-circle me-2 w-[30px] h-[30px]"
+                                    alt=""
+                                  />
+                                  <div>
+                                    <div>{course.user.fullNames}</div>
+                                    <div className="small">
+                                      {
+                                        courses.filter(
+                                          (c) => c.user.id === course.user.id
+                                        ).length
+                                      }{" "}
+                                      Lessons
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                             </div>
+                            <div className="text-center">
+                              <button
+                                className="btn btn-lg mb-3 text-white hover:bg-[#16f0fb] w-[150px] bg-[#00c2cb] mt-2 "
+                                onClick={() => onStartCourse(course)}
+                              >
+                                Start Course
+                              </button>
+                            </div>
                           </div>
                         </div>
-                        <div className="text-center">
-                          <button
-                            className="btn btn-lg mb-3 text-white hover:bg-[#16f0fb] w-[150px] bg-[#00c2cb] mt-2 "
-                            onClick={() => onStartCourse(course)}
-                          >
-                            Start Course
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
+                      );
+                    })}
+                  </div>
+                )}
               </>
             )}
 
