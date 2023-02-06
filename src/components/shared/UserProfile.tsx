@@ -33,17 +33,18 @@ export const UserProfile = (props: any) => {
   const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
   const [passwordSuccessMessage, setPasswordSuccessMessage] = useState("");
   const [marketNewsletter, setMarketNewsletter] = useState(
-    props.user.marketNewsletter || "false"
+    props.user.marketNewsletter || ""
   );
   const [
     productUpdatesAndCommunityAnnouncements,
     setProductUpdatesAndCommunityAnnouncements,
-  ] = useState(props.user.productUpdatesAndCommunityAnnouncements || "false");
+  ] = useState(props.user.productUpdatesAndCommunityAnnouncements || "");
   const [selectedImage, setSelectedImage] = useState("");
 
   useEffect(() => {
+    console.log("Hello");
     if (props.user.photo) {
-      setSelectedImage(URL.createObjectURL(props.user.photo))
+      setSelectedImage(props.user.photo)
     }
   })
 
@@ -88,7 +89,7 @@ export const UserProfile = (props: any) => {
     setPasswordSuccessMessage("");
 
     const profile = new FormData();
-    profile.append("photo", String(photo));
+    profile.append("photo", photo);
     profile.append("fullNames", fullNames);
     profile.append("email", email);
     profile.append("phone", phone);
@@ -98,8 +99,8 @@ export const UserProfile = (props: any) => {
     profile.append("location", location);
     profile.append("role", role);
     profile.append("registered", registered);
-    profile.append("marketNewsletter", marketNewsletter);
-    profile.append("productUpdatesAndCommunityAnnouncements", productUpdatesAndCommunityAnnouncements);
+    profile.append("marketNewsletter", marketNewsletter === "true" ? String(true) : String(false));
+    profile.append("productUpdatesAndCommunityAnnouncements", productUpdatesAndCommunityAnnouncements === "true" ? String(true) : String(false));
     profile.append("bio", bio);
 
     const update = await updateProfile(profile, props.user.id);
@@ -110,6 +111,7 @@ export const UserProfile = (props: any) => {
 
     if (success) {
       setSuccessMessage(update.data.message);
+      window.location.reload();
     } else {
       console.log(fail.data.message);
       setPasswordErrorMessage(fail.data.message);

@@ -77,7 +77,7 @@ export const AddCourse = () => {
     data.append('expiryDatetime', expiryDatetime);
     data.append('businessPhase', businessPhase);
     data.append('score', "0");
-    data.append('logo', videoLink.length > 0 ? videoLink : logo);
+    data.append('logo', videoLink.length > 0 ? String(videoLink) : logo);
     data.append('introVideo', introVideo);
     data.append('phaseId', String(phaseId));
     data.append('timeOptions', String({}));
