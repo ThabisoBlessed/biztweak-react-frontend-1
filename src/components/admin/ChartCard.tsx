@@ -14,7 +14,7 @@ export const ChartCard = () => {
   return (
     <div className="card h-100 shadow">
       <div className="card-header bg-white border-0">
-        <h5 className="mb-0 text-2xl font-medium text-dark">Concept chart</h5>
+        <h5 className="mb-0 text-2xl font-medium text-dark">Rating</h5>
       </div>
       <div className="card-body border-0">
         <PieChart data={data} width={"100%"} height={"200px"} />
