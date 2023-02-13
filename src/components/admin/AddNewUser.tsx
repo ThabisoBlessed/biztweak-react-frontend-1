@@ -4,15 +4,44 @@ import { ActionsCard } from "./ActionsCard";
 import { AddNewIncubator } from "./AddNewIncubator";
 import { AdminMenu } from "./AdminMenu";
 import { ChartCard } from "./ChartCard";
+import { Mentors } from "./Mentors";
 import { UsersCard } from "./UsersCard";
 
 export const AddNewUser = () => {
   const { state } = useLocation();
   const [usertType, setUserType] = useState(state.selectedUserType || "");
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [eductaion, setEducation] = useState("");
+  const [experience1, setExperience1] = useState("");
+  const [experience2, setExperience2] = useState("");
+  const [location, setLocation] = useState("");
+  const [password, setPassword] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [qualification, setQualification] = useState("");
+  const [industry, setIndustry] = useState("Manufacturing");
+  const [type, setType] = useState("Ideation");
+  const [yearsOfExp, setYearsOfExp] = useState("Ideation");
+  
 
   useEffect(() => {
     console.log(usertType);
   });
+
+  const handleIndustrySelect = (event: any) => {
+    setIndustry(event.target.value);
+  }
+
+  const handleTypeSelect = (event: any) => {
+    setIndustry(event.target.value);
+  }
+
+  const handleYearsOfExperienceSelect = (event: any) => {
+    setYearsOfExp(event.target.value);
+  }
+
   return (
     <div className="w-full">
       <div className="row">
@@ -53,7 +82,7 @@ export const AddNewUser = () => {
                     <div className="form-group mt-2">
                       <div className="d-flex justify-content-between">
                         <label className="text-dark">
-                          Name&nbsp;
+                          Full Name&nbsp;
                           <i
                             className="fa fa-info-circle text-muted"
                             data-bs-toggle="tooltip"
@@ -63,7 +92,7 @@ export const AddNewUser = () => {
                           ></i>
                         </label>
                       </div>
-                      <input type="text" className="form-control core" />
+                      <input onChange={(e) => setFullName(e.target.value)} type="text" className="form-control core" />
                     </div>
                     <div className="form-group mt-2">
                       <div className="d-flex justify-content-between">
@@ -78,11 +107,10 @@ export const AddNewUser = () => {
                           ></i>
                         </label>
                       </div>
-                      <select name="type" className="form-select core">
-                        <option value="">Select</option>
-                        <option value="">Manufacturing</option>
-                        <option value="">Energy</option>
-                        <option value="">Technology</option>
+                      <select name="type" className="form-select core" onChange={handleIndustrySelect}>
+                        <option value="Manufacturing">Manufacturing</option>
+                        <option value="Energy">Energy</option>
+                        <option value="Technology">Technology</option>
                       </select>
                     </div>
                     <div className="form-group mt-2">
@@ -98,7 +126,7 @@ export const AddNewUser = () => {
                           ></i>
                         </label>
                       </div>
-                      <input type="text" className="form-control core" />
+                      <input type="text" onChange={(e) => setLocation(e.target.value)} className="form-control core" />
                     </div>
                     <div className="form-group mt-2">
                       <div className="d-flex justify-content-between">
@@ -113,11 +141,10 @@ export const AddNewUser = () => {
                           ></i>
                         </label>
                       </div>
-                      <select name="type" className="form-select core">
-                        <option value="">Select</option>
-                        <option value="">Ideation</option>
-                        <option value="">Pre-revenue</option>
-                        <option value="">Post-revenue</option>
+                      <select name="type" className="form-select core" onChange={(e) => handleTypeSelect(e.target.value)}>
+                        <option value="Ideation">Ideation</option>
+                        <option value="Pre-revenue">Pre-revenue</option>
+                        <option value="Post-revenue">Post-revenue</option>
                       </select>
                     </div>
                     <div className="form-group mt-2">
@@ -133,7 +160,7 @@ export const AddNewUser = () => {
                           ></i>
                         </label>
                       </div>
-                      <input type="text" className="form-control core" />
+                      <input type="text" onChange={(e) => setExperience1(e.target.value)} className="form-control core" />
                     </div>
                     <div className="form-group mt-2">
                       <div className="d-flex justify-content-between">
@@ -148,12 +175,11 @@ export const AddNewUser = () => {
                           ></i>
                         </label>
                       </div>
-                      <select name="type" className="form-select core">
-                        <option value="">Select</option>
-                        <option value="">1-5</option>
-                        <option value="">5-10</option>
-                        <option value="">10-15</option>
-                        <option value="">15-20</option>
+                      <select name="type" className="form-select core" onChange={(e) => handleYearsOfExperienceSelect(e.target.value)}>
+                        <option value="1-5">1-5</option>
+                        <option value="5-10">5-10</option>
+                        <option value="10-15">10-15</option>
+                        <option value="15-20">15-20</option>
                       </select>
                     </div>
                     <div className="form-group mt-2">
@@ -169,7 +195,7 @@ export const AddNewUser = () => {
                           ></i>
                         </label>
                       </div>
-                      <input type="text" className="form-control core" />
+                      <input type="text" onChange={(e) => setQualification(e.target.value)} className="form-control core" />
                     </div>
                     <button className="btn hover:bg-[#16f0fb] mt-2 bg-[#00c2cb] text-white btn-wide px-5">
                       Submit
@@ -178,7 +204,10 @@ export const AddNewUser = () => {
                 </div>
               ) : null}
 
-              {usertType === "incubator" ? <AddNewIncubator /> : null}
+              {usertType === "incubator" ? (
+                <Mentors />
+              ) : null
+              }
             </div>
             {/* <div className="row">
               <div className="col-lg-8">
