@@ -157,7 +157,7 @@ export const IncubatorDashboard = () => {
           <div className="row m-3">
             <div className="col-lg-4">
               {users.length > 0 ? (
-                <UsersCard userMode={"admin"} users={users || []} />
+                <UsersCard userMode={"incubator"} users={users || []} />
               ) : null}
             </div>
             <div className="col-lg-4">
