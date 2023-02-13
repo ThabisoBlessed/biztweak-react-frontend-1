@@ -2,49 +2,65 @@ import React, { useEffect, useState } from "react";
 import EntreprenursImg from "../../images/icons/entreprenuers.png";
 import ConsultantsImg from "../../images/icons/consultants.png";
 import MentorImg from "../../images/icons/mentor.png";
-import CoachesImg from "../../images/icons/mic.png";
+import IncubatorsImg from "../../images/icons/incubators.png";
+import { ICourse } from "../../model/course.model";
+import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
+import { IUser } from "../../model/user.model";
+import { getAllcourses } from "../../services/cmp/course.service";
 import { AdminMenu } from "./AdminMenu";
-import { Mentors } from "./Mentors";
-import { UsersCard } from "./UsersCard";
+import { getAllUsers } from "../../services/admin/admin.service";
+import { getAllMentors } from "../../services/admin/mentor.service";
+import { getAllCompanies } from "../../services/business/company.service";
 import { ActionsCard } from "./ActionsCard";
 import { ChartCard } from "./ChartCard";
-import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
-import { getAllUsers } from "../../services/admin/admin.service";
-import { getAllCompanies } from "../../services/business/company.service";
-import { getAllMentors } from "../../services/admin/mentor.service";
-import { IUser } from "../../model/user.model";
+import { Mentors } from "./Mentors";
+import { UsersCard } from "./UsersCard";
+import { Users } from "./Users";
+import { AdminUserList } from "./AdminUserList";
+import { ICompany } from "../../model/company.model";
+import CoachesImg from "../../images/icons/mic.png";
 
 export const IncubatorDashboard = () => {
-  const initUsers: IUser[] = [];
-  const [users, setUsers] = useState(initUsers);
+  const initCourses: ICourse[] = [];
+  const [courses, setCourses] = useState(initCourses);
   const [isLoading, setIsLoading] = useState(true);
+  const initCompanies: ICompany[] = [];
+  const [companies, setCompanies] = useState(initCompanies);
+  const initMentors: any[] = [];
+  const [mentors, setMentors] = useState(initMentors);
+  const [users, setUsers] = useState([]);
   const [isInitLoad, setIsInitLoad] = useState(true);
-  const [companies, setCompanies] = useState();
-  const [mentors, setMentors] = useState(initUsers);
 
   useEffect(() => {
     if (isInitLoad) {
+      getCourses();
       getusers();
     }
-
-    // if (companies.length === 0) {
-    //   getCompanies();
-    // }
-
-    // if (isInitLoad) {
-    //   getMentors();
-    // }
     setIsInitLoad(false);
   });
+
+  const getCourses = async () => {
+    const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
+    if (storageUser) {
+      const userResult: IUser = JSON.parse(storageUser);
+      const coursesResult = await getAllcourses();
+      if (coursesResult.data) {
+        const myCourses: ICourse[] = coursesResult.data.package.data;
+        setCourses(
+          myCourses.filter((c) => c.user.id === Number(userResult.id))
+        );
+      }
+    }
+  };
 
   const getMentors = async () => {
     const mentorsResponse = await getAllMentors();
     if (mentorsResponse.data) {
       const courseResult = mentorsResponse.data.package.data;
-      setMentors(courseResult)
+      setMentors(courseResult);
     }
     console.log(mentors);
-  }
+  };
 
   const getusers = async () => {
     const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
@@ -62,7 +78,6 @@ export const IncubatorDashboard = () => {
       const companiesResult = await getAllCompanies();
       const companiesBody = companiesResult.data.package.data;
       setCompanies(companiesBody);
-
       console.log(companies);
     }
   };
@@ -75,9 +90,11 @@ export const IncubatorDashboard = () => {
         </div>
         <div className="col-md-10 text-left bg-light border-start">
           <div className="container-fluid">
-            <div className="card shadow mt-3">
+            <div className="card shadow mt-2">
               <div className="card-header bg-white border-0">
-                <h5 className="mb-0 text-2xl font-medium text-dark">Overview</h5>
+                <h5 className="mb-0 text-2xl font-medium text-dark">
+                  Overview
+                </h5>
               </div>
               <div className="card-body border-0">
                 <div className="row">
@@ -85,7 +102,12 @@ export const IncubatorDashboard = () => {
                     <div className="col-12 bg-1 p-4 rounded-2 text-dark bg-[#b5e4ca40]">
                       <img src={EntreprenursImg} width="40px" alt=""></img>
                       <p className="small my-2">Entrepreneurs</p>
-                      <h1 className="m-0 fw-bold">{users.filter((u: any) => u.role === "ENTREPRENEUR").length}</h1>
+                      <h1 className="m-0 fw-bold">
+                        {
+                          users.filter((u: any) => u.role === "ENTREPRENEUR")
+                            .length
+                        }
+                      </h1>
                     </div>
                   </div>
                   <div className="col-lg-3 col-sm-6 mb-3 mb-lg-0">
@@ -112,20 +134,41 @@ export const IncubatorDashboard = () => {
                 </div>
               </div>
             </div>
-            <div className="row mt-2">
-              <div className="col-lg-4">
-                <UsersCard userMode={"incubator"} users={users} />
-              </div>
-              <div className="col-lg-4">
-               <ActionsCard />
-              </div>
-              <div className="col-lg-4">
-                <ChartCard />
-              </div>
+          </div>
+
+          <div className="row m-3">
+            <div className="col-md-4 mb-3 mb-md-0">
+              <button className="btn col-12 p-3 border-[black] hover:bg-[black] hover:text-white rounded-2 btn-white">
+                <i className="fas fa-plus"></i> Add New user
+              </button>
             </div>
-            <div className="mt-2 mb-2">
-              <Mentors mentors={mentors}/>
+            <div className="col-md-4 mb-3 mb-md-0">
+              <button className="btn col-12 p-3 border-[black] hover:bg-[black] hover:text-white rounded-2 btn-white">
+                <i className="fas fa-users"></i> Total registered user
+              </button>
             </div>
+            <div className="col-md-4 mb-3 mb-md-0">
+              <button className="btn col-12 p-3 border-[black] hover:bg-[black] hover:text-white rounded-2 btn-white">
+                <i className="fas fa-file-alt"></i> All assesments
+              </button>
+            </div>
+          </div>
+
+          <div className="row m-3">
+            <div className="col-lg-4">
+              {users.length > 0 ? (
+                <UsersCard userMode={"admin"} users={users || []} />
+              ) : null}
+            </div>
+            <div className="col-lg-4">
+              <ActionsCard />
+            </div>
+            <div className="col-lg-4">
+              <ChartCard />
+            </div>
+          </div>
+          <div className="m-4">
+            <Mentors mentors={mentors} />
           </div>
         </div>
       </div>
