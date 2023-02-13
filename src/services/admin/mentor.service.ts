@@ -14,8 +14,7 @@ import * as constants from "./../../constants";
         }
       }
   
-      return await axios.get(constants.baseUrl + `/mentors
-      `, config);
+      return await axios.get(constants.baseUrl + `/users?role=MENTORS`, config);
     } catch (error: any) {
       return error;
     }

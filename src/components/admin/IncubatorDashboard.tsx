@@ -98,7 +98,7 @@ export const IncubatorDashboard = () => {
               </div>
               <div className="card-body border-0">
                 <div className="row">
-                  <div className="col-lg-3 col-sm-6 mb-3 mb-lg-0">
+                  <div className="col-lg-3 col-sm-6 mb-3 mb-lg-0 cursor-pointer">
                     <div className="col-12 bg-1 p-4 rounded-2 text-dark bg-[#b5e4ca40]">
                       <img src={EntreprenursImg} width="40px" alt=""></img>
                       <p className="small my-2">Entrepreneurs</p>
