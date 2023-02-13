@@ -6,7 +6,7 @@ import * as constants from "./../../constants";
  * Create new Entrepreneur
  * @returns {Promise<any>} response
  */
- export const createEntrepreneur = async (): Promise<any> => {
+ export const createEntrepreneur = async (user: any): Promise<any> => {
     try {
       let config = {
         headers: {
@@ -14,7 +14,7 @@ import * as constants from "./../../constants";
         }
       }
   
-      return await axios.get(constants.baseUrl + `/users?role=MENTORS`, config);
+      return await axios.post(constants.baseUrl + `/users/create-entrepreneur-user`, user, config);
     } catch (error: any) {
       return error;
     }

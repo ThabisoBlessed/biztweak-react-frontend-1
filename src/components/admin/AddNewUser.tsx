@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { createEntrepreneur } from "../../services/admin/entrepreneur.service";
+import { addUser } from "../../services/lms/user.service";
 import { ActionsCard } from "./ActionsCard";
 import { AddNewIncubator } from "./AddNewIncubator";
 import { AdminMenu } from "./AdminMenu";
@@ -11,11 +13,11 @@ export const AddNewUser = () => {
   const { state } = useLocation();
   const [usertType, setUserType] = useState(state.selectedUserType || "");
   const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("test@gmail.com");
+  const [phone, setPhone] = useState("098987676");
   const [eductaion, setEducation] = useState("");
   const [experience1, setExperience1] = useState("");
-  const [experience2, setExperience2] = useState("");
+  const [experience2, setExperience2] = useState("n/a");
   const [location, setLocation] = useState("");
   const [password, setPassword] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
@@ -24,7 +26,8 @@ export const AddNewUser = () => {
   const [industry, setIndustry] = useState("Manufacturing");
   const [type, setType] = useState("Ideation");
   const [yearsOfExp, setYearsOfExp] = useState("Ideation");
-  
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
     console.log(usertType);
@@ -40,6 +43,26 @@ export const AddNewUser = () => {
 
   const handleYearsOfExperienceSelect = (event: any) => {
     setYearsOfExp(event.target.value);
+  }
+
+  const onSave = async (e: any) => {
+    e.preventDefault();
+    setIsSaving(true);
+
+    const user = new FormData();
+    user.append("fullNames", fullName);
+    user.append("email", email);
+    user.append("phone", phone);
+    user.append("workExperience", experience1);
+    user.append("workExperience2", experience2);
+    user.append("location", location);
+    user.append("role", "ENTREPRENEUR");
+
+    const addUserResult = await createEntrepreneur(user);
+    console.log(addUserResult);
+
+    setIsSaving(false);
+    setIsLoading(false);
   }
 
   return (
@@ -197,7 +220,7 @@ export const AddNewUser = () => {
                       </div>
                       <input type="text" onChange={(e) => setQualification(e.target.value)} className="form-control core" />
                     </div>
-                    <button className="btn hover:bg-[#16f0fb] mt-2 bg-[#00c2cb] text-white btn-wide px-5">
+                    <button onClick={onSave} className="btn hover:bg-[#16f0fb] mt-2 bg-[#00c2cb] text-white btn-wide px-5">
                       Submit
                     </button>
                   </form>
