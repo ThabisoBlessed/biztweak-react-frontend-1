@@ -19,6 +19,7 @@ import { Users } from "./Users";
 import { AdminUserList } from "./AdminUserList";
 import { ICompany } from "../../model/company.model";
 import CoachesImg from "../../images/icons/mic.png";
+import { EntrepreneurStatsModal } from "./EntrepreneurStatsModal";
 
 export const IncubatorDashboard = () => {
   const initCourses: ICourse[] = [];
@@ -98,7 +99,10 @@ export const IncubatorDashboard = () => {
               </div>
               <div className="card-body border-0">
                 <div className="row">
-                  <div className="col-lg-3 col-sm-6 mb-3 mb-lg-0 cursor-pointer">
+                  <div className="col-lg-3 col-sm-6 mb-3 mb-lg-0 cursor-pointer" 
+                
+                   data-bs-toggle="modal"
+                   data-bs-target="#entrepreneurStats">
                     <div className="col-12 bg-1 p-4 rounded-2 text-dark bg-[#b5e4ca40]">
                       <img src={EntreprenursImg} width="40px" alt=""></img>
                       <p className="small my-2">Entrepreneurs</p>
@@ -170,6 +174,8 @@ export const IncubatorDashboard = () => {
           <div className="m-4">
             <Mentors mentors={mentors} />
           </div>
+
+          <EntrepreneurStatsModal />
         </div>
       </div>
     </div>
