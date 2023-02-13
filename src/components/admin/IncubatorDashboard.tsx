@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import EntreprenursImg from "../../images/icons/entreprenuers.png";
 import ConsultantsImg from "../../images/icons/consultants.png";
 import MentorImg from "../../images/icons/mentor.png";
-import IncubatorsImg from "../../images/icons/incubators.png";
 import { ICourse } from "../../model/course.model";
 import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
 import { IUser } from "../../model/user.model";
@@ -15,11 +14,10 @@ import { ActionsCard } from "./ActionsCard";
 import { ChartCard } from "./ChartCard";
 import { Mentors } from "./Mentors";
 import { UsersCard } from "./UsersCard";
-import { Users } from "./Users";
-import { AdminUserList } from "./AdminUserList";
 import { ICompany } from "../../model/company.model";
 import CoachesImg from "../../images/icons/mic.png";
 import { EntrepreneurStatsModal } from "./EntrepreneurStatsModal";
+import { AddUserModal } from "./AddUserModal";
 
 export const IncubatorDashboard = () => {
   const initCourses: ICourse[] = [];
@@ -73,6 +71,36 @@ export const IncubatorDashboard = () => {
     }
   };
 
+  const getEntrepreneurs = async () => {
+    const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
+    if (storageUser) {
+      const usersResult = await getAllUsers();
+      const usersBody = usersResult.data.package.data;
+      setUsers(usersBody);
+      console.log(usersBody);
+    }
+  };
+
+  const getConsultants = async () => {
+    const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
+    if (storageUser) {
+      const usersResult = await getAllUsers();
+      const usersBody = usersResult.data.package.data;
+      setUsers(usersBody);
+      console.log(usersBody);
+    }
+  };
+
+  const getCoaches = async () => {
+    const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
+    if (storageUser) {
+      const usersResult = await getAllUsers();
+      const usersBody = usersResult.data.package.data;
+      setUsers(usersBody);
+      console.log(usersBody);
+    }
+  };
+
   const getCompanies = async () => {
     const storageUser = getLocalStorageValue(LOCALSTORAGE_KEYS.user);
     if (storageUser) {
@@ -99,10 +127,11 @@ export const IncubatorDashboard = () => {
               </div>
               <div className="card-body border-0">
                 <div className="row">
-                  <div className="col-lg-3 col-sm-6 mb-3 mb-lg-0 cursor-pointer" 
-                
-                   data-bs-toggle="modal"
-                   data-bs-target="#entrepreneurStats">
+                  <div
+                    className="col-lg-3 col-sm-6 mb-3 mb-lg-0 cursor-pointer"
+                    data-bs-toggle="modal"
+                    data-bs-target="#entrepreneurStats"
+                  >
                     <div className="col-12 bg-1 p-4 rounded-2 text-dark bg-[#b5e4ca40]">
                       <img src={EntreprenursImg} width="40px" alt=""></img>
                       <p className="small my-2">Entrepreneurs</p>
@@ -142,7 +171,12 @@ export const IncubatorDashboard = () => {
 
           <div className="row m-3">
             <div className="col-md-4 mb-3 mb-md-0">
-              <button className="btn col-12 p-3 border-[black] hover:bg-[black] hover:text-white rounded-2 btn-white">
+              <button
+                className="btn col-12 p-3 border-[black] hover:bg-[black] hover:text-white rounded-2 btn-white"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#addUser"
+              >
                 <i className="fas fa-plus"></i> Add New user
               </button>
             </div>
@@ -176,6 +210,7 @@ export const IncubatorDashboard = () => {
           </div>
 
           <EntrepreneurStatsModal />
+          <AddUserModal />
         </div>
       </div>
     </div>
