@@ -20,3 +20,21 @@ import { LOCALSTORAGE_KEYS } from "../../config";
       return error;
     }
 };
+
+/**
+ * Gets a list of users
+ * @returns {Promise<Assessment[]>} response
+ */
+ export const getAllEntrepreneurs = async (): Promise<any> => {
+  try {
+    let config = {
+      headers: {
+        'Authorization': 'Bearer ' + String(localStorage.getItem(LOCALSTORAGE_KEYS.accessToken)).replace(/['"\\]+/g, '')
+      }
+    }
+
+    return await axios.get(constants.baseUrl + `/users?role=ENTREPRENEURS`, config);
+  } catch (error: any) {
+    return error;
+  }
+};

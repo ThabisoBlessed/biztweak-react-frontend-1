@@ -97,3 +97,24 @@ export const addAssessmentQuestions = async (answers: string, companyId: number,
     return error;
   }
 };
+
+/**
+ * Gets assessments
+ * 
+ * @returns {any} result
+ */
+ export const getAssessments = async (): Promise<any> => {
+  try {
+    let config = {
+      headers: {
+        'Authorization': 'Bearer ' + String(localStorage.getItem(LOCALSTORAGE_KEYS.accessToken)).replace(/['"\\]+/g, '')
+      }
+    }
+
+    return await axios.post(constants.baseUrl + `/assessments`, config);
+  } catch (error: any) {
+    return error;
+  }
+};
+
+
