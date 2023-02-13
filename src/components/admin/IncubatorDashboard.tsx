@@ -12,13 +12,15 @@ import { getLocalStorageValue, LOCALSTORAGE_KEYS } from "../../config";
 import { getAllUsers } from "../../services/admin/admin.service";
 import { getAllCompanies } from "../../services/business/company.service";
 import { getAllMentors } from "../../services/admin/mentor.service";
+import { IUser } from "../../model/user.model";
 
 export const IncubatorDashboard = () => {
-  const [users, setUsers] = useState([]);
+  const initUsers: IUser[] = [];
+  const [users, setUsers] = useState(initUsers);
   const [isLoading, setIsLoading] = useState(true);
   const [isInitLoad, setIsInitLoad] = useState(true);
-  const [companies, setCompanies] = useState([]);
-  const [mentors, setMentors] = useState();
+  const [companies, setCompanies] = useState();
+  const [mentors, setMentors] = useState(initUsers);
 
   useEffect(() => {
     if (isInitLoad) {
@@ -29,9 +31,9 @@ export const IncubatorDashboard = () => {
     //   getCompanies();
     // }
 
-    if (isInitLoad) {
-      getMentors();
-    }
+    // if (isInitLoad) {
+    //   getMentors();
+    // }
     setIsInitLoad(false);
   });
 
@@ -112,7 +114,7 @@ export const IncubatorDashboard = () => {
             </div>
             <div className="row mt-2">
               <div className="col-lg-4">
-                <UsersCard userMode={"incubator"} users={users || []} />
+                <UsersCard userMode={"incubator"} users={users} />
               </div>
               <div className="col-lg-4">
                <ActionsCard />
@@ -122,7 +124,7 @@ export const IncubatorDashboard = () => {
               </div>
             </div>
             <div className="mt-2 mb-2">
-              <Mentors mentors={mentors || []}/>
+              <Mentors mentors={mentors}/>
             </div>
           </div>
         </div>

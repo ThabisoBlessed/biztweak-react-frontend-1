@@ -32,7 +32,7 @@ export interface IRegisterResponse {
 }
 
 export interface IRegisterRequest {
-  fullname: string;
+  fullNames: string;
   email: string;
   password: string;
   confirmPassword: string;

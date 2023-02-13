@@ -34,7 +34,7 @@ export const Register = () => {
 
     const userRegistration = {} as IRegisterRequest;
     userRegistration.email = email;
-    userRegistration.fullname = fullname;
+    userRegistration.fullNames = fullname;
     userRegistration.password = password;
     userRegistration.confirmPassword = confirmPassword;
 

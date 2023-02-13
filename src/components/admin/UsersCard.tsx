@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AvatarImg from "../../images/avatar.png";
 
@@ -29,6 +29,10 @@ export const UsersCard = (props: any) => {
   ];
   const [users, setUsers] = useState(props.users);
   const [userMode, setUserMode] = useState(props.userMode);
+
+  useEffect(() => {
+    console.log(users);
+  });
 
   const onGoToUsers = () => {
     console.log(userMode);

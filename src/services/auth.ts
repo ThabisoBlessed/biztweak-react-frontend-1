@@ -39,7 +39,7 @@ export const userRegister = async (
 ): Promise<IRegisterResponse | any> => {
   try {
     return await axios.post(constants.baseUrl + `/email-register`, {
-      fullname: register.fullname,
+      fullNames: register.fullNames,
       email: register.email,
       password: register.password,
     });
