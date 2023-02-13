@@ -3,12 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { IBusinessIndustryAndPhase } from "../../model/business-industry-and-phase.model";
 
 export const AddUserModal = (props: any) => {
-    const [userTypes, setUserTypes] = useState(["entrepreneur", "mentor", "consultant", "coach"]);
+    const [userTypes, setUserTypes] = useState(["entrepreneur", "mentor", "consultant", "coach", "incubator"]);
     const [selectedUserType, setSelectedUserType] = useState("entrepreneur");
     const navigate = useNavigate();
   
     const handleUserTypeItemClick = (event: any) => {
       console.log(event.target.value)
+      setSelectedUserType(event.target.value);
     };
   
     const onSave = () => {

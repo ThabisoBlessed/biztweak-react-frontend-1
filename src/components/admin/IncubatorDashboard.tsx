@@ -18,6 +18,7 @@ import { ICompany } from "../../model/company.model";
 import CoachesImg from "../../images/icons/mic.png";
 import { EntrepreneurStatsModal } from "./EntrepreneurStatsModal";
 import { AddUserModal } from "./AddUserModal";
+import { BarChart } from "../shared/charts/BarChart";
 
 export const IncubatorDashboard = () => {
   const initCourses: ICourse[] = [];
@@ -29,6 +30,24 @@ export const IncubatorDashboard = () => {
   const [mentors, setMentors] = useState(initMentors);
   const [users, setUsers] = useState([]);
   const [isInitLoad, setIsInitLoad] = useState(true);
+
+  const columnChartOptions = {
+    chart: {
+      title: "Priorities",
+      subtitle: "Priority Elements Percentages",
+    },
+    colors: ["#00c2cb"],
+    // backgroundColor: "#00c2cb",
+  };
+
+  const data = [
+    ["City", "2010 Population", "2000 Population"],
+    ["New York City, NY", 8175000, 8008000],
+    ["Los Angeles, CA", 3792000, 3694000],
+    ["Chicago, IL", 2695000, 2896000],
+    ["Houston, TX", 2099000, 1953000],
+    ["Philadelphia, PA", 1526000, 1517000],
+  ];
 
   useEffect(() => {
     if (isInitLoad) {
@@ -189,6 +208,25 @@ export const IncubatorDashboard = () => {
               <button className="btn col-12 p-3 border-[black] hover:bg-[black] hover:text-white rounded-2 btn-white">
                 <i className="fas fa-file-alt"></i> All assesments
               </button>
+            </div>
+          </div>
+
+          <div className="row m-3">
+            <div className="col-lg-6 col-m-6">
+              <div className="card shadow-lg p-3 mb-5 text-dark mt-3 bg-white rounded align-content-center">
+                <h6>Sales Score</h6>
+                <div id="barChart" className="card-body m-0 p-0">
+                  <BarChart data={data} width={"100%"} height={"300px"} />
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-6 col-m-6">
+              <div className="card shadow-lg p-3 mb-5 text-dark mt-3 bg-white rounded align-content-center">
+                <h6>Sales Score</h6>
+                <div id="barChart" className="card-body m-0 p-0">
+                  <BarChart data={data} width={"100%"} height={"300px"} />
+                </div>
+              </div>
             </div>
           </div>
 
