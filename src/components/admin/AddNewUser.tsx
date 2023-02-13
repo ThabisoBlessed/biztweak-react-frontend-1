@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { createEntrepreneur } from "../../services/admin/entrepreneur.service";
 import { addUser } from "../../services/lms/user.service";
 import { ActionsCard } from "./ActionsCard";
@@ -13,8 +13,8 @@ export const AddNewUser = () => {
   const { state } = useLocation();
   const [usertType, setUserType] = useState(state.selectedUserType || "");
   const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("test@gmail.com");
-  const [phone, setPhone] = useState("098987676");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [eductaion, setEducation] = useState("");
   const [experience1, setExperience1] = useState("");
   const [experience2, setExperience2] = useState("n/a");
@@ -28,6 +28,7 @@ export const AddNewUser = () => {
   const [yearsOfExp, setYearsOfExp] = useState("Ideation");
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log(usertType);
@@ -35,15 +36,15 @@ export const AddNewUser = () => {
 
   const handleIndustrySelect = (event: any) => {
     setIndustry(event.target.value);
-  }
+  };
 
   const handleTypeSelect = (event: any) => {
     setIndustry(event.target.value);
-  }
+  };
 
   const handleYearsOfExperienceSelect = (event: any) => {
     setYearsOfExp(event.target.value);
-  }
+  };
 
   const onSave = async (e: any) => {
     e.preventDefault();
@@ -59,11 +60,13 @@ export const AddNewUser = () => {
     user.append("role", "ENTREPRENEUR");
 
     const addUserResult = await createEntrepreneur(user);
-    console.log(addUserResult);
+    // navigate("/admin/incubator-dashboard");
 
     setIsSaving(false);
     setIsLoading(false);
-  }
+
+    window.location.reload();
+  };
 
   return (
     <div className="w-full">
@@ -115,7 +118,51 @@ export const AddNewUser = () => {
                           ></i>
                         </label>
                       </div>
-                      <input onChange={(e) => setFullName(e.target.value)} type="text" className="form-control core" />
+                      <input
+                        onChange={(e) => setFullName(e.target.value)}
+                        type="text"
+                        className="form-control core"
+                      />
+                    </div>
+                    <div className="form-group mt-2">
+                      <div className="d-flex justify-content-between">
+                        <label className="text-dark">
+                          Email &nbsp;
+                          <i
+                            className="fa fa-info-circle text-muted"
+                            data-bs-toggle="tooltip"
+                            title="Email is required."
+                            data-bs-original-title="Email is required."
+                            aria-label="Email is required."
+                          ></i>
+                        </label>
+                      </div>
+                      <input
+                        type="text"
+                        className="form-control core"
+                        value={!email ? "" : email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </div>
+                    <div className="form-group mt-2">
+                      <div className="d-flex justify-content-between">
+                        <label className="text-dark">
+                          Phone &nbsp;
+                          <i
+                            className="fa fa-info-circle text-muted"
+                            data-bs-toggle="tooltip"
+                            title="Phone is required"
+                            data-bs-original-title="Phone is required."
+                            aria-label="Phone is required."
+                          ></i>
+                        </label>
+                      </div>
+                      <input
+                        type="text"
+                        className="form-control core"
+                        value={!phone ? "" : phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                      />
                     </div>
                     <div className="form-group mt-2">
                       <div className="d-flex justify-content-between">
@@ -130,7 +177,11 @@ export const AddNewUser = () => {
                           ></i>
                         </label>
                       </div>
-                      <select name="type" className="form-select core" onChange={handleIndustrySelect}>
+                      <select
+                        name="type"
+                        className="form-select core"
+                        onChange={handleIndustrySelect}
+                      >
                         <option value="Manufacturing">Manufacturing</option>
                         <option value="Energy">Energy</option>
                         <option value="Technology">Technology</option>
@@ -149,7 +200,11 @@ export const AddNewUser = () => {
                           ></i>
                         </label>
                       </div>
-                      <input type="text" onChange={(e) => setLocation(e.target.value)} className="form-control core" />
+                      <input
+                        type="text"
+                        onChange={(e) => setLocation(e.target.value)}
+                        className="form-control core"
+                      />
                     </div>
                     <div className="form-group mt-2">
                       <div className="d-flex justify-content-between">
@@ -164,7 +219,11 @@ export const AddNewUser = () => {
                           ></i>
                         </label>
                       </div>
-                      <select name="type" className="form-select core" onChange={(e) => handleTypeSelect(e.target.value)}>
+                      <select
+                        name="type"
+                        className="form-select core"
+                        onChange={(e) => handleTypeSelect(e.target.value)}
+                      >
                         <option value="Ideation">Ideation</option>
                         <option value="Pre-revenue">Pre-revenue</option>
                         <option value="Post-revenue">Post-revenue</option>
@@ -183,7 +242,11 @@ export const AddNewUser = () => {
                           ></i>
                         </label>
                       </div>
-                      <input type="text" onChange={(e) => setExperience1(e.target.value)} className="form-control core" />
+                      <input
+                        type="text"
+                        onChange={(e) => setExperience1(e.target.value)}
+                        className="form-control core"
+                      />
                     </div>
                     <div className="form-group mt-2">
                       <div className="d-flex justify-content-between">
@@ -198,7 +261,13 @@ export const AddNewUser = () => {
                           ></i>
                         </label>
                       </div>
-                      <select name="type" className="form-select core" onChange={(e) => handleYearsOfExperienceSelect(e.target.value)}>
+                      <select
+                        name="type"
+                        className="form-select core"
+                        onChange={(e) =>
+                          handleYearsOfExperienceSelect(e.target.value)
+                        }
+                      >
                         <option value="1-5">1-5</option>
                         <option value="5-10">5-10</option>
                         <option value="10-15">10-15</option>
@@ -218,19 +287,23 @@ export const AddNewUser = () => {
                           ></i>
                         </label>
                       </div>
-                      <input type="text" onChange={(e) => setQualification(e.target.value)} className="form-control core" />
+                      <input
+                        type="text"
+                        onChange={(e) => setQualification(e.target.value)}
+                        className="form-control core"
+                      />
                     </div>
-                    <button onClick={onSave} className="btn hover:bg-[#16f0fb] mt-2 bg-[#00c2cb] text-white btn-wide px-5">
+                    <button
+                      onClick={onSave}
+                      className="btn hover:bg-[#16f0fb] mt-2 bg-[#00c2cb] text-white btn-wide px-5"
+                    >
                       Submit
                     </button>
                   </form>
                 </div>
               ) : null}
 
-              {usertType === "incubator" ? (
-                <Mentors />
-              ) : null
-              }
+              {usertType === "incubator" ? <Mentors /> : null}
             </div>
             {/* <div className="row">
               <div className="col-lg-8">
