@@ -30,6 +30,10 @@ export const IncubatorDashboard = () => {
   const [mentors, setMentors] = useState(initMentors);
   const [users, setUsers] = useState([]);
   const [isInitLoad, setIsInitLoad] = useState(true);
+  const [entrepreneursCount, setEntrepreneursCount] = useState(0);
+  const [consultantsCount, setConsultantsCount] = useState(0);
+  const [coachesCount, setCoachesCount] = useState(0);
+  const [mentorsCount, setMentorsCount] = useState(0);
 
   const columnChartOptions = {
     chart: {
@@ -51,7 +55,7 @@ export const IncubatorDashboard = () => {
 
   useEffect(() => {
     if (isInitLoad) {
-      getCourses();
+      // getCourses();
       getusers();
     }
     setIsInitLoad(false);
@@ -86,7 +90,8 @@ export const IncubatorDashboard = () => {
       const usersResult = await getAllUsers();
       const usersBody = usersResult.data.package.data;
       setUsers(usersBody);
-      console.log(usersBody);
+      console.log(usersResult);
+      setEntrepreneursCount(usersResult.data.package.countENTREPRENEUR);
     }
   };
 
@@ -155,10 +160,7 @@ export const IncubatorDashboard = () => {
                       <img src={EntreprenursImg} width="40px" alt=""></img>
                       <p className="small my-2">Entrepreneurs</p>
                       <h1 className="m-0 fw-bold">
-                        {
-                          users.filter((u: any) => u.role === "ENTREPRENEUR")
-                            .length
-                        }
+                        {entrepreneursCount}
                       </h1>
                     </div>
                   </div>
@@ -167,10 +169,7 @@ export const IncubatorDashboard = () => {
                       <img src={ConsultantsImg} width="40px" alt=""></img>
                       <p className="small my-2">Consultants</p>
                       <h1 className="m-0 fw-bold">
-                        {
-                          users.filter((u: any) => u.role === "CONSULTANT")
-                            .length
-                        }
+                        {consultantsCount}
                       </h1>
                     </div>
                   </div>
@@ -179,7 +178,7 @@ export const IncubatorDashboard = () => {
                       <img src={MentorImg} width="40px" alt=""></img>
                       <p className="small my-2">Mentors</p>
                       <h1 className="m-0 fw-bold">
-                        {users.filter((u: any) => u.role === "MENTOR").length}
+                        {mentorsCount}
                       </h1>
                     </div>
                   </div>
@@ -188,7 +187,7 @@ export const IncubatorDashboard = () => {
                       <img src={CoachesImg} width="40px" alt=""></img>
                       <p className="small my-2">Coaches</p>
                       <h1 className="m-0 fw-bold">
-                        {users.filter((u: any) => u.role === "COACH").length}
+                        {coachesCount}
                       </h1>
                     </div>
                   </div>
