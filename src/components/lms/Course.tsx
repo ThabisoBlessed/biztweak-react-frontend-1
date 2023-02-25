@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { LMSMenu } from "./LMSMenu";
 import AvatarImg from "../../images/avatar.png";
-import CourseVideo from "../../images/video.mp4";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Course.css";
 import { ICourse } from "../../model/course.model";
